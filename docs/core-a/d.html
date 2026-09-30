@@ -1,0 +1,703 @@
+<!doctype html>
+<html lang="zh-Hant-HK" data-accent="a">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>單元 A 課題 d：數據操縱和分析｜ICT 溫習站</title>
+<meta name="description" content="香港中學文憑考試資訊及通訊科技科（新課程）溫習重點、評卷要點與常見錯誤">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231d4ed8'/%3E%3Ctext x='32' y='42' font-size='26' font-family='Arial' font-weight='700' fill='white' text-anchor='middle'%3EICT%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="../assets/style.css">
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem("ictrev-theme");
+      if (t) document.documentElement.setAttribute("data-theme", t);
+      var f = localStorage.getItem("ictrev-font");
+      if (f) document.documentElement.setAttribute("data-font", f);
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body class="kind-topic has-toc" data-page="core-a/d" data-root="../">
+<a class="skip-link" href="#main">跳到主要內容</a>
+
+<header class="topbar">
+  <button class="icon-btn menu-btn" type="button" aria-label="開啟目錄" aria-controls="sidebar" aria-expanded="false">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+  </button>
+  <a class="brand" href="../index.html">
+    <span class="brand-mark" aria-hidden="true">ICT</span>
+    <span class="brand-text">ICT 溫習站</span>
+  </a>
+  <div class="search" role="search">
+    <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+    <input id="search-input" type="search" placeholder="搜尋課題、術語……" autocomplete="off" aria-label="搜尋" aria-controls="search-results" aria-expanded="false">
+    <kbd class="search-kbd" aria-hidden="true">/</kbd>
+    <div id="search-results" class="search-results" role="listbox" hidden></div>
+  </div>
+  <div class="topbar-tools">
+    <button class="icon-btn" type="button" data-font-toggle aria-label="調整字體大小" title="字體大小">
+      <span class="font-icon" aria-hidden="true">A<small>A</small></span>
+    </button>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="切換深色／淺色模式" title="深色／淺色模式">
+      <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/></svg>
+    </button>
+  </div>
+</header>
+
+<div class="layout">
+  <aside id="sidebar" class="sidebar" aria-label="網站目錄">
+    <nav class="nav">
+<a class="nav-home" href="../index.html"><span class="nav-home-icon" aria-hidden="true">⌂</span>首頁</a>
+<div class="nav-group"><div class="nav-group-title">必修部分</div>
+<details class="nav-module accent-a" open>
+<summary><span class="nav-code">A</span><span class="nav-module-title">資訊處理</span></summary><ul>
+<li><a class="nav-link" data-page="core-a/index" href="../core-a/index.html"><span class="nav-tick" aria-hidden="true"></span>概覽</a></li>
+<li><a class="nav-link" data-page="core-a/a" href="../core-a/a.html"><span class="nav-tick" aria-hidden="true"></span>a. 資訊處理簡介</a></li>
+<li><a class="nav-link" data-page="core-a/b" href="../core-a/b.html"><span class="nav-tick" aria-hidden="true"></span>b. 數據組織及數據控制</a></li>
+<li><a class="nav-link" data-page="core-a/c" href="../core-a/c.html"><span class="nav-tick" aria-hidden="true"></span>c. 數據表示</a></li>
+<li><a class="nav-link is-active" data-page="core-a/d" href="../core-a/d.html" aria-current="page"><span class="nav-tick" aria-hidden="true"></span>d. 數據操縱和分析</a></li>
+</ul></details>
+<details class="nav-module accent-b">
+<summary><span class="nav-code">B</span><span class="nav-module-title">電腦系統基礎</span></summary><ul>
+<li><a class="nav-link" data-page="core-b/index" href="../core-b/index.html"><span class="nav-tick" aria-hidden="true"></span>概覽</a></li>
+<li><a class="nav-link is-pending" data-page="core-b/a" href="../core-b/a.html"><span class="nav-tick" aria-hidden="true"></span>a. 基本機器組織</a></li>
+<li><a class="nav-link is-pending" data-page="core-b/b" href="../core-b/b.html"><span class="nav-tick" aria-hidden="true"></span>b. 系統軟件</a></li>
+</ul></details>
+<details class="nav-module accent-c">
+<summary><span class="nav-code">C</span><span class="nav-module-title">互聯網及其應用</span></summary><ul>
+<li><a class="nav-link" data-page="core-c/index" href="../core-c/index.html"><span class="nav-tick" aria-hidden="true"></span>概覽</a></li>
+<li><a class="nav-link is-pending" data-page="core-c/a" href="../core-c/a.html"><span class="nav-tick" aria-hidden="true"></span>a. 建網及互聯網基本知識</a></li>
+<li><a class="nav-link is-pending" data-page="core-c/b" href="../core-c/b.html"><span class="nav-tick" aria-hidden="true"></span>b. 互聯網服務及應用</a></li>
+<li><a class="nav-link is-pending" data-page="core-c/c" href="../core-c/c.html"><span class="nav-tick" aria-hidden="true"></span>c. 初級網頁創作</a></li>
+<li><a class="nav-link is-pending" data-page="core-c/d" href="../core-c/d.html"><span class="nav-tick" aria-hidden="true"></span>d. 網上威脅及保安</a></li>
+</ul></details>
+<details class="nav-module accent-d">
+<summary><span class="nav-code">D</span><span class="nav-module-title">計算思維與程式編寫</span></summary><ul>
+<li><a class="nav-link" data-page="core-d/index" href="../core-d/index.html"><span class="nav-tick" aria-hidden="true"></span>概覽</a></li>
+<li><a class="nav-link is-pending" data-page="core-d/a" href="../core-d/a.html"><span class="nav-tick" aria-hidden="true"></span>a. 問題建構和分析</a></li>
+<li><a class="nav-link is-pending" data-page="core-d/b" href="../core-d/b.html"><span class="nav-tick" aria-hidden="true"></span>b. 算法設計</a></li>
+<li><a class="nav-link is-pending" data-page="core-d/c" href="../core-d/c.html"><span class="nav-tick" aria-hidden="true"></span>c. 程式開發</a></li>
+<li><a class="nav-link is-pending" data-page="core-d/d" href="../core-d/d.html"><span class="nav-tick" aria-hidden="true"></span>d. 程式測試和除錯</a></li>
+</ul></details>
+<details class="nav-module accent-e">
+<summary><span class="nav-code">E</span><span class="nav-module-title">資訊及通訊科技對社會的影響</span></summary><ul>
+<li><a class="nav-link" data-page="core-e/index" href="../core-e/index.html"><span class="nav-tick" aria-hidden="true"></span>概覽</a></li>
+<li><a class="nav-link is-pending" data-page="core-e/a" href="../core-e/a.html"><span class="nav-tick" aria-hidden="true"></span>a. 科技創新</a></li>
+<li><a class="nav-link is-pending" data-page="core-e/b" href="../core-e/b.html"><span class="nav-tick" aria-hidden="true"></span>b. 健康及道德議題</a></li>
+<li><a class="nav-link is-pending" data-page="core-e/c" href="../core-e/c.html"><span class="nav-tick" aria-hidden="true"></span>c. 知識產權</a></li>
+</ul></details>
+</div>
+<div class="nav-group"><div class="nav-group-title">選修部分</div>
+<details class="nav-module accent-f">
+<summary><span class="nav-code">二甲</span><span class="nav-module-title">數據庫</span></summary><ul>
+<li><a class="nav-link" data-page="elective-a/index" href="../elective-a/index.html"><span class="nav-tick" aria-hidden="true"></span>概覽</a></li>
+<li><a class="nav-link is-pending" data-page="elective-a/a" href="../elective-a/a.html"><span class="nav-tick" aria-hidden="true"></span>a. 關聯式數據庫概念</a></li>
+<li><a class="nav-link is-pending" data-page="elective-a/b" href="../elective-a/b.html"><span class="nav-tick" aria-hidden="true"></span>b. 結構化查詢語言</a></li>
+<li><a class="nav-link is-pending" data-page="elective-a/c" href="../elective-a/c.html"><span class="nav-tick" aria-hidden="true"></span>c. 數據庫設計方法</a></li>
+</ul></details>
+<details class="nav-module accent-g">
+<summary><span class="nav-code">二乙</span><span class="nav-module-title">網絡應用程式開發</span></summary><ul>
+<li><a class="nav-link" data-page="elective-b/index" href="../elective-b/index.html"><span class="nav-tick" aria-hidden="true"></span>概覽</a></li>
+<li><a class="nav-link is-pending" data-page="elective-b/a" href="../elective-b/a.html"><span class="nav-tick" aria-hidden="true"></span>a. 網絡服務與實施</a></li>
+<li><a class="nav-link is-pending" data-page="elective-b/b" href="../elective-b/b.html"><span class="nav-tick" aria-hidden="true"></span>b. 網絡編程與應用</a></li>
+</ul></details>
+</div>
+<div class="nav-group"><div class="nav-group-title">考試攻略</div>
+<details class="nav-module accent-h">
+<summary><span class="nav-module-title">考試攻略</span></summary><ul>
+<li><a class="nav-link" data-page="exam/index" href="../exam/index.html"><span class="nav-tick" aria-hidden="true"></span>概覽</a></li>
+<li><a class="nav-link" data-page="exam/structure" href="../exam/structure.html"><span class="nav-tick" aria-hidden="true"></span>試卷結構與答題原則</a></li>
+<li><a class="nav-link is-pending" data-page="exam/mistakes" href="../exam/mistakes.html"><span class="nav-tick" aria-hidden="true"></span>常見錯誤總匯</a></li>
+<li><a class="nav-link is-pending" data-page="exam/formulas" href="../exam/formulas.html"><span class="nav-tick" aria-hidden="true"></span>計算公式速查</a></li>
+<li><a class="nav-link is-pending" data-page="exam/reference" href="../exam/reference.html"><span class="nav-tick" aria-hidden="true"></span>函數及指令清單</a></li>
+<li><a class="nav-link is-pending" data-page="exam/sba" href="../exam/sba.html"><span class="nav-tick" aria-hidden="true"></span>校本評核</a></li>
+</ul></details>
+<details class="nav-module accent-h">
+<summary><span class="nav-module-title">學習資源</span></summary><ul>
+<li><a class="nav-link" data-page="resources/index" href="../resources/index.html"><span class="nav-tick" aria-hidden="true"></span>概覽</a></li>
+<li><a class="nav-link is-pending" data-page="resources/glossary" href="../resources/glossary.html"><span class="nav-tick" aria-hidden="true"></span>術語表（中英對照）</a></li>
+<li><a class="nav-link" data-page="resources/guide" href="../resources/guide.html"><span class="nav-tick" aria-hidden="true"></span>網站使用說明</a></li>
+</ul></details>
+</div>
+    </nav>
+  </aside>
+  <div class="scrim" hidden></div>
+
+  <main id="main" class="main" tabindex="-1">
+    <article class="content">
+<nav class="breadcrumb" aria-label="位置"><a href="../index.html">首頁</a><span class="sep">›</span><span>必修部分</span><span class="sep">›</span><a href="../core-a/index.html">資訊處理</a></nav><header class="page-head"><div class="page-eyebrow">單元 A · 課題 d</div><h1 class="page-title">數據操縱和分析</h1><div class="page-en">Data Manipulation and Analysis</div><div class="page-meta"><span class="chip">建議課時 20 小時</span><span class="chip">課本第 5、6 章</span><button class="done-btn" type="button" data-done-toggle="core-a/d" aria-pressed="false"><span class="done-box" aria-hidden="true"></span><span class="done-label">標記為已溫習</span></button></div></header>
+<div class="prose"><h2 id="41-課程要求">4.1 課程要求</h2>
+<p><strong>試算表</strong>：使用儲存格參照（課程文件稱「單元格參照」）、函數和數學、邏輯及關聯運算符；以一項或多項準則篩選、搜尋、排序數據；在多個工作表之間處理數據；運用樞紐分析表、樞紐分析圖和「假設」情境分析數據，辨別趨勢，作有根據的決定。</p>
+<p><strong>數據庫</strong>：以數據庫管理系統建立及維護簡單的數據庫；建立表單輸入數據；以查詢在<strong>單一數據表</strong>中選擇、篩選及排序數據；追蹤及闡釋簡單的 SQL 語句；按對象製作及格式化報表。</p>
+<h2 id="42-考評局提供的函數及指令清單">4.2 考評局提供的函數及指令清單</h2>
+<p>樣本試卷答題簿末頁列出以下函數及指令供考生參考。考試範圍以這份清單為準。</p>
+<p><strong>試算表</strong></p>
+<ul>
+<li>常數：TRUE、FALSE</li>
+<li>運算符：<code>+ - * / &lt; &gt; = &lt;&gt; &lt;= &gt;= &amp;</code></li>
+<li>函數：INT、RAND、SQRT、ROUND、AND、NOT、OR、LEFT、LEN、MID、RIGHT、AVERAGE、COUNT、COUNTIF、MAX、MIN、RANK、SUM、SUMIF、FIND、XLOOKUP、IF</li>
+</ul>
+<p><strong>SQL</strong></p>
+<ul>
+<li>常數：TRUE、FALSE</li>
+<li>運算符：<code>+ - * / &gt; &lt; = &gt;= &lt;= &lt;&gt; % _ '</code>、AND、NOT、OR</li>
+<li>指令：AVG、MAX、MIN、SUM、AS、BETWEEN、BY、ASC、DESC、DISTINCT、FROM、GROUP、HAVING、LIKE、NULL、ORDER、SELECT、WHERE</li>
+</ul>
+<p>（樣本試卷的 SQL 清單沒有列出 COUNT，但 2024 年試題曾使用 COUNT(*)，應一併掌握。）</p>
+<h2 id="43-試算表基本概念">4.3 試算表基本概念</h2>
+<ul>
+<li>儲存格位址 = 欄字母 + 列數字，例如 B7、AK51。</li>
+<li><strong>公式必須以「=」開始。</strong></li>
+<li>儲存格格式影響顯示及儲存的內容。例如輸入 000815，數值格式會變成 815；學生編號、電話號碼等有前導零的資料應設為<strong>文字</strong>格式。</li>
+<li>自動填滿可以複製內容，或延伸數列（如日期、編號）。</li>
+</ul>
+<p><strong>運算符</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>類別</th>
+<th>運算符</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>算術</td>
+<td><code>+ - * / ^ %</code></td>
+</tr>
+<tr>
+<td>比較</td>
+<td><code>= &lt;&gt; &gt; &gt;= &lt; &lt;=</code></td>
+</tr>
+<tr>
+<td>文字串連</td>
+<td><code>&amp;</code></td>
+</tr>
+<tr>
+<td>參照</td>
+<td><code>:</code>（範圍，例如 A1:B10）、<code>,</code>（聯合，例如 A1:A5, D2:D6）</td>
+</tr>
+</tbody>
+</table>
+</div><p>⚠ 比較運算符只可以寫 <code>&lt;=</code>、<code>&gt;=</code>、<code>&lt;&gt;</code>，不可以寫 ≤、≥、≠、=&lt;〔2023 卷一乙 2(a)〕。</p>
+<h2 id="44-儲存格參照">4.4 儲存格參照</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>類型</th>
+<th>寫法</th>
+<th>複製公式時</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>相對參照</td>
+<td>A1</td>
+<td>欄和列都按移動距離改變</td>
+</tr>
+<tr>
+<td>絕對參照</td>
+<td>$A$1</td>
+<td>欄和列都不變</td>
+</tr>
+<tr>
+<td>混合參照</td>
+<td>$A1 或 A$1</td>
+<td>有「$」的部分不變</td>
+</tr>
+</tbody>
+</table>
+</div><p><strong>複製規則</strong>：先計算目標儲存格與原儲存格相差多少欄、多少列，每個沒有「$」的部分都按相同距離移動。</p>
+<p>例子：C3 的公式是 <code>=A$1+$B2</code>，複製到 E5（向右 2 欄、向下 2 列）後變成 <code>=C$1+$B4</code>。</p>
+<p>參照其他工作表：<code>='工作表名稱'!B3</code>；參照其他檔案：<code>='[檔案名稱.xlsx]工作表名稱'!B3</code>。</p>
+<p>✔ <strong>公式應參照儲存格，不要把數值直接寫進公式。</strong> 例如佣金率放在 B2，公式寫 <code>=C6*B$2</code>；日後佣金率改變，只須修改 B2，所有公式自動更新。</p>
+<h2 id="45-常用函數">4.5 常用函數</h2>
+<p><strong>統計函數</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>函數</th>
+<th>作用</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SUM(範圍)</td>
+<td>總和</td>
+<td>=SUM(B2:B9)</td>
+</tr>
+<tr>
+<td>AVERAGE(範圍)</td>
+<td>平均值</td>
+<td>=AVERAGE(C2:E2)</td>
+</tr>
+<tr>
+<td>MAX(範圍)、MIN(範圍)</td>
+<td>最大值、最小值</td>
+<td>=MAX(F2:F36)</td>
+</tr>
+<tr>
+<td>COUNT(範圍)</td>
+<td>範圍內<strong>數值</strong>儲存格的數目</td>
+<td>=COUNT(B2:B9)</td>
+</tr>
+<tr>
+<td>COUNTIF(範圍, 條件)</td>
+<td>符合條件的儲存格數目</td>
+<td>=COUNTIF(B2:B9,"缺席")</td>
+</tr>
+<tr>
+<td>SUMIF(範圍, 條件, 相加範圍)</td>
+<td>符合條件的對應數值總和</td>
+<td>=SUMIF(C2:C9,"4A",D2:D9)</td>
+</tr>
+<tr>
+<td>RANK(數值, 範圍, [次序])</td>
+<td>排名；次序省略或 0 為遞減，非 0 為遞增</td>
+<td>=RANK(B2,B$2:B$9)</td>
+</tr>
+</tbody>
+</table>
+</div><p>條件中可以用萬用字元：<code>*</code> 代表任何數目的字符，<code>?</code> 代表一個字符，例如 "4?" 代表所有中四班別。</p>
+<p><strong>數學函數</strong>：ROUND(X, D) 四捨五入至 D 位小數；INT(X) 取不大於 X 的最大整數，例如 INT(−4.3) = −5；SQRT(X) 平方根；RAND() 傳回 0 至小於 1 的隨機數。</p>
+<p><strong>邏輯函數</strong>：IF(條件, 真值, 假值)；AND(條件 1, 條件 2, …) 全部成立才傳回 TRUE；OR(…) 任何一個成立即傳回 TRUE；NOT(條件) 取相反。</p>
+<p>巢狀 IF 例子：<code>=IF(B2&gt;=80,"A",IF(B2&gt;=50,"B","C"))</code></p>
+<p><strong>文字函數</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>函數</th>
+<th>作用</th>
+<th>例子（A1 = "Banana"）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LEN(文字)</td>
+<td>字符數目（空格也計算）</td>
+<td>=LEN(A1) → 6</td>
+</tr>
+<tr>
+<td>LEFT(文字, N)</td>
+<td>最左 N 個字符</td>
+<td>=LEFT(A1,3) → Ban</td>
+</tr>
+<tr>
+<td>RIGHT(文字, N)</td>
+<td>最右 N 個字符</td>
+<td>=RIGHT(A1,4) → nana</td>
+</tr>
+<tr>
+<td>MID(文字, S, N)</td>
+<td>由第 S 個字符起取 N 個</td>
+<td>=MID(A1,3,2) → na</td>
+</tr>
+<tr>
+<td>FIND(找甚麼, 文字, [起點])</td>
+<td>首次出現的位置，區分大小寫</td>
+<td>=FIND("a",A1,3) → 4</td>
+</tr>
+</tbody>
+</table>
+</div><p>以 <code>&amp;</code> 連接文字：<code>=LEFT(B2,1)&amp;". "&amp;A2</code></p>
+<p><strong>XLOOKUP</strong></p>
+<p><code>=XLOOKUP(查找值, 查找範圍, 傳回範圍, [找不到時傳回], [比對模式], [搜尋模式])</code></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>比對模式</th>
+<th>意思</th>
+<th>典型用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0（預設）</td>
+<td>完全符合</td>
+<td>按編號查名稱</td>
+</tr>
+<tr>
+<td>−1</td>
+<td>完全符合，否則取<strong>較小</strong>的最接近值</td>
+<td>按分數查等級（分數下限表）</td>
+</tr>
+<tr>
+<td>1</td>
+<td>完全符合，否則取<strong>較大</strong>的最接近值</td>
+<td>按人數找容量足夠的旅遊巴</td>
+</tr>
+</tbody>
+</table>
+</div><p>例子：分數在 F2，等級表下限在 J2:J6、等級在 K2:K6，公式為 <code>=XLOOKUP(F2,$J$2:$J$6,$K$2:$K$6,,-1)</code>。</p>
+<h2 id="46-試算表公式考評局常見失分">4.6 試算表公式：考評局常見失分</h2>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>〔2025 卷一乙 1(a)〕在 F2 輸入公式計算三次測驗的平均分，再複製到 F3:F36。</strong></p>
+<p>✔ <code>=AVERAGE(C2:E2)</code>；<code>=SUM(C2:E2)/3</code> 等方法亦接受。</p>
+<p>✘ 常見錯誤是寫成 <strong>AVG</strong>（那是 SQL 的函數）。注意「=」號。</p>
+</blockquote>
+<!-- -->
+
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>〔2025 卷一乙 1(b)〕在 H2 輸入公式，計算平均分少於或等於 G2 的學生人數，再複製到 H3:H6。</strong></p>
+<p>✔ <code>=COUNTIF($F$2:$F$36,"&lt;="&amp;G2)</code></p>
+<p>✘ 考生表現「尚可」。不少人寫 <code>"&lt;=G2"</code>，或漏了 <code>&amp;</code>。一位第 5 級考生寫 <code>'&lt;=G2'</code>，同樣失分。</p>
+<p>要點：比較符號放在引號內，用 <code>&amp;</code> 連接儲存格參照；引號外的 G2 才會取儲存格的值。統計範圍要用絕對參照。</p>
+</blockquote>
+<!-- -->
+
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>〔2024 卷一乙 1(a)(i)〕D 欄或 E 欄任何一個是 1，F 欄顯示 1，否則顯示 0。</strong></p>
+<p>✔ <code>=IF(D2+E2&gt;=1,1,0)</code>；條件亦可寫 <code>D2+E2&gt;0</code>、<code>OR(D2=1,E2=1)</code>；或寫 <code>=IF(D2+E2=0,0,1)</code>。</p>
+<p>✘ 真假值寫成 <code>"1","0"</code>（加了引號就變成文字，不是數值）；<code>OR(D2,E2)=1</code>。</p>
+</blockquote>
+<!-- -->
+
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>〔2024 卷一乙 1(a)(ii)〕B85 的公式 <code>=SUMIF(A2:A81,"S01",F2:F81)</code> 結果正確，但複製到 B86、E85、E86 後出錯。改正 B85 的公式。</strong></p>
+<p>✔ <code>=SUMIF($A$2:$A$81,A85,$F$2:$F$81)</code></p>
+<p>要點：兩個範圍都要<strong>絕對參照</strong>；條件改為參照<strong>儲存格 A85</strong>，而且要用<strong>相對參照</strong>，複製到 E85 時才會變成 D85。</p>
+<p>✘ <code>$A85</code>（複製到 E 欄時仍然參照 A 欄）；<code>"S01"</code>（寫死了條件）；範圍沒有加 $。</p>
+</blockquote>
+<!-- -->
+
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>〔2023 卷一乙 2(a)(b)〕</strong></p>
+<p>✔ <code>=IF($C2&lt;=$C$102,1,0)</code>；<code>=$D2*$E2+$E$102</code></p>
+<p>✘ 大部分考生懂得用 IF，但很多人失去第二分：符號寫成 ≤、漏了「=」、把條件或數值放入引號；另有考生沒有在 E$102 加 $。</p>
+</blockquote>
+<p>考評局 2024 年的教學建議：注意公式語法；<strong>數值不可加引號等標點</strong>；正確使用 $；<strong>函數名稱不可串錯</strong>。</p>
+<h2 id="47-排序與篩選">4.7 排序與篩選</h2>
+<ul>
+<li><strong>排序（sort）</strong>：按一個或多個鍵重新排列記錄，會改變記錄的次序。多鍵排序先按<strong>主要鍵</strong>，主要鍵相同時再按<strong>次要鍵</strong>。</li>
+<li><strong>篩選（filter）</strong>：只顯示符合條件的記錄，其餘暫時隱藏，<strong>不改變原始數據</strong>；取消篩選後全部重現。</li>
+</ul>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>〔2024 卷一乙 1(a)(iv)〕記錄已排序，寫出排序方式。</strong></p>
+<p>✔ 首先按 DATE <strong>遞減</strong>，再按 NAME <strong>遞增</strong>。要從數據推斷：日期由 2024-02-28 排到 2024-02-27，同一日內姓名按字母次序。</p>
+<p>✘ 次序顛倒（先 NAME 後 DATE），或遞增、遞減寫錯。</p>
+</blockquote>
+<p>✔ 要找「信社學生，按分數由高至低」：先設篩選條件「學社 = 信」，再按分數遞減排序。</p>
+<h2 id="48-圖表樞紐分析表與假設分析">4.8 圖表、樞紐分析表與假設分析</h2>
+<p><strong>圖表類型</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>圖表</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>直條圖、橫條圖</td>
+<td>比較不同類別的數值</td>
+</tr>
+<tr>
+<td>折線圖</td>
+<td>顯示隨時間變化的趨勢</td>
+</tr>
+<tr>
+<td>圓形圖</td>
+<td>顯示各部分佔整體的比例</td>
+</tr>
+<tr>
+<td>散點圖</td>
+<td>顯示兩組數據的相關性</td>
+</tr>
+<tr>
+<td>雷達圖</td>
+<td>同時比較多項指標</td>
+</tr>
+</tbody>
+</table>
+</div><p>圖表元素：圖表標題、X 軸及 Y 軸標題、圖例、數據標籤、網格線。圓形圖沒有座標軸。2D 圖表比 3D 圖表更能準確反映數值比例。</p>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>〔2023 卷一乙 2(e)〕以圖表展示分數最高的 5 位學生。</strong></p>
+<p>✔ 選擇合適的圖表類型（直條圖，1 分），並標示圖表標題、座標軸標題、數據標籤或圖例中的兩項（2 分）。</p>
+<p>✘ 有考生畫了<strong>表格</strong>而不是圖表；有考生只為一條軸加上名稱或數據標籤。</p>
+</blockquote>
+<p><strong>樞紐分析表（pivot table）</strong>從大量數據建立摘要表，由四部分組成：<strong>列標籤、欄標籤、值、報表篩選</strong>。「值」可以選 SUM、COUNT、AVERAGE、MAX、MIN。<strong>樞紐分析圖</strong>以圖表形式顯示樞紐分析表。</p>
+<p>例子：數據表有「班別、學社、分數」三欄，要製作「各學社在各班取得的總分」：列標籤 = 學社，欄標籤 = 班別，值 = 分數的總和。</p>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>〔2023 卷一乙 2(c)〕完成樞紐分析表的設定，求每位學生的分數總和。</strong></p>
+<p>✔ 欄 = StudID；值 = <strong>Sum of Score</strong>（加總 Score）。</p>
+<p>✘ 很多考生只寫 Score 而沒有指明 <strong>SUM</strong>；把欄名寫錯（如 Scores）；加入了多餘的欄位。</p>
+</blockquote>
+<p><strong>假設分析（What-If Analysis）</strong>：改變輸入數值，觀察對結果的影響，用於預測和規劃。工具包括分析藍本管理員（Scenario Manager）和目標搜尋（Goal Seek）。</p>
+<p>✔ 區分：假設分析是比較<strong>不同的輸入數據組合</strong>；樞紐分析表是把<strong>同一組數據</strong>分類摘要。「改變不同參數估算每月支出」適合假設分析；「比較各分店銷售」屬樞紐分析或圖表〔樣本試卷甲部第 8 題〕。</p>
+<p>✔ 試算表適合小型數據分析和圖表製作；DBMS 適合大量結構化數據、多人存取及存取權限控制。試算表不宜直接分析大數據，因為工作表可容納的列數有限，處理大量數據時效率低〔樣本試卷乙部 2(b)〕。</p>
+<h2 id="49-數據庫表單查詢報表與數據表設計">4.9 數據庫：表單、查詢、報表與數據表設計</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>項目</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>數據表（table）</td>
+<td>以列（記錄）和欄（欄位）儲存數據；是數據庫必須具備的項目</td>
+</tr>
+<tr>
+<td>表單（form）</td>
+<td>輸入、顯示、修改記錄的圖形介面</td>
+</tr>
+<tr>
+<td>查詢（query）</td>
+<td>從一個或多個數據表提取符合條件的數據，可以計算和排序；可以儲存再用</td>
+</tr>
+<tr>
+<td>報表（report）</td>
+<td>按預設格式在屏幕顯示或列印，常用於摘要，例如成績表</td>
+</tr>
+</tbody>
+</table>
+</div><p><strong>使用表單的好處</strong>：提供方便的輸入環境（簡化使用者介面）；可設定有效性檢驗，例如範圍檢查；可設定數據驗證，例如輸入兩次密碼；以下拉式選單、單選按鈕、核取方塊、日期選擇器簡化輸入；一個表單可以同時修改多個數據表的相關記錄。</p>
+<p>⚠ 表單<strong>不能</strong>縮短 SQL 執行時間，也<strong>不會</strong>減少儲存空間〔改編自 2021 卷一甲第 11 題〕。</p>
+<p><strong>設計數據表的步驟</strong>：列出需要記錄的項目 → 每個項目設為一個欄位 → 起一個簡短而有意義的欄名 → 決定數據類型和欄位長度 → 設定主關鍵碼 → 視乎需要加入有效性檢驗規則。</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>數據類型</th>
+<th>用途</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>文字／字符</td>
+<td>名稱、編號、電話號碼（不作計算）</td>
+<td>NAME、TEL_NO、HKID</td>
+</tr>
+<tr>
+<td>整數</td>
+<td>需要計算的整數</td>
+<td>AGE、MARK</td>
+</tr>
+<tr>
+<td>浮點數（實數）</td>
+<td>有小數的數值</td>
+<td>PRICE、AREA</td>
+</tr>
+<tr>
+<td>日期／時間</td>
+<td>日期</td>
+<td>DOB</td>
+</tr>
+<tr>
+<td>布爾</td>
+<td>是／否</td>
+<td>PAID</td>
+</tr>
+</tbody>
+</table>
+</div><p>✔ 電話號碼、學生編號用文字類型：不會拿來計算，而且可能有前導零或字母。
+✔ 日期用日期類型：方便排序、篩選和計算日數。若用文字，「10/2/2025」會排在「2/2/2025」之前。
+✔ 欄位長度要足夠但不浪費，例如英文姓名 20 以上，中文姓名 4 左右。</p>
+<h2 id="410-sql-select-語句">4.10 SQL SELECT 語句</h2>
+<p><strong>書寫次序</strong></p>
+<pre><code class="language-sql">SELECT   欄位或運算式
+FROM     數據表
+WHERE    篩選記錄的條件      -- 分組前篩選
+GROUP BY 分組欄位
+HAVING   篩選組別的條件      -- 分組後篩選
+ORDER BY 排序欄位 [ASC | DESC]
+</code></pre>
+<p><strong>示例數據表 LOAN（自擬）</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>SID</th>
+<th>CLASS</th>
+<th>BOOK</th>
+<th>DAYS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S01</td>
+<td>4A</td>
+<td>B12</td>
+<td>7</td>
+</tr>
+<tr>
+<td>S02</td>
+<td>4B</td>
+<td>B05</td>
+<td>14</td>
+</tr>
+<tr>
+<td>S01</td>
+<td>4A</td>
+<td>B33</td>
+<td>3</td>
+</tr>
+<tr>
+<td>S03</td>
+<td>4A</td>
+<td>B12</td>
+<td>10</td>
+</tr>
+<tr>
+<td>S04</td>
+<td>4C</td>
+<td>B08</td>
+<td>21</td>
+</tr>
+</tbody>
+</table>
+</div><div class="table-wrap"><table>
+<thead>
+<tr>
+<th>SQL</th>
+<th>輸出</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SELECT SID, DAYS FROM LOAN WHERE CLASS = '4A' AND DAYS &gt; 5</code></td>
+<td>S01 7<br>S03 10</td>
+<td>AND：兩個條件都要成立</td>
+</tr>
+<tr>
+<td><code>SELECT COUNT(*) FROM LOAN WHERE DAYS BETWEEN 7 AND 14</code></td>
+<td>3</td>
+<td>BETWEEN 包括兩端的值（7、14、10）</td>
+</tr>
+<tr>
+<td><code>SELECT DISTINCT BOOK FROM LOAN WHERE BOOK LIKE 'B_2'</code></td>
+<td>B12</td>
+<td><code>_</code> 代表一個字符；DISTINCT 刪除重複</td>
+</tr>
+<tr>
+<td><code>SELECT SID, COUNT(*) FROM LOAN GROUP BY SID HAVING COUNT(*) &gt; 1</code></td>
+<td>S01 2</td>
+<td>先分組，再篩選組別</td>
+</tr>
+<tr>
+<td><code>SELECT CLASS, SUM(DAYS) FROM LOAN GROUP BY CLASS ORDER BY SUM(DAYS) DESC</code></td>
+<td>4C 21<br>4A 20<br>4B 14</td>
+<td>每組一行；按總數遞減</td>
+</tr>
+</tbody>
+</table>
+</div><p><strong>運算符及關鍵字</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>項目</th>
+<th>用法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>比較</td>
+<td><code>= &lt; &lt;= &gt; &gt;= &lt;&gt;</code></td>
+</tr>
+<tr>
+<td>邏輯</td>
+<td>AND、OR、NOT；優先次序 NOT &gt; AND &gt; OR，不肯定時加括號</td>
+</tr>
+<tr>
+<td><code>LIKE</code></td>
+<td><code>%</code> 代表零個或多個字符，<code>_</code> 代表一個字符，例如 <code>NAME LIKE 'J%'</code></td>
+</tr>
+<tr>
+<td><code>BETWEEN a AND b</code></td>
+<td>介乎 a 與 b，包括 a 和 b</td>
+</tr>
+<tr>
+<td><code>IS NULL</code></td>
+<td>欄位是空值（不可寫 <code>= NULL</code>）</td>
+</tr>
+<tr>
+<td><code>IN (…)</code></td>
+<td>等於清單中任何一個值</td>
+</tr>
+<tr>
+<td>集合函數</td>
+<td>SUM、AVG、MAX、MIN、COUNT(*)、COUNT(欄位)（不計空值）</td>
+</tr>
+<tr>
+<td><code>AS</code></td>
+<td>為輸出欄位定別名，例如 <code>SUM(DAYS) AS TOTAL</code></td>
+</tr>
+<tr>
+<td><code>ORDER BY</code></td>
+<td>預設遞增（ASC）；DESC 遞減；可按多個欄位排序</td>
+</tr>
+</tbody>
+</table>
+</div><p><strong>追蹤 GROUP BY 輸出的步驟</strong></p>
+<ol>
+<li>先用 WHERE 剔除不符合條件的記錄。</li>
+<li>把餘下記錄按 GROUP BY 欄位分組，<strong>每組只輸出一行</strong>。</li>
+<li>對每組計算集合函數。</li>
+<li>用 HAVING 剔除不符合條件的組別。</li>
+<li>按 ORDER BY 排序；沒有 ORDER BY 時，考評局一般不要求特定次序。</li>
+</ol>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>〔2024 卷一乙 1(b)(iii)〕根據首 8 個記錄，寫出以下 SQL 的輸出。</strong></p>
+<p><code>SELECT EID, COUNT(*) FROM ATTEND WHERE SIGNIN + SIGNOUT = 1 GROUP BY EID HAVING COUNT(*) &gt; 1</code></p>
+<p>✔ S03 2、S04 2（次序不拘）。</p>
+<p>✘ 列出了不符合 HAVING 條件的組別（如 S01 1），或列出 COUNT 為 0 的員工；把 S03、S04 寫在同一行。</p>
+</blockquote>
+<!-- -->
+
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>〔2023 卷一乙 2(d)(ii)〕</strong> SUM 配合 GROUP BY：部分考生沒有把兩個 S01 記錄合成一組，或沒有把 4 和 6 相加得 10。</p>
+</blockquote>
+<!-- -->
+
+<blockquote class="callout callout-tip">
+<p>✔ <strong>〔2025 卷一乙 7(d)〕</strong> <code>SELECT CL, CNO FROM SS WHERE SER = '賣旗' AND CL LIKE '2_'</code>，以及 <code>SELECT CL, SUM(HR) FROM SS GROUP BY CL</code>。考生表現「很好」，這類題目必須取分。</p>
+</blockquote>
+<p><strong>SQL 失分清單</strong>（整理自 2024、2025 年簡報，包括選修二甲的評卷原則）</p>
+<ul>
+<li>✘ 集合函數放在 WHERE 內，例如 <code>WHERE DAYS &gt; AVG(DAYS)</code>。集合函數只可以用於 SELECT 或 HAVING。</li>
+<li>✘ 數值加上引號，例如 <code>YEAR = '2012'</code>（應寫 <code>YEAR = 2012</code>）；文字則必須加引號，例如 <code>CLASS = '4A'</code>。</li>
+<li>✘ 用 ≤ 代替 <code>&lt;=</code>。</li>
+<li>✘ 子句次序錯誤，例如 ORDER BY 放在 WHERE 條件中間。</li>
+<li>✘ SELECT 了不在 GROUP BY 中、又不是集合函數的欄位。</li>
+<li>✘ 把 SQL 的 AVG 寫進試算表，或把試算表的 AVERAGE 寫進 SQL。</li>
+</ul>
+<h2 id="411-自我檢測">4.11 自我檢測</h2>
+<details class="quiz">
+<summary>1. B2 的公式是 =$A2*B$1。複製到 D5 後，公式是甚麼？</summary>
+<p>向右 2 欄、向下 3 列：$A2 → <strong>$A5</strong>；B$1 → <strong>D$1</strong>。答案：<code>=$A5*D$1</code>。</p>
+</details>
+<details class="quiz">
+<summary>2. A2:A100 是班別，C2:C100 是分數。寫出計算 4B 班總分的公式，以及 4B 班人數的公式。</summary>
+<p>總分：<code>=SUMIF(A2:A100,"4B",C2:C100)</code>；人數：<code>=COUNTIF(A2:A100,"4B")</code>。</p>
+</details>
+<details class="quiz">
+<summary>3. 根據上文 LOAN 表，寫出 SQL 找出每班借書的平均日數，只列出平均日數超過 10 的班別。</summary>
+<p><code>SELECT CLASS, AVG(DAYS) FROM LOAN GROUP BY CLASS HAVING AVG(DAYS) &gt; 10</code>
+輸出：4B 14、4C 21（4A 的平均是 20 ÷ 3 ≈ 6.67，不符合條件）。</p>
+</details>
+<details class="quiz">
+<summary>4. 某同學寫 =IF(A2&gt;=50,"1","0")，再以 =SUM(B2:B30) 計算合格人數，結果是 0。為甚麼？</summary>
+<p>"1" 和 "0" 加了引號，是文字而不是數值，SUM 不會把文字相加。應寫 <code>=IF(A2&gt;=50,1,0)</code>。</p>
+</details></div><nav class="prevnext" aria-label="上下頁"><a class="pn pn-prev" href="../core-a/c.html"><span class="pn-dir">← 上一頁</span><span class="pn-title">單元 A 課題 c：數據表示</span></a><a class="pn pn-next" href="../core-b/index.html"><span class="pn-dir">下一頁 →</span><span class="pn-title">單元 B：電腦系統基礎</span></a></nav>
+    </article>
+    <footer class="footer">
+      <p>內容依據課程發展議會與考評局《資訊及通訊科技課程及評估指引》及考評局公開資料整理，僅供溫習參考。</p>
+    </footer>
+  </main>
+
+  <aside class="toc-rail">
+<nav class="toc" aria-label="本頁目錄"><div class="toc-title">本頁目錄</div><ol><li><a href="#41-課程要求">4.1 課程要求</a></li><li><a href="#42-考評局提供的函數及指令清單">4.2 考評局提供的函數及指令清單</a></li><li><a href="#43-試算表基本概念">4.3 試算表基本概念</a></li><li><a href="#44-儲存格參照">4.4 儲存格參照</a></li><li><a href="#45-常用函數">4.5 常用函數</a></li><li><a href="#46-試算表公式考評局常見失分">4.6 試算表公式：考評局常見失分</a></li><li><a href="#47-排序與篩選">4.7 排序與篩選</a></li><li><a href="#48-圖表樞紐分析表與假設分析">4.8 圖表、樞紐分析表與假設分析</a></li><li><a href="#49-數據庫表單查詢報表與數據表設計">4.9 數據庫：表單、查詢、報表與數據表設計</a></li><li><a href="#410-sql-select-語句">4.10 SQL SELECT 語句</a></li><li><a href="#411-自我檢測">4.11 自我檢測</a></li></ol></nav>
+  </aside>
+</div>
+
+<button class="to-top" type="button" aria-label="回到頁頂" hidden>↑</button>
+<script src="../assets/search-index.js"></script>
+<script src="../assets/app.js"></script>
+</body>
+</html>

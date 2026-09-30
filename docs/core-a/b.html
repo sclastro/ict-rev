@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="zh-Hant-HK" data-accent="a">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>單元 A 課題 b：數據組織及數據控制｜ICT 溫習站</title>
+<meta name="description" content="香港中學文憑考試資訊及通訊科技科（新課程）溫習重點、評卷要點與常見錯誤">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231d4ed8'/%3E%3Ctext x='32' y='42' font-size='26' font-family='Arial' font-weight='700' fill='white' text-anchor='middle'%3EICT%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="../assets/style.css">
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem("ictrev-theme");
+      if (t) document.documentElement.setAttribute("data-theme", t);
+      var f = localStorage.getItem("ictrev-font");
+      if (f) document.documentElement.setAttribute("data-font", f);
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body class="kind-topic has-toc" data-page="core-a/b" data-root="../">
+<a class="skip-link" href="#main">跳到主要內容</a>
+
+<header class="topbar">
+  <button class="icon-btn menu-btn" type="button" aria-label="開啟目錄" aria-controls="sidebar" aria-expanded="false">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+  </button>
+  <a class="brand" href="../index.html">
+    <span class="brand-mark" aria-hidden="true">ICT</span>
+    <span class="brand-text">ICT 溫習站</span>
+  </a>
+  <div class="search" role="search">
+    <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+    <input id="search-input" type="search" placeholder="搜尋課題、術語……" autocomplete="off" aria-label="搜尋" aria-controls="search-results" aria-expanded="false">
+    <kbd class="search-kbd" aria-hidden="true">/</kbd>
+    <div id="search-results" class="search-results" role="listbox" hidden></div>
+  </div>
+  <div class="topbar-tools">
+    <button class="icon-btn" type="button" data-font-toggle aria-label="調整字體大小" title="字體大小">
+      <span class="font-icon" aria-hidden="true">A<small>A</small></span>
+    </button>
+    <button class="icon-btn" type="button" data-theme-toggle aria-label="切換深色／淺色模式" title="深色／淺色模式">
+      <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/></svg>
+    </button>
+  </div>
+</header>
+
+<div class="layout">
+  <aside id="sidebar" class="sidebar" aria-label="網站目錄">
+    <nav class="nav">
+<a class="nav-home" href="../index.html"><span class="nav-home-icon" aria-hidden="true">⌂</span>首頁</a>
+<div class="nav-group"><div class="nav-group-title">必修部分</div>
+<details class="nav-module accent-a" open>
+<summary><span class="nav-code">A</span><span class="nav-module-title">資訊處理</span></summary><ul>
+<li><a class="nav-link" data-page="core-a/index" href="../core-a/index.html"><span class="nav-tick" aria-hidden="true"></span>概覽</a></li>
+<li><a class="nav-link" data-page="core-a/a" href="../core-a/a.html"><span class="nav-tick" aria-hidden="true"></span>a. 資訊處理簡介</a></li>
+<li><a class="nav-link is-active" data-page="core-a/b" href="../core-a/b.html" aria-current="page"><span class="nav-tick" aria-hidden="true"></span>b. 數據組織及數據控制</a></li>
+<li><a class="nav-link" data-page="core-a/c" href="../core-a/c.html"><span class="nav-tick" aria-hidden="true"></span>c. 數據表示</a></li>
+<li><a class="nav-link" data-page="core-a/d" href="../core-a/d.html"><span class="nav-tick" aria-hidden="true"></span>d. 數據操縱和分析</a></li>
+</ul></details>
+<details class="nav-module accent-b">
+<summary><span class="nav-code">B</span><span class="nav-module-title">電腦系統基礎</span></summary><ul>
+<li><a class="nav-link" data-page="core-b/index" href="../core-b/index.html"><span class="nav-tick" aria-hidden="true"></span>概覽</a></li>
+<li><a class="nav-link is-pending" data-page="core-b/a" href="../core-b/a.html"><span class="nav-tick" aria-hidden="true"></span>a. 基本機器組織</a></li>
+<li><a class="nav-link is-pending" data-page="core-b/b" href="../core-b/b.html"><span class="nav-tick" aria-hidden="true"></span>b. 系統軟件</a></li>
+</ul></details>
+<details class="nav-module accent-c">
+<summary><span class="nav-code">C</span><span class="nav-module-title">互聯網及其應用</span></summary><ul>
+<li><a class="nav-link" data-page="core-c/index" href="../core-c/index.html"><span class="nav-tick" aria-hidden="true"></span>概覽</a></li>
+<li><a class="nav-link is-pending" data-page="core-c/a" href="../core-c/a.html"><span class="nav-tick" aria-hidden="true"></span>a. 建網及互聯網基本知識</a></li>
+<li><a class="nav-link is-pending" data-page="core-c/b" href="../core-c/b.html"><span class="nav-tick" aria-hidden="true"></span>b. 互聯網服務及應用</a></li>
+<li><a class="nav-link is-pending" data-page="core-c/c" href="../core-c/c.html"><span class="nav-tick" aria-hidden="true"></span>c. 初級網頁創作</a></li>
+<li><a class="nav-link is-pending" data-page="core-c/d" href="../core-c/d.html"><span class="nav-tick" aria-hidden="true"></span>d. 網上威脅及保安</a></li>
+</ul></details>
+<details class="nav-module accent-d">
+<summary><span class="nav-code">D</span><span class="nav-module-title">計算思維與程式編寫</span></summary><ul>
+<li><a class="nav-link" data-page="core-d/index" href="../core-d/index.html"><span class="nav-tick" aria-hidden="true"></span>概覽</a></li>
+<li><a class="nav-link is-pending" data-page="core-d/a" href="../core-d/a.html"><span class="nav-tick" aria-hidden="true"></span>a. 問題建構和分析</a></li>
+<li><a class="nav-link is-pending" data-page="core-d/b" href="../core-d/b.html"><span class="nav-tick" aria-hidden="true"></span>b. 算法設計</a></li>
+<li><a class="nav-link is-pending" data-page="core-d/c" href="../core-d/c.html"><span class="nav-tick" aria-hidden="true"></span>c. 程式開發</a></li>
+<li><a class="nav-link is-pending" data-page="core-d/d" href="../core-d/d.html"><span class="nav-tick" aria-hidden="true"></span>d. 程式測試和除錯</a></li>
+</ul></details>
+<details class="nav-module accent-e">
+<summary><span class="nav-code">E</span><span class="nav-module-title">資訊及通訊科技對社會的影響</span></summary><ul>
+<li><a class="nav-link" data-page="core-e/index" href="../core-e/index.html"><span class="nav-tick" aria-hidden="true"></span>概覽</a></li>
+<li><a class="nav-link is-pending" data-page="core-e/a" href="../core-e/a.html"><span class="nav-tick" aria-hidden="true"></span>a. 科技創新</a></li>
+<li><a class="nav-link is-pending" data-page="core-e/b" href="../core-e/b.html"><span class="nav-tick" aria-hidden="true"></span>b. 健康及道德議題</a></li>
+<li><a class="nav-link is-pending" data-page="core-e/c" href="../core-e/c.html"><span class="nav-tick" aria-hidden="true"></span>c. 知識產權</a></li>
+</ul></details>
+</div>
+<div class="nav-group"><div class="nav-group-title">選修部分</div>
+<details class="nav-module accent-f">
+<summary><span class="nav-code">二甲</span><span class="nav-module-title">數據庫</span></summary><ul>
+<li><a class="nav-link" data-page="elective-a/index" href="../elective-a/index.html"><span class="nav-tick" aria-hidden="true"></span>概覽</a></li>
+<li><a class="nav-link is-pending" data-page="elective-a/a" href="../elective-a/a.html"><span class="nav-tick" aria-hidden="true"></span>a. 關聯式數據庫概念</a></li>
+<li><a class="nav-link is-pending" data-page="elective-a/b" href="../elective-a/b.html"><span class="nav-tick" aria-hidden="true"></span>b. 結構化查詢語言</a></li>
+<li><a class="nav-link is-pending" data-page="elective-a/c" href="../elective-a/c.html"><span class="nav-tick" aria-hidden="true"></span>c. 數據庫設計方法</a></li>
+</ul></details>
+<details class="nav-module accent-g">
+<summary><span class="nav-code">二乙</span><span class="nav-module-title">網絡應用程式開發</span></summary><ul>
+<li><a class="nav-link" data-page="elective-b/index" href="../elective-b/index.html"><span class="nav-tick" aria-hidden="true"></span>概覽</a></li>
+<li><a class="nav-link is-pending" data-page="elective-b/a" href="../elective-b/a.html"><span class="nav-tick" aria-hidden="true"></span>a. 網絡服務與實施</a></li>
+<li><a class="nav-link is-pending" data-page="elective-b/b" href="../elective-b/b.html"><span class="nav-tick" aria-hidden="true"></span>b. 網絡編程與應用</a></li>
+</ul></details>
+</div>
+<div class="nav-group"><div class="nav-group-title">考試攻略</div>
+<details class="nav-module accent-h">
+<summary><span class="nav-module-title">考試攻略</span></summary><ul>
+<li><a class="nav-link" data-page="exam/index" href="../exam/index.html"><span class="nav-tick" aria-hidden="true"></span>概覽</a></li>
+<li><a class="nav-link" data-page="exam/structure" href="../exam/structure.html"><span class="nav-tick" aria-hidden="true"></span>試卷結構與答題原則</a></li>
+<li><a class="nav-link is-pending" data-page="exam/mistakes" href="../exam/mistakes.html"><span class="nav-tick" aria-hidden="true"></span>常見錯誤總匯</a></li>
+<li><a class="nav-link is-pending" data-page="exam/formulas" href="../exam/formulas.html"><span class="nav-tick" aria-hidden="true"></span>計算公式速查</a></li>
+<li><a class="nav-link is-pending" data-page="exam/reference" href="../exam/reference.html"><span class="nav-tick" aria-hidden="true"></span>函數及指令清單</a></li>
+<li><a class="nav-link is-pending" data-page="exam/sba" href="../exam/sba.html"><span class="nav-tick" aria-hidden="true"></span>校本評核</a></li>
+</ul></details>
+<details class="nav-module accent-h">
+<summary><span class="nav-module-title">學習資源</span></summary><ul>
+<li><a class="nav-link" data-page="resources/index" href="../resources/index.html"><span class="nav-tick" aria-hidden="true"></span>概覽</a></li>
+<li><a class="nav-link is-pending" data-page="resources/glossary" href="../resources/glossary.html"><span class="nav-tick" aria-hidden="true"></span>術語表（中英對照）</a></li>
+<li><a class="nav-link" data-page="resources/guide" href="../resources/guide.html"><span class="nav-tick" aria-hidden="true"></span>網站使用說明</a></li>
+</ul></details>
+</div>
+    </nav>
+  </aside>
+  <div class="scrim" hidden></div>
+
+  <main id="main" class="main" tabindex="-1">
+    <article class="content">
+<nav class="breadcrumb" aria-label="位置"><a href="../index.html">首頁</a><span class="sep">›</span><span>必修部分</span><span class="sep">›</span><a href="../core-a/index.html">資訊處理</a></nav><header class="page-head"><div class="page-eyebrow">單元 A · 課題 b</div><h1 class="page-title">數據組織及數據控制</h1><div class="page-en">Data Organisation and Data Control</div><div class="page-meta"><span class="chip">建議課時 4 小時</span><span class="chip">課本第 2 章</span><button class="done-btn" type="button" data-done-toggle="core-a/b" aria-pressed="false"><span class="done-box" aria-hidden="true"></span><span class="done-label">標記為已溫習</span></button></div></header>
+<div class="prose"><h2 id="21-課程要求">2.1 課程要求</h2>
+<p>辨別數據分級組織中的數據、記錄、欄、檔案和數據庫；解釋記錄的組織、儲存及提取，比較直接存取和順序存取；討論數據控制的重要性；闡述以有效性檢驗及奇偶檢測偵測誤差，以驗證及有效性檢驗防止誤差。</p>
+<h2 id="22-為甚麼要數據控制">2.2 為甚麼要數據控制</h2>
+<p>人手輸入常見三類錯誤：</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>錯誤</th>
+<th>意思</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>數據來源錯誤</td>
+<td>提供者給出錯誤資料</td>
+<td>顧客報錯電話號碼</td>
+</tr>
+<tr>
+<td>轉錄錯誤</td>
+<td>讀錯或輸入錯</td>
+<td>把數字「0」輸入成字母「O」</td>
+</tr>
+<tr>
+<td>位置調換錯誤</td>
+<td>相鄰字符次序對調</td>
+<td>把 16 輸入成 61</td>
+</tr>
+</tbody>
+</table>
+</div><p>錯誤的輸入必然產生錯誤的輸出，稱為<strong>「無用輸入，無用輸出」（GIGO）</strong>。數據控制的目的是確保輸入數據準確，常用方法是<strong>數據有效性檢驗</strong>和<strong>數據驗證</strong>。</p>
+<h2 id="23-數據有效性檢驗data-validation">2.3 數據有效性檢驗（Data Validation）</h2>
+<p>把輸入數據與預先定義的規則比較，確保數據<strong>合理及有效</strong>。</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>檢查</th>
+<th>作用</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>完整性檢查（必填欄位檢查，presence check）</td>
+<td>必要欄位不可留空</td>
+<td>學生編號不可空白</td>
+</tr>
+<tr>
+<td>欄位長度檢查（length check）</td>
+<td>字符數目正確</td>
+<td>香港電話號碼必須是 8 位</td>
+</tr>
+<tr>
+<td>範圍檢查（range check）</td>
+<td>數值在指定範圍內</td>
+<td>測驗分數介乎 0 至 100</td>
+</tr>
+<tr>
+<td>固定值檢查（fixed value check）</td>
+<td>只接受清單內的值</td>
+<td>班別只可以是 A、B、C、D</td>
+</tr>
+<tr>
+<td>格式檢查（format check）</td>
+<td>符合指定格式</td>
+<td>電郵地址須含「@」</td>
+</tr>
+<tr>
+<td>類型檢查（type check）</td>
+<td>數據類型正確</td>
+<td>分數必須是數字</td>
+</tr>
+<tr>
+<td>檢查數位（check digit）</td>
+<td>以公式計算並附在數據末端，用來自我核對</td>
+<td>ISBN、香港身份證號碼</td>
+</tr>
+</tbody>
+</table>
+</div><p><strong>有效性檢驗只能保證數據「合理」，不能保證數據「正確」。</strong> 例如把 78 分誤輸成 87 分，範圍檢查不會察覺。</p>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>〔2025 卷一乙 7(c)〕建議一項比格式檢查更有效的有效性檢驗，用於班別欄 CL。</strong></p>
+<p>✔ 答案：<strong>固定值檢查</strong>（班別只能是學校實際有的班別）。考生表現「差」，很多人不認識固定值檢查。說不出術語但描述正確，亦可得分。</p>
+<p>✘ 一位第 5 級考生答「範圍檢查」；班別是文字，不適合用範圍檢查。</p>
+<p>另有考生誤以為答案可以同時堆砌多項檢查。題目要求一項，就答最合適的一項。</p>
+</blockquote>
+<!-- -->
+
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>〔2024 卷一乙 1(a)(iii)〕D 欄只會是 1 或 0，除了完整性檢查外，建議一項有效性檢驗。</strong></p>
+<p>✔ 固定值檢查／類型檢查／範圍檢查（0 至 1 之間的整數）。</p>
+<p>✘ 格式檢查、完整性檢查、欄位長度檢查均不接受。</p>
+</blockquote>
+<!-- -->
+
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>〔2025 卷一乙 7(a)(i)〕建議比文字框更好的表單元素，用來輸入班別。</strong></p>
+<p>✔ 下拉式選單或單選按鈕，因為只提供有效的班別選項，<strong>確保輸入的數據有效、合理</strong>。</p>
+<p>✘ 部分考生說這樣可以「確保輸入正確」，概念錯誤：學生仍然可能選錯班別。</p>
+</blockquote>
+<h2 id="24-檢查數位check-digit">2.4 檢查數位（Check Digit）</h2>
+<p>檢查數位由數據其餘部分按固定公式計算得出，附在數據末端。系統收到數據後重新計算，若結果與附帶的檢查數位不同，即表示數據無效。</p>
+<p><strong>計算示例（自擬）</strong>：某會員編號由四位數字加一個檢查數位組成，規則是「首四位數字按權重 4、3、2、1 相乘後相加，取除以 10 的餘數」。</p>
+<p>驗證 <strong>3517-8</strong>：3×4 + 5×3 + 1×2 + 7×1 = 12 + 15 + 2 + 7 = 36，36 mod 10 = 6。附帶的檢查數位是 8，兩者不同，所以編號<strong>無效</strong>。</p>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>〔2025 卷一乙 9(b)〕判斷用戶名稱是否有效，並指出檢查數位的局限。</strong></p>
+<p>✔ 判斷有效或無效必須附<strong>完整算式</strong>，包括取餘數（mod）的步驟，並說明結論的理由。例如「(11 + 4) × 3 mod 10 = 5，與檢查數位相同，所以有效」可得 2 分；算式不完整只得 1 分；沒有解釋得 0 分。判斷無效時亦要說明原因，例如班別「C」不存在。</p>
+<p>✔ 局限：<strong>兩個不同的輸入可能得出相同的檢查數位</strong>，這類錯誤無法偵測。必須舉出具體例子並列出兩組算式，才可得滿分。</p>
+<p>✘ 不接受：「計算費時」「只能檢查數字，不能檢查字母」「檢查數位只有 0 至 9」。</p>
+</blockquote>
+<h2 id="25-奇偶檢測parity-check">2.5 奇偶檢測（Parity Check）</h2>
+<p>用於<strong>數據傳輸或複製後</strong>檢查位元錯誤，例如在網絡傳送數據包，或由 RAM 把數據寫入硬碟。</p>
+<ul>
+<li><strong>偶檢測</strong>：加上檢驗位後，「1」的總數為偶數。</li>
+<li><strong>奇檢測</strong>：加上檢驗位後，「1」的總數為奇數。</li>
+</ul>
+<p>例子：數據 1011 0010 有四個「1」。偶檢測的檢驗位是 0，傳送 1011 0010 <strong>0</strong>；奇檢測的檢驗位是 1，傳送 1011 0010 <strong>1</strong>。</p>
+<p>局限：若有<strong>偶數個位元同時出錯</strong>，例如兩個位元互換或同時翻轉，「1」的總數的奇偶性不變，錯誤無法偵測。</p>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>〔2024 卷一乙 4(a)(ii)〕在 15 位元的圖像位元樣式末端加上一個偶數檢驗位。</strong></p>
+<p>✔ 只在<strong>整個位元樣式的末端</strong>加一個檢驗位，共 16 位元。</p>
+<p>✘ 較弱的考生每三個位元加一個檢驗位，或把檢驗位放在最前。</p>
+</blockquote>
+<!-- -->
+
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>〔2023 卷一乙 4(d)(i)〕數據傳輸時可能有一個位元出錯，簡述如何檢查。</strong></p>
+<p>✔ 加上奇偶檢驗位；使用校驗和（checksum）；傳送兩次並比較。</p>
+<p>✘ 不少考生答檢查數位、欄位長度檢查、類型檢查，這些是<strong>輸入時的有效性檢驗</strong>，不是傳輸錯誤檢測。考評局特別提醒要分清「錯誤檢測」與「有效性檢驗」。</p>
+</blockquote>
+<h2 id="26-數據驗證data-verification">2.6 數據驗證（Data Verification）</h2>
+<p>檢查輸入的數據是否與<strong>原始來源一致</strong>。</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>做法</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>輸入數據兩次</td>
+<td>同一人輸入兩次，電腦比較兩次結果</td>
+<td>設定新密碼時輸入兩次</td>
+</tr>
+<tr>
+<td>雙重數據輸入</td>
+<td>兩人各自把同一份文件輸入電腦，電腦比較兩個檔案</td>
+<td>臨床研究數據</td>
+</tr>
+</tbody>
+</table>
+</div><div class="table-wrap"><table>
+<thead>
+<tr>
+<th>比較</th>
+<th>數據有效性檢驗</th>
+<th>數據驗證</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>目的</td>
+<td>確保數據合理、符合規則</td>
+<td>確保數據與原始來源一致</td>
+</tr>
+<tr>
+<td>能否發現「輸入了合理但錯誤的值」</td>
+<td>不能</td>
+<td>可以</td>
+</tr>
+</tbody>
+</table>
+</div><p>✔ 「重新輸入密碼」屬<strong>數據驗證</strong>，不是有效性檢驗〔樣本試卷甲部第 3 題；改編自 2025 卷一甲第 3 題〕。
+✔ 香港身份證號碼 A123456(7) 誤輸為 A123455(7)，<strong>檢查數位</strong>和<strong>輸入數據兩次</strong>都能發現錯誤；範圍檢查不能〔改編自 2025 卷一甲第 6 題〕。</p>
+<h2 id="27-數據分級組織">2.7 數據分級組織</h2>
+<p><strong>數據（位元、字節）→ 欄 → 記錄 → 數據表（檔案）→ 數據庫</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>層次</th>
+<th>意思</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>欄（Field）</td>
+<td>記錄中的一項特定資料，是用戶存取數據的最小單位</td>
+<td>出生日期</td>
+</tr>
+<tr>
+<td>記錄（Record）</td>
+<td>一組相關的欄，描述一個實體</td>
+<td>一位學生的全部資料</td>
+</tr>
+<tr>
+<td>數據表／檔案（Table / File）</td>
+<td>結構相同的記錄的集合</td>
+<td>全校學生資料表</td>
+</tr>
+<tr>
+<td>數據庫（Database）</td>
+<td>相關數據表的集合，以關鍵碼連結</td>
+<td>學生資料表、成績表、借書表</td>
+</tr>
+</tbody>
+</table>
+</div><p>在數據表中，一<strong>列（row）</strong>是一個記錄，一<strong>欄（column）</strong>是一個欄位〔2024 簡報提醒考生弄清楚〕。</p>
+<h2 id="28-主關鍵碼primary-key">2.8 主關鍵碼（Primary Key）</h2>
+<p>主關鍵碼用來<strong>唯一識別</strong>數據表中的每個記錄，數值必須<strong>獨一無二</strong>而且<strong>不可為空值</strong>。</p>
+<ul>
+<li>沒有單一欄位符合要求時，可以用兩個或以上欄位組成<strong>複合主關鍵碼</strong>，例如 CLASS + CLASS_NO。</li>
+<li>應選<strong>最少欄位</strong>的組合，不要加入多餘欄位。</li>
+<li>選擇時要考慮情境。流動電話號碼可以作為會員數據表的主關鍵碼，卻不適合學生數據表，因為部分學生沒有電話。</li>
+<li>香港身份證號碼雖然獨一無二，但屬敏感個人資料，一般不宜作主關鍵碼。</li>
+</ul>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>〔2024 卷一乙 1(b)〕員工出勤記錄表 ATTEND（每位員工每日一個記錄）。</strong></p>
+<p>(i) 為何 NAME 不能作為關鍵欄？✔「它不是獨一無二的」。考評局提醒要理解題目情境：表中每位員工每日都有一個記錄，同一個名字必然重複出現。</p>
+<p>(ii) 寫出主關鍵碼。✔ <strong>EID + DATE</strong>（DATE + EID 或「EID, DATE」亦接受）。✘ EID + DATE + NAME（不是最少欄位）；只寫 EID；「EID and DATE」。考評局建議用「+」連接。</p>
+</blockquote>
+<!-- -->
+
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>〔2024 卷一乙 1(b)(iv)〕為何毋須把試算表中的總結資料（每人出席總日數）轉入數據庫？</strong></p>
+<p>✔ 它們是<strong>衍生數據</strong>（由原始數據計算得來），儲存會造成<strong>數據冗餘</strong>；需要時可用 SQL 查詢重新產生。</p>
+</blockquote>
+<!-- -->
+
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>〔樣本試卷乙部 8(c)〕有學生缺席測驗，建議在分數欄儲存「ABS」或 0。</strong></p>
+<p>✔ 「ABS」與數字欄位的數據類型不符；0 會與真正考 0 分的學生混淆。若改用 -1 代表缺席，計算平均分等之前必須先剔除 -1。</p>
+</blockquote>
+<h2 id="29-數據庫管理系統的基本功能">2.9 數據庫管理系統的基本功能</h2>
+<p>數據庫管理系統（DBMS）用來管理數據庫結構，以及儲存、整理和提取數據。例子：MySQL、Microsoft SQL Server、Oracle（伺服器）；Microsoft Access、LibreOffice Base（桌面）。</p>
+<p>基本操作包括新增、瀏覽、修改及刪除記錄；主要功能包括篩選、排序、表單、查詢和報表，詳見<a href="d.html">課題 d：數據操縱和分析</a>的 4.9 節。</p>
+<h2 id="210-檔案存取模式">2.10 檔案存取模式</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>模式</th>
+<th>典型媒體</th>
+<th>特點</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>順序存取（sequential）</td>
+<td>磁帶</td>
+<td>必須由頭依次讀取；尋找時間長而且難以預計；成本低，適合備份</td>
+</tr>
+<tr>
+<td>直接存取（direct）</td>
+<td>硬碟、光碟</td>
+<td>讀寫頭直接移到目標位置；尋找時間短而且可預計</td>
+</tr>
+<tr>
+<td>隨機存取（random）</td>
+<td>固態硬碟（SSD）</td>
+<td>任何位置幾乎即時存取；尋找時間固定而且極短</td>
+</tr>
+</tbody>
+</table>
+</div><p>課程文件要求比較<strong>直接存取</strong>與<strong>順序存取</strong>；課本另把 SSD 列為隨機存取。</p>
+<h2 id="211-自我檢測">2.11 自我檢測</h2>
+<details class="quiz">
+<summary>1. 數據 0110 1110 以奇檢測傳送，檢驗位應是甚麼？</summary>
+<p>數據有五個「1」，已是奇數，所以檢驗位是 <strong>0</strong>，傳送 0110 1110 0。</p>
+</details>
+<details class="quiz">
+<summary>2. 某網上表格要求輸入出生日期。建議兩項不同的有效性檢驗。</summary>
+<p>格式檢查（須為 DD/MM/YYYY）；範圍檢查（年份須介乎合理範圍，例如不可遲於今天）。亦可答完整性檢查。</p>
+</details>
+<details class="quiz">
+<summary>3. 圖書館數據表 LOAN 記錄每次借書（欄位：學生編號、書本編號、借出日期）。為甚麼「學生編號 + 書本編號」不一定適合作主關鍵碼？</summary>
+<p>同一學生可以在不同日子再借同一本書，兩個記錄的「學生編號 + 書本編號」會重複。應加入借出日期，組成「學生編號 + 書本編號 + 借出日期」。</p>
+</details></div><nav class="prevnext" aria-label="上下頁"><a class="pn pn-prev" href="../core-a/a.html"><span class="pn-dir">← 上一頁</span><span class="pn-title">單元 A 課題 a：資訊處理簡介</span></a><a class="pn pn-next" href="../core-a/c.html"><span class="pn-dir">下一頁 →</span><span class="pn-title">單元 A 課題 c：數據表示</span></a></nav>
+    </article>
+    <footer class="footer">
+      <p>內容依據課程發展議會與考評局《資訊及通訊科技課程及評估指引》及考評局公開資料整理，僅供溫習參考。</p>
+    </footer>
+  </main>
+
+  <aside class="toc-rail">
+<nav class="toc" aria-label="本頁目錄"><div class="toc-title">本頁目錄</div><ol><li><a href="#21-課程要求">2.1 課程要求</a></li><li><a href="#22-為甚麼要數據控制">2.2 為甚麼要數據控制</a></li><li><a href="#23-數據有效性檢驗data-validation">2.3 數據有效性檢驗（Data Validation）</a></li><li><a href="#24-檢查數位check-digit">2.4 檢查數位（Check Digit）</a></li><li><a href="#25-奇偶檢測parity-check">2.5 奇偶檢測（Parity Check）</a></li><li><a href="#26-數據驗證data-verification">2.6 數據驗證（Data Verification）</a></li><li><a href="#27-數據分級組織">2.7 數據分級組織</a></li><li><a href="#28-主關鍵碼primary-key">2.8 主關鍵碼（Primary Key）</a></li><li><a href="#29-數據庫管理系統的基本功能">2.9 數據庫管理系統的基本功能</a></li><li><a href="#210-檔案存取模式">2.10 檔案存取模式</a></li><li><a href="#211-自我檢測">2.11 自我檢測</a></li></ol></nav>
+  </aside>
+</div>
+
+<button class="to-top" type="button" aria-label="回到頁頂" hidden>↑</button>
+<script src="../assets/search-index.js"></script>
+<script src="../assets/app.js"></script>
+</body>
+</html>
