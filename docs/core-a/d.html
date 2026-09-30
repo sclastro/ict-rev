@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="zh-Hant-HK" data-accent="a">
+<html lang="zh-Hant-HK" data-lang="zh" data-accent="a">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>單元 A 課題 d：數據操縱和分析｜ICT 溫習站</title>
-<meta name="description" content="香港中學文憑考試資訊及通訊科技科（新課程）溫習重點、評卷要點與常見錯誤">
+<meta name="description" content="香港中學文憑考試資訊及通訊科技科（新課程）溫習重點、評卷要點與常見錯誤 · HKDSE ICT (new curriculum) revision notes, marking points and common mistakes">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231a1a1a'/%3E%3Ctext x='32' y='42' font-size='26' font-family='Georgia' font-weight='700' fill='%23b5222e' text-anchor='middle'%3EICT%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,37 +12,44 @@
 <link rel="stylesheet" href="../assets/style.css">
 <script>
   (function () {
+    var d = document.documentElement;
     try {
       var t = localStorage.getItem("ictrev-theme");
-      if (t) document.documentElement.setAttribute("data-theme", t);
+      if (t) d.setAttribute("data-theme", t);
       var f = localStorage.getItem("ictrev-font");
-      if (f) document.documentElement.setAttribute("data-font", f);
+      if (f) d.setAttribute("data-font", f);
+      var l = localStorage.getItem("ictrev-lang");
+      if (l === "en") { d.setAttribute("data-lang", "en"); d.setAttribute("lang", "en"); }
     } catch (e) {}
   })();
 </script>
 </head>
-<body class="kind-topic has-toc" data-page="core-a/d" data-root="../">
-<a class="skip-link" href="#main">跳到主要內容</a>
+<body class="kind-topic has-toc" data-page="core-a/d" data-root="../" data-title-zh="單元 A 課題 d：數據操縱和分析｜ICT 溫習站" data-title-en="Module A Topic d: Data Manipulation and Analysis | ICT Revision Hub">
+<a class="skip-link" href="#main"><span class="lang-zh">跳到主要內容</span><span class="lang-en">Skip to content</span></a>
 
 <header class="topbar">
-  <button class="icon-btn menu-btn" type="button" aria-label="開啟目錄" aria-controls="sidebar" aria-expanded="false">
+  <button class="icon-btn menu-btn" type="button" data-i18n-aria="menu" aria-label="開啟目錄" aria-controls="sidebar" aria-expanded="false">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
   </button>
   <a class="brand" href="../index.html">
     <span class="brand-mark" aria-hidden="true">ICT</span>
-    <span class="brand-text">ICT 溫習站</span>
+    <span class="brand-text"><span class="lang-zh">ICT 溫習站</span><span class="lang-en" lang="en">ICT Revision Hub</span></span>
   </a>
   <div class="search" role="search">
     <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
-    <input id="search-input" type="search" placeholder="搜尋課題、術語……" autocomplete="off" aria-label="搜尋" aria-controls="search-results" aria-expanded="false">
+    <input id="search-input" type="search" data-i18n-placeholder="search" placeholder="搜尋課題、術語……" autocomplete="off" aria-label="搜尋" aria-controls="search-results" aria-expanded="false">
     <kbd class="search-kbd" aria-hidden="true">/</kbd>
     <div id="search-results" class="search-results" role="listbox" hidden></div>
   </div>
   <div class="topbar-tools">
-    <button class="icon-btn" type="button" data-font-toggle aria-label="調整字體大小" title="字體大小">
+    <div class="lang-switch" role="group" aria-label="語言 Language">
+      <button type="button" data-lang-set="zh" aria-pressed="true">中文</button>
+      <button type="button" data-lang-set="en" aria-pressed="false">EN</button>
+    </div>
+    <button class="icon-btn" type="button" data-font-toggle data-i18n-aria="font" aria-label="調整字體大小">
       <span class="font-icon" aria-hidden="true">A<small>A</small></span>
     </button>
-    <button class="icon-btn" type="button" data-theme-toggle aria-label="切換深色／淺色模式" title="深色／淺色模式">
+    <button class="icon-btn" type="button" data-theme-toggle data-i18n-aria="theme" aria-label="切換深色／淺色模式">
       <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
       <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/></svg>
     </button>
@@ -50,78 +57,78 @@
 </header>
 
 <div class="layout">
-  <aside id="sidebar" class="sidebar" aria-label="網站目錄">
+  <aside id="sidebar" class="sidebar">
     <nav class="nav">
-<a class="nav-home" href="../index.html"><span class="nav-home-icon" aria-hidden="true">⌂</span>首頁</a>
-<div class="nav-group"><div class="nav-group-title">必修部分</div>
+<a class="nav-home" href="../index.html"><span class="nav-home-icon" aria-hidden="true">⌂</span><span class="lang-zh">首頁</span><span class="lang-en" lang="en">Home</span></a>
+<div class="nav-group"><div class="nav-group-title"><span class="lang-zh">必修部分</span><span class="lang-en" lang="en">Compulsory Part</span></div>
 <details class="nav-module accent-a" open>
-<summary><span class="nav-code">A</span><span class="nav-module-title">資訊處理</span></summary><ul>
-<li><a class="nav-link" data-page="core-a/index" href="../core-a/index.html"><span class="nav-tick" aria-hidden="true"></span>概覽</a></li>
-<li><a class="nav-link" data-page="core-a/a" href="../core-a/a.html"><span class="nav-tick" aria-hidden="true"></span>a. 資訊處理簡介</a></li>
-<li><a class="nav-link" data-page="core-a/b" href="../core-a/b.html"><span class="nav-tick" aria-hidden="true"></span>b. 數據組織及數據控制</a></li>
-<li><a class="nav-link" data-page="core-a/c" href="../core-a/c.html"><span class="nav-tick" aria-hidden="true"></span>c. 數據表示</a></li>
-<li><a class="nav-link is-active" data-page="core-a/d" href="../core-a/d.html" aria-current="page"><span class="nav-tick" aria-hidden="true"></span>d. 數據操縱和分析</a></li>
+<summary><span class="nav-code"><span class="lang-zh">A</span><span class="lang-en" lang="en">A</span></span><span class="nav-module-title"><span class="lang-zh">資訊處理</span><span class="lang-en" lang="en">Information Processing</span></span></summary><ul>
+<li><a class="nav-link" data-page="core-a/index" href="../core-a/index.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">概覽</span><span class="lang-en" lang="en">Overview</span></span></a></li>
+<li><a class="nav-link" data-page="core-a/a" href="../core-a/a.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">a. 資訊處理簡介</span><span class="lang-en" lang="en">a. Introduction to Information Processing</span></span></a></li>
+<li><a class="nav-link" data-page="core-a/b" href="../core-a/b.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">b. 數據組織及數據控制</span><span class="lang-en" lang="en">b. Data Organisation and Data Control</span></span></a></li>
+<li><a class="nav-link" data-page="core-a/c" href="../core-a/c.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">c. 數據表示</span><span class="lang-en" lang="en">c. Data Representation</span></span></a></li>
+<li><a class="nav-link is-active" data-page="core-a/d" href="../core-a/d.html" aria-current="page"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">d. 數據操縱和分析</span><span class="lang-en" lang="en">d. Data Manipulation and Analysis</span></span></a></li>
 </ul></details>
 <details class="nav-module accent-b">
-<summary><span class="nav-code">B</span><span class="nav-module-title">電腦系統基礎</span></summary><ul>
-<li><a class="nav-link" data-page="core-b/index" href="../core-b/index.html"><span class="nav-tick" aria-hidden="true"></span>概覽</a></li>
-<li><a class="nav-link is-pending" data-page="core-b/a" href="../core-b/a.html"><span class="nav-tick" aria-hidden="true"></span>a. 基本機器組織</a></li>
-<li><a class="nav-link is-pending" data-page="core-b/b" href="../core-b/b.html"><span class="nav-tick" aria-hidden="true"></span>b. 系統軟件</a></li>
+<summary><span class="nav-code"><span class="lang-zh">B</span><span class="lang-en" lang="en">B</span></span><span class="nav-module-title"><span class="lang-zh">電腦系統基礎</span><span class="lang-en" lang="en">Computer System Fundamentals</span></span></summary><ul>
+<li><a class="nav-link" data-page="core-b/index" href="../core-b/index.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">概覽</span><span class="lang-en" lang="en">Overview</span></span></a></li>
+<li><a class="nav-link is-pending" data-page="core-b/a" href="../core-b/a.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">a. 基本機器組織</span><span class="lang-en" lang="en">a. Basic Machine Organisation</span></span></a></li>
+<li><a class="nav-link is-pending" data-page="core-b/b" href="../core-b/b.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">b. 系統軟件</span><span class="lang-en" lang="en">b. System Software</span></span></a></li>
 </ul></details>
 <details class="nav-module accent-c">
-<summary><span class="nav-code">C</span><span class="nav-module-title">互聯網及其應用</span></summary><ul>
-<li><a class="nav-link" data-page="core-c/index" href="../core-c/index.html"><span class="nav-tick" aria-hidden="true"></span>概覽</a></li>
-<li><a class="nav-link is-pending" data-page="core-c/a" href="../core-c/a.html"><span class="nav-tick" aria-hidden="true"></span>a. 建網及互聯網基本知識</a></li>
-<li><a class="nav-link is-pending" data-page="core-c/b" href="../core-c/b.html"><span class="nav-tick" aria-hidden="true"></span>b. 互聯網服務及應用</a></li>
-<li><a class="nav-link is-pending" data-page="core-c/c" href="../core-c/c.html"><span class="nav-tick" aria-hidden="true"></span>c. 初級網頁創作</a></li>
-<li><a class="nav-link is-pending" data-page="core-c/d" href="../core-c/d.html"><span class="nav-tick" aria-hidden="true"></span>d. 網上威脅及保安</a></li>
+<summary><span class="nav-code"><span class="lang-zh">C</span><span class="lang-en" lang="en">C</span></span><span class="nav-module-title"><span class="lang-zh">互聯網及其應用</span><span class="lang-en" lang="en">Internet and its Applications</span></span></summary><ul>
+<li><a class="nav-link" data-page="core-c/index" href="../core-c/index.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">概覽</span><span class="lang-en" lang="en">Overview</span></span></a></li>
+<li><a class="nav-link is-pending" data-page="core-c/a" href="../core-c/a.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">a. 建網及互聯網基本知識</span><span class="lang-en" lang="en">a. Networking and Internet Basics</span></span></a></li>
+<li><a class="nav-link is-pending" data-page="core-c/b" href="../core-c/b.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">b. 互聯網服務及應用</span><span class="lang-en" lang="en">b. Internet Services and Applications</span></span></a></li>
+<li><a class="nav-link is-pending" data-page="core-c/c" href="../core-c/c.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">c. 初級網頁創作</span><span class="lang-en" lang="en">c. Elementary Web Authoring</span></span></a></li>
+<li><a class="nav-link is-pending" data-page="core-c/d" href="../core-c/d.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">d. 網上威脅及保安</span><span class="lang-en" lang="en">d. Threats and Security on the Internet</span></span></a></li>
 </ul></details>
 <details class="nav-module accent-d">
-<summary><span class="nav-code">D</span><span class="nav-module-title">計算思維與程式編寫</span></summary><ul>
-<li><a class="nav-link" data-page="core-d/index" href="../core-d/index.html"><span class="nav-tick" aria-hidden="true"></span>概覽</a></li>
-<li><a class="nav-link is-pending" data-page="core-d/a" href="../core-d/a.html"><span class="nav-tick" aria-hidden="true"></span>a. 問題建構和分析</a></li>
-<li><a class="nav-link is-pending" data-page="core-d/b" href="../core-d/b.html"><span class="nav-tick" aria-hidden="true"></span>b. 算法設計</a></li>
-<li><a class="nav-link is-pending" data-page="core-d/c" href="../core-d/c.html"><span class="nav-tick" aria-hidden="true"></span>c. 程式開發</a></li>
-<li><a class="nav-link is-pending" data-page="core-d/d" href="../core-d/d.html"><span class="nav-tick" aria-hidden="true"></span>d. 程式測試和除錯</a></li>
+<summary><span class="nav-code"><span class="lang-zh">D</span><span class="lang-en" lang="en">D</span></span><span class="nav-module-title"><span class="lang-zh">計算思維與程式編寫</span><span class="lang-en" lang="en">Computational Thinking and Programming</span></span></summary><ul>
+<li><a class="nav-link" data-page="core-d/index" href="../core-d/index.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">概覽</span><span class="lang-en" lang="en">Overview</span></span></a></li>
+<li><a class="nav-link is-pending" data-page="core-d/a" href="../core-d/a.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">a. 問題建構和分析</span><span class="lang-en" lang="en">a. Problem Formulation and Analysis</span></span></a></li>
+<li><a class="nav-link is-pending" data-page="core-d/b" href="../core-d/b.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">b. 算法設計</span><span class="lang-en" lang="en">b. Algorithm Design</span></span></a></li>
+<li><a class="nav-link is-pending" data-page="core-d/c" href="../core-d/c.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">c. 程式開發</span><span class="lang-en" lang="en">c. Program Development</span></span></a></li>
+<li><a class="nav-link is-pending" data-page="core-d/d" href="../core-d/d.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">d. 程式測試和除錯</span><span class="lang-en" lang="en">d. Program Testing and Debugging</span></span></a></li>
 </ul></details>
 <details class="nav-module accent-e">
-<summary><span class="nav-code">E</span><span class="nav-module-title">資訊及通訊科技對社會的影響</span></summary><ul>
-<li><a class="nav-link" data-page="core-e/index" href="../core-e/index.html"><span class="nav-tick" aria-hidden="true"></span>概覽</a></li>
-<li><a class="nav-link is-pending" data-page="core-e/a" href="../core-e/a.html"><span class="nav-tick" aria-hidden="true"></span>a. 科技創新</a></li>
-<li><a class="nav-link is-pending" data-page="core-e/b" href="../core-e/b.html"><span class="nav-tick" aria-hidden="true"></span>b. 健康及道德議題</a></li>
-<li><a class="nav-link is-pending" data-page="core-e/c" href="../core-e/c.html"><span class="nav-tick" aria-hidden="true"></span>c. 知識產權</a></li>
+<summary><span class="nav-code"><span class="lang-zh">E</span><span class="lang-en" lang="en">E</span></span><span class="nav-module-title"><span class="lang-zh">資訊及通訊科技對社會的影響</span><span class="lang-en" lang="en">Social Implications</span></span></summary><ul>
+<li><a class="nav-link" data-page="core-e/index" href="../core-e/index.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">概覽</span><span class="lang-en" lang="en">Overview</span></span></a></li>
+<li><a class="nav-link is-pending" data-page="core-e/a" href="../core-e/a.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">a. 科技創新</span><span class="lang-en" lang="en">a. Technological Innovations</span></span></a></li>
+<li><a class="nav-link is-pending" data-page="core-e/b" href="../core-e/b.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">b. 健康及道德議題</span><span class="lang-en" lang="en">b. Health and Ethical Issues</span></span></a></li>
+<li><a class="nav-link is-pending" data-page="core-e/c" href="../core-e/c.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">c. 知識產權</span><span class="lang-en" lang="en">c. Intellectual Property</span></span></a></li>
 </ul></details>
 </div>
-<div class="nav-group"><div class="nav-group-title">選修部分</div>
+<div class="nav-group"><div class="nav-group-title"><span class="lang-zh">選修部分</span><span class="lang-en" lang="en">Elective Part</span></div>
 <details class="nav-module accent-f">
-<summary><span class="nav-code">二甲</span><span class="nav-module-title">數據庫</span></summary><ul>
-<li><a class="nav-link" data-page="elective-a/index" href="../elective-a/index.html"><span class="nav-tick" aria-hidden="true"></span>概覽</a></li>
-<li><a class="nav-link is-pending" data-page="elective-a/a" href="../elective-a/a.html"><span class="nav-tick" aria-hidden="true"></span>a. 關聯式數據庫概念</a></li>
-<li><a class="nav-link is-pending" data-page="elective-a/b" href="../elective-a/b.html"><span class="nav-tick" aria-hidden="true"></span>b. 結構化查詢語言</a></li>
-<li><a class="nav-link is-pending" data-page="elective-a/c" href="../elective-a/c.html"><span class="nav-tick" aria-hidden="true"></span>c. 數據庫設計方法</a></li>
+<summary><span class="nav-code"><span class="lang-zh">二甲</span><span class="lang-en" lang="en">2A</span></span><span class="nav-module-title"><span class="lang-zh">數據庫</span><span class="lang-en" lang="en">Databases</span></span></summary><ul>
+<li><a class="nav-link" data-page="elective-a/index" href="../elective-a/index.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">概覽</span><span class="lang-en" lang="en">Overview</span></span></a></li>
+<li><a class="nav-link is-pending" data-page="elective-a/a" href="../elective-a/a.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">a. 關聯式數據庫概念</span><span class="lang-en" lang="en">a. Relational Database Concepts</span></span></a></li>
+<li><a class="nav-link is-pending" data-page="elective-a/b" href="../elective-a/b.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">b. 結構化查詢語言</span><span class="lang-en" lang="en">b. Structured Query Language (SQL)</span></span></a></li>
+<li><a class="nav-link is-pending" data-page="elective-a/c" href="../elective-a/c.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">c. 數據庫設計方法</span><span class="lang-en" lang="en">c. Database Design Methodology</span></span></a></li>
 </ul></details>
 <details class="nav-module accent-g">
-<summary><span class="nav-code">二乙</span><span class="nav-module-title">網絡應用程式開發</span></summary><ul>
-<li><a class="nav-link" data-page="elective-b/index" href="../elective-b/index.html"><span class="nav-tick" aria-hidden="true"></span>概覽</a></li>
-<li><a class="nav-link is-pending" data-page="elective-b/a" href="../elective-b/a.html"><span class="nav-tick" aria-hidden="true"></span>a. 網絡服務與實施</a></li>
-<li><a class="nav-link is-pending" data-page="elective-b/b" href="../elective-b/b.html"><span class="nav-tick" aria-hidden="true"></span>b. 網絡編程與應用</a></li>
+<summary><span class="nav-code"><span class="lang-zh">二乙</span><span class="lang-en" lang="en">2B</span></span><span class="nav-module-title"><span class="lang-zh">網絡應用程式開發</span><span class="lang-en" lang="en">Web Application Development</span></span></summary><ul>
+<li><a class="nav-link" data-page="elective-b/index" href="../elective-b/index.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">概覽</span><span class="lang-en" lang="en">Overview</span></span></a></li>
+<li><a class="nav-link is-pending" data-page="elective-b/a" href="../elective-b/a.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">a. 網絡服務與實施</span><span class="lang-en" lang="en">a. Network Services and Implementation</span></span></a></li>
+<li><a class="nav-link is-pending" data-page="elective-b/b" href="../elective-b/b.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">b. 網絡編程與應用</span><span class="lang-en" lang="en">b. Web Programming and Applications</span></span></a></li>
 </ul></details>
 </div>
-<div class="nav-group"><div class="nav-group-title">考試攻略</div>
+<div class="nav-group"><div class="nav-group-title"><span class="lang-zh">考試攻略</span><span class="lang-en" lang="en">Exam Strategies</span></div>
 <details class="nav-module accent-h">
-<summary><span class="nav-module-title">考試攻略</span></summary><ul>
-<li><a class="nav-link" data-page="exam/index" href="../exam/index.html"><span class="nav-tick" aria-hidden="true"></span>概覽</a></li>
-<li><a class="nav-link" data-page="exam/structure" href="../exam/structure.html"><span class="nav-tick" aria-hidden="true"></span>試卷結構與答題原則</a></li>
-<li><a class="nav-link is-pending" data-page="exam/mistakes" href="../exam/mistakes.html"><span class="nav-tick" aria-hidden="true"></span>常見錯誤總匯</a></li>
-<li><a class="nav-link is-pending" data-page="exam/formulas" href="../exam/formulas.html"><span class="nav-tick" aria-hidden="true"></span>計算公式速查</a></li>
-<li><a class="nav-link is-pending" data-page="exam/reference" href="../exam/reference.html"><span class="nav-tick" aria-hidden="true"></span>函數及指令清單</a></li>
-<li><a class="nav-link is-pending" data-page="exam/sba" href="../exam/sba.html"><span class="nav-tick" aria-hidden="true"></span>校本評核</a></li>
+<summary><span class="nav-module-title"><span class="lang-zh">考試攻略</span><span class="lang-en" lang="en">Exam Strategies</span></span></summary><ul>
+<li><a class="nav-link" data-page="exam/index" href="../exam/index.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">概覽</span><span class="lang-en" lang="en">Overview</span></span></a></li>
+<li><a class="nav-link" data-page="exam/structure" href="../exam/structure.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">試卷結構與答題原則</span><span class="lang-en" lang="en">Paper Structure and Answering Principles</span></span></a></li>
+<li><a class="nav-link is-pending" data-page="exam/mistakes" href="../exam/mistakes.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">常見錯誤總匯</span><span class="lang-en" lang="en">Common Mistakes</span></span></a></li>
+<li><a class="nav-link is-pending" data-page="exam/formulas" href="../exam/formulas.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">計算公式速查</span><span class="lang-en" lang="en">Formula Sheet</span></span></a></li>
+<li><a class="nav-link is-pending" data-page="exam/reference" href="../exam/reference.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">函數及指令清單</span><span class="lang-en" lang="en">Functions and Commands</span></span></a></li>
+<li><a class="nav-link is-pending" data-page="exam/sba" href="../exam/sba.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">校本評核</span><span class="lang-en" lang="en">School-based Assessment</span></span></a></li>
 </ul></details>
 <details class="nav-module accent-h">
-<summary><span class="nav-module-title">學習資源</span></summary><ul>
-<li><a class="nav-link" data-page="resources/index" href="../resources/index.html"><span class="nav-tick" aria-hidden="true"></span>概覽</a></li>
-<li><a class="nav-link is-pending" data-page="resources/glossary" href="../resources/glossary.html"><span class="nav-tick" aria-hidden="true"></span>術語表（中英對照）</a></li>
-<li><a class="nav-link" data-page="resources/guide" href="../resources/guide.html"><span class="nav-tick" aria-hidden="true"></span>網站使用說明</a></li>
+<summary><span class="nav-module-title"><span class="lang-zh">學習資源</span><span class="lang-en" lang="en">Resources</span></span></summary><ul>
+<li><a class="nav-link" data-page="resources/index" href="../resources/index.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">概覽</span><span class="lang-en" lang="en">Overview</span></span></a></li>
+<li><a class="nav-link is-pending" data-page="resources/glossary" href="../resources/glossary.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">術語表（中英對照）</span><span class="lang-en" lang="en">Glossary</span></span></a></li>
+<li><a class="nav-link" data-page="resources/guide" href="../resources/guide.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">網站使用說明</span><span class="lang-en" lang="en">How to Use This Site</span></span></a></li>
 </ul></details>
 </div>
     </nav>
@@ -130,8 +137,8 @@
 
   <main id="main" class="main" tabindex="-1">
     <article class="content">
-<nav class="breadcrumb" aria-label="位置"><a href="../index.html">首頁</a><span class="sep">›</span><span>必修部分</span><span class="sep">›</span><a href="../core-a/index.html">資訊處理</a></nav><header class="page-head"><div class="page-eyebrow">單元 A · 課題 d</div><h1 class="page-title">數據操縱和分析</h1><div class="page-en">Data Manipulation and Analysis</div><div class="page-meta"><span class="chip">建議課時 20 小時</span><span class="chip">課本第 5、6 章</span><button class="done-btn" type="button" data-done-toggle="core-a/d" aria-pressed="false"><span class="done-box" aria-hidden="true"></span><span class="done-label">標記為已溫習</span></button></div></header>
-<div class="prose"><h2 id="41-課程要求"><span class="sec-num">4.1</span><span class="sec-title">課程要求</span></h2>
+<nav class="breadcrumb"><a href="../index.html"><span class="lang-zh">首頁</span><span class="lang-en" lang="en">Home</span></a><span class="sep">›</span><span><span class="lang-zh">必修部分</span><span class="lang-en" lang="en">Compulsory Part</span></span><span class="sep">›</span><a href="../core-a/index.html"><span class="lang-zh">資訊處理</span><span class="lang-en" lang="en">Information Processing</span></a></nav><header class="page-head"><div class="page-eyebrow"><span class="lang-zh">單元 A · 課題 d</span><span class="lang-en" lang="en">Module A · Topic d</span></div><h1 class="page-title"><span class="lang-zh">數據操縱和分析</span><span class="lang-en" lang="en">Data Manipulation and Analysis</span></h1><div class="page-en"><span class="lang-zh">Data Manipulation and Analysis</span><span class="lang-en" lang="en">數據操縱和分析</span></div><div class="page-meta"><span class="chip"><span class="lang-zh">建議課時 20 小時</span><span class="lang-en" lang="en">Suggested time: 20 hours</span></span><span class="chip"><span class="lang-zh">課本第 5、6 章</span><span class="lang-en" lang="en">Textbook Ch. 5 & 6</span></span><button class="done-btn" type="button" data-done-toggle="core-a/d" aria-pressed="false"><span class="done-box" aria-hidden="true"></span><span class="done-label"></span></button></div></header>
+<div class="lang-zh prose"><h2 id="41-課程要求"><span class="sec-num">4.1</span><span class="sec-title">課程要求</span></h2>
 <p><strong>試算表</strong>：使用儲存格參照（課程文件稱「單元格參照」）、函數和數學、邏輯及關聯運算符；以一項或多項準則篩選、搜尋、排序數據；在多個工作表之間處理數據；運用樞紐分析表、樞紐分析圖和「假設」情境分析數據，辨別趨勢，作有根據的決定。</p>
 <p><strong>數據庫</strong>：以數據庫管理系統建立及維護簡單的數據庫；建立表單輸入數據；以查詢在<strong>單一數據表</strong>中選擇、篩選及排序數據；追蹤及闡釋簡單的 SQL 語句；按對象製作及格式化報表。</p>
 <h2 id="42-考評局提供的函數及指令清單"><span class="sec-num">4.2</span><span class="sec-title">考評局提供的函數及指令清單</span></h2>
@@ -684,19 +691,573 @@ ORDER BY 排序欄位 [ASC | DESC]
 <details class="quiz">
 <summary>4. 某同學寫 =IF(A2&gt;=50,"1","0")，再以 =SUM(B2:B30) 計算合格人數，結果是 0。為甚麼？</summary>
 <p>"1" 和 "0" 加了引號，是文字而不是數值，SUM 不會把文字相加。應寫 <code>=IF(A2&gt;=50,1,0)</code>。</p>
-</details></div><nav class="prevnext" aria-label="上下頁"><a class="pn pn-prev" href="../core-a/c.html"><span class="pn-dir">← 上一頁</span><span class="pn-title">單元 A 課題 c：數據表示</span></a><a class="pn pn-next" href="../core-b/index.html"><span class="pn-dir">下一頁 →</span><span class="pn-title">單元 B：電腦系統基礎</span></a></nav>
+</details></div><div class="lang-en prose" lang="en"><h2 id="en-41-learning-outcomes"><span class="sec-num">4.1</span><span class="sec-title">Learning outcomes</span></h2>
+<p><strong>Spreadsheets</strong>: use cell references, functions, and mathematical, logical and relational operators in formulas; filter, search and sort data using single or multiple criteria; manipulate data across multiple worksheets; use pivot tables, pivot charts and "what-if" scenarios to analyse data, identify trends and make informed judgements.</p>
+<p><strong>Databases</strong>: create and maintain a simple database with a DBMS; create and use a form for data entry; select, filter and sort data using queries on a <strong>single database table</strong>; trace and interpret simple SQL statements; create and format reports for intended users.</p>
+<h2 id="en-42-the-hkeaa-list-of-functions-and-commands"><span class="sec-num">4.2</span><span class="sec-title">The HKEAA list of functions and commands</span></h2>
+<p>The last page of the Sample Paper answer book lists the following for candidates' reference. Treat this list as the scope of the examination.</p>
+<p><strong>Spreadsheet</strong></p>
+<ul>
+<li>Constants: TRUE, FALSE</li>
+<li>Operators: <code>+ - * / &lt; &gt; = &lt;&gt; &lt;= &gt;= &amp;</code></li>
+<li>Functions: INT, RAND, SQRT, ROUND, AND, NOT, OR, LEFT, LEN, MID, RIGHT, AVERAGE, COUNT, COUNTIF, MAX, MIN, RANK, SUM, SUMIF, FIND, XLOOKUP, IF</li>
+</ul>
+<p><strong>SQL</strong></p>
+<ul>
+<li>Constants: TRUE, FALSE</li>
+<li>Operators: <code>+ - * / &gt; &lt; = &gt;= &lt;= &lt;&gt; % _ '</code>, AND, NOT, OR</li>
+<li>Keywords: AVG, MAX, MIN, SUM, AS, BETWEEN, BY, ASC, DESC, DISTINCT, FROM, GROUP, HAVING, LIKE, NULL, ORDER, SELECT, WHERE</li>
+</ul>
+<p>(COUNT is missing from the Sample Paper's SQL list, but COUNT(*) appeared in the 2024 paper, so learn it too.)</p>
+<h2 id="en-43-spreadsheet-basics"><span class="sec-num">4.3</span><span class="sec-title">Spreadsheet basics</span></h2>
+<ul>
+<li>A cell address is a column letter plus a row number, e.g. B7, AK51.</li>
+<li><strong>Every formula must start with "=".</strong></li>
+<li>The cell format affects what is displayed and stored. For example, 000815 typed into a Number cell becomes 815; data with leading zeros, such as student numbers and phone numbers, should be formatted as <strong>Text</strong>.</li>
+<li>AutoFill can copy content or extend a series (e.g. dates, numbers).</li>
+</ul>
+<p><strong>Operators</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Operators</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Arithmetic</td>
+<td><code>+ - * / ^ %</code></td>
+</tr>
+<tr>
+<td>Comparison</td>
+<td><code>= &lt;&gt; &gt; &gt;= &lt; &lt;=</code></td>
+</tr>
+<tr>
+<td>Text concatenation</td>
+<td><code>&amp;</code></td>
+</tr>
+<tr>
+<td>Reference</td>
+<td><code>:</code> (range, e.g. A1:B10), <code>,</code> (union, e.g. A1:A5, D2:D6)</td>
+</tr>
+</tbody>
+</table>
+</div><p>⚠ Write comparison operators only as <code>&lt;=</code>, <code>&gt;=</code> and <code>&lt;&gt;</code> — never ≤, ≥, ≠ or =&lt; [2023 P1B 2(a)].</p>
+<h2 id="en-44-cell-references"><span class="sec-num">4.4</span><span class="sec-title">Cell references</span></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Written as</th>
+<th>When the formula is copied</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Relative</td>
+<td>A1</td>
+<td>Column and row both shift by the distance moved</td>
+</tr>
+<tr>
+<td>Absolute</td>
+<td>$A$1</td>
+<td>Neither changes</td>
+</tr>
+<tr>
+<td>Mixed</td>
+<td>$A1 or A$1</td>
+<td>The part with "$" stays fixed</td>
+</tr>
+</tbody>
+</table>
+</div><p><strong>Copying rule</strong>: work out how many columns and rows the target cell is from the original; every part without "$" moves by the same amount.</p>
+<p>Example: C3 contains <code>=A$1+$B2</code>. Copied to E5 (2 columns right, 2 rows down), it becomes <code>=C$1+$B4</code>.</p>
+<p>Referring to another worksheet: <code>='Sheet name'!B3</code>; to another file: <code>='[File name.xlsx]Sheet name'!B3</code>.</p>
+<p>✔ <strong>Refer to cells instead of typing values into formulas.</strong> For example, put the commission rate in B2 and write <code>=C6*B$2</code>; if the rate changes, you only edit B2 and every formula updates automatically.</p>
+<h2 id="en-45-common-functions"><span class="sec-num">4.5</span><span class="sec-title">Common functions</span></h2>
+<p><strong>Statistical functions</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Purpose</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SUM(range)</td>
+<td>Total</td>
+<td>=SUM(B2:B9)</td>
+</tr>
+<tr>
+<td>AVERAGE(range)</td>
+<td>Mean</td>
+<td>=AVERAGE(C2:E2)</td>
+</tr>
+<tr>
+<td>MAX(range), MIN(range)</td>
+<td>Largest, smallest value</td>
+<td>=MAX(F2:F36)</td>
+</tr>
+<tr>
+<td>COUNT(range)</td>
+<td>Number of cells containing <strong>numbers</strong></td>
+<td>=COUNT(B2:B9)</td>
+</tr>
+<tr>
+<td>COUNTIF(range, criteria)</td>
+<td>Number of cells meeting the criteria</td>
+<td>=COUNTIF(B2:B9,"Absent")</td>
+</tr>
+<tr>
+<td>SUMIF(range, criteria, sum_range)</td>
+<td>Total of the corresponding values that meet the criteria</td>
+<td>=SUMIF(C2:C9,"4A",D2:D9)</td>
+</tr>
+<tr>
+<td>RANK(number, ref, [order])</td>
+<td>Rank; order omitted or 0 means descending, non-zero ascending</td>
+<td>=RANK(B2,B$2:B$9)</td>
+</tr>
+</tbody>
+</table>
+</div><p>Criteria may use wildcards: <code>*</code> for any number of characters, <code>?</code> for one character, e.g. "4?" matches every S4 class.</p>
+<p><strong>Maths functions</strong>: ROUND(X, D) rounds to D decimal places; INT(X) gives the largest integer not greater than X, e.g. INT(−4.3) = −5; SQRT(X) square root; RAND() returns a random number from 0 up to (but not including) 1.</p>
+<p><strong>Logical functions</strong>: IF(condition, value_if_true, value_if_false); AND(cond1, cond2, …) is TRUE only if all are true; OR(…) is TRUE if any is true; NOT(condition) reverses it.</p>
+<p>Nested IF example: <code>=IF(B2&gt;=80,"A",IF(B2&gt;=50,"B","C"))</code></p>
+<p><strong>Text functions</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Purpose</th>
+<th>Example (A1 = "Banana")</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LEN(text)</td>
+<td>Number of characters (spaces count)</td>
+<td>=LEN(A1) → 6</td>
+</tr>
+<tr>
+<td>LEFT(text, N)</td>
+<td>Leftmost N characters</td>
+<td>=LEFT(A1,3) → Ban</td>
+</tr>
+<tr>
+<td>RIGHT(text, N)</td>
+<td>Rightmost N characters</td>
+<td>=RIGHT(A1,4) → nana</td>
+</tr>
+<tr>
+<td>MID(text, S, N)</td>
+<td>N characters starting from position S</td>
+<td>=MID(A1,3,2) → na</td>
+</tr>
+<tr>
+<td>FIND(find_text, text, [start])</td>
+<td>Position of the first occurrence; case-sensitive</td>
+<td>=FIND("a",A1,3) → 4</td>
+</tr>
+</tbody>
+</table>
+</div><p>Join text with <code>&amp;</code>: <code>=LEFT(B2,1)&amp;". "&amp;A2</code></p>
+<p><strong>XLOOKUP</strong></p>
+<p><code>=XLOOKUP(lookup_value, lookup_array, return_array, [if_not_found], [match_mode], [search_mode])</code></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>match_mode</th>
+<th>Meaning</th>
+<th>Typical use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 (default)</td>
+<td>Exact match</td>
+<td>Look up a name from an ID</td>
+</tr>
+<tr>
+<td>−1</td>
+<td>Exact match, otherwise the next <strong>smaller</strong> value</td>
+<td>Look up a grade from a table of lower mark limits</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Exact match, otherwise the next <strong>larger</strong> value</td>
+<td>Find a coach large enough for a given number of people</td>
+</tr>
+</tbody>
+</table>
+</div><p>Example: the mark is in F2, grade lower limits in J2:J6 and grades in K2:K6: <code>=XLOOKUP(F2,$J$2:$J$6,$K$2:$K$6,,-1)</code>.</p>
+<h2 id="en-46-spreadsheet-formulas-common-mistakes-reported-by-the-hkeaa"><span class="sec-num">4.6</span><span class="sec-title">Spreadsheet formulas: common mistakes reported by the HKEAA</span></h2>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2025 P1B 1(a)] A formula is entered into F2 to calculate the average mark of the three tests and then copied to F3:F36. Write the formula in F2.</strong></p>
+<p>✔ <code>=AVERAGE(C2:E2)</code>; other methods such as <code>=SUM(C2:E2)/3</code> were also accepted.</p>
+<p>✘ "A common error was using 'AVG' instead of the appropriate function name" (AVG is an SQL function). Remember the "=" sign.</p>
+</blockquote>
+<!-- -->
+
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2025 P1B 1(b)] A formula in H2 counts the students whose average is less than or equal to G2; it is then copied to H3:H6.</strong></p>
+<p>✔ <code>=COUNTIF($F$2:$F$36,"&lt;="&amp;G2)</code></p>
+<p>✘ Performance was <em>fair</em>. Many wrote <code>"&lt;=G2"</code> or left out the <code>&amp;</code>; a Level 5 candidate in the Chinese-medium samples wrote <code>'&lt;=G2'</code> and also lost the mark.</p>
+<p>Key point: put the comparison operator inside quotation marks and join it to the cell reference with <code>&amp;</code>; only a G2 outside the quotes picks up the cell's value. Use an absolute reference for the range.</p>
+</blockquote>
+<!-- -->
+
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2024 P1B 1(a)(i)] If either column D or column E is 1, column F shows 1; otherwise 0.</strong></p>
+<p>✔ <code>=IF(D2+E2&gt;=1,1,0)</code>; the condition may also be <code>D2+E2&gt;0</code> or <code>OR(D2=1,E2=1)</code>; or <code>=IF(D2+E2=0,0,1)</code>.</p>
+<p>✘ Writing the results as <code>"1","0"</code> (quotation marks turn them into text, not numbers); <code>OR(D2,E2)=1</code>.</p>
+</blockquote>
+<!-- -->
+
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2024 P1B 1(a)(ii)] <code>=SUMIF(A2:A81,"S01",F2:F81)</code> in B85 gives the right result, but is wrong when copied to B86, E85 and E86. Correct the formula in B85.</strong></p>
+<p>✔ <code>=SUMIF($A$2:$A$81,A85,$F$2:$F$81)</code></p>
+<p>Key points: both ranges need <strong>absolute references</strong>; the criteria should refer to <strong>cell A85</strong> with a <strong>relative reference</strong>, so that it becomes D85 when copied to E85.</p>
+<p>✘ <code>$A85</code> (still refers to column A after copying to column E); <code>"S01"</code> (criteria hard-coded); ranges without $.</p>
+</blockquote>
+<!-- -->
+
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2023 P1B 2(a)(b)]</strong></p>
+<p>✔ <code>=IF($C2&lt;=$C$102,1,0)</code>; <code>=$D2*$E2+$E$102</code></p>
+<p>✘ Most candidates knew to use IF but many lost the second mark: writing ≤, leaving out "=" in <code>&lt;=</code>, or putting the condition or numbers in quotation marks. Some did not put $ in E$102.</p>
+</blockquote>
+<p>HKEAA teaching advice (2024): mind the formula syntax; <strong>no quotation marks or other punctuation around numerical values</strong>; use $ correctly; <strong>spell function names correctly</strong>.</p>
+<h2 id="en-47-sorting-and-filtering"><span class="sec-num">4.7</span><span class="sec-title">Sorting and filtering</span></h2>
+<ul>
+<li><strong>Sorting</strong> rearranges records by one or more keys and changes their order. With several keys, records are sorted by the <strong>primary key</strong> first, then by the <strong>secondary key</strong> where the primary key is equal.</li>
+<li><strong>Filtering</strong> shows only the records that meet the criteria and hides the rest temporarily, <strong>without changing the original data</strong>; removing the filter shows everything again.</li>
+</ul>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2024 P1B 1(a)(iv)] The records have already been sorted. State the sort options.</strong></p>
+<p>✔ First by DATE <strong>descending</strong>, then by NAME <strong>ascending</strong>. Infer this from the data: dates run from 2024-02-28 to 2024-02-27, and within each day names are in alphabetical order.</p>
+<p>✘ Reversing the order (NAME first, then DATE), or mixing up ascending and descending.</p>
+</blockquote>
+<p>✔ To list "members of one house, from highest to lowest score": first filter by house, then sort by score in descending order.</p>
+<h2 id="en-48-charts-pivot-tables-and-what-if-analysis"><span class="sec-num">4.8</span><span class="sec-title">Charts, pivot tables and what-if analysis</span></h2>
+<p><strong>Chart types</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Chart</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Column / bar chart</td>
+<td>Compare values across categories</td>
+</tr>
+<tr>
+<td>Line chart</td>
+<td>Show a trend over time</td>
+</tr>
+<tr>
+<td>Pie chart</td>
+<td>Show each part as a proportion of the whole</td>
+</tr>
+<tr>
+<td>Scatter chart</td>
+<td>Show the correlation between two sets of data</td>
+</tr>
+<tr>
+<td>Radar chart</td>
+<td>Compare several measures at once</td>
+</tr>
+</tbody>
+</table>
+</div><p>Chart elements: chart title, X- and Y-axis titles, legend, data labels, gridlines. A pie chart has no axes. 2D charts show proportions more accurately than 3D charts.</p>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2023 P1B 2(e)] Draft a chart to show the top 5 students with the highest scores.</strong></p>
+<p>✔ A suitable chart type (bar chart, 1 mark), plus two of: chart title, axis titles, data labels or legend (2 marks).</p>
+<p>✘ Some candidates drew a <strong>table</strong> instead of a chart; some labelled only one axis. Answers written in the wrong language medium were not marked (e.g. a Chinese axis name in the English paper).</p>
+</blockquote>
+<p>A <strong>pivot table</strong> builds a summary table from a large data set. It has four areas: <strong>rows, columns, values and filters</strong>. Values can be summarised by SUM, COUNT, AVERAGE, MAX or MIN. A <strong>pivot chart</strong> shows a pivot table as a chart.</p>
+<p>Example: a table has the fields Class, House and Score. For "total score of each house in each class": rows = House, columns = Class, values = Sum of Score.</p>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2023 P1B 2(c)] Complete the settings of a pivot table to find the sum of scores for each student.</strong></p>
+<p>✔ Columns = StudID; values = <strong>Sum of Score</strong>.</p>
+<p>✘ Many candidates wrote only "Score" without <strong>SUM</strong>, misspelt the field name (e.g. "Scores"), or added extra fields.</p>
+</blockquote>
+<p><strong>What-if analysis</strong> changes input values to see the effect on the results, for forecasting and planning. Tools include Scenario Manager and Goal Seek.</p>
+<p>✔ Distinguish them: what-if analysis compares <strong>different sets of input values</strong>; a pivot table summarises <strong>one set of data</strong> by category. "Changing different parameters to estimate monthly expenses" suits what-if analysis; "comparing the sales of different branches" is a pivot table or chart task [Sample Paper Section A Q8].</p>
+<p>✔ Spreadsheets suit small-scale analysis and charting; a DBMS suits large amounts of structured data, many users and access control. A spreadsheet is not suitable for analysing big data directly, because a worksheet holds a limited number of rows and becomes slow with large data sets [Sample Paper Section B 2(b)].</p>
+<h2 id="en-49-databases-forms-queries-reports-and-table-design"><span class="sec-num">4.9</span><span class="sec-title">Databases: forms, queries, reports and table design</span></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Object</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Table</td>
+<td>Stores data in rows (records) and columns (fields); every database must have one</td>
+</tr>
+<tr>
+<td>Form</td>
+<td>A graphical interface for entering, displaying and modifying records</td>
+</tr>
+<tr>
+<td>Query</td>
+<td>Extracts data meeting criteria from one or more tables; can calculate and sort; can be saved and reused</td>
+</tr>
+<tr>
+<td>Report</td>
+<td>Displays or prints data in a predefined format, often as a summary such as a mark sheet</td>
+</tr>
+</tbody>
+</table>
+</div><p><strong>Benefits of forms</strong>: a user-friendly environment for data entry (a simplified user interface); validation such as range checks; verification such as entering a password twice; drop-down menus, radio buttons, check boxes and date pickers that simplify input; one form can update related records in several tables.</p>
+<p>⚠ A form does <strong>not</strong> shorten SQL execution time and does <strong>not</strong> reduce storage space [adapted from 2021 P1A Q11].</p>
+<p><strong>Steps in designing a table</strong>: list the items to record → make each item a field → give each field a short, meaningful name → decide the data type and field length → set the primary key → add validation rules where needed.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Data type</th>
+<th>Use</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Text / character</td>
+<td>Names, codes, phone numbers (not used in calculations)</td>
+<td>NAME, TEL_NO, HKID</td>
+</tr>
+<tr>
+<td>Integer</td>
+<td>Whole numbers used in calculations</td>
+<td>AGE, MARK</td>
+</tr>
+<tr>
+<td>Floating point (real)</td>
+<td>Numbers with decimals</td>
+<td>PRICE, AREA</td>
+</tr>
+<tr>
+<td>Date / time</td>
+<td>Dates</td>
+<td>DOB</td>
+</tr>
+<tr>
+<td>Boolean</td>
+<td>Yes / no</td>
+<td>PAID</td>
+</tr>
+</tbody>
+</table>
+</div><p>✔ Use text for phone numbers and student numbers: they are not used in calculations and may contain leading zeros or letters.
+✔ Use the date type for dates: it makes sorting, filtering and date calculations easy. Stored as text, "10/2/2025" sorts before "2/2/2025".
+✔ Field lengths should be long enough without waste, e.g. 20 or more for an English name, about 4 for a Chinese name.</p>
+<h2 id="en-410-the-sql-select-statement"><span class="sec-num">4.10</span><span class="sec-title">The SQL SELECT statement</span></h2>
+<p><strong>Clause order</strong></p>
+<pre><code class="language-sql">SELECT   fields or expressions
+FROM     table
+WHERE    condition on records      -- filters before grouping
+GROUP BY grouping field
+HAVING   condition on groups       -- filters after grouping
+ORDER BY sort field [ASC | DESC]
+</code></pre>
+<p><strong>Sample table LOAN (our own)</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>SID</th>
+<th>CLASS</th>
+<th>BOOK</th>
+<th>DAYS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S01</td>
+<td>4A</td>
+<td>B12</td>
+<td>7</td>
+</tr>
+<tr>
+<td>S02</td>
+<td>4B</td>
+<td>B05</td>
+<td>14</td>
+</tr>
+<tr>
+<td>S01</td>
+<td>4A</td>
+<td>B33</td>
+<td>3</td>
+</tr>
+<tr>
+<td>S03</td>
+<td>4A</td>
+<td>B12</td>
+<td>10</td>
+</tr>
+<tr>
+<td>S04</td>
+<td>4C</td>
+<td>B08</td>
+<td>21</td>
+</tr>
+</tbody>
+</table>
+</div><div class="table-wrap"><table>
+<thead>
+<tr>
+<th>SQL</th>
+<th>Output</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SELECT SID, DAYS FROM LOAN WHERE CLASS = '4A' AND DAYS &gt; 5</code></td>
+<td>S01 7<br>S03 10</td>
+<td>AND: both conditions must hold</td>
+</tr>
+<tr>
+<td><code>SELECT COUNT(*) FROM LOAN WHERE DAYS BETWEEN 7 AND 14</code></td>
+<td>3</td>
+<td>BETWEEN includes both ends (7, 14, 10)</td>
+</tr>
+<tr>
+<td><code>SELECT DISTINCT BOOK FROM LOAN WHERE BOOK LIKE 'B_2'</code></td>
+<td>B12</td>
+<td><code>_</code> is one character; DISTINCT removes duplicates</td>
+</tr>
+<tr>
+<td><code>SELECT SID, COUNT(*) FROM LOAN GROUP BY SID HAVING COUNT(*) &gt; 1</code></td>
+<td>S01 2</td>
+<td>Group first, then filter the groups</td>
+</tr>
+<tr>
+<td><code>SELECT CLASS, SUM(DAYS) FROM LOAN GROUP BY CLASS ORDER BY SUM(DAYS) DESC</code></td>
+<td>4C 21<br>4A 20<br>4B 14</td>
+<td>One row per group, sorted by total descending</td>
+</tr>
+</tbody>
+</table>
+</div><p><strong>Operators and keywords</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Comparison</td>
+<td><code>= &lt; &lt;= &gt; &gt;= &lt;&gt;</code></td>
+</tr>
+<tr>
+<td>Logical</td>
+<td>AND, OR, NOT; precedence NOT &gt; AND &gt; OR — add brackets when unsure</td>
+</tr>
+<tr>
+<td><code>LIKE</code></td>
+<td><code>%</code> means zero or more characters, <code>_</code> one character, e.g. <code>NAME LIKE 'J%'</code></td>
+</tr>
+<tr>
+<td><code>BETWEEN a AND b</code></td>
+<td>From a to b inclusive</td>
+</tr>
+<tr>
+<td><code>IS NULL</code></td>
+<td>The field is empty (never write <code>= NULL</code>)</td>
+</tr>
+<tr>
+<td><code>IN (…)</code></td>
+<td>Equal to any value in the list</td>
+</tr>
+<tr>
+<td>Aggregate functions</td>
+<td>SUM, AVG, MAX, MIN, COUNT(*), COUNT(field) (ignores nulls)</td>
+</tr>
+<tr>
+<td><code>AS</code></td>
+<td>Gives an output column an alias, e.g. <code>SUM(DAYS) AS TOTAL</code></td>
+</tr>
+<tr>
+<td><code>ORDER BY</code></td>
+<td>Ascending (ASC) by default; DESC for descending; can sort by several fields</td>
+</tr>
+</tbody>
+</table>
+</div><p><strong>Steps for tracing GROUP BY output</strong></p>
+<ol>
+<li>Use WHERE to remove records that do not meet the condition.</li>
+<li>Group the remaining records by the GROUP BY field — <strong>one output row per group</strong>.</li>
+<li>Calculate the aggregate function for each group.</li>
+<li>Use HAVING to remove groups that do not meet its condition.</li>
+<li>Sort by ORDER BY; without ORDER BY, the HKEAA does not usually require a particular order.</li>
+</ol>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2024 P1B 1(b)(iii)] Based on the first 8 records, what is the output of the following SQL statement?</strong></p>
+<p><code>SELECT EID, COUNT(*) FROM ATTEND WHERE SIGNIN + SIGNOUT = 1 GROUP BY EID HAVING COUNT(*) &gt; 1</code></p>
+<p>✔ S03 2, S04 2 (order of EID is not important).</p>
+<p>✘ Listing groups that fail the HAVING condition (e.g. S01 1) or staff with a count of 0; writing S03 and S04 on the same line.</p>
+</blockquote>
+<!-- -->
+
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2023 P1B 2(d)(ii)]</strong> SUM with GROUP BY: some candidates failed to group the two S01 records together, or failed to add 4 and 6 to get 10.</p>
+</blockquote>
+<!-- -->
+
+<blockquote class="callout callout-tip">
+<p>✔ <strong>[2025 P1B 7(d)]</strong> <code>SELECT CL, CNO FROM SS WHERE SER='Flag selling' AND CL LIKE '2_'</code> and <code>SELECT CL, SUM(HR) FROM SS GROUP BY CL</code>. Performance was <em>very good</em> — marks you must not lose.</p>
+</blockquote>
+<p><strong>SQL mistakes to avoid</strong> (from the 2024 and 2025 briefings, including the Paper 2A marking principles)</p>
+<ul>
+<li>✘ Aggregate functions in WHERE, e.g. <code>WHERE DAYS &gt; AVG(DAYS)</code>. Aggregate functions belong in SELECT or HAVING only.</li>
+<li>✘ Quoting numbers, e.g. <code>YEAR = '2012'</code> (write <code>YEAR = 2012</code>); text, however, must be quoted, e.g. <code>CLASS = '4A'</code>.</li>
+<li>✘ Writing ≤ instead of <code>&lt;=</code>.</li>
+<li>✘ Clauses in the wrong order, e.g. ORDER BY in the middle of a WHERE condition.</li>
+<li>✘ Selecting a field that is neither in GROUP BY nor inside an aggregate function.</li>
+<li>✘ Using SQL's AVG in a spreadsheet, or the spreadsheet's AVERAGE in SQL.</li>
+</ul>
+<h2 id="en-411-self-test"><span class="sec-num">4.11</span><span class="sec-title">Self-test</span></h2>
+<details class="quiz">
+<summary>1. B2 contains =$A2*B$1. What is the formula after it is copied to D5?</summary>
+<p>2 columns right and 3 rows down: $A2 → <strong>$A5</strong>; B$1 → <strong>D$1</strong>. Answer: <code>=$A5*D$1</code>.</p>
+</details>
+<details class="quiz">
+<summary>2. A2:A100 holds classes and C2:C100 holds scores. Write a formula for the total score of class 4B, and one for the number of students in 4B.</summary>
+<p>Total: <code>=SUMIF(A2:A100,"4B",C2:C100)</code>; number of students: <code>=COUNTIF(A2:A100,"4B")</code>.</p>
+</details>
+<details class="quiz">
+<summary>3. Using the LOAN table above, write an SQL statement to find the average loan days of each class, listing only classes with an average above 10.</summary>
+<p><code>SELECT CLASS, AVG(DAYS) FROM LOAN GROUP BY CLASS HAVING AVG(DAYS) &gt; 10</code>
+Output: 4B 14, 4C 21 (4A averages 20 ÷ 3 ≈ 6.67, which does not qualify).</p>
+</details>
+<details class="quiz">
+<summary>4. A student writes =IF(A2&gt;=50,"1","0") and then counts the passes with =SUM(B2:B30), but gets 0. Why?</summary>
+<p>"1" and "0" are in quotation marks, so they are text, not numbers, and SUM does not add text. Write <code>=IF(A2&gt;=50,1,0)</code>.</p>
+</details></div><nav class="prevnext"><a class="pn pn-prev" href="../core-a/c.html"><span class="pn-dir"><span class="lang-zh">← 上一頁</span><span class="lang-en" lang="en">← Previous</span></span><span class="pn-title"><span class="lang-zh">單元 A 課題 c：數據表示</span><span class="lang-en" lang="en">Module A Topic c: Data Representation</span></span></a><a class="pn pn-next" href="../core-b/index.html"><span class="pn-dir"><span class="lang-zh">下一頁 →</span><span class="lang-en" lang="en">Next →</span></span><span class="pn-title"><span class="lang-zh">單元 B：電腦系統基礎</span><span class="lang-en" lang="en">Module B: Computer System Fundamentals</span></span></a></nav>
     </article>
     <footer class="footer">
-      <p>內容依據課程發展議會與考評局《資訊及通訊科技課程及評估指引》及考評局公開資料整理，僅供溫習參考。</p>
+      <p class="lang-zh">內容依據課程發展議會與考評局《資訊及通訊科技課程及評估指引》及考評局公開資料整理，僅供溫習參考。</p>
+      <p class="lang-en" lang="en">Compiled from the CDC–HKEAA Information and Communication Technology Curriculum and Assessment Guide and HKEAA public materials, for revision reference only.</p>
     </footer>
   </main>
 
   <aside class="toc-rail">
-<nav class="toc" aria-label="本頁目錄"><div class="toc-title">本頁目錄</div><ol><li><a href="#41-課程要求">4.1 課程要求</a></li><li><a href="#42-考評局提供的函數及指令清單">4.2 考評局提供的函數及指令清單</a></li><li><a href="#43-試算表基本概念">4.3 試算表基本概念</a></li><li><a href="#44-儲存格參照">4.4 儲存格參照</a></li><li><a href="#45-常用函數">4.5 常用函數</a></li><li><a href="#46-試算表公式考評局常見失分">4.6 試算表公式：考評局常見失分</a></li><li><a href="#47-排序與篩選">4.7 排序與篩選</a></li><li><a href="#48-圖表樞紐分析表與假設分析">4.8 圖表、樞紐分析表與假設分析</a></li><li><a href="#49-數據庫表單查詢報表與數據表設計">4.9 數據庫：表單、查詢、報表與數據表設計</a></li><li><a href="#410-sql-select-語句">4.10 SQL SELECT 語句</a></li><li><a href="#411-自我檢測">4.11 自我檢測</a></li></ol></nav>
+<nav class="toc lang-zh" aria-label="本頁目錄"><div class="toc-title">本頁目錄</div><ol><li><a href="#41-課程要求">4.1 課程要求</a></li><li><a href="#42-考評局提供的函數及指令清單">4.2 考評局提供的函數及指令清單</a></li><li><a href="#43-試算表基本概念">4.3 試算表基本概念</a></li><li><a href="#44-儲存格參照">4.4 儲存格參照</a></li><li><a href="#45-常用函數">4.5 常用函數</a></li><li><a href="#46-試算表公式考評局常見失分">4.6 試算表公式：考評局常見失分</a></li><li><a href="#47-排序與篩選">4.7 排序與篩選</a></li><li><a href="#48-圖表樞紐分析表與假設分析">4.8 圖表、樞紐分析表與假設分析</a></li><li><a href="#49-數據庫表單查詢報表與數據表設計">4.9 數據庫：表單、查詢、報表與數據表設計</a></li><li><a href="#410-sql-select-語句">4.10 SQL SELECT 語句</a></li><li><a href="#411-自我檢測">4.11 自我檢測</a></li></ol></nav><nav class="toc lang-en" lang=en aria-label="On this page"><div class="toc-title">On this page</div><ol><li><a href="#en-41-learning-outcomes">4.1 Learning outcomes</a></li><li><a href="#en-42-the-hkeaa-list-of-functions-and-commands">4.2 The HKEAA list of functions and commands</a></li><li><a href="#en-43-spreadsheet-basics">4.3 Spreadsheet basics</a></li><li><a href="#en-44-cell-references">4.4 Cell references</a></li><li><a href="#en-45-common-functions">4.5 Common functions</a></li><li><a href="#en-46-spreadsheet-formulas-common-mistakes-reported-by-the-hkeaa">4.6 Spreadsheet formulas: common mistakes reported by the HKEAA</a></li><li><a href="#en-47-sorting-and-filtering">4.7 Sorting and filtering</a></li><li><a href="#en-48-charts-pivot-tables-and-what-if-analysis">4.8 Charts, pivot tables and what-if analysis</a></li><li><a href="#en-49-databases-forms-queries-reports-and-table-design">4.9 Databases: forms, queries, reports and table design</a></li><li><a href="#en-410-the-sql-select-statement">4.10 The SQL SELECT statement</a></li><li><a href="#en-411-self-test">4.11 Self-test</a></li></ol></nav>
   </aside>
 </div>
 
-<button class="to-top" type="button" aria-label="回到頁頂" hidden>↑</button>
+<button class="to-top" type="button" data-i18n-aria="top" aria-label="回到頁頂" hidden>↑</button>
 <script src="../assets/search-index.js"></script>
 <script src="../assets/app.js"></script>
 </body>

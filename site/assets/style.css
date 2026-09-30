@@ -418,6 +418,8 @@ svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width:
   padding: 0 .5rem; line-height: 1.6rem;
 }
 .prose details[open] > summary::after { content: "收起"; background: var(--accent); color: #fff; }
+:root[data-lang="en"] .prose details > summary::after { content: "Show answer"; }
+:root[data-lang="en"] .prose details[open] > summary::after { content: "Hide"; }
 .prose details > summary:hover { background: var(--paper-2); }
 .prose details[open] > summary { border-bottom: 1px dashed var(--rule); }
 .prose details > :not(summary) { margin: 0; padding: .8rem 1.2rem .2rem; font-size: .95rem; }
@@ -452,8 +454,8 @@ svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width:
 .badge-pending { background: var(--paper-3); color: var(--faint); }
 
 .pending {
-  text-align: center; padding: 3.5rem 1.5rem;
-  border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+  text-align: center; padding: 2rem 1.5rem 3.5rem;
+  border-bottom: 1px solid var(--rule);
   color: var(--muted);
 }
 .pending-icon { font-family: var(--mono); font-size: .74rem; font-weight: 600; color: var(--accent); letter-spacing: .1em; }
@@ -486,7 +488,7 @@ svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width:
 .hero-eyebrow { display: flex; align-items: center; gap: 10px; font-size: .64rem; font-weight: 500; color: var(--crimson); }
 .hero-eyebrow::after { content: ""; width: 50px; height: 1px; background: var(--crimson); }
 .hero-title { font-size: clamp(2.2rem, 5vw, 3.2rem); line-height: 1.15; margin: 1rem 0 .9rem; font-weight: 700; letter-spacing: -.01em; }
-.hero-title span { color: var(--crimson); }
+.hero-title .hl { color: var(--crimson); font-style: normal; }
 .hero-sub { max-width: 620px; color: var(--muted); font-style: italic; margin: 0; font-size: 1.02rem; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 1.6rem; }
 .btn {
@@ -588,6 +590,27 @@ svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width:
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; scroll-behavior: auto !important; }
+}
+
+/* ------------------------------------------------------------ language */
+:root[data-lang="en"] .lang-zh { display: none !important; }
+:root:not([data-lang="en"]) .lang-en { display: none !important; }
+.lang-switch { display: inline-flex; align-items: center; gap: 4px; margin-right: 6px; }
+.lang-switch button {
+  white-space: nowrap;
+  font-family: var(--sans); font-size: .68rem; font-weight: 600; letter-spacing: .06em;
+  height: 26px; padding: 0 .65rem;
+  border: 1.5px solid rgba(255, 255, 255, .3); border-radius: 2px;
+  background: transparent; color: rgba(255, 255, 255, .55); cursor: pointer;
+  transition: background .15s, color .15s, border-color .15s;
+}
+.lang-switch button:hover { border-color: rgba(255, 255, 255, .7); color: rgba(255, 255, 255, .9); }
+.lang-switch button[aria-pressed="true"] { background: var(--crimson); border-color: var(--crimson); color: #fff; }
+:root[data-lang="en"] .prose { line-height: 1.75; }
+:root[data-lang="en"] .page-title, :root[data-lang="en"] .hero-title { letter-spacing: -.01em; }
+@media (max-width: 640px) {
+  .lang-switch { margin-right: 0; gap: 2px; }
+  .lang-switch button { padding: 0 .45rem; }
 }
 
 /* ------------------------------------------------------------ print */

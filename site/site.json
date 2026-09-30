@@ -15,11 +15,44 @@
           "accent": "a",
           "overview": "core-a/index.md",
           "topics": [
-            {"id": "a", "title": "資訊處理簡介", "en": "Introduction to Information Processing", "hours": 3, "chapters": "課本第 1 章", "md": "core-a/a.md"},
-            {"id": "b", "title": "數據組織及數據控制", "en": "Data Organisation and Data Control", "hours": 4, "chapters": "課本第 2 章", "md": "core-a/b.md"},
-            {"id": "c", "title": "數據表示", "en": "Data Representation", "hours": 10, "chapters": "課本第 3、4 章", "md": "core-a/c.md"},
-            {"id": "d", "title": "數據操縱和分析", "en": "Data Manipulation and Analysis", "hours": 20, "chapters": "課本第 5、6 章", "md": "core-a/d.md"}
-          ]
+            {
+              "id": "a",
+              "title": "資訊處理簡介",
+              "en": "Introduction to Information Processing",
+              "hours": 3,
+              "chapters": "課本第 1 章",
+              "md": "core-a/a.md",
+              "chapters_en": "Textbook Ch. 1"
+            },
+            {
+              "id": "b",
+              "title": "數據組織及數據控制",
+              "en": "Data Organisation and Data Control",
+              "hours": 4,
+              "chapters": "課本第 2 章",
+              "md": "core-a/b.md",
+              "chapters_en": "Textbook Ch. 2"
+            },
+            {
+              "id": "c",
+              "title": "數據表示",
+              "en": "Data Representation",
+              "hours": 10,
+              "chapters": "課本第 3、4 章",
+              "md": "core-a/c.md",
+              "chapters_en": "Textbook Ch. 3 & 4"
+            },
+            {
+              "id": "d",
+              "title": "數據操縱和分析",
+              "en": "Data Manipulation and Analysis",
+              "hours": 20,
+              "chapters": "課本第 5、6 章",
+              "md": "core-a/d.md",
+              "chapters_en": "Textbook Ch. 5 & 6"
+            }
+          ],
+          "code_en": "A"
         },
         {
           "id": "core-b",
@@ -29,9 +62,20 @@
           "hours": 20,
           "accent": "b",
           "topics": [
-            {"id": "a", "title": "基本機器組織", "en": "Basic Machine Organisation", "hours": 14},
-            {"id": "b", "title": "系統軟件", "en": "System Software", "hours": 6}
-          ]
+            {
+              "id": "a",
+              "title": "基本機器組織",
+              "en": "Basic Machine Organisation",
+              "hours": 14
+            },
+            {
+              "id": "b",
+              "title": "系統軟件",
+              "en": "System Software",
+              "hours": 6
+            }
+          ],
+          "code_en": "B"
         },
         {
           "id": "core-c",
@@ -41,11 +85,32 @@
           "hours": 31,
           "accent": "c",
           "topics": [
-            {"id": "a", "title": "建網及互聯網基本知識", "en": "Networking and Internet Basics", "hours": 9},
-            {"id": "b", "title": "互聯網服務及應用", "en": "Internet Services and Applications", "hours": 5},
-            {"id": "c", "title": "初級網頁創作", "en": "Elementary Web Authoring", "hours": 3},
-            {"id": "d", "title": "網上威脅及保安", "en": "Threats and Security on the Internet", "hours": 14}
-          ]
+            {
+              "id": "a",
+              "title": "建網及互聯網基本知識",
+              "en": "Networking and Internet Basics",
+              "hours": 9
+            },
+            {
+              "id": "b",
+              "title": "互聯網服務及應用",
+              "en": "Internet Services and Applications",
+              "hours": 5
+            },
+            {
+              "id": "c",
+              "title": "初級網頁創作",
+              "en": "Elementary Web Authoring",
+              "hours": 3
+            },
+            {
+              "id": "d",
+              "title": "網上威脅及保安",
+              "en": "Threats and Security on the Internet",
+              "hours": 14
+            }
+          ],
+          "code_en": "C"
         },
         {
           "id": "core-d",
@@ -55,11 +120,32 @@
           "hours": 48,
           "accent": "d",
           "topics": [
-            {"id": "a", "title": "問題建構和分析", "en": "Problem Formulation and Analysis", "hours": 5},
-            {"id": "b", "title": "算法設計", "en": "Algorithm Design", "hours": 12},
-            {"id": "c", "title": "程式開發", "en": "Program Development", "hours": 20},
-            {"id": "d", "title": "程式測試和除錯", "en": "Program Testing and Debugging", "hours": 11}
-          ]
+            {
+              "id": "a",
+              "title": "問題建構和分析",
+              "en": "Problem Formulation and Analysis",
+              "hours": 5
+            },
+            {
+              "id": "b",
+              "title": "算法設計",
+              "en": "Algorithm Design",
+              "hours": 12
+            },
+            {
+              "id": "c",
+              "title": "程式開發",
+              "en": "Program Development",
+              "hours": 20
+            },
+            {
+              "id": "d",
+              "title": "程式測試和除錯",
+              "en": "Program Testing and Debugging",
+              "hours": 11
+            }
+          ],
+          "code_en": "D"
         },
         {
           "id": "core-e",
@@ -69,12 +155,29 @@
           "hours": 8,
           "accent": "e",
           "topics": [
-            {"id": "a", "title": "科技創新", "en": "Technological Innovations", "hours": 3},
-            {"id": "b", "title": "健康及道德議題", "en": "Health and Ethical Issues", "hours": 3},
-            {"id": "c", "title": "知識產權", "en": "Intellectual Property", "hours": 2}
-          ]
+            {
+              "id": "a",
+              "title": "科技創新",
+              "en": "Technological Innovations",
+              "hours": 3
+            },
+            {
+              "id": "b",
+              "title": "健康及道德議題",
+              "en": "Health and Ethical Issues",
+              "hours": 3
+            },
+            {
+              "id": "c",
+              "title": "知識產權",
+              "en": "Intellectual Property",
+              "hours": 2
+            }
+          ],
+          "code_en": "E"
         }
-      ]
+      ],
+      "en": "Compulsory Part"
     },
     {
       "id": "elective",
@@ -88,10 +191,26 @@
           "hours": 38,
           "accent": "f",
           "topics": [
-            {"id": "a", "title": "關聯式數據庫概念", "en": "Relational Database Concepts", "hours": 6},
-            {"id": "b", "title": "結構化查詢語言", "en": "Structured Query Language (SQL)", "hours": 18},
-            {"id": "c", "title": "數據庫設計方法", "en": "Database Design Methodology", "hours": 14}
-          ]
+            {
+              "id": "a",
+              "title": "關聯式數據庫概念",
+              "en": "Relational Database Concepts",
+              "hours": 6
+            },
+            {
+              "id": "b",
+              "title": "結構化查詢語言",
+              "en": "Structured Query Language (SQL)",
+              "hours": 18
+            },
+            {
+              "id": "c",
+              "title": "數據庫設計方法",
+              "en": "Database Design Methodology",
+              "hours": 14
+            }
+          ],
+          "code_en": "2A"
         },
         {
           "id": "elective-b",
@@ -101,11 +220,23 @@
           "hours": 38,
           "accent": "g",
           "topics": [
-            {"id": "a", "title": "網絡服務與實施", "en": "Network Services and Implementation", "hours": 14},
-            {"id": "b", "title": "網絡編程與應用", "en": "Web Programming and Applications", "hours": 24}
-          ]
+            {
+              "id": "a",
+              "title": "網絡服務與實施",
+              "en": "Network Services and Implementation",
+              "hours": 14
+            },
+            {
+              "id": "b",
+              "title": "網絡編程與應用",
+              "en": "Web Programming and Applications",
+              "hours": 24
+            }
+          ],
+          "code_en": "2B"
         }
-      ]
+      ],
+      "en": "Elective Part"
     },
     {
       "id": "exam",
@@ -118,12 +249,34 @@
           "en": "Exam Strategies",
           "accent": "h",
           "topics": [
-            {"id": "structure", "title": "試卷結構與答題原則", "en": "Paper Structure and Answering Principles", "md": "exam/structure.md"},
-            {"id": "mistakes", "title": "常見錯誤總匯", "en": "Common Mistakes"},
-            {"id": "formulas", "title": "計算公式速查", "en": "Formula Sheet"},
-            {"id": "reference", "title": "函數及指令清單", "en": "Functions and Commands"},
-            {"id": "sba", "title": "校本評核", "en": "School-based Assessment"}
-          ]
+            {
+              "id": "structure",
+              "title": "試卷結構與答題原則",
+              "en": "Paper Structure and Answering Principles",
+              "md": "exam/structure.md"
+            },
+            {
+              "id": "mistakes",
+              "title": "常見錯誤總匯",
+              "en": "Common Mistakes"
+            },
+            {
+              "id": "formulas",
+              "title": "計算公式速查",
+              "en": "Formula Sheet"
+            },
+            {
+              "id": "reference",
+              "title": "函數及指令清單",
+              "en": "Functions and Commands"
+            },
+            {
+              "id": "sba",
+              "title": "校本評核",
+              "en": "School-based Assessment"
+            }
+          ],
+          "code_en": "Exam"
         },
         {
           "id": "resources",
@@ -132,11 +285,24 @@
           "en": "Resources",
           "accent": "h",
           "topics": [
-            {"id": "glossary", "title": "術語表（中英對照）", "en": "Glossary"},
-            {"id": "guide", "title": "網站使用說明", "en": "How to Use This Site", "md": "resources/guide.md"}
-          ]
+            {
+              "id": "glossary",
+              "title": "術語表（中英對照）",
+              "en": "Glossary"
+            },
+            {
+              "id": "guide",
+              "title": "網站使用說明",
+              "en": "How to Use This Site",
+              "md": "resources/guide.md"
+            }
+          ],
+          "code_en": "Info"
         }
-      ]
+      ],
+      "en": "Exam Strategies"
     }
-  ]
+  ],
+  "title_en": "ICT Revision Hub",
+  "subtitle_en": "HKDSE Information and Communication Technology (new curriculum)"
 }

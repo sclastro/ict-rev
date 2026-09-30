@@ -2,8 +2,10 @@
 (function () {
   "use strict";
 
-  var root = document.body.getAttribute("data-root") || "";
-  var pageId = document.body.getAttribute("data-page");
+  var html = document.documentElement;
+  var body = document.body;
+  var root = body.getAttribute("data-root") || "";
+  var pageId = body.getAttribute("data-page");
 
   /* ---------------------------------------------------- storage (safe) */
   function load(key, fallback) {
@@ -19,11 +21,75 @@
     try { localStorage.setItem(key, value); } catch (e) {}
   }
 
+  /* ---------------------------------------------------- i18n */
+  var STR = {
+    zh: {
+      search: "搜尋課題、術語……", menu: "開啟目錄", font: "調整字體大小", theme: "切換深色／淺色模式", top: "回到頁頂",
+      done: "已溫習", mark: "標記為已溫習", revised: "已溫習", none: "找不到「%s」相關內容。",
+      fontNames: { normal: "標準", large: "大", small: "小" }, fontLabel: "字體大小："
+    },
+    en: {
+      search: "Search topics and terms…", menu: "Open menu", font: "Change text size", theme: "Toggle dark / light mode", top: "Back to top",
+      done: "Revised", mark: "Mark as revised", revised: "Revised", none: "No results for “%s”.",
+      fontNames: { normal: "standard", large: "large", small: "small" }, fontLabel: "Text size: "
+    }
+  };
+  function lang() { return html.getAttribute("data-lang") === "en" ? "en" : "zh"; }
+  function t(key) { return STR[lang()][key]; }
+
+  function applyLangChrome() {
+    var l = lang();
+    html.setAttribute("lang", l === "en" ? "en" : "zh-Hant-HK");
+    document.title = body.getAttribute(l === "en" ? "data-title-en" : "data-title-zh") || document.title;
+    document.querySelectorAll("[data-i18n-placeholder]").forEach(function (el) {
+      el.setAttribute("placeholder", t(el.getAttribute("data-i18n-placeholder")));
+      el.setAttribute("aria-label", t(el.getAttribute("data-i18n-placeholder")));
+    });
+    document.querySelectorAll("[data-i18n-aria]").forEach(function (el) {
+      var k = el.getAttribute("data-i18n-aria");
+      el.setAttribute("aria-label", t(k));
+      el.setAttribute("title", t(k));
+    });
+    document.querySelectorAll("[data-lang-set]").forEach(function (b) {
+      b.setAttribute("aria-pressed", b.getAttribute("data-lang-set") === l ? "true" : "false");
+    });
+  }
+
+  // Keep the reader at the same section when switching language.
+  function currentSectionIndex() {
+    var box = document.querySelector(".lang-" + lang() + ".prose");
+    if (!box) return -1;
+    var heads = box.querySelectorAll("h2");
+    var idx = -1;
+    for (var i = 0; i < heads.length; i++) {
+      if (heads[i].getBoundingClientRect().top < 140) idx = i; else break;
+    }
+    return idx;
+  }
+  function setLang(l) {
+    if (l === lang()) return;
+    var idx = currentSectionIndex();
+    var atTop = window.scrollY < 80;
+    html.setAttribute("data-lang", l);
+    saveRaw("ictrev-lang", l);
+    applyLangChrome();
+    paintProgress();
+    if (searchInput && searchInput.value.trim()) render(searchInput.value);
+    if (!atTop && idx >= 0) {
+      var box = document.querySelector(".lang-" + l + ".prose");
+      var h = box && box.querySelectorAll("h2")[idx];
+      if (h) h.scrollIntoView({ block: "start" });
+    }
+    setupScrollspy();
+  }
+  document.querySelectorAll("[data-lang-set]").forEach(function (b) {
+    b.addEventListener("click", function () { setLang(b.getAttribute("data-lang-set")); });
+  });
+
   /* ---------------------------------------------------- theme & font */
-  var html = document.documentElement;
   function currentTheme() {
-    var t = html.getAttribute("data-theme");
-    if (t) return t;
+    var th = html.getAttribute("data-theme");
+    if (th) return th;
     return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
   }
   document.querySelectorAll("[data-theme-toggle]").forEach(function (btn) {
@@ -41,7 +107,7 @@
       if (next === "normal") html.removeAttribute("data-font");
       else html.setAttribute("data-font", next);
       saveRaw("ictrev-font", next);
-      btn.setAttribute("title", "字體大小：" + ({ normal: "標準", large: "大", small: "小" })[next]);
+      btn.setAttribute("title", t("fontLabel") + t("fontNames")[next]);
     });
   });
 
@@ -49,11 +115,11 @@
   var menuBtn = document.querySelector(".menu-btn");
   var scrim = document.querySelector(".scrim");
   function setNav(open) {
-    document.body.classList.toggle("nav-open", open);
+    body.classList.toggle("nav-open", open);
     if (menuBtn) menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
     if (scrim) scrim.hidden = !open;
   }
-  if (menuBtn) menuBtn.addEventListener("click", function () { setNav(!document.body.classList.contains("nav-open")); });
+  if (menuBtn) menuBtn.addEventListener("click", function () { setNav(!body.classList.contains("nav-open")); });
   if (scrim) scrim.addEventListener("click", function () { setNav(false); });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") setNav(false); });
   var active = document.querySelector(".nav-link.is-active");
@@ -63,7 +129,7 @@
   var done = load("ictrev-done", {});
   function paintProgress() {
     document.querySelectorAll("[data-page]").forEach(function (el) {
-      if (el === document.body) return;
+      if (el === body) return;
       el.classList.toggle("is-done", !!done[el.getAttribute("data-page")]);
     });
     document.querySelectorAll("[data-progress]").forEach(function (bar) {
@@ -74,14 +140,14 @@
     document.querySelectorAll("[data-progress-text]").forEach(function (el) {
       var ids = el.getAttribute("data-progress-text").split(",").filter(Boolean);
       var n = ids.filter(function (id) { return done[id]; }).length;
-      el.textContent = ids.length ? "已溫習 " + n + " / " + ids.length : "";
+      el.textContent = ids.length ? t("revised") + " " + n + " / " + ids.length : "";
     });
     var total = Object.keys(done).filter(function (k) { return done[k]; }).length;
     document.querySelectorAll("[data-total-done]").forEach(function (el) { el.textContent = total; });
     document.querySelectorAll("[data-done-toggle]").forEach(function (btn) {
       var on = !!done[btn.getAttribute("data-done-toggle")];
       btn.setAttribute("aria-pressed", on ? "true" : "false");
-      btn.querySelector(".done-label").textContent = on ? "已溫習" : "標記為已溫習";
+      btn.querySelector(".done-label").textContent = on ? t("done") : t("mark");
     });
   }
   document.querySelectorAll("[data-done-toggle]").forEach(function (btn) {
@@ -92,39 +158,44 @@
       paintProgress();
     });
   });
-  paintProgress();
 
-  /* ---------------------------------------------------- checklists */
-  var checks = load("ictrev-check:" + pageId, {});
-  document.querySelectorAll(".task-box").forEach(function (box, i) {
-    var li = box.closest("li");
-    box.checked = !!checks[i];
-    li.classList.toggle("is-checked", box.checked);
-    box.setAttribute("aria-label", li.textContent.trim());
-    box.addEventListener("change", function () {
-      checks[i] = box.checked;
+  /* ---------------------------------------------------- checklists (per language block) */
+  ["zh", "en"].forEach(function (l) {
+    var key = "ictrev-check:" + pageId + (l === "en" ? ":en" : "");
+    var checks = load(key, {});
+    document.querySelectorAll(".lang-" + l + " .task-box").forEach(function (box, i) {
+      var li = box.closest("li");
+      box.checked = !!checks[i];
       li.classList.toggle("is-checked", box.checked);
-      save("ictrev-check:" + pageId, checks);
+      box.setAttribute("aria-label", li.textContent.trim());
+      box.addEventListener("change", function () {
+        checks[i] = box.checked;
+        li.classList.toggle("is-checked", box.checked);
+        save(key, checks);
+      });
     });
   });
 
   /* ---------------------------------------------------- TOC scrollspy */
-  var tocLinks = Array.prototype.slice.call(document.querySelectorAll(".toc a"));
-  if (tocLinks.length && "IntersectionObserver" in window) {
+  var io = null;
+  function setupScrollspy() {
+    if (io) { io.disconnect(); io = null; }
+    var toc = document.querySelector(".toc.lang-" + lang());
+    if (!toc || !("IntersectionObserver" in window)) return;
+    var links = Array.prototype.slice.call(toc.querySelectorAll("a"));
     var map = {};
-    tocLinks.forEach(function (a) { map[decodeURIComponent(a.getAttribute("href").slice(1))] = a; });
+    links.forEach(function (a) { map[decodeURIComponent(a.getAttribute("href").slice(1))] = a; });
     var heads = Object.keys(map).map(function (id) { return document.getElementById(id); }).filter(Boolean);
     var visible = {};
-    var io = new IntersectionObserver(function (entries) {
+    io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) { visible[en.target.id] = en.isIntersecting; });
-      var firstVisible = heads.find(function (h) { return visible[h.id]; });
-      if (!firstVisible) {
-        // fall back to the last heading above the viewport
+      var first = heads.find(function (h) { return visible[h.id]; });
+      if (!first) {
         var above = heads.filter(function (h) { return h.getBoundingClientRect().top < 120; });
-        firstVisible = above[above.length - 1];
+        first = above[above.length - 1];
       }
-      tocLinks.forEach(function (a) { a.classList.remove("is-active"); });
-      if (firstVisible && map[firstVisible.id]) map[firstVisible.id].classList.add("is-active");
+      links.forEach(function (a) { a.classList.remove("is-active"); });
+      if (first && map[first.id]) map[first.id].classList.add("is-active");
     }, { rootMargin: "-70px 0px -60% 0px" });
     heads.forEach(function (h) { io.observe(h); });
   }
@@ -145,7 +216,7 @@
   });
 
   /* ---------------------------------------------------- search */
-  var input = document.getElementById("search-input");
+  var searchInput = document.getElementById("search-input");
   var box = document.getElementById("search-results");
   var index = window.SEARCH_INDEX || [];
   var sel = -1;
@@ -155,9 +226,9 @@
   }
   function highlight(text, terms) {
     var out = esc(text);
-    terms.forEach(function (t) {
-      if (!t) return;
-      var re = new RegExp(esc(t).replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "gi");
+    terms.forEach(function (term) {
+      if (!term) return;
+      var re = new RegExp(esc(term).replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "gi");
       out = out.replace(re, function (m) { return "<mark>" + m + "</mark>"; });
     });
     return out;
@@ -171,15 +242,17 @@
   function search(q) {
     var terms = q.trim().split(/\s+/).filter(Boolean);
     if (!terms.length) return [];
+    var l = lang();
     var res = [];
     index.forEach(function (it) {
+      if ((it.l || "zh") !== l) return;
       var hay = (it.h + " " + it.t).toLowerCase();
       var score = 0;
       for (var k = 0; k < terms.length; k++) {
-        var t = terms[k].toLowerCase();
-        if (hay.indexOf(t) < 0) return;
-        if (it.h.toLowerCase().indexOf(t) >= 0) score += 10;
-        score += Math.min(5, hay.split(t).length - 1);
+        var term = terms[k].toLowerCase();
+        if (hay.indexOf(term) < 0) return;
+        if (it.h.toLowerCase().indexOf(term) >= 0) score += 10;
+        score += Math.min(5, hay.split(term).length - 1);
       }
       res.push({ it: it, score: score });
     });
@@ -190,9 +263,9 @@
     var results = search(q);
     var terms = q.trim().split(/\s+/);
     sel = -1;
-    if (!q.trim()) { box.hidden = true; input.setAttribute("aria-expanded", "false"); return; }
+    if (!q.trim()) { box.hidden = true; searchInput.setAttribute("aria-expanded", "false"); return; }
     if (!results.length) {
-      box.innerHTML = '<div class="sr-empty">找不到「' + esc(q) + '」相關內容。</div>';
+      box.innerHTML = '<div class="sr-empty">' + esc(t("none").replace("%s", q)) + "</div>";
     } else {
       box.innerHTML = results.map(function (it) {
         return '<a role="option" href="' + root + it.u + '">' +
@@ -202,7 +275,7 @@
       }).join("");
     }
     box.hidden = false;
-    input.setAttribute("aria-expanded", "true");
+    searchInput.setAttribute("aria-expanded", "true");
   }
   function move(d) {
     var items = box.querySelectorAll("a");
@@ -211,24 +284,29 @@
     items.forEach(function (a, i) { a.setAttribute("aria-selected", i === sel ? "true" : "false"); });
     items[sel].scrollIntoView({ block: "nearest" });
   }
-  if (input && box) {
+  if (searchInput && box) {
     var timer;
-    input.addEventListener("input", function () { clearTimeout(timer); timer = setTimeout(function () { render(input.value); }, 80); });
-    input.addEventListener("focus", function () { if (input.value.trim()) render(input.value); });
-    input.addEventListener("keydown", function (e) {
+    searchInput.addEventListener("input", function () { clearTimeout(timer); timer = setTimeout(function () { render(searchInput.value); }, 80); });
+    searchInput.addEventListener("focus", function () { if (searchInput.value.trim()) render(searchInput.value); });
+    searchInput.addEventListener("keydown", function (e) {
       if (e.key === "ArrowDown") { e.preventDefault(); move(1); }
       else if (e.key === "ArrowUp") { e.preventDefault(); move(-1); }
       else if (e.key === "Enter") {
         var items = box.querySelectorAll("a");
         var target = items[sel >= 0 ? sel : 0];
         if (target) { e.preventDefault(); window.location.href = target.href; }
-      } else if (e.key === "Escape") { box.hidden = true; input.blur(); }
+      } else if (e.key === "Escape") { box.hidden = true; searchInput.blur(); }
     });
     document.addEventListener("click", function (e) { if (!e.target.closest(".search")) box.hidden = true; });
     document.addEventListener("keydown", function (e) {
-      if (e.key === "/" && document.activeElement !== input && !/INPUT|TEXTAREA/.test(document.activeElement.tagName)) {
-        e.preventDefault(); input.focus();
+      if (e.key === "/" && document.activeElement !== searchInput && !/INPUT|TEXTAREA/.test(document.activeElement.tagName)) {
+        e.preventDefault(); searchInput.focus();
       }
     });
   }
+
+  /* ---------------------------------------------------- init */
+  applyLangChrome();
+  paintProgress();
+  setupScrollspy();
 })();

@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="zh-Hant-HK" data-accent="a">
+<html lang="zh-Hant-HK" data-lang="zh" data-accent="a">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>單元 A 課題 c：數據表示｜ICT 溫習站</title>
-<meta name="description" content="香港中學文憑考試資訊及通訊科技科（新課程）溫習重點、評卷要點與常見錯誤">
+<meta name="description" content="香港中學文憑考試資訊及通訊科技科（新課程）溫習重點、評卷要點與常見錯誤 · HKDSE ICT (new curriculum) revision notes, marking points and common mistakes">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231a1a1a'/%3E%3Ctext x='32' y='42' font-size='26' font-family='Georgia' font-weight='700' fill='%23b5222e' text-anchor='middle'%3EICT%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,37 +12,44 @@
 <link rel="stylesheet" href="../assets/style.css">
 <script>
   (function () {
+    var d = document.documentElement;
     try {
       var t = localStorage.getItem("ictrev-theme");
-      if (t) document.documentElement.setAttribute("data-theme", t);
+      if (t) d.setAttribute("data-theme", t);
       var f = localStorage.getItem("ictrev-font");
-      if (f) document.documentElement.setAttribute("data-font", f);
+      if (f) d.setAttribute("data-font", f);
+      var l = localStorage.getItem("ictrev-lang");
+      if (l === "en") { d.setAttribute("data-lang", "en"); d.setAttribute("lang", "en"); }
     } catch (e) {}
   })();
 </script>
 </head>
-<body class="kind-topic has-toc" data-page="core-a/c" data-root="../">
-<a class="skip-link" href="#main">跳到主要內容</a>
+<body class="kind-topic has-toc" data-page="core-a/c" data-root="../" data-title-zh="單元 A 課題 c：數據表示｜ICT 溫習站" data-title-en="Module A Topic c: Data Representation | ICT Revision Hub">
+<a class="skip-link" href="#main"><span class="lang-zh">跳到主要內容</span><span class="lang-en">Skip to content</span></a>
 
 <header class="topbar">
-  <button class="icon-btn menu-btn" type="button" aria-label="開啟目錄" aria-controls="sidebar" aria-expanded="false">
+  <button class="icon-btn menu-btn" type="button" data-i18n-aria="menu" aria-label="開啟目錄" aria-controls="sidebar" aria-expanded="false">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
   </button>
   <a class="brand" href="../index.html">
     <span class="brand-mark" aria-hidden="true">ICT</span>
-    <span class="brand-text">ICT 溫習站</span>
+    <span class="brand-text"><span class="lang-zh">ICT 溫習站</span><span class="lang-en" lang="en">ICT Revision Hub</span></span>
   </a>
   <div class="search" role="search">
     <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
-    <input id="search-input" type="search" placeholder="搜尋課題、術語……" autocomplete="off" aria-label="搜尋" aria-controls="search-results" aria-expanded="false">
+    <input id="search-input" type="search" data-i18n-placeholder="search" placeholder="搜尋課題、術語……" autocomplete="off" aria-label="搜尋" aria-controls="search-results" aria-expanded="false">
     <kbd class="search-kbd" aria-hidden="true">/</kbd>
     <div id="search-results" class="search-results" role="listbox" hidden></div>
   </div>
   <div class="topbar-tools">
-    <button class="icon-btn" type="button" data-font-toggle aria-label="調整字體大小" title="字體大小">
+    <div class="lang-switch" role="group" aria-label="語言 Language">
+      <button type="button" data-lang-set="zh" aria-pressed="true">中文</button>
+      <button type="button" data-lang-set="en" aria-pressed="false">EN</button>
+    </div>
+    <button class="icon-btn" type="button" data-font-toggle data-i18n-aria="font" aria-label="調整字體大小">
       <span class="font-icon" aria-hidden="true">A<small>A</small></span>
     </button>
-    <button class="icon-btn" type="button" data-theme-toggle aria-label="切換深色／淺色模式" title="深色／淺色模式">
+    <button class="icon-btn" type="button" data-theme-toggle data-i18n-aria="theme" aria-label="切換深色／淺色模式">
       <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
       <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/></svg>
     </button>
@@ -50,78 +57,78 @@
 </header>
 
 <div class="layout">
-  <aside id="sidebar" class="sidebar" aria-label="網站目錄">
+  <aside id="sidebar" class="sidebar">
     <nav class="nav">
-<a class="nav-home" href="../index.html"><span class="nav-home-icon" aria-hidden="true">⌂</span>首頁</a>
-<div class="nav-group"><div class="nav-group-title">必修部分</div>
+<a class="nav-home" href="../index.html"><span class="nav-home-icon" aria-hidden="true">⌂</span><span class="lang-zh">首頁</span><span class="lang-en" lang="en">Home</span></a>
+<div class="nav-group"><div class="nav-group-title"><span class="lang-zh">必修部分</span><span class="lang-en" lang="en">Compulsory Part</span></div>
 <details class="nav-module accent-a" open>
-<summary><span class="nav-code">A</span><span class="nav-module-title">資訊處理</span></summary><ul>
-<li><a class="nav-link" data-page="core-a/index" href="../core-a/index.html"><span class="nav-tick" aria-hidden="true"></span>概覽</a></li>
-<li><a class="nav-link" data-page="core-a/a" href="../core-a/a.html"><span class="nav-tick" aria-hidden="true"></span>a. 資訊處理簡介</a></li>
-<li><a class="nav-link" data-page="core-a/b" href="../core-a/b.html"><span class="nav-tick" aria-hidden="true"></span>b. 數據組織及數據控制</a></li>
-<li><a class="nav-link is-active" data-page="core-a/c" href="../core-a/c.html" aria-current="page"><span class="nav-tick" aria-hidden="true"></span>c. 數據表示</a></li>
-<li><a class="nav-link" data-page="core-a/d" href="../core-a/d.html"><span class="nav-tick" aria-hidden="true"></span>d. 數據操縱和分析</a></li>
+<summary><span class="nav-code"><span class="lang-zh">A</span><span class="lang-en" lang="en">A</span></span><span class="nav-module-title"><span class="lang-zh">資訊處理</span><span class="lang-en" lang="en">Information Processing</span></span></summary><ul>
+<li><a class="nav-link" data-page="core-a/index" href="../core-a/index.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">概覽</span><span class="lang-en" lang="en">Overview</span></span></a></li>
+<li><a class="nav-link" data-page="core-a/a" href="../core-a/a.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">a. 資訊處理簡介</span><span class="lang-en" lang="en">a. Introduction to Information Processing</span></span></a></li>
+<li><a class="nav-link" data-page="core-a/b" href="../core-a/b.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">b. 數據組織及數據控制</span><span class="lang-en" lang="en">b. Data Organisation and Data Control</span></span></a></li>
+<li><a class="nav-link is-active" data-page="core-a/c" href="../core-a/c.html" aria-current="page"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">c. 數據表示</span><span class="lang-en" lang="en">c. Data Representation</span></span></a></li>
+<li><a class="nav-link" data-page="core-a/d" href="../core-a/d.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">d. 數據操縱和分析</span><span class="lang-en" lang="en">d. Data Manipulation and Analysis</span></span></a></li>
 </ul></details>
 <details class="nav-module accent-b">
-<summary><span class="nav-code">B</span><span class="nav-module-title">電腦系統基礎</span></summary><ul>
-<li><a class="nav-link" data-page="core-b/index" href="../core-b/index.html"><span class="nav-tick" aria-hidden="true"></span>概覽</a></li>
-<li><a class="nav-link is-pending" data-page="core-b/a" href="../core-b/a.html"><span class="nav-tick" aria-hidden="true"></span>a. 基本機器組織</a></li>
-<li><a class="nav-link is-pending" data-page="core-b/b" href="../core-b/b.html"><span class="nav-tick" aria-hidden="true"></span>b. 系統軟件</a></li>
+<summary><span class="nav-code"><span class="lang-zh">B</span><span class="lang-en" lang="en">B</span></span><span class="nav-module-title"><span class="lang-zh">電腦系統基礎</span><span class="lang-en" lang="en">Computer System Fundamentals</span></span></summary><ul>
+<li><a class="nav-link" data-page="core-b/index" href="../core-b/index.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">概覽</span><span class="lang-en" lang="en">Overview</span></span></a></li>
+<li><a class="nav-link is-pending" data-page="core-b/a" href="../core-b/a.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">a. 基本機器組織</span><span class="lang-en" lang="en">a. Basic Machine Organisation</span></span></a></li>
+<li><a class="nav-link is-pending" data-page="core-b/b" href="../core-b/b.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">b. 系統軟件</span><span class="lang-en" lang="en">b. System Software</span></span></a></li>
 </ul></details>
 <details class="nav-module accent-c">
-<summary><span class="nav-code">C</span><span class="nav-module-title">互聯網及其應用</span></summary><ul>
-<li><a class="nav-link" data-page="core-c/index" href="../core-c/index.html"><span class="nav-tick" aria-hidden="true"></span>概覽</a></li>
-<li><a class="nav-link is-pending" data-page="core-c/a" href="../core-c/a.html"><span class="nav-tick" aria-hidden="true"></span>a. 建網及互聯網基本知識</a></li>
-<li><a class="nav-link is-pending" data-page="core-c/b" href="../core-c/b.html"><span class="nav-tick" aria-hidden="true"></span>b. 互聯網服務及應用</a></li>
-<li><a class="nav-link is-pending" data-page="core-c/c" href="../core-c/c.html"><span class="nav-tick" aria-hidden="true"></span>c. 初級網頁創作</a></li>
-<li><a class="nav-link is-pending" data-page="core-c/d" href="../core-c/d.html"><span class="nav-tick" aria-hidden="true"></span>d. 網上威脅及保安</a></li>
+<summary><span class="nav-code"><span class="lang-zh">C</span><span class="lang-en" lang="en">C</span></span><span class="nav-module-title"><span class="lang-zh">互聯網及其應用</span><span class="lang-en" lang="en">Internet and its Applications</span></span></summary><ul>
+<li><a class="nav-link" data-page="core-c/index" href="../core-c/index.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">概覽</span><span class="lang-en" lang="en">Overview</span></span></a></li>
+<li><a class="nav-link is-pending" data-page="core-c/a" href="../core-c/a.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">a. 建網及互聯網基本知識</span><span class="lang-en" lang="en">a. Networking and Internet Basics</span></span></a></li>
+<li><a class="nav-link is-pending" data-page="core-c/b" href="../core-c/b.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">b. 互聯網服務及應用</span><span class="lang-en" lang="en">b. Internet Services and Applications</span></span></a></li>
+<li><a class="nav-link is-pending" data-page="core-c/c" href="../core-c/c.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">c. 初級網頁創作</span><span class="lang-en" lang="en">c. Elementary Web Authoring</span></span></a></li>
+<li><a class="nav-link is-pending" data-page="core-c/d" href="../core-c/d.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">d. 網上威脅及保安</span><span class="lang-en" lang="en">d. Threats and Security on the Internet</span></span></a></li>
 </ul></details>
 <details class="nav-module accent-d">
-<summary><span class="nav-code">D</span><span class="nav-module-title">計算思維與程式編寫</span></summary><ul>
-<li><a class="nav-link" data-page="core-d/index" href="../core-d/index.html"><span class="nav-tick" aria-hidden="true"></span>概覽</a></li>
-<li><a class="nav-link is-pending" data-page="core-d/a" href="../core-d/a.html"><span class="nav-tick" aria-hidden="true"></span>a. 問題建構和分析</a></li>
-<li><a class="nav-link is-pending" data-page="core-d/b" href="../core-d/b.html"><span class="nav-tick" aria-hidden="true"></span>b. 算法設計</a></li>
-<li><a class="nav-link is-pending" data-page="core-d/c" href="../core-d/c.html"><span class="nav-tick" aria-hidden="true"></span>c. 程式開發</a></li>
-<li><a class="nav-link is-pending" data-page="core-d/d" href="../core-d/d.html"><span class="nav-tick" aria-hidden="true"></span>d. 程式測試和除錯</a></li>
+<summary><span class="nav-code"><span class="lang-zh">D</span><span class="lang-en" lang="en">D</span></span><span class="nav-module-title"><span class="lang-zh">計算思維與程式編寫</span><span class="lang-en" lang="en">Computational Thinking and Programming</span></span></summary><ul>
+<li><a class="nav-link" data-page="core-d/index" href="../core-d/index.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">概覽</span><span class="lang-en" lang="en">Overview</span></span></a></li>
+<li><a class="nav-link is-pending" data-page="core-d/a" href="../core-d/a.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">a. 問題建構和分析</span><span class="lang-en" lang="en">a. Problem Formulation and Analysis</span></span></a></li>
+<li><a class="nav-link is-pending" data-page="core-d/b" href="../core-d/b.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">b. 算法設計</span><span class="lang-en" lang="en">b. Algorithm Design</span></span></a></li>
+<li><a class="nav-link is-pending" data-page="core-d/c" href="../core-d/c.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">c. 程式開發</span><span class="lang-en" lang="en">c. Program Development</span></span></a></li>
+<li><a class="nav-link is-pending" data-page="core-d/d" href="../core-d/d.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">d. 程式測試和除錯</span><span class="lang-en" lang="en">d. Program Testing and Debugging</span></span></a></li>
 </ul></details>
 <details class="nav-module accent-e">
-<summary><span class="nav-code">E</span><span class="nav-module-title">資訊及通訊科技對社會的影響</span></summary><ul>
-<li><a class="nav-link" data-page="core-e/index" href="../core-e/index.html"><span class="nav-tick" aria-hidden="true"></span>概覽</a></li>
-<li><a class="nav-link is-pending" data-page="core-e/a" href="../core-e/a.html"><span class="nav-tick" aria-hidden="true"></span>a. 科技創新</a></li>
-<li><a class="nav-link is-pending" data-page="core-e/b" href="../core-e/b.html"><span class="nav-tick" aria-hidden="true"></span>b. 健康及道德議題</a></li>
-<li><a class="nav-link is-pending" data-page="core-e/c" href="../core-e/c.html"><span class="nav-tick" aria-hidden="true"></span>c. 知識產權</a></li>
+<summary><span class="nav-code"><span class="lang-zh">E</span><span class="lang-en" lang="en">E</span></span><span class="nav-module-title"><span class="lang-zh">資訊及通訊科技對社會的影響</span><span class="lang-en" lang="en">Social Implications</span></span></summary><ul>
+<li><a class="nav-link" data-page="core-e/index" href="../core-e/index.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">概覽</span><span class="lang-en" lang="en">Overview</span></span></a></li>
+<li><a class="nav-link is-pending" data-page="core-e/a" href="../core-e/a.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">a. 科技創新</span><span class="lang-en" lang="en">a. Technological Innovations</span></span></a></li>
+<li><a class="nav-link is-pending" data-page="core-e/b" href="../core-e/b.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">b. 健康及道德議題</span><span class="lang-en" lang="en">b. Health and Ethical Issues</span></span></a></li>
+<li><a class="nav-link is-pending" data-page="core-e/c" href="../core-e/c.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">c. 知識產權</span><span class="lang-en" lang="en">c. Intellectual Property</span></span></a></li>
 </ul></details>
 </div>
-<div class="nav-group"><div class="nav-group-title">選修部分</div>
+<div class="nav-group"><div class="nav-group-title"><span class="lang-zh">選修部分</span><span class="lang-en" lang="en">Elective Part</span></div>
 <details class="nav-module accent-f">
-<summary><span class="nav-code">二甲</span><span class="nav-module-title">數據庫</span></summary><ul>
-<li><a class="nav-link" data-page="elective-a/index" href="../elective-a/index.html"><span class="nav-tick" aria-hidden="true"></span>概覽</a></li>
-<li><a class="nav-link is-pending" data-page="elective-a/a" href="../elective-a/a.html"><span class="nav-tick" aria-hidden="true"></span>a. 關聯式數據庫概念</a></li>
-<li><a class="nav-link is-pending" data-page="elective-a/b" href="../elective-a/b.html"><span class="nav-tick" aria-hidden="true"></span>b. 結構化查詢語言</a></li>
-<li><a class="nav-link is-pending" data-page="elective-a/c" href="../elective-a/c.html"><span class="nav-tick" aria-hidden="true"></span>c. 數據庫設計方法</a></li>
+<summary><span class="nav-code"><span class="lang-zh">二甲</span><span class="lang-en" lang="en">2A</span></span><span class="nav-module-title"><span class="lang-zh">數據庫</span><span class="lang-en" lang="en">Databases</span></span></summary><ul>
+<li><a class="nav-link" data-page="elective-a/index" href="../elective-a/index.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">概覽</span><span class="lang-en" lang="en">Overview</span></span></a></li>
+<li><a class="nav-link is-pending" data-page="elective-a/a" href="../elective-a/a.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">a. 關聯式數據庫概念</span><span class="lang-en" lang="en">a. Relational Database Concepts</span></span></a></li>
+<li><a class="nav-link is-pending" data-page="elective-a/b" href="../elective-a/b.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">b. 結構化查詢語言</span><span class="lang-en" lang="en">b. Structured Query Language (SQL)</span></span></a></li>
+<li><a class="nav-link is-pending" data-page="elective-a/c" href="../elective-a/c.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">c. 數據庫設計方法</span><span class="lang-en" lang="en">c. Database Design Methodology</span></span></a></li>
 </ul></details>
 <details class="nav-module accent-g">
-<summary><span class="nav-code">二乙</span><span class="nav-module-title">網絡應用程式開發</span></summary><ul>
-<li><a class="nav-link" data-page="elective-b/index" href="../elective-b/index.html"><span class="nav-tick" aria-hidden="true"></span>概覽</a></li>
-<li><a class="nav-link is-pending" data-page="elective-b/a" href="../elective-b/a.html"><span class="nav-tick" aria-hidden="true"></span>a. 網絡服務與實施</a></li>
-<li><a class="nav-link is-pending" data-page="elective-b/b" href="../elective-b/b.html"><span class="nav-tick" aria-hidden="true"></span>b. 網絡編程與應用</a></li>
+<summary><span class="nav-code"><span class="lang-zh">二乙</span><span class="lang-en" lang="en">2B</span></span><span class="nav-module-title"><span class="lang-zh">網絡應用程式開發</span><span class="lang-en" lang="en">Web Application Development</span></span></summary><ul>
+<li><a class="nav-link" data-page="elective-b/index" href="../elective-b/index.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">概覽</span><span class="lang-en" lang="en">Overview</span></span></a></li>
+<li><a class="nav-link is-pending" data-page="elective-b/a" href="../elective-b/a.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">a. 網絡服務與實施</span><span class="lang-en" lang="en">a. Network Services and Implementation</span></span></a></li>
+<li><a class="nav-link is-pending" data-page="elective-b/b" href="../elective-b/b.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">b. 網絡編程與應用</span><span class="lang-en" lang="en">b. Web Programming and Applications</span></span></a></li>
 </ul></details>
 </div>
-<div class="nav-group"><div class="nav-group-title">考試攻略</div>
+<div class="nav-group"><div class="nav-group-title"><span class="lang-zh">考試攻略</span><span class="lang-en" lang="en">Exam Strategies</span></div>
 <details class="nav-module accent-h">
-<summary><span class="nav-module-title">考試攻略</span></summary><ul>
-<li><a class="nav-link" data-page="exam/index" href="../exam/index.html"><span class="nav-tick" aria-hidden="true"></span>概覽</a></li>
-<li><a class="nav-link" data-page="exam/structure" href="../exam/structure.html"><span class="nav-tick" aria-hidden="true"></span>試卷結構與答題原則</a></li>
-<li><a class="nav-link is-pending" data-page="exam/mistakes" href="../exam/mistakes.html"><span class="nav-tick" aria-hidden="true"></span>常見錯誤總匯</a></li>
-<li><a class="nav-link is-pending" data-page="exam/formulas" href="../exam/formulas.html"><span class="nav-tick" aria-hidden="true"></span>計算公式速查</a></li>
-<li><a class="nav-link is-pending" data-page="exam/reference" href="../exam/reference.html"><span class="nav-tick" aria-hidden="true"></span>函數及指令清單</a></li>
-<li><a class="nav-link is-pending" data-page="exam/sba" href="../exam/sba.html"><span class="nav-tick" aria-hidden="true"></span>校本評核</a></li>
+<summary><span class="nav-module-title"><span class="lang-zh">考試攻略</span><span class="lang-en" lang="en">Exam Strategies</span></span></summary><ul>
+<li><a class="nav-link" data-page="exam/index" href="../exam/index.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">概覽</span><span class="lang-en" lang="en">Overview</span></span></a></li>
+<li><a class="nav-link" data-page="exam/structure" href="../exam/structure.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">試卷結構與答題原則</span><span class="lang-en" lang="en">Paper Structure and Answering Principles</span></span></a></li>
+<li><a class="nav-link is-pending" data-page="exam/mistakes" href="../exam/mistakes.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">常見錯誤總匯</span><span class="lang-en" lang="en">Common Mistakes</span></span></a></li>
+<li><a class="nav-link is-pending" data-page="exam/formulas" href="../exam/formulas.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">計算公式速查</span><span class="lang-en" lang="en">Formula Sheet</span></span></a></li>
+<li><a class="nav-link is-pending" data-page="exam/reference" href="../exam/reference.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">函數及指令清單</span><span class="lang-en" lang="en">Functions and Commands</span></span></a></li>
+<li><a class="nav-link is-pending" data-page="exam/sba" href="../exam/sba.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">校本評核</span><span class="lang-en" lang="en">School-based Assessment</span></span></a></li>
 </ul></details>
 <details class="nav-module accent-h">
-<summary><span class="nav-module-title">學習資源</span></summary><ul>
-<li><a class="nav-link" data-page="resources/index" href="../resources/index.html"><span class="nav-tick" aria-hidden="true"></span>概覽</a></li>
-<li><a class="nav-link is-pending" data-page="resources/glossary" href="../resources/glossary.html"><span class="nav-tick" aria-hidden="true"></span>術語表（中英對照）</a></li>
-<li><a class="nav-link" data-page="resources/guide" href="../resources/guide.html"><span class="nav-tick" aria-hidden="true"></span>網站使用說明</a></li>
+<summary><span class="nav-module-title"><span class="lang-zh">學習資源</span><span class="lang-en" lang="en">Resources</span></span></summary><ul>
+<li><a class="nav-link" data-page="resources/index" href="../resources/index.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">概覽</span><span class="lang-en" lang="en">Overview</span></span></a></li>
+<li><a class="nav-link is-pending" data-page="resources/glossary" href="../resources/glossary.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">術語表（中英對照）</span><span class="lang-en" lang="en">Glossary</span></span></a></li>
+<li><a class="nav-link" data-page="resources/guide" href="../resources/guide.html"><span class="nav-tick" aria-hidden="true"></span><span class="nav-text"><span class="lang-zh">網站使用說明</span><span class="lang-en" lang="en">How to Use This Site</span></span></a></li>
 </ul></details>
 </div>
     </nav>
@@ -130,8 +137,8 @@
 
   <main id="main" class="main" tabindex="-1">
     <article class="content">
-<nav class="breadcrumb" aria-label="位置"><a href="../index.html">首頁</a><span class="sep">›</span><span>必修部分</span><span class="sep">›</span><a href="../core-a/index.html">資訊處理</a></nav><header class="page-head"><div class="page-eyebrow">單元 A · 課題 c</div><h1 class="page-title">數據表示</h1><div class="page-en">Data Representation</div><div class="page-meta"><span class="chip">建議課時 10 小時</span><span class="chip">課本第 3、4 章</span><button class="done-btn" type="button" data-done-toggle="core-a/c" aria-pressed="false"><span class="done-box" aria-hidden="true"></span><span class="done-label">標記為已溫習</span></button></div></header>
-<div class="prose"><h2 id="31-課程要求"><span class="sec-num">3.1</span><span class="sec-title">課程要求</span></h2>
+<nav class="breadcrumb"><a href="../index.html"><span class="lang-zh">首頁</span><span class="lang-en" lang="en">Home</span></a><span class="sep">›</span><span><span class="lang-zh">必修部分</span><span class="lang-en" lang="en">Compulsory Part</span></span><span class="sep">›</span><a href="../core-a/index.html"><span class="lang-zh">資訊處理</span><span class="lang-en" lang="en">Information Processing</span></a></nav><header class="page-head"><div class="page-eyebrow"><span class="lang-zh">單元 A · 課題 c</span><span class="lang-en" lang="en">Module A · Topic c</span></div><h1 class="page-title"><span class="lang-zh">數據表示</span><span class="lang-en" lang="en">Data Representation</span></h1><div class="page-en"><span class="lang-zh">Data Representation</span><span class="lang-en" lang="en">數據表示</span></div><div class="page-meta"><span class="chip"><span class="lang-zh">建議課時 10 小時</span><span class="lang-en" lang="en">Suggested time: 10 hours</span></span><span class="chip"><span class="lang-zh">課本第 3、4 章</span><span class="lang-en" lang="en">Textbook Ch. 3 & 4</span></span><button class="done-btn" type="button" data-done-toggle="core-a/c" aria-pressed="false"><span class="done-box" aria-hidden="true"></span><span class="done-label"></span></button></div></header>
+<div class="lang-zh prose"><h2 id="31-課程要求"><span class="sec-num">3.1</span><span class="sec-title">課程要求</span></h2>
 <p>區分模擬及數碼數據並說明兩者轉換的情境；解釋資訊科技為何使用數碼數據，包括位元數目與組合數量的關係；十進制、二進制、十六進制互換；以二進制補碼表示負整數；二進制加減及溢出誤差（最多 2 字節）；ASCII、大五碼、國標碼、統一碼（無須背誦個別編碼）；多媒體元素數碼化及常見檔案格式比較（bmp、png、jpg、wav、mp3、avi、mpeg4、txt、docx、odt、pdf）。</p>
 <h2 id="32-模擬數據與數碼數據"><span class="sec-num">3.2</span><span class="sec-title">模擬數據與數碼數據</span></h2>
 <div class="table-wrap"><table>
@@ -664,19 +671,553 @@
 <details class="quiz">
 <summary>4. 為甚麼把 JPG 檔案壓縮成 ZIP 後，檔案大小幾乎不變？</summary>
 <p>JPG 已經過壓縮，重複的數據很少，再壓縮的效果有限。TXT、HTML 等純文字檔則可以大幅縮小。</p>
-</details></div><nav class="prevnext" aria-label="上下頁"><a class="pn pn-prev" href="../core-a/b.html"><span class="pn-dir">← 上一頁</span><span class="pn-title">單元 A 課題 b：數據組織及數據控制</span></a><a class="pn pn-next" href="../core-a/d.html"><span class="pn-dir">下一頁 →</span><span class="pn-title">單元 A 課題 d：數據操縱和分析</span></a></nav>
+</details></div><div class="lang-en prose" lang="en"><h2 id="en-31-learning-outcomes"><span class="sec-num">3.1</span><span class="sec-title">Learning outcomes</span></h2>
+<p>Distinguish between analogue and digital data and state situations requiring conversion between them; explain why IT uses digital data, including the relationship between the number of bits and the number of combinations; convert between denary, binary and hexadecimal; represent negative integers in two's complement; perform binary addition and subtraction and analyse overflow errors (maximum 2 bytes); know how characters are represented in ASCII, Big-5, GB and Unicode (recall of specific codes is not required); know how multimedia elements are digitised and compare common file formats (bmp, png, jpg, wav, mp3, avi, mpeg4, txt, docx, odt, pdf).</p>
+<h2 id="en-32-analogue-and-digital-data"><span class="sec-num">3.2</span><span class="sec-title">Analogue and digital data</span></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Comparison</th>
+<th>Analogue data</th>
+<th>Digital data</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Representation</td>
+<td>Continuous signal (smooth waveform)</td>
+<td>Discrete values (0 and 1)</td>
+</tr>
+<tr>
+<td>Copying</td>
+<td>Quality degrades with every copy</td>
+<td>Can be copied perfectly</td>
+</tr>
+<tr>
+<td>Transmission</td>
+<td>Higher error rate</td>
+<td>Lower error rate; errors can be detected</td>
+</tr>
+<tr>
+<td>Storage</td>
+<td>Inefficient; bulky media</td>
+<td>Efficient; compact media</td>
+</tr>
+<tr>
+<td>Analysis and processing</td>
+<td>Hard to search and reorganise</td>
+<td>Easy for computers to process, search and edit</td>
+</tr>
+</tbody>
+</table>
+</div><p><strong>Digitisation</strong> has two steps:</p>
+<ol>
+<li><strong>Sampling</strong>: take a sample of the continuous signal at fixed time intervals.</li>
+<li><strong>Quantisation</strong>: convert each sample into a digital code at one of a set number of levels.</li>
+</ol>
+<p>Digitisation always loses some of the original information. A higher sampling rate and bit resolution bring the result closer to the original signal, but never identical.</p>
+<p>Conversion devices: an analogue-to-digital converter (ADC) turns analogue signals into digital ones, e.g. the sound card when recording with a microphone; a digital-to-analogue converter (DAC) does the reverse, e.g. playing music through speakers. A scanner digitises photos; printers and monitors turn digital images into the analogue form our eyes see.</p>
+<h2 id="en-33-number-of-bits-and-number-of-combinations"><span class="sec-num">3.3</span><span class="sec-title">Number of bits and number of combinations</span></h2>
+<p><strong>n bits can represent 2ⁿ different combinations.</strong> 3 bits can represent 8 colours; to represent the 26 English letters you need at least 5 bits (2⁴ = 16 is not enough; 2⁵ = 32 is).</p>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2024 P1B 4(a)(ii)(2)] How many different images can a 5 × 3 black-and-white dot display board show?</strong></p>
+<p>✔ 2¹⁵ = 32 768. ✘ Many candidates answered "15", mixing up the <em>number of bits</em> with the <em>number of combinations</em>.</p>
+</blockquote>
+<!-- -->
+
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2024 P1B 4(b)(ii)] How many bits are required to record the position of one dot (e.g. B3)?</strong></p>
+<p>✔ 5 bits (3 bits for rows A–E and 2 bits for columns 1–3); or 4 bits (15 positions, 2⁴ = 16 ≥ 15).</p>
+<p>✘ Weaker candidates gave 1 or 2 bits because "a dot is only black or white", ignoring that the question asks about the <strong>position</strong>.</p>
+</blockquote>
+<h2 id="en-34-converting-between-number-systems"><span class="sec-num">3.4</span><span class="sec-title">Converting between number systems</span></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Conversion</th>
+<th>Method</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Binary / hexadecimal → denary</td>
+<td>Multiply each digit by its place value and add</td>
+</tr>
+<tr>
+<td>Denary → binary / hexadecimal</td>
+<td>Divide repeatedly by 2 (or 16); read the remainders from bottom to top</td>
+</tr>
+<tr>
+<td>Binary → hexadecimal</td>
+<td>Group bits in fours from the right; convert each group</td>
+</tr>
+<tr>
+<td>Hexadecimal → binary</td>
+<td>Convert each digit into four bits</td>
+</tr>
+</tbody>
+</table>
+</div><p>Example: 2C7₁₆ = 2 × 256 + 12 × 16 + 7 = <strong>711₁₀</strong>; in binary it is <strong>10 1100 0111₂</strong> (2 → 0010, C → 1100, 7 → 0111, leading zeros removed).</p>
+<p>Hexadecimal is often used between programmers and computer systems because it is shorter than binary and converts to binary easily.</p>
+<h2 id="en-35-units-of-data"><span class="sec-num">3.5</span><span class="sec-title">Units of data</span></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Unit</th>
+<th>Conversion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 byte (B)</td>
+<td>8 bits (b)</td>
+</tr>
+<tr>
+<td>1 KB</td>
+<td>1024 B</td>
+</tr>
+<tr>
+<td>1 MB</td>
+<td>1024 KB</td>
+</tr>
+<tr>
+<td>1 GB</td>
+<td>1024 MB</td>
+</tr>
+<tr>
+<td>1 TB</td>
+<td>1024 GB</td>
+</tr>
+</tbody>
+</table>
+</div><p>A <strong>word</strong> is the unit of data the CPU processes at one time; most computers today have a 64-bit word length.</p>
+<h2 id="en-36-binary-representation-of-integers"><span class="sec-num">3.6</span><span class="sec-title">Binary representation of integers</span></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Representation</th>
+<th>Range for n bits</th>
+<th>Range for 8 bits</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Unsigned integer</td>
+<td>0 to 2ⁿ − 1</td>
+<td>0 to 255</td>
+</tr>
+<tr>
+<td>Sign-and-magnitude</td>
+<td>−(2ⁿ⁻¹ − 1) to 2ⁿ⁻¹ − 1</td>
+<td>−127 to 127</td>
+</tr>
+<tr>
+<td>Two's complement</td>
+<td>−2ⁿ⁻¹ to 2ⁿ⁻¹ − 1</td>
+<td>−128 to 127</td>
+</tr>
+</tbody>
+</table>
+</div><ul>
+<li><strong>Sign-and-magnitude</strong>: the leftmost bit is the sign bit (0 positive, 1 negative); the other bits give the magnitude. Drawback: zero has two representations (0000 0000 and 1000 0000).</li>
+<li><strong>Two's complement</strong>: every integer has exactly one representation; modern computers use it.</li>
+</ul>
+<p><strong>Finding the two's complement of a negative number (−45, 8 bits)</strong></p>
+<ol>
+<li>Write 45 in binary: 0010 1101</li>
+<li>Invert all bits (one's complement): 1101 0010</li>
+<li>Add 1: <strong>1101 0011</strong></li>
+</ol>
+<p>Check: −128 + 64 + 16 + 2 + 1 = −45 ✔</p>
+<p><strong>Converting two's complement back to denary</strong>: a leftmost 1 means negative; invert and add 1 again to find the magnitude, then add the minus sign. Alternatively, treat the leftmost bit as −2ⁿ⁻¹ and add the rest as usual.</p>
+<p>Remember the special patterns: in 8 bits the largest positive number is 0111 1111 (127), the smallest negative number is 1000 0000 (−128), and −1 is 1111 1111 [Sample Paper Section A Q5].</p>
+<h2 id="en-37-binary-addition-subtraction-and-overflow-errors"><span class="sec-num">3.7</span><span class="sec-title">Binary addition, subtraction and overflow errors</span></h2>
+<p>An <strong>overflow error</strong> occurs when the result is outside the range the bits can represent.</p>
+<ul>
+<li><strong>Unsigned integers</strong>: a carry out of the most significant bit (addition), or a borrow beyond it (subtraction), means overflow.</li>
+<li><strong>Two's complement</strong>: adding two numbers of the <strong>same sign</strong> that gives a result of the <strong>opposite sign</strong> means overflow. Adding numbers of different signs never overflows; the leftmost carry is simply discarded.</li>
+</ul>
+<p>Example (8-bit two's complement): 100 + 50</p>
+<pre><code>  0110 0100   (100)
++ 0011 0010   ( 50)
+-----------
+  1001 0110   sign bit becomes 1
+</code></pre>
+<p>Two positive numbers give a negative result, so an overflow error has occurred (150 is greater than 127).</p>
+<p>✔ A subtraction can be rewritten as adding a negative number, e.g. −33 − 65 = −33 + (−65).
+✔ Which gives 0000 0000: "1110 1111 + 0001 0000" or "1101 1111 + 0010 0001"? Add bit by bit and discard the final carry — the second one [adapted from 2025 P1A Q4].</p>
+<h2 id="en-38-character-encoding"><span class="sec-num">3.8</span><span class="sec-title">Character encoding</span></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Encoding</th>
+<th>Characters covered</th>
+<th>Bytes per character</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ASCII</td>
+<td>English letters, digits, punctuation (7 bits, 128 characters)</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Big-5</td>
+<td>Traditional Chinese plus ASCII characters</td>
+<td>1 to 2</td>
+</tr>
+<tr>
+<td>GB (Guobiao)</td>
+<td>Simplified Chinese plus ASCII characters</td>
+<td>1 to 2</td>
+</tr>
+<tr>
+<td>Unicode (commonly UTF-8)</td>
+<td>Characters of all living languages</td>
+<td>1 to 4 (English 1, Chinese usually 3)</td>
+</tr>
+</tbody>
+</table>
+</div><ul>
+<li>The larger the character set, the more bits each character needs.</li>
+<li>The same Chinese character has different codes in different encodings; opening a file with the wrong encoding produces garbled text.</li>
+<li>UTF-8 is backward compatible with ASCII: English characters have the same codes in both.</li>
+<li>File size example: the plain text "ICT 資訊" takes 4 + 2 × 3 = 10 bytes in UTF-8 and 4 + 2 × 2 = 8 bytes in Big-5.</li>
+</ul>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2023 P1A Q13]</strong> Only about half the candidates knew that "Unicode is used for representing characters in English and other languages". Common misconceptions: that Big-5 contains Chinese characters only (it also contains ASCII characters); that the character set used is decided by the operating system or the browser.</p>
+</blockquote>
+<h2 id="en-39-multimedia-text"><span class="sec-num">3.9</span><span class="sec-title">Multimedia: text</span></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Format</th>
+<th>Characteristics</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TXT</td>
+<td>Plain text with no formatting; smallest files; opens in any text editor</td>
+</tr>
+<tr>
+<td>RTF</td>
+<td>Supports basic text formatting</td>
+</tr>
+<tr>
+<td>DOCX</td>
+<td>Full formatting, images and tables; needs a compatible word processor</td>
+</tr>
+<tr>
+<td>ODT</td>
+<td>An open international standard for documents</td>
+</tr>
+<tr>
+<td>PDF</td>
+<td>Fixed layout that looks the same on every device; generally not directly editable; can be password-protected and restrict printing and copying</td>
+</tr>
+</tbody>
+</table>
+</div><blockquote class="callout callout-warn">
+<p>⚠ <strong>[2025 P1A Q9]</strong> Reason for publishing an article as PDF instead of HTML: <strong>PDF offers better document protection</strong>. Only 52% answered correctly; many chose options that actually favour HTML.</p>
+<p>✔ PDF over TXT: keeps text formatting and allows images. ODT over PDF: easier to edit [Sample Paper Section B Q5].</p>
+</blockquote>
+<h2 id="en-310-multimedia-images"><span class="sec-num">3.10</span><span class="sec-title">Multimedia: images</span></h2>
+<p>A <strong>bitmap</strong> image is made of pixels; its quality depends on <strong>resolution</strong> and <strong>colour depth</strong>.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Colour depth</th>
+<th>Number of colours</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 bit</td>
+<td>2</td>
+<td>Black-and-white documents, fax</td>
+</tr>
+<tr>
+<td>8 bits</td>
+<td>256</td>
+<td>Greyscale, indexed colour</td>
+</tr>
+<tr>
+<td>24 bits</td>
+<td>about 16.8 million</td>
+<td>True-colour photos</td>
+</tr>
+</tbody>
+</table>
+</div><p>A <strong>vector graphic</strong> describes lines and shapes with mathematical formulas. It does not lose quality when enlarged and its files are usually smaller, so it suits logos, icons and line art. Common formats: SVG, AI, EPS, WMF.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Format</th>
+<th>Compression</th>
+<th>Transparency</th>
+<th>Animation</th>
+<th>Main use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BMP</td>
+<td>Uncompressed</td>
+<td>✘</td>
+<td>✘</td>
+<td>Highest quality, large files</td>
+</tr>
+<tr>
+<td>JPG</td>
+<td>Lossy</td>
+<td>✘</td>
+<td>✘</td>
+<td>Digital photos, web pages</td>
+</tr>
+<tr>
+<td>PNG</td>
+<td>Lossless</td>
+<td>✔</td>
+<td>✘</td>
+<td>Web images, images needing a transparent background</td>
+</tr>
+<tr>
+<td>GIF</td>
+<td>Lossless (256 colours only)</td>
+<td>✔</td>
+<td>✔</td>
+<td>Simple animations</td>
+</tr>
+<tr>
+<td>RAW</td>
+<td>Uncompressed</td>
+<td>✘</td>
+<td>✘</td>
+<td>Raw camera data for post-production</td>
+</tr>
+<tr>
+<td>TIFF</td>
+<td>Lossy or lossless</td>
+<td>✔</td>
+<td>✘</td>
+<td>Printing and publishing</td>
+</tr>
+<tr>
+<td>HEIC</td>
+<td>Lossy or lossless</td>
+<td>—</td>
+<td>—</td>
+<td>Smartphone photos: small files, high quality</td>
+</tr>
+<tr>
+<td>WebP</td>
+<td>Lossy or lossless</td>
+<td>✔</td>
+<td>✔</td>
+<td>Web pages and mobile apps</td>
+</tr>
+</tbody>
+</table>
+</div><p><strong>Lossy compression</strong> discards some data to reduce file size, and the discarded data <strong>cannot be recovered</strong>; <strong>lossless compression</strong> can restore the original data exactly.</p>
+<p>The <strong>aspect ratio</strong> is the ratio of width to height, e.g. 4:3 or 16:9. Displaying an image or video with a different aspect ratio <strong>distorts</strong> it or adds black bars at the sides.</p>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2024 P1A Q3]</strong> "ai" is an image file format (Adobe Illustrator vector graphics); only about a third of candidates knew this.</p>
+</blockquote>
+<!-- -->
+
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2023 Old Paper 2C Q1]</strong> Disadvantages of bitmaps should be stated as "larger file size" or "quality drops when enlarged"; vague answers such as "looks blocky" or "the picture is distorted / unclear" scored no marks. Fewer than one in five candidates could describe a situation that calls for vector graphics, e.g. a logo that must be shown at different sizes. Only about a third knew that lossy compression permanently removes some data.</p>
+</blockquote>
+<!-- -->
+
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2024 Old Paper 2C Q1]</strong> Advantages of GIF: transparency, animation, lossless compression; disadvantage: at most 256 colours. Weaker candidates wrongly compared the file sizes of GIF and JPG.</p>
+</blockquote>
+<!-- -->
+
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2023 and 2024 Old Paper 2C Q1]</strong> A video whose aspect ratio differs from the screen shows black bars or is distorted. Fewer than 10% mentioned black bars and a remedy (correct the aspect ratio with editing software, or shoot at the correct resolution).</p>
+</blockquote>
+<h2 id="en-311-multimedia-audio"><span class="sec-num">3.11</span><span class="sec-title">Multimedia: audio</span></h2>
+<p>Digital audio quality depends on the <strong>sampling rate</strong> (samples per second, in Hz), the <strong>bit resolution</strong> (bits per sample) and the <strong>number of channels</strong> (mono 1, stereo 2, 7.1 surround 8).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Format</th>
+<th>Characteristics</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>WAV</td>
+<td>Uncompressed; best quality; large files</td>
+</tr>
+<tr>
+<td>MP3</td>
+<td>Lossy; about one tenth of the original size</td>
+</tr>
+<tr>
+<td>AAC</td>
+<td>Lossy; better quality than MP3 at the same bitrate; supports multiple channels</td>
+</tr>
+<tr>
+<td>FLAC</td>
+<td>Lossless compression</td>
+</tr>
+<tr>
+<td>MIDI</td>
+<td>Stores musical instructions only, no recorded sound; very small; cannot store human voice</td>
+</tr>
+</tbody>
+</table>
+</div><blockquote class="callout callout-warn">
+<p>⚠ <strong>[2023 Old Paper 2C Q2]</strong> The formats used only for audio are AAC, MP3 and WAV. Weaker candidates thought MP4 was also audio-only; MP4 is a video format.</p>
+</blockquote>
+<h2 id="en-312-multimedia-video"><span class="sec-num">3.12</span><span class="sec-title">Multimedia: video</span></h2>
+<p>The size of uncompressed video depends on the <strong>frame size</strong> (width × height in pixels), <strong>colour depth</strong>, <strong>frame rate</strong> (fps) and <strong>duration</strong>.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Format</th>
+<th>Characteristics</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AVI</td>
+<td>A common uncompressed video format; high quality, large files</td>
+</tr>
+<tr>
+<td>MP4 (MPEG-4)</td>
+<td>Lossy; small files; supports streaming and subtitles; supported by HTML5</td>
+</tr>
+<tr>
+<td>MPEG</td>
+<td>Used on optical discs such as DVD</td>
+</tr>
+<tr>
+<td>MOV</td>
+<td>Video format developed by Apple</td>
+</tr>
+<tr>
+<td>WebM</td>
+<td>Open source; common on the web</td>
+</tr>
+</tbody>
+</table>
+</div><p>A higher frame rate gives smoother motion but a larger file.</p>
+<h2 id="en-313-file-size-and-transfer-time-calculations"><span class="sec-num">3.13</span><span class="sec-title">File size and transfer time calculations</span></h2>
+<p><strong>Formula sheet</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Formula (result in bits)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Uncompressed image</td>
+<td>width (pixels) × height (pixels) × colour depth</td>
+</tr>
+<tr>
+<td>Uncompressed audio</td>
+<td>sampling rate × bit resolution × number of channels × time (s)</td>
+</tr>
+<tr>
+<td>Uncompressed video</td>
+<td>width × height × colour depth × frame rate × time (s)</td>
+</tr>
+<tr>
+<td>Compressed audio or video</td>
+<td>bitrate (bps) × time (s)</td>
+</tr>
+<tr>
+<td>Transfer time</td>
+<td>file size (bits) ÷ bandwidth (bps)</td>
+</tr>
+<tr>
+<td>Compression ratio</td>
+<td>original size ÷ compressed size</td>
+</tr>
+</tbody>
+</table>
+</div><p><strong>Unit rules</strong></p>
+<ul>
+<li>Bytes (B) to bits (b): <strong>× 8</strong>; bits to bytes: ÷ 8.</li>
+<li><strong>File sizes</strong> (KB, MB, GB): convert with 1024.</li>
+<li><strong>Bandwidth and bitrate</strong> (kbps, Mbps, Gbps): <strong>always convert with 1000</strong>; 1 Mbps = 1 000 000 bps.</li>
+<li>Make the units consistent first, and write the unit with the final answer.</li>
+</ul>
+<p><strong>Example 1: uncompressed image</strong>
+A 1600 × 1200 pixel BMP with 24-bit colour depth:
+1600 × 1200 × 24 ÷ 8 = 5 760 000 B; ÷ 1024 ÷ 1024 ≈ <strong>5.49 MB</strong></p>
+<p><strong>Example 2: uncompressed audio</strong>
+Stereo, 44.1 kHz, 16-bit, 3 minutes:
+44 100 × 16 × 2 × 180 = 254 016 000 b; ÷ 8 ÷ 1024 ÷ 1024 ≈ <strong>30.28 MB</strong></p>
+<p><strong>Example 3: compressed audio</strong>
+Bitrate 256 kbps, 3 minutes:
+256 × 1000 × 180 = 46 080 000 b; ÷ 8 ÷ 1024 ÷ 1024 ≈ <strong>5.49 MB</strong>
+(The size of a compressed file depends only on bitrate and time, not on sampling rate or number of channels.)</p>
+<p><strong>Example 4: transfer time</strong>
+Uploading a 3 GB video at 50 Mbps:
+3 × 1024³ × 8 ÷ (50 × 1 000 000) ≈ <strong>515.4 s</strong> (about 8.6 minutes)</p>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2025 P1B 3(a)] Each photo is 5 MB and the upload bandwidth is 100 Mbps. Estimate the shortest time to upload 200 photos.</strong></p>
+<p>✔ (200 × 5 × 8) ÷ 100 = <strong>80 s</strong>. Using 1024 for the file size (about 84 s) was also accepted.</p>
+<p>✘ Frequent errors: failing to convert bytes to bits (1 B = 8 b); leaving out the unit (seconds); <strong>using 1024 for the bandwidth</strong>. Performance was only <em>fair</em>.</p>
+</blockquote>
+<!-- -->
+
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2023 P1B 5(b)(ii)] 200 records of 2 KB each are sent at 10 Mbps.</strong></p>
+<p>✔ 200 × 2 × 1024 × 8 ÷ (10 × 1 000 000) ≈ 0.33 s.</p>
+<p>✘ Errors listed in the marking guidelines: 1000 for the file size (0 marks); 1024 for the bandwidth (0 marks); a missing zero; forgetting × 200; no unit.</p>
+</blockquote>
+<!-- -->
+
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2024 Old Paper 2C Q1 &amp; Q2]</strong> In image size calculations a few candidates used 256 (the number of colours) instead of <strong>8 bits</strong>; in bitrate calculations some used 1024 instead of 1000.</p>
+</blockquote>
+<p>✔ The HKEAA's advice: write down the formula with units, show the calculation clearly, and give the final answer with the correct unit.</p>
+<h2 id="en-314-cross-module-link-images-on-web-pages"><span class="sec-num">3.14</span><span class="sec-title">Cross-module link: images on web pages</span></h2>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2025 P1B 4(a)] A photo with original resolution 800 × 600 is displayed at 400 × 200 by changing the HTML code.</strong></p>
+<p>(i) Will the download time be shorter? ✔ <strong>No</strong> — the same photo file is still downloaded; only the display size changes, not the file size. Performance: <em>poor</em>.</p>
+<p>(ii) Will the photo be distorted? ✔ <strong>Yes</strong>, because the aspect ratio changes from 4:3 to 2:1. Performance: <em>poor</em>; some candidates did not understand the word "distorted".</p>
+</blockquote>
+<h2 id="en-315-self-test"><span class="sec-num">3.15</span><span class="sec-title">Self-test</span></h2>
+<details class="quiz">
+<summary>1. What are the largest and smallest integers in 10-bit two's complement?</summary>
+<p>Largest 2⁹ − 1 = <strong>511</strong>; smallest −2⁹ = <strong>−512</strong>.</p>
+</details>
+<details class="quiz">
+<summary>2. Convert 1110 0101 (8-bit two's complement) to denary.</summary>
+<p>The leftmost bit is 1, so it is negative. Inverting gives 0001 1010; adding 1 gives 0001 1011 = 27, so the answer is <strong>−27</strong>.</p>
+</details>
+<details class="quiz">
+<summary>3. An MP4 video has a bitrate of 5 Mbps and lasts 10 minutes. What is its file size in MB?</summary>
+<p>5 × 1 000 000 × 600 = 3 000 000 000 b; ÷ 8 = 375 000 000 B; ÷ 1024 ÷ 1024 ≈ <strong>357.6 MB</strong>.</p>
+</details>
+<details class="quiz">
+<summary>4. Why does compressing a JPG file into a ZIP hardly change its size?</summary>
+<p>JPG is already compressed, so little redundant data is left and further compression has limited effect. Plain-text files such as TXT and HTML can shrink greatly.</p>
+</details></div><nav class="prevnext"><a class="pn pn-prev" href="../core-a/b.html"><span class="pn-dir"><span class="lang-zh">← 上一頁</span><span class="lang-en" lang="en">← Previous</span></span><span class="pn-title"><span class="lang-zh">單元 A 課題 b：數據組織及數據控制</span><span class="lang-en" lang="en">Module A Topic b: Data Organisation and Data Control</span></span></a><a class="pn pn-next" href="../core-a/d.html"><span class="pn-dir"><span class="lang-zh">下一頁 →</span><span class="lang-en" lang="en">Next →</span></span><span class="pn-title"><span class="lang-zh">單元 A 課題 d：數據操縱和分析</span><span class="lang-en" lang="en">Module A Topic d: Data Manipulation and Analysis</span></span></a></nav>
     </article>
     <footer class="footer">
-      <p>內容依據課程發展議會與考評局《資訊及通訊科技課程及評估指引》及考評局公開資料整理，僅供溫習參考。</p>
+      <p class="lang-zh">內容依據課程發展議會與考評局《資訊及通訊科技課程及評估指引》及考評局公開資料整理，僅供溫習參考。</p>
+      <p class="lang-en" lang="en">Compiled from the CDC–HKEAA Information and Communication Technology Curriculum and Assessment Guide and HKEAA public materials, for revision reference only.</p>
     </footer>
   </main>
 
   <aside class="toc-rail">
-<nav class="toc" aria-label="本頁目錄"><div class="toc-title">本頁目錄</div><ol><li><a href="#31-課程要求">3.1 課程要求</a></li><li><a href="#32-模擬數據與數碼數據">3.2 模擬數據與數碼數據</a></li><li><a href="#33-位元數目與組合數量">3.3 位元數目與組合數量</a></li><li><a href="#34-數系轉換">3.4 數系轉換</a></li><li><a href="#35-數據單位">3.5 數據單位</a></li><li><a href="#36-整數的二進制表示">3.6 整數的二進制表示</a></li><li><a href="#37-二進制加減及溢出誤差">3.7 二進制加減及溢出誤差</a></li><li><a href="#38-字符編碼">3.8 字符編碼</a></li><li><a href="#39-多媒體文本">3.9 多媒體：文本</a></li><li><a href="#310-多媒體圖像">3.10 多媒體：圖像</a></li><li><a href="#311-多媒體音效">3.11 多媒體：音效</a></li><li><a href="#312-多媒體視像">3.12 多媒體：視像</a></li><li><a href="#313-檔案大小與傳輸時間計算">3.13 檔案大小與傳輸時間計算</a></li><li><a href="#314-跨單元連繫網頁上的圖像">3.14 跨單元連繫：網頁上的圖像</a></li><li><a href="#315-自我檢測">3.15 自我檢測</a></li></ol></nav>
+<nav class="toc lang-zh" aria-label="本頁目錄"><div class="toc-title">本頁目錄</div><ol><li><a href="#31-課程要求">3.1 課程要求</a></li><li><a href="#32-模擬數據與數碼數據">3.2 模擬數據與數碼數據</a></li><li><a href="#33-位元數目與組合數量">3.3 位元數目與組合數量</a></li><li><a href="#34-數系轉換">3.4 數系轉換</a></li><li><a href="#35-數據單位">3.5 數據單位</a></li><li><a href="#36-整數的二進制表示">3.6 整數的二進制表示</a></li><li><a href="#37-二進制加減及溢出誤差">3.7 二進制加減及溢出誤差</a></li><li><a href="#38-字符編碼">3.8 字符編碼</a></li><li><a href="#39-多媒體文本">3.9 多媒體：文本</a></li><li><a href="#310-多媒體圖像">3.10 多媒體：圖像</a></li><li><a href="#311-多媒體音效">3.11 多媒體：音效</a></li><li><a href="#312-多媒體視像">3.12 多媒體：視像</a></li><li><a href="#313-檔案大小與傳輸時間計算">3.13 檔案大小與傳輸時間計算</a></li><li><a href="#314-跨單元連繫網頁上的圖像">3.14 跨單元連繫：網頁上的圖像</a></li><li><a href="#315-自我檢測">3.15 自我檢測</a></li></ol></nav><nav class="toc lang-en" lang=en aria-label="On this page"><div class="toc-title">On this page</div><ol><li><a href="#en-31-learning-outcomes">3.1 Learning outcomes</a></li><li><a href="#en-32-analogue-and-digital-data">3.2 Analogue and digital data</a></li><li><a href="#en-33-number-of-bits-and-number-of-combinations">3.3 Number of bits and number of combinations</a></li><li><a href="#en-34-converting-between-number-systems">3.4 Converting between number systems</a></li><li><a href="#en-35-units-of-data">3.5 Units of data</a></li><li><a href="#en-36-binary-representation-of-integers">3.6 Binary representation of integers</a></li><li><a href="#en-37-binary-addition-subtraction-and-overflow-errors">3.7 Binary addition, subtraction and overflow errors</a></li><li><a href="#en-38-character-encoding">3.8 Character encoding</a></li><li><a href="#en-39-multimedia-text">3.9 Multimedia: text</a></li><li><a href="#en-310-multimedia-images">3.10 Multimedia: images</a></li><li><a href="#en-311-multimedia-audio">3.11 Multimedia: audio</a></li><li><a href="#en-312-multimedia-video">3.12 Multimedia: video</a></li><li><a href="#en-313-file-size-and-transfer-time-calculations">3.13 File size and transfer time calculations</a></li><li><a href="#en-314-cross-module-link-images-on-web-pages">3.14 Cross-module link: images on web pages</a></li><li><a href="#en-315-self-test">3.15 Self-test</a></li></ol></nav>
   </aside>
 </div>
 
-<button class="to-top" type="button" aria-label="回到頁頂" hidden>↑</button>
+<button class="to-top" type="button" data-i18n-aria="top" aria-label="回到頁頂" hidden>↑</button>
 <script src="../assets/search-index.js"></script>
 <script src="../assets/app.js"></script>
 </body>
