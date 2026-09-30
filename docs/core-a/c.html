@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>單元 A 課題 c：數據表示｜ICT 溫習站</title>
 <meta name="description" content="香港中學文憑考試資訊及通訊科技科（新課程）溫習重點、評卷要點與常見錯誤">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231d4ed8'/%3E%3Ctext x='32' y='42' font-size='26' font-family='Arial' font-weight='700' fill='white' text-anchor='middle'%3EICT%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231a1a1a'/%3E%3Ctext x='32' y='42' font-size='26' font-family='Georgia' font-weight='700' fill='%23b5222e' text-anchor='middle'%3EICT%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap">
 <link rel="stylesheet" href="../assets/style.css">
 <script>
   (function () {
@@ -131,9 +131,9 @@
   <main id="main" class="main" tabindex="-1">
     <article class="content">
 <nav class="breadcrumb" aria-label="位置"><a href="../index.html">首頁</a><span class="sep">›</span><span>必修部分</span><span class="sep">›</span><a href="../core-a/index.html">資訊處理</a></nav><header class="page-head"><div class="page-eyebrow">單元 A · 課題 c</div><h1 class="page-title">數據表示</h1><div class="page-en">Data Representation</div><div class="page-meta"><span class="chip">建議課時 10 小時</span><span class="chip">課本第 3、4 章</span><button class="done-btn" type="button" data-done-toggle="core-a/c" aria-pressed="false"><span class="done-box" aria-hidden="true"></span><span class="done-label">標記為已溫習</span></button></div></header>
-<div class="prose"><h2 id="31-課程要求">3.1 課程要求</h2>
+<div class="prose"><h2 id="31-課程要求"><span class="sec-num">3.1</span><span class="sec-title">課程要求</span></h2>
 <p>區分模擬及數碼數據並說明兩者轉換的情境；解釋資訊科技為何使用數碼數據，包括位元數目與組合數量的關係；十進制、二進制、十六進制互換；以二進制補碼表示負整數；二進制加減及溢出誤差（最多 2 字節）；ASCII、大五碼、國標碼、統一碼（無須背誦個別編碼）；多媒體元素數碼化及常見檔案格式比較（bmp、png、jpg、wav、mp3、avi、mpeg4、txt、docx、odt、pdf）。</p>
-<h2 id="32-模擬數據與數碼數據">3.2 模擬數據與數碼數據</h2>
+<h2 id="32-模擬數據與數碼數據"><span class="sec-num">3.2</span><span class="sec-title">模擬數據與數碼數據</span></h2>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -177,7 +177,7 @@
 </ol>
 <p>數碼化必然損失部分原始資訊。提高取樣率和位元解像度，可以令結果更接近原本的信號，但仍不能完全相同。</p>
 <p>轉換設備：模擬數碼轉換器（ADC）把模擬信號轉為數碼，例如用麥克風錄音時由音效卡轉換；數碼模擬轉換器（DAC）把數碼信號轉為模擬，例如揚聲器播放音樂。掃描器把相片數碼化；打印機和顯示器把數碼圖像轉為人眼看到的模擬形式。</p>
-<h2 id="33-位元數目與組合數量">3.3 位元數目與組合數量</h2>
+<h2 id="33-位元數目與組合數量"><span class="sec-num">3.3</span><span class="sec-title">位元數目與組合數量</span></h2>
 <p><strong>n 個位元可以表示 2ⁿ 個不同組合。</strong> 3 個位元可表示 8 種顏色；要表示 26 個英文字母，最少需要 5 個位元（2⁴ = 16 不足，2⁵ = 32 足夠）。</p>
 <blockquote class="callout callout-warn">
 <p>⚠ <strong>〔2024 卷一乙 4(a)(ii)(2)〕5 × 3 的黑白點陣顯示板，可以顯示多少個不同圖像？</strong></p>
@@ -190,7 +190,7 @@
 <p>✔ 5 位元（行 A 至 E 需 3 位元，列 1 至 3 需 2 位元）；或 4 位元（15 個位置，2⁴ = 16 ≥ 15）。</p>
 <p>✘ 較弱考生答 1 或 2 位元，理由是「點只有黑白兩色」，忽略了題目問的是<strong>位置</strong>。</p>
 </blockquote>
-<h2 id="34-數系轉換">3.4 數系轉換</h2>
+<h2 id="34-數系轉換"><span class="sec-num">3.4</span><span class="sec-title">數系轉換</span></h2>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -219,7 +219,7 @@
 </table>
 </div><p>例子：2C7₁₆ = 2 × 256 + 12 × 16 + 7 = <strong>711₁₀</strong>；二進制為 <strong>10 1100 0111₂</strong>（2 → 0010，C → 1100，7 → 0111，去掉前導零）。</p>
 <p>十六進制常用於程式員與電腦系統之間的溝通，因為比二進制簡短，而且與二進制轉換容易。</p>
-<h2 id="35-數據單位">3.5 數據單位</h2>
+<h2 id="35-數據單位"><span class="sec-num">3.5</span><span class="sec-title">數據單位</span></h2>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -251,7 +251,7 @@
 </tbody>
 </table>
 </div><p><strong>字（word）</strong>是 CPU 一次處理的數據單位，現今電腦的字長一般是 64 位元。</p>
-<h2 id="36-整數的二進制表示">3.6 整數的二進制表示</h2>
+<h2 id="36-整數的二進制表示"><span class="sec-num">3.6</span><span class="sec-title">整數的二進制表示</span></h2>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -291,7 +291,7 @@
 <p>驗算：−128 + 64 + 16 + 2 + 1 = −45 ✔</p>
 <p><strong>把補碼轉回十進制</strong>：最左位元是 1 表示負數，重複「取反再加 1」求出數值，再加上負號。另一個方法是把最左位元當作 −2ⁿ⁻¹，其餘照常相加。</p>
 <p>記住特殊樣式：8 位元最大正數 0111 1111（127），最小負數 1000 0000（−128），−1 是 1111 1111〔樣本試卷甲部第 5 題〕。</p>
-<h2 id="37-二進制加減及溢出誤差">3.7 二進制加減及溢出誤差</h2>
+<h2 id="37-二進制加減及溢出誤差"><span class="sec-num">3.7</span><span class="sec-title">二進制加減及溢出誤差</span></h2>
 <p>計算結果超出位元所能表示的範圍，就會出現<strong>溢出誤差（overflow error）</strong>。</p>
 <ul>
 <li><strong>無符號整數</strong>：最高位產生進位（加法），或需要向最高位之外借位（減法），即溢出。</li>
@@ -306,7 +306,7 @@
 <p>兩個正數相加得出負數，出現溢出誤差（150 大於 127）。</p>
 <p>✔ 減法可改寫成加上負數，例如 −33 − 65 = −33 + (−65)。
 ✔ 「1110 1111 + 0001 0000」和「1101 1111 + 0010 0001」哪個結果是 0000 0000？逐位計算並捨棄最左進位，答案是後者〔改編自 2025 卷一甲第 4 題〕。</p>
-<h2 id="38-字符編碼">3.8 字符編碼</h2>
+<h2 id="38-字符編碼"><span class="sec-num">3.8</span><span class="sec-title">字符編碼</span></h2>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -347,7 +347,7 @@
 <blockquote class="callout callout-warn">
 <p>⚠ <strong>〔2023 卷一甲第 13 題〕</strong> 只有約一半考生答對「統一碼用來表示英文及其他語言的字符」。常見誤解：以為大五碼只包含中文（其實包含 ASCII 字符）；以為使用哪種字符集由操作系統或瀏覽器決定。</p>
 </blockquote>
-<h2 id="39-多媒體文本">3.9 多媒體：文本</h2>
+<h2 id="39-多媒體文本"><span class="sec-num">3.9</span><span class="sec-title">多媒體：文本</span></h2>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -382,7 +382,7 @@
 <p>⚠ <strong>〔2025 卷一甲第 9 題〕</strong> 在網上發佈文章時選 PDF 而不選 HTML 的原因：<strong>PDF 提供較好的文件保護</strong>。只有 52% 考生答對，不少人選了對 HTML 有利的選項。</p>
 <p>✔ PDF 勝於 TXT：保留文字格式、可加入圖片。ODT 勝於 PDF：較容易編輯〔樣本試卷乙部第 5 題〕。</p>
 </blockquote>
-<h2 id="310-多媒體圖像">3.10 多媒體：圖像</h2>
+<h2 id="310-多媒體圖像"><span class="sec-num">3.10</span><span class="sec-title">多媒體：圖像</span></h2>
 <p><strong>點陣圖（bitmap）</strong>由像素組成，畫質取決於<strong>解像度</strong>和<strong>色彩深度</strong>。</p>
 <div class="table-wrap"><table>
 <thead>
@@ -500,7 +500,7 @@
 <blockquote class="callout callout-warn">
 <p>⚠ <strong>〔2023 舊課程卷二丙第 1 題；2024 舊課程卷二丙第 1 題〕</strong> 影片長寬比與屏幕不同：會出現黑邊或畫面變形。不到 10% 考生答到黑邊及解決方法（用軟件調整長寬比，或按正確解像度拍攝）。</p>
 </blockquote>
-<h2 id="311-多媒體音效">3.11 多媒體：音效</h2>
+<h2 id="311-多媒體音效"><span class="sec-num">3.11</span><span class="sec-title">多媒體：音效</span></h2>
 <p>數碼音效的質素取決於<strong>取樣率</strong>（每秒樣本數，單位 Hz）、<strong>位元解像度</strong>（每個樣本的位元數）和<strong>聲道數目</strong>（單聲道 1、立體聲 2、7.1 環繞聲 8）。</p>
 <div class="table-wrap"><table>
 <thead>
@@ -535,7 +535,7 @@
 </div><blockquote class="callout callout-warn">
 <p>⚠ <strong>〔2023 舊課程卷二丙第 2 題〕</strong> 只用來儲存音效的格式是 AAC、MP3、WAV。較弱考生誤以為 MP4 也是純音效格式；MP4 是視像格式。</p>
 </blockquote>
-<h2 id="312-多媒體視像">3.12 多媒體：視像</h2>
+<h2 id="312-多媒體視像"><span class="sec-num">3.12</span><span class="sec-title">多媒體：視像</span></h2>
 <p>未壓縮視像的大小取決於<strong>幀大小</strong>（每幀的像素闊度 × 高度）、<strong>色彩深度</strong>、<strong>幀率</strong>（fps）和<strong>長度</strong>。</p>
 <div class="table-wrap"><table>
 <thead>
@@ -568,7 +568,7 @@
 </tbody>
 </table>
 </div><p>提高幀率，動作更流暢，但檔案更大。</p>
-<h2 id="313-檔案大小與傳輸時間計算">3.13 檔案大小與傳輸時間計算</h2>
+<h2 id="313-檔案大小與傳輸時間計算"><span class="sec-num">3.13</span><span class="sec-title">檔案大小與傳輸時間計算</span></h2>
 <p><strong>公式總表</strong></p>
 <div class="table-wrap"><table>
 <thead>
@@ -642,13 +642,13 @@
 <p>⚠ <strong>〔2024 舊課程卷二丙第 1、2 題〕</strong> 圖像大小計算時，少數考生把色彩深度寫成 256（顏色數目），應用 <strong>8 位元</strong>；計算位元率時用了 1024 而不是 1000。</p>
 </blockquote>
 <p>✔ 考評局提醒：寫出公式和單位，清楚列出計算過程，最後答案要有正確單位。</p>
-<h2 id="314-跨單元連繫網頁上的圖像">3.14 跨單元連繫：網頁上的圖像</h2>
+<h2 id="314-跨單元連繫網頁上的圖像"><span class="sec-num">3.14</span><span class="sec-title">跨單元連繫：網頁上的圖像</span></h2>
 <blockquote class="callout callout-warn">
 <p>⚠ <strong>〔2025 卷一乙 4(a)〕原圖 800 × 600，在 HTML 中把顯示尺寸改為 400 × 200。</strong></p>
 <p>(i) 下載時間會縮短嗎？✔ <strong>不會</strong>，下載的仍是同一個圖像檔案；改的只是顯示尺寸，檔案大小不變。表現「差」。</p>
 <p>(ii) 圖像會失真嗎？✔ <strong>會</strong>，長寬比由 4:3 變成 2:1。表現「差」，部分考生不明白「失真」的意思。</p>
 </blockquote>
-<h2 id="315-自我檢測">3.15 自我檢測</h2>
+<h2 id="315-自我檢測"><span class="sec-num">3.15</span><span class="sec-title">自我檢測</span></h2>
 <details class="quiz">
 <summary>1. 以 10 位元二進制補碼表示整數，最大值和最小值是多少？</summary>
 <p>最大值 2⁹ − 1 = <strong>511</strong>；最小值 −2⁹ = <strong>−512</strong>。</p>

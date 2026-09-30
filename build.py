@@ -92,6 +92,9 @@ def render_markdown(text):
     body = md.convert(text)
     # Task-list checkboxes: "- [ ] item"
     body = re.sub(r"<li>\[ \]\s*", '<li class="task"><input type="checkbox" class="task-box"> ', body)
+    # Section numbers ("2.1 課程要求") become boxed labels, as in the original guide.
+    body = re.sub(r'(<h2 id="[^"]+">)(\d+(?:\.\d+)*)\s+(.*?)</h2>',
+                  r'\1<span class="sec-num">\2</span><span class="sec-title">\3</span></h2>', body)
     # Self-test blocks get a class for styling.
     body = body.replace('<details>', '<details class="quiz">')
     return body, md.toc_tokens
@@ -302,7 +305,7 @@ def build_home(site, pages, modules):
     body = f"""
 <section class="hero">
   <div class="hero-eyebrow">2025 年起新課程 · 必修 A 至 E · 選修二甲、二乙</div>
-  <h1 class="hero-title">{site["title"]}</h1>
+  <h1 class="hero-title">ICT <span>溫習站</span></h1>
   <p class="hero-sub">{site["subtitle"]}溫習重點、考評局評卷要點與常見錯誤整理。按課程及評估指引的框架編排，配合課本與作業使用。</p>
   <div class="hero-actions">
     <a class="btn btn-primary" href="core-a/index.html">由單元 A 開始</a>

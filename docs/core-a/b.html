@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>單元 A 課題 b：數據組織及數據控制｜ICT 溫習站</title>
 <meta name="description" content="香港中學文憑考試資訊及通訊科技科（新課程）溫習重點、評卷要點與常見錯誤">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231d4ed8'/%3E%3Ctext x='32' y='42' font-size='26' font-family='Arial' font-weight='700' fill='white' text-anchor='middle'%3EICT%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231a1a1a'/%3E%3Ctext x='32' y='42' font-size='26' font-family='Georgia' font-weight='700' fill='%23b5222e' text-anchor='middle'%3EICT%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap">
 <link rel="stylesheet" href="../assets/style.css">
 <script>
   (function () {
@@ -131,9 +131,9 @@
   <main id="main" class="main" tabindex="-1">
     <article class="content">
 <nav class="breadcrumb" aria-label="位置"><a href="../index.html">首頁</a><span class="sep">›</span><span>必修部分</span><span class="sep">›</span><a href="../core-a/index.html">資訊處理</a></nav><header class="page-head"><div class="page-eyebrow">單元 A · 課題 b</div><h1 class="page-title">數據組織及數據控制</h1><div class="page-en">Data Organisation and Data Control</div><div class="page-meta"><span class="chip">建議課時 4 小時</span><span class="chip">課本第 2 章</span><button class="done-btn" type="button" data-done-toggle="core-a/b" aria-pressed="false"><span class="done-box" aria-hidden="true"></span><span class="done-label">標記為已溫習</span></button></div></header>
-<div class="prose"><h2 id="21-課程要求">2.1 課程要求</h2>
+<div class="prose"><h2 id="21-課程要求"><span class="sec-num">2.1</span><span class="sec-title">課程要求</span></h2>
 <p>辨別數據分級組織中的數據、記錄、欄、檔案和數據庫；解釋記錄的組織、儲存及提取，比較直接存取和順序存取；討論數據控制的重要性；闡述以有效性檢驗及奇偶檢測偵測誤差，以驗證及有效性檢驗防止誤差。</p>
-<h2 id="22-為甚麼要數據控制">2.2 為甚麼要數據控制</h2>
+<h2 id="22-為甚麼要數據控制"><span class="sec-num">2.2</span><span class="sec-title">為甚麼要數據控制</span></h2>
 <p>人手輸入常見三類錯誤：</p>
 <div class="table-wrap"><table>
 <thead>
@@ -162,7 +162,7 @@
 </tbody>
 </table>
 </div><p>錯誤的輸入必然產生錯誤的輸出，稱為<strong>「無用輸入，無用輸出」（GIGO）</strong>。數據控制的目的是確保輸入數據準確，常用方法是<strong>數據有效性檢驗</strong>和<strong>數據驗證</strong>。</p>
-<h2 id="23-數據有效性檢驗data-validation">2.3 數據有效性檢驗（Data Validation）</h2>
+<h2 id="23-數據有效性檢驗data-validation"><span class="sec-num">2.3</span><span class="sec-title">數據有效性檢驗（Data Validation）</span></h2>
 <p>把輸入數據與預先定義的規則比較，確保數據<strong>合理及有效</strong>。</p>
 <div class="table-wrap"><table>
 <thead>
@@ -231,7 +231,7 @@
 <p>✔ 下拉式選單或單選按鈕，因為只提供有效的班別選項，<strong>確保輸入的數據有效、合理</strong>。</p>
 <p>✘ 部分考生說這樣可以「確保輸入正確」，概念錯誤：學生仍然可能選錯班別。</p>
 </blockquote>
-<h2 id="24-檢查數位check-digit">2.4 檢查數位（Check Digit）</h2>
+<h2 id="24-檢查數位check-digit"><span class="sec-num">2.4</span><span class="sec-title">檢查數位（Check Digit）</span></h2>
 <p>檢查數位由數據其餘部分按固定公式計算得出，附在數據末端。系統收到數據後重新計算，若結果與附帶的檢查數位不同，即表示數據無效。</p>
 <p><strong>計算示例（自擬）</strong>：某會員編號由四位數字加一個檢查數位組成，規則是「首四位數字按權重 4、3、2、1 相乘後相加，取除以 10 的餘數」。</p>
 <p>驗證 <strong>3517-8</strong>：3×4 + 5×3 + 1×2 + 7×1 = 12 + 15 + 2 + 7 = 36，36 mod 10 = 6。附帶的檢查數位是 8，兩者不同，所以編號<strong>無效</strong>。</p>
@@ -241,7 +241,7 @@
 <p>✔ 局限：<strong>兩個不同的輸入可能得出相同的檢查數位</strong>，這類錯誤無法偵測。必須舉出具體例子並列出兩組算式，才可得滿分。</p>
 <p>✘ 不接受：「計算費時」「只能檢查數字，不能檢查字母」「檢查數位只有 0 至 9」。</p>
 </blockquote>
-<h2 id="25-奇偶檢測parity-check">2.5 奇偶檢測（Parity Check）</h2>
+<h2 id="25-奇偶檢測parity-check"><span class="sec-num">2.5</span><span class="sec-title">奇偶檢測（Parity Check）</span></h2>
 <p>用於<strong>數據傳輸或複製後</strong>檢查位元錯誤，例如在網絡傳送數據包，或由 RAM 把數據寫入硬碟。</p>
 <ul>
 <li><strong>偶檢測</strong>：加上檢驗位後，「1」的總數為偶數。</li>
@@ -261,7 +261,7 @@
 <p>✔ 加上奇偶檢驗位；使用校驗和（checksum）；傳送兩次並比較。</p>
 <p>✘ 不少考生答檢查數位、欄位長度檢查、類型檢查，這些是<strong>輸入時的有效性檢驗</strong>，不是傳輸錯誤檢測。考評局特別提醒要分清「錯誤檢測」與「有效性檢驗」。</p>
 </blockquote>
-<h2 id="26-數據驗證data-verification">2.6 數據驗證（Data Verification）</h2>
+<h2 id="26-數據驗證data-verification"><span class="sec-num">2.6</span><span class="sec-title">數據驗證（Data Verification）</span></h2>
 <p>檢查輸入的數據是否與<strong>原始來源一致</strong>。</p>
 <div class="table-wrap"><table>
 <thead>
@@ -307,7 +307,7 @@
 </table>
 </div><p>✔ 「重新輸入密碼」屬<strong>數據驗證</strong>，不是有效性檢驗〔樣本試卷甲部第 3 題；改編自 2025 卷一甲第 3 題〕。
 ✔ 香港身份證號碼 A123456(7) 誤輸為 A123455(7)，<strong>檢查數位</strong>和<strong>輸入數據兩次</strong>都能發現錯誤；範圍檢查不能〔改編自 2025 卷一甲第 6 題〕。</p>
-<h2 id="27-數據分級組織">2.7 數據分級組織</h2>
+<h2 id="27-數據分級組織"><span class="sec-num">2.7</span><span class="sec-title">數據分級組織</span></h2>
 <p><strong>數據（位元、字節）→ 欄 → 記錄 → 數據表（檔案）→ 數據庫</strong></p>
 <div class="table-wrap"><table>
 <thead>
@@ -341,7 +341,7 @@
 </tbody>
 </table>
 </div><p>在數據表中，一<strong>列（row）</strong>是一個記錄，一<strong>欄（column）</strong>是一個欄位〔2024 簡報提醒考生弄清楚〕。</p>
-<h2 id="28-主關鍵碼primary-key">2.8 主關鍵碼（Primary Key）</h2>
+<h2 id="28-主關鍵碼primary-key"><span class="sec-num">2.8</span><span class="sec-title">主關鍵碼（Primary Key）</span></h2>
 <p>主關鍵碼用來<strong>唯一識別</strong>數據表中的每個記錄，數值必須<strong>獨一無二</strong>而且<strong>不可為空值</strong>。</p>
 <ul>
 <li>沒有單一欄位符合要求時，可以用兩個或以上欄位組成<strong>複合主關鍵碼</strong>，例如 CLASS + CLASS_NO。</li>
@@ -366,10 +366,10 @@
 <p>⚠ <strong>〔樣本試卷乙部 8(c)〕有學生缺席測驗，建議在分數欄儲存「ABS」或 0。</strong></p>
 <p>✔ 「ABS」與數字欄位的數據類型不符；0 會與真正考 0 分的學生混淆。若改用 -1 代表缺席，計算平均分等之前必須先剔除 -1。</p>
 </blockquote>
-<h2 id="29-數據庫管理系統的基本功能">2.9 數據庫管理系統的基本功能</h2>
+<h2 id="29-數據庫管理系統的基本功能"><span class="sec-num">2.9</span><span class="sec-title">數據庫管理系統的基本功能</span></h2>
 <p>數據庫管理系統（DBMS）用來管理數據庫結構，以及儲存、整理和提取數據。例子：MySQL、Microsoft SQL Server、Oracle（伺服器）；Microsoft Access、LibreOffice Base（桌面）。</p>
 <p>基本操作包括新增、瀏覽、修改及刪除記錄；主要功能包括篩選、排序、表單、查詢和報表，詳見<a href="d.html">課題 d：數據操縱和分析</a>的 4.9 節。</p>
-<h2 id="210-檔案存取模式">2.10 檔案存取模式</h2>
+<h2 id="210-檔案存取模式"><span class="sec-num">2.10</span><span class="sec-title">檔案存取模式</span></h2>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -397,7 +397,7 @@
 </tbody>
 </table>
 </div><p>課程文件要求比較<strong>直接存取</strong>與<strong>順序存取</strong>；課本另把 SSD 列為隨機存取。</p>
-<h2 id="211-自我檢測">2.11 自我檢測</h2>
+<h2 id="211-自我檢測"><span class="sec-num">2.11</span><span class="sec-title">自我檢測</span></h2>
 <details class="quiz">
 <summary>1. 數據 0110 1110 以奇檢測傳送，檢驗位應是甚麼？</summary>
 <p>數據有五個「1」，已是奇數，所以檢驗位是 <strong>0</strong>，傳送 0110 1110 0。</p>

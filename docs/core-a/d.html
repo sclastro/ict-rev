@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>單元 A 課題 d：數據操縱和分析｜ICT 溫習站</title>
 <meta name="description" content="香港中學文憑考試資訊及通訊科技科（新課程）溫習重點、評卷要點與常見錯誤">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231d4ed8'/%3E%3Ctext x='32' y='42' font-size='26' font-family='Arial' font-weight='700' fill='white' text-anchor='middle'%3EICT%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231a1a1a'/%3E%3Ctext x='32' y='42' font-size='26' font-family='Georgia' font-weight='700' fill='%23b5222e' text-anchor='middle'%3EICT%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap">
 <link rel="stylesheet" href="../assets/style.css">
 <script>
   (function () {
@@ -131,10 +131,10 @@
   <main id="main" class="main" tabindex="-1">
     <article class="content">
 <nav class="breadcrumb" aria-label="位置"><a href="../index.html">首頁</a><span class="sep">›</span><span>必修部分</span><span class="sep">›</span><a href="../core-a/index.html">資訊處理</a></nav><header class="page-head"><div class="page-eyebrow">單元 A · 課題 d</div><h1 class="page-title">數據操縱和分析</h1><div class="page-en">Data Manipulation and Analysis</div><div class="page-meta"><span class="chip">建議課時 20 小時</span><span class="chip">課本第 5、6 章</span><button class="done-btn" type="button" data-done-toggle="core-a/d" aria-pressed="false"><span class="done-box" aria-hidden="true"></span><span class="done-label">標記為已溫習</span></button></div></header>
-<div class="prose"><h2 id="41-課程要求">4.1 課程要求</h2>
+<div class="prose"><h2 id="41-課程要求"><span class="sec-num">4.1</span><span class="sec-title">課程要求</span></h2>
 <p><strong>試算表</strong>：使用儲存格參照（課程文件稱「單元格參照」）、函數和數學、邏輯及關聯運算符；以一項或多項準則篩選、搜尋、排序數據；在多個工作表之間處理數據；運用樞紐分析表、樞紐分析圖和「假設」情境分析數據，辨別趨勢，作有根據的決定。</p>
 <p><strong>數據庫</strong>：以數據庫管理系統建立及維護簡單的數據庫；建立表單輸入數據；以查詢在<strong>單一數據表</strong>中選擇、篩選及排序數據；追蹤及闡釋簡單的 SQL 語句；按對象製作及格式化報表。</p>
-<h2 id="42-考評局提供的函數及指令清單">4.2 考評局提供的函數及指令清單</h2>
+<h2 id="42-考評局提供的函數及指令清單"><span class="sec-num">4.2</span><span class="sec-title">考評局提供的函數及指令清單</span></h2>
 <p>樣本試卷答題簿末頁列出以下函數及指令供考生參考。考試範圍以這份清單為準。</p>
 <p><strong>試算表</strong></p>
 <ul>
@@ -149,7 +149,7 @@
 <li>指令：AVG、MAX、MIN、SUM、AS、BETWEEN、BY、ASC、DESC、DISTINCT、FROM、GROUP、HAVING、LIKE、NULL、ORDER、SELECT、WHERE</li>
 </ul>
 <p>（樣本試卷的 SQL 清單沒有列出 COUNT，但 2024 年試題曾使用 COUNT(*)，應一併掌握。）</p>
-<h2 id="43-試算表基本概念">4.3 試算表基本概念</h2>
+<h2 id="43-試算表基本概念"><span class="sec-num">4.3</span><span class="sec-title">試算表基本概念</span></h2>
 <ul>
 <li>儲存格位址 = 欄字母 + 列數字，例如 B7、AK51。</li>
 <li><strong>公式必須以「=」開始。</strong></li>
@@ -184,7 +184,7 @@
 </tbody>
 </table>
 </div><p>⚠ 比較運算符只可以寫 <code>&lt;=</code>、<code>&gt;=</code>、<code>&lt;&gt;</code>，不可以寫 ≤、≥、≠、=&lt;〔2023 卷一乙 2(a)〕。</p>
-<h2 id="44-儲存格參照">4.4 儲存格參照</h2>
+<h2 id="44-儲存格參照"><span class="sec-num">4.4</span><span class="sec-title">儲存格參照</span></h2>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -215,7 +215,7 @@
 <p>例子：C3 的公式是 <code>=A$1+$B2</code>，複製到 E5（向右 2 欄、向下 2 列）後變成 <code>=C$1+$B4</code>。</p>
 <p>參照其他工作表：<code>='工作表名稱'!B3</code>；參照其他檔案：<code>='[檔案名稱.xlsx]工作表名稱'!B3</code>。</p>
 <p>✔ <strong>公式應參照儲存格，不要把數值直接寫進公式。</strong> 例如佣金率放在 B2，公式寫 <code>=C6*B$2</code>；日後佣金率改變，只須修改 B2，所有公式自動更新。</p>
-<h2 id="45-常用函數">4.5 常用函數</h2>
+<h2 id="45-常用函數"><span class="sec-num">4.5</span><span class="sec-title">常用函數</span></h2>
 <p><strong>統計函數</strong></p>
 <div class="table-wrap"><table>
 <thead>
@@ -334,7 +334,7 @@
 </tbody>
 </table>
 </div><p>例子：分數在 F2，等級表下限在 J2:J6、等級在 K2:K6，公式為 <code>=XLOOKUP(F2,$J$2:$J$6,$K$2:$K$6,,-1)</code>。</p>
-<h2 id="46-試算表公式考評局常見失分">4.6 試算表公式：考評局常見失分</h2>
+<h2 id="46-試算表公式考評局常見失分"><span class="sec-num">4.6</span><span class="sec-title">試算表公式：考評局常見失分</span></h2>
 <blockquote class="callout callout-warn">
 <p>⚠ <strong>〔2025 卷一乙 1(a)〕在 F2 輸入公式計算三次測驗的平均分，再複製到 F3:F36。</strong></p>
 <p>✔ <code>=AVERAGE(C2:E2)</code>；<code>=SUM(C2:E2)/3</code> 等方法亦接受。</p>
@@ -371,7 +371,7 @@
 <p>✘ 大部分考生懂得用 IF，但很多人失去第二分：符號寫成 ≤、漏了「=」、把條件或數值放入引號；另有考生沒有在 E$102 加 $。</p>
 </blockquote>
 <p>考評局 2024 年的教學建議：注意公式語法；<strong>數值不可加引號等標點</strong>；正確使用 $；<strong>函數名稱不可串錯</strong>。</p>
-<h2 id="47-排序與篩選">4.7 排序與篩選</h2>
+<h2 id="47-排序與篩選"><span class="sec-num">4.7</span><span class="sec-title">排序與篩選</span></h2>
 <ul>
 <li><strong>排序（sort）</strong>：按一個或多個鍵重新排列記錄，會改變記錄的次序。多鍵排序先按<strong>主要鍵</strong>，主要鍵相同時再按<strong>次要鍵</strong>。</li>
 <li><strong>篩選（filter）</strong>：只顯示符合條件的記錄，其餘暫時隱藏，<strong>不改變原始數據</strong>；取消篩選後全部重現。</li>
@@ -382,7 +382,7 @@
 <p>✘ 次序顛倒（先 NAME 後 DATE），或遞增、遞減寫錯。</p>
 </blockquote>
 <p>✔ 要找「信社學生，按分數由高至低」：先設篩選條件「學社 = 信」，再按分數遞減排序。</p>
-<h2 id="48-圖表樞紐分析表與假設分析">4.8 圖表、樞紐分析表與假設分析</h2>
+<h2 id="48-圖表樞紐分析表與假設分析"><span class="sec-num">4.8</span><span class="sec-title">圖表、樞紐分析表與假設分析</span></h2>
 <p><strong>圖表類型</strong></p>
 <div class="table-wrap"><table>
 <thead>
@@ -430,7 +430,7 @@
 <p><strong>假設分析（What-If Analysis）</strong>：改變輸入數值，觀察對結果的影響，用於預測和規劃。工具包括分析藍本管理員（Scenario Manager）和目標搜尋（Goal Seek）。</p>
 <p>✔ 區分：假設分析是比較<strong>不同的輸入數據組合</strong>；樞紐分析表是把<strong>同一組數據</strong>分類摘要。「改變不同參數估算每月支出」適合假設分析；「比較各分店銷售」屬樞紐分析或圖表〔樣本試卷甲部第 8 題〕。</p>
 <p>✔ 試算表適合小型數據分析和圖表製作；DBMS 適合大量結構化數據、多人存取及存取權限控制。試算表不宜直接分析大數據，因為工作表可容納的列數有限，處理大量數據時效率低〔樣本試卷乙部 2(b)〕。</p>
-<h2 id="49-數據庫表單查詢報表與數據表設計">4.9 數據庫：表單、查詢、報表與數據表設計</h2>
+<h2 id="49-數據庫表單查詢報表與數據表設計"><span class="sec-num">4.9</span><span class="sec-title">數據庫：表單、查詢、報表與數據表設計</span></h2>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -499,7 +499,7 @@
 </div><p>✔ 電話號碼、學生編號用文字類型：不會拿來計算，而且可能有前導零或字母。
 ✔ 日期用日期類型：方便排序、篩選和計算日數。若用文字，「10/2/2025」會排在「2/2/2025」之前。
 ✔ 欄位長度要足夠但不浪費，例如英文姓名 20 以上，中文姓名 4 左右。</p>
-<h2 id="410-sql-select-語句">4.10 SQL SELECT 語句</h2>
+<h2 id="410-sql-select-語句"><span class="sec-num">4.10</span><span class="sec-title">SQL SELECT 語句</span></h2>
 <p><strong>書寫次序</strong></p>
 <pre><code class="language-sql">SELECT   欄位或運算式
 FROM     數據表
@@ -667,7 +667,7 @@ ORDER BY 排序欄位 [ASC | DESC]
 <li>✘ SELECT 了不在 GROUP BY 中、又不是集合函數的欄位。</li>
 <li>✘ 把 SQL 的 AVG 寫進試算表，或把試算表的 AVERAGE 寫進 SQL。</li>
 </ul>
-<h2 id="411-自我檢測">4.11 自我檢測</h2>
+<h2 id="411-自我檢測"><span class="sec-num">4.11</span><span class="sec-title">自我檢測</span></h2>
 <details class="quiz">
 <summary>1. B2 的公式是 =$A2*B$1。複製到 D5 後，公式是甚麼？</summary>
 <p>向右 2 欄、向下 3 列：$A2 → <strong>$A5</strong>；B$1 → <strong>D$1</strong>。答案：<code>=$A5*D$1</code>。</p>
