@@ -66,16 +66,23 @@
               "id": "a",
               "title": "基本機器組織",
               "en": "Basic Machine Organisation",
-              "hours": 14
+              "hours": 14,
+              "chapters": "課本第 1 至 3 章",
+              "md": "core-b/a.md",
+              "chapters_en": "Textbook Ch. 1–3"
             },
             {
               "id": "b",
               "title": "系統軟件",
               "en": "System Software",
-              "hours": 6
+              "hours": 6,
+              "chapters": "課本第 4 章",
+              "md": "core-b/b.md",
+              "chapters_en": "Textbook Ch. 4"
             }
           ],
-          "code_en": "B"
+          "code_en": "B",
+          "overview": "core-b/index.md"
         },
         {
           "id": "core-c",
