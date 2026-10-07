@@ -96,28 +96,41 @@
               "id": "a",
               "title": "建網及互聯網基本知識",
               "en": "Networking and Internet Basics",
-              "hours": 9
+              "hours": 9,
+              "chapters": "課本第 1 至 3 章",
+              "chapters_en": "Textbook Ch. 1–3",
+              "md": "core-c/a.md"
             },
             {
               "id": "b",
               "title": "互聯網服務及應用",
               "en": "Internet Services and Applications",
-              "hours": 5
+              "hours": 5,
+              "chapters": "課本第 4 章",
+              "chapters_en": "Textbook Ch. 4",
+              "md": "core-c/b.md"
             },
             {
               "id": "c",
               "title": "初級網頁創作",
               "en": "Elementary Web Authoring",
-              "hours": 3
+              "hours": 3,
+              "chapters": "課本第 5 章",
+              "chapters_en": "Textbook Ch. 5",
+              "md": "core-c/c.md"
             },
             {
               "id": "d",
               "title": "網上威脅及保安",
               "en": "Threats and Security on the Internet",
-              "hours": 14
+              "hours": 14,
+              "chapters": "課本第 6 至 8 章",
+              "chapters_en": "Textbook Ch. 6–8",
+              "md": "core-c/d.md"
             }
           ],
-          "code_en": "C"
+          "code_en": "C",
+          "overview": "core-c/index.md"
         },
         {
           "id": "core-d",
