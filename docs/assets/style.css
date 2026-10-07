@@ -425,6 +425,8 @@ svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width:
 .prose details[open] > summary { border-bottom: 1px dashed var(--rule); }
 .prose details > :not(summary) { margin: 0; padding: .8rem 1.2rem .2rem; font-size: .95rem; }
 .prose details > :last-child { padding-bottom: 1rem; }
+.prose details > pre { margin: .8rem 1.2rem 0; padding: 1rem 1.2rem; }
+.prose details > pre:last-child { margin-bottom: 1rem; padding-bottom: 1rem; }
 
 /* checklist */
 .prose li.task { list-style: none; margin-left: -1.4em; display: flex; gap: 10px; align-items: flex-start; }
