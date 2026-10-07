@@ -266,3 +266,25 @@ The leftmost bit is 1, so it is negative. Inverting gives 0001 1010; adding 1 gi
 
 JPG is already compressed, so little redundant data is left and further compression has limited effect. Plain-text files such as TXT and HTML can shrink greatly.
 </details>
+
+<details><summary>5. Calculate (−100) + (−50) using 8-bit two's complement, and state whether there is an overflow.</summary>
+
+−100 = 1001 1100 and −50 = 1100 1110.
+
+1001 1100 + 1100 1110 = 1 0110 1010. Discarding the leftmost carry gives 0110 1010 (+106). Adding two negative numbers gives a positive result, so **an overflow error occurs** (−150 is less than −128).
+</details>
+
+<details><summary>6. Convert 1011 0110₂ to hexadecimal and denary.</summary>
+
+Group the bits: 1011 = B and 0110 = 6, so it is **B6₁₆**. In denary: 11 × 16 + 6 = **182**.
+</details>
+
+<details><summary>7. What is the size (in MB) of an uncompressed 1920 × 1080 image with a colour depth of 24 bits? If it is compressed into a 0.6 MB JPG, what is the compression ratio?</summary>
+
+1920 × 1080 × 24 ÷ 8 = 6 220 800 B; ÷ 1024 ÷ 1024 ≈ **5.93 MB**. Compression ratio ≈ 5.93 ÷ 0.6 ≈ **9.9 : 1**.
+</details>
+
+<details><summary>8. A 2-minute uncompressed WAV file is recorded at 22.05 kHz, 8 bits, mono. What is its size in MB? What happens to the size if stereo is used?</summary>
+
+22 050 × 8 × 1 × 120 = 21 168 000 b; ÷ 8 = 2 646 000 B; ÷ 1024 ÷ 1024 ≈ **2.52 MB**. In stereo, the number of channels changes from 1 to 2, so the file size **doubles** to about 5.05 MB.
+</details>

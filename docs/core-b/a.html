@@ -503,6 +503,7 @@
 </blockquote>
 <p>〔2023 卷一乙 5(b)(ii)〕200 個 2 KB 的檔案經 10 Mbps 網絡上載：200 × 2 × 1024 × 8 ÷ (10 × 10⁶) ≈ <strong>0.33 s</strong>。</p>
 <p>〔2024 卷一乙 2(b)(i)〕經 1 Gbps 網絡接收 5 GB 影片：5 × 1024³ × 8 ÷ 10⁹ ≈ <strong>42.9 s</strong>（以 1000 計得 40 s，同樣接受）。</p>
+<p>⚠ 檔案大小以 1000 換算，2024、2025 年獲接受，但 2023 年的評卷參考只接受以 1024 換算的答案（0.33 s、0.32768 s、0.328 s）。最穩妥的做法是：檔案大小用 1024，頻寬用 1000。</p>
 <p><strong>硬碟讀取時間 = 存取時間 + 檔案大小 ÷ 數據傳輸率</strong></p>
 <p>例：硬碟存取時間 12 ms，數據傳輸率 50 MBps，從相鄰扇區讀取 20 MB 的檔案：</p>
 <p>12 ms + (20 × 1024 × 1024) ÷ (50 × 10⁶) s = 0.012 s + 0.419 s ≈ <strong>0.431 s</strong>。</p>
@@ -887,6 +888,32 @@
 <details class="quiz">
 <summary>6. 為甚麼啟動程式存放在 ROM，而不存放在 RAM？</summary>
 <p>ROM 是非易失性的，關機後仍保留啟動程式，每次開機 CPU 都可讀取；RAM 是易失性的，關機後內容消失。</p>
+</details>
+<details class="quiz">
+<summary>7. 某電腦的位址匯流排有 20 條線，每個記憶體位址存放 1 字節。最大可定址的記憶體有多大？</summary>
+<p>2²⁰ × 1 B = 1 048 576 B = <strong>1 MB</strong>。</p>
+</details>
+<details class="quiz">
+<summary>8. 把下列記憶體及儲存設備按數據存取速度由快至慢排列：RAM、硬碟、寄存器、SSD、快取記憶體。</summary>
+<p><strong>寄存器 &gt; 快取記憶體 &gt; RAM &gt; SSD &gt; 硬碟</strong>。速度越快，每單位容量的成本越高，容量通常越小〔改編自 2026 模擬試卷卷一甲第 16 題〕。</p>
+</details>
+<details class="quiz">
+<summary>9. 〔改編自 2025 模擬試卷卷一甲第 15 題〕某電腦有 16 GB RAM，硬碟內有一個 8 GB 和一個 32 GB 的影片檔案。電腦能否讀取 32 GB 檔案內的數據？</summary>
+<p><strong>能</strong>，兩個檔案的任何數據都可以讀取。程式毋須把整個檔案一次載入 RAM，可以按需要分段讀入，處理完再載入下一段。</p>
+</details>
+<details class="quiz">
+<summary>10. 某硬碟的群集大小是 4 KB。儲存 1000 個大小均為 9 KB 的檔案，共浪費多少儲存空間？</summary>
+<p>每個檔案佔 3 個群集（12 KB），浪費 3 KB。1000 個檔案共浪費 3000 KB ≈ <strong>2.93 MB</strong>。</p>
+</details>
+<details class="quiz">
+<summary>11. 〔改編自 2025 模擬試卷卷一甲第 11 題〕下列哪些是行車記錄儀的常見規格？(1) 802.11ac (2) 全高清 (3) 7200 rpm</summary>
+<p><strong>(1) 和 (2)</strong>。行車記錄儀可經 Wi-Fi 把影片傳到手機，並以全高清錄影。7200 rpm 是硬碟的轉速規格。</p>
+</details>
+<details class="quiz">
+<summary>12. 為以下情境各建議一種打印機，並說明理由：(a) 校務處每日列印數百份通告；(b) 小食部列印收據；(c) 美術科列印 A1 尺寸海報。</summary>
+<p>(a) 激光打印機：打印速度快，每頁成本較低。</p>
+<p>(b) 感熱式打印機：體積小、毋須墨水，適合列印小張收據。</p>
+<p>(c) 繪圖儀：可列印大面積的列印本。</p>
 </details></div><div class="lang-en" lang="en"><div class="pending"><div class="pending-icon">English</div><div class="pending-title">English version in preparation</div><p>This page is currently available in Chinese only. Switch to 中文 in the top bar to read it.</p></div></div><nav class="prevnext"><a class="pn pn-prev" href="../core-b/index.html"><span class="pn-dir"><span class="lang-zh">← 上一頁</span><span class="lang-en" lang="en">← Previous</span></span><span class="pn-title"><span class="lang-zh">單元 B：電腦系統基礎</span><span class="lang-en" lang="en">Module B: Computer System Fundamentals</span></span></a><a class="pn pn-next" href="../core-b/b.html"><span class="pn-dir"><span class="lang-zh">下一頁 →</span><span class="lang-en" lang="en">Next →</span></span><span class="pn-title"><span class="lang-zh">單元 B 課題 b：系統軟件</span><span class="lang-en" lang="en">Module B Topic b: System Software</span></span></a></nav>
     </article>
     <footer class="footer">

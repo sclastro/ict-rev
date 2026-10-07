@@ -289,3 +289,29 @@ Output: 4B 14, 4C 21 (4A averages 20 ÷ 3 ≈ 6.67, which does not qualify).
 
 "1" and "0" are in quotation marks, so they are text, not numbers, and SUM does not add text. Write `=IF(A2>=50,1,0)`.
 </details>
+
+<details><summary>5. The lower score limits of a grade table are in J2:J6 (0, 40, 55, 70, 85) and the grades are in K2:K6 (F, D, C, B, A). Write a formula in G2 to look up the grade for the score in F2. What is the result when F2 is 69?</summary>
+
+`=XLOOKUP(F2,$J$2:$J$6,$K$2:$K$6,,-1)`. Match mode −1 returns the next smaller value, 55, when 69 is not found, so the result is **C**. Use absolute references for the lookup and return ranges so that the formula can be copied down.
+</details>
+
+<details><summary>6. A2 stores a student's class and class number in the form "4B-23". Write formulas to extract the class and the class number.</summary>
+
+Class: `=LEFT(A2,2)`. Class number: `=RIGHT(A2,2)` or `=MID(A2,4,2)`. If class names vary in length, write `=MID(A2,FIND("-",A2)+1,2)`.
+</details>
+
+<details><summary>7. Using the LOAN table in Section 4.10, write down the output of: `SELECT SID, SUM(DAYS) FROM LOAN WHERE CLASS = '4A' GROUP BY SID`</summary>
+
+First select the three records of class 4A, then group them by SID:
+
+S01 10 (7 + 3)
+
+S03 10
+</details>
+
+<details><summary>8. Using the LOAN table, write an SQL statement to list the book numbers that have been borrowed more than once.</summary>
+
+`SELECT BOOK FROM LOAN GROUP BY BOOK HAVING COUNT(*) > 1`
+
+Output: B12. The condition is about the count after grouping, so use HAVING, not WHERE.
+</details>

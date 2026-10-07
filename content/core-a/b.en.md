@@ -135,10 +135,9 @@ Basic operations are adding, viewing, modifying and deleting records; the main f
 | Mode | Typical medium | Characteristics |
 |---|---|---|
 | Sequential access | Magnetic tape | Must be read in order from the start; long and unpredictable seek time; low cost, suited to backup |
-| Direct access | Hard disk, optical disc | The read/write head moves straight to the target location; short and predictable seek time |
-| Random access | Solid-state drive (SSD) | Any location can be reached almost instantly; fixed and very short seek time |
+| Direct access (also called random access) | Hard disk, optical disc, solid-state drive (SSD), flash memory card | The target location can be reached directly; short seek time |
 
-The C&A Guide asks you to compare **direct access** with **sequential access**; the textbook additionally classifies SSDs as random access.
+The C&A Guide asks you to compare **direct access** with **sequential access**. The HKEAA classifies hard disks, optical discs and flash memory as direct access [2012 Practice Paper P1A Q14]; among common media, only magnetic tape uses sequential access. See Section 1.10 of [Module B Topic a](../core-b/a.html).
 
 ## 2.11 Self-test
 
@@ -155,4 +154,21 @@ Format check (must be DD/MM/YYYY); range check (the year must be within a sensib
 <details><summary>3. A library table LOAN records every loan (fields: student number, book number, loan date). Why may "student number + book number" be unsuitable as the primary key?</summary>
 
 A student may borrow the same book again on another day, so two records would have the same "student number + book number". Add the loan date: "student number + book number + loan date".
+</details>
+
+<details><summary>4. Use the membership number rule in Section 2.4 (multiply the first four digits by the weights 4, 3, 2, 1, add the products and take the remainder after dividing by 10). (a) Check whether 2604-0 is valid. (b) Give an example to show one limitation of this check digit.</summary>
+
+(a) 2×4 + 6×3 + 0×2 + 4×1 = 8 + 18 + 0 + 4 = 30, and 30 mod 10 = 0. This matches the check digit, so the number is **valid**.
+
+(b) Different numbers can give the same check digit. For example, 2654: 2×4 + 6×3 + 5×2 + 4×1 = 40, and 40 mod 10 = 0. If 2604 is mistyped as 2654, the check digit is still 0 and the error cannot be detected.
+</details>
+
+<details><summary>5. A clerk types a student's year of birth, 2008, as 2009. Which can detect this error: a range check (2000 to 2015) or entering the data twice? Why?</summary>
+
+**Entering the data twice** can detect it: the two entries differ, so the computer gives a warning. The range check cannot, because 2009 is still within the range. Validation only ensures that data is reasonable, not that it is correct.
+</details>
+
+<details><summary>6. 1011 0010 0 is sent with even parity, and 1001 0110 0 is received. Can the receiver detect the error? Why?</summary>
+
+**No.** Two bits are wrong at the same time. The received 1001 0110 0 still has four 1s, which passes the even parity check. A parity check cannot detect an even number of bit errors.
 </details>

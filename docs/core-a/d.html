@@ -691,6 +691,25 @@ ORDER BY 排序欄位 [ASC | DESC]
 <details class="quiz">
 <summary>4. 某同學寫 =IF(A2&gt;=50,"1","0")，再以 =SUM(B2:B30) 計算合格人數，結果是 0。為甚麼？</summary>
 <p>"1" 和 "0" 加了引號，是文字而不是數值，SUM 不會把文字相加。應寫 <code>=IF(A2&gt;=50,1,0)</code>。</p>
+</details>
+<details class="quiz">
+<summary>5. 等級表的分數下限在 J2:J6（0、40、55、70、85），對應等級在 K2:K6（F、D、C、B、A）。寫出在 G2 按 F2 的分數查等級的公式。F2 是 69 時結果是甚麼？</summary>
+<p><code>=XLOOKUP(F2,$J$2:$J$6,$K$2:$K$6,,-1)</code>。比對模式 −1 在找不到 69 時取較小的最接近值 55，所以結果是 <strong>C</strong>。查找範圍和傳回範圍要用絕對參照，方便複製到下方。</p>
+</details>
+<details class="quiz">
+<summary>6. A2 儲存學生的班別及學號，格式為「4B-23」。寫出公式分別取出班別和學號。</summary>
+<p>班別：<code>=LEFT(A2,2)</code>。學號：<code>=RIGHT(A2,2)</code> 或 <code>=MID(A2,4,2)</code>。若班別長度不一，可寫 <code>=MID(A2,FIND("-",A2)+1,2)</code>。</p>
+</details>
+<details class="quiz">
+<summary>7. 根據 4.10 節的 LOAN 表，寫出以下 SQL 的輸出：`SELECT SID, SUM(DAYS) FROM LOAN WHERE CLASS = '4A' GROUP BY SID`</summary>
+<p>先篩選 4A 班的三個記錄，再按 SID 分組：</p>
+<p>S01 10（7 + 3）</p>
+<p>S03 10</p>
+</details>
+<details class="quiz">
+<summary>8. 根據 LOAN 表，寫出 SQL 列出被借出多於一次的書本編號。</summary>
+<p><code>SELECT BOOK FROM LOAN GROUP BY BOOK HAVING COUNT(*) &gt; 1</code></p>
+<p>輸出：B12。條件涉及分組後的數目，所以用 HAVING，不能用 WHERE。</p>
 </details></div><div class="lang-en prose" lang="en"><h2 id="en-41-learning-outcomes"><span class="sec-num">4.1</span><span class="sec-title">Learning outcomes</span></h2>
 <p><strong>Spreadsheets</strong>: use cell references, functions, and mathematical, logical and relational operators in formulas; filter, search and sort data using single or multiple criteria; manipulate data across multiple worksheets; use pivot tables, pivot charts and "what-if" scenarios to analyse data, identify trends and make informed judgements.</p>
 <p><strong>Databases</strong>: create and maintain a simple database with a DBMS; create and use a form for data entry; select, filter and sort data using queries on a <strong>single database table</strong>; trace and interpret simple SQL statements; create and format reports for intended users.</p>
@@ -1244,6 +1263,25 @@ Output: 4B 14, 4C 21 (4A averages 20 ÷ 3 ≈ 6.67, which does not qualify).</p>
 <details class="quiz">
 <summary>4. A student writes =IF(A2&gt;=50,"1","0") and then counts the passes with =SUM(B2:B30), but gets 0. Why?</summary>
 <p>"1" and "0" are in quotation marks, so they are text, not numbers, and SUM does not add text. Write <code>=IF(A2&gt;=50,1,0)</code>.</p>
+</details>
+<details class="quiz">
+<summary>5. The lower score limits of a grade table are in J2:J6 (0, 40, 55, 70, 85) and the grades are in K2:K6 (F, D, C, B, A). Write a formula in G2 to look up the grade for the score in F2. What is the result when F2 is 69?</summary>
+<p><code>=XLOOKUP(F2,$J$2:$J$6,$K$2:$K$6,,-1)</code>. Match mode −1 returns the next smaller value, 55, when 69 is not found, so the result is <strong>C</strong>. Use absolute references for the lookup and return ranges so that the formula can be copied down.</p>
+</details>
+<details class="quiz">
+<summary>6. A2 stores a student's class and class number in the form "4B-23". Write formulas to extract the class and the class number.</summary>
+<p>Class: <code>=LEFT(A2,2)</code>. Class number: <code>=RIGHT(A2,2)</code> or <code>=MID(A2,4,2)</code>. If class names vary in length, write <code>=MID(A2,FIND("-",A2)+1,2)</code>.</p>
+</details>
+<details class="quiz">
+<summary>7. Using the LOAN table in Section 4.10, write down the output of: `SELECT SID, SUM(DAYS) FROM LOAN WHERE CLASS = '4A' GROUP BY SID`</summary>
+<p>First select the three records of class 4A, then group them by SID:</p>
+<p>S01 10 (7 + 3)</p>
+<p>S03 10</p>
+</details>
+<details class="quiz">
+<summary>8. Using the LOAN table, write an SQL statement to list the book numbers that have been borrowed more than once.</summary>
+<p><code>SELECT BOOK FROM LOAN GROUP BY BOOK HAVING COUNT(*) &gt; 1</code></p>
+<p>Output: B12. The condition is about the count after grouping, so use HAVING, not WHERE.</p>
 </details></div><nav class="prevnext"><a class="pn pn-prev" href="../core-a/c.html"><span class="pn-dir"><span class="lang-zh">← 上一頁</span><span class="lang-en" lang="en">← Previous</span></span><span class="pn-title"><span class="lang-zh">單元 A 課題 c：數據表示</span><span class="lang-en" lang="en">Module A Topic c: Data Representation</span></span></a><a class="pn pn-next" href="../core-b/index.html"><span class="pn-dir"><span class="lang-zh">下一頁 →</span><span class="lang-en" lang="en">Next →</span></span><span class="pn-title"><span class="lang-zh">單元 B：電腦系統基礎</span><span class="lang-en" lang="en">Module B: Computer System Fundamentals</span></span></a></nav>
     </article>
     <footer class="footer">

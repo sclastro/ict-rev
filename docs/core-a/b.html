@@ -392,18 +392,13 @@
 <td>必須由頭依次讀取；尋找時間長而且難以預計；成本低，適合備份</td>
 </tr>
 <tr>
-<td>直接存取（direct）</td>
-<td>硬碟、光碟</td>
-<td>讀寫頭直接移到目標位置；尋找時間短而且可預計</td>
-</tr>
-<tr>
-<td>隨機存取（random）</td>
-<td>固態硬碟（SSD）</td>
-<td>任何位置幾乎即時存取；尋找時間固定而且極短</td>
+<td>直接存取（direct，又稱隨機存取）</td>
+<td>硬碟、光碟、固態硬碟（SSD）、快閃記憶卡</td>
+<td>可直接到達目標位置；尋找時間短</td>
 </tr>
 </tbody>
 </table>
-</div><p>課程文件要求比較<strong>直接存取</strong>與<strong>順序存取</strong>；課本另把 SSD 列為隨機存取。</p>
+</div><p>課程文件要求比較<strong>直接存取</strong>與<strong>順序存取</strong>。考評局把硬碟、光碟和快閃記憶體都歸入直接存取〔2012 練習卷卷一甲第 14 題〕；常見媒體中只有磁帶屬順序存取。詳見<a href="../core-b/a.html">單元 B 課題 a</a> 的 1.10 節。</p>
 <h2 id="211-自我檢測"><span class="sec-num">2.11</span><span class="sec-title">自我檢測</span></h2>
 <details class="quiz">
 <summary>1. 數據 0110 1110 以奇檢測傳送，檢驗位應是甚麼？</summary>
@@ -416,6 +411,19 @@
 <details class="quiz">
 <summary>3. 圖書館數據表 LOAN 記錄每次借書（欄位：學生編號、書本編號、借出日期）。為甚麼「學生編號 + 書本編號」不一定適合作主關鍵碼？</summary>
 <p>同一學生可以在不同日子再借同一本書，兩個記錄的「學生編號 + 書本編號」會重複。應加入借出日期，組成「學生編號 + 書本編號 + 借出日期」。</p>
+</details>
+<details class="quiz">
+<summary>4. 沿用 2.4 節的會員編號規則（首四位數字按權重 4、3、2、1 相乘後相加，取除以 10 的餘數）。(a) 驗證 2604-0 是否有效。(b) 舉例說明這個檢查數位的一項局限。</summary>
+<p>(a) 2×4 + 6×3 + 0×2 + 4×1 = 8 + 18 + 0 + 4 = 30，30 mod 10 = 0，與檢查數位相同，所以<strong>有效</strong>。</p>
+<p>(b) 不同的編號可能得出相同的檢查數位。例如 2654：2×4 + 6×3 + 5×2 + 4×1 = 40，40 mod 10 = 0。若把 2604 誤輸為 2654，檢查數位仍是 0，錯誤無法偵測。</p>
+</details>
+<details class="quiz">
+<summary>5. 職員把學生的出生年份 2008 誤輸為 2009。範圍檢查（2000 至 2015）和「輸入數據兩次」，哪一個可以發現這個錯誤？為甚麼？</summary>
+<p><strong>輸入數據兩次</strong>可以發現：兩次輸入的結果不同，電腦便會提示。範圍檢查不能發現，因為 2009 仍在合理範圍內。有效性檢驗只保證數據合理，不保證數據正確。</p>
+</details>
+<details class="quiz">
+<summary>6. 以偶檢測傳送 1011 0010 0，收到 1001 0110 0。接收方能否發現錯誤？為甚麼？</summary>
+<p><strong>不能</strong>。有兩個位元同時出錯，收到的 1001 0110 0 仍有四個「1」，符合偶檢測，所以無法發現。奇偶檢測不能偵測偶數個位元同時出錯。</p>
 </details></div><div class="lang-en prose" lang="en"><h2 id="en-21-learning-outcomes"><span class="sec-num">2.1</span><span class="sec-title">Learning outcomes</span></h2>
 <p>Identify data, records, fields, files and databases in the hierarchical organisation of data; explain how records can be organised, stored and retrieved, and compare direct access with sequential access; discuss the need for data control; describe how errors can be detected by validation and parity checking, and prevented by verification and validation.</p>
 <h2 id="en-22-why-data-control-is-needed"><span class="sec-num">2.2</span><span class="sec-title">Why data control is needed</span></h2>
@@ -670,18 +678,13 @@
 <td>Must be read in order from the start; long and unpredictable seek time; low cost, suited to backup</td>
 </tr>
 <tr>
-<td>Direct access</td>
-<td>Hard disk, optical disc</td>
-<td>The read/write head moves straight to the target location; short and predictable seek time</td>
-</tr>
-<tr>
-<td>Random access</td>
-<td>Solid-state drive (SSD)</td>
-<td>Any location can be reached almost instantly; fixed and very short seek time</td>
+<td>Direct access (also called random access)</td>
+<td>Hard disk, optical disc, solid-state drive (SSD), flash memory card</td>
+<td>The target location can be reached directly; short seek time</td>
 </tr>
 </tbody>
 </table>
-</div><p>The C&amp;A Guide asks you to compare <strong>direct access</strong> with <strong>sequential access</strong>; the textbook additionally classifies SSDs as random access.</p>
+</div><p>The C&amp;A Guide asks you to compare <strong>direct access</strong> with <strong>sequential access</strong>. The HKEAA classifies hard disks, optical discs and flash memory as direct access [2012 Practice Paper P1A Q14]; among common media, only magnetic tape uses sequential access. See Section 1.10 of <a href="../core-b/a.html">Module B Topic a</a>.</p>
 <h2 id="en-211-self-test"><span class="sec-num">2.11</span><span class="sec-title">Self-test</span></h2>
 <details class="quiz">
 <summary>1. The data 0110 1110 is sent with odd parity. What is the parity bit?</summary>
@@ -694,6 +697,19 @@
 <details class="quiz">
 <summary>3. A library table LOAN records every loan (fields: student number, book number, loan date). Why may "student number + book number" be unsuitable as the primary key?</summary>
 <p>A student may borrow the same book again on another day, so two records would have the same "student number + book number". Add the loan date: "student number + book number + loan date".</p>
+</details>
+<details class="quiz">
+<summary>4. Use the membership number rule in Section 2.4 (multiply the first four digits by the weights 4, 3, 2, 1, add the products and take the remainder after dividing by 10). (a) Check whether 2604-0 is valid. (b) Give an example to show one limitation of this check digit.</summary>
+<p>(a) 2×4 + 6×3 + 0×2 + 4×1 = 8 + 18 + 0 + 4 = 30, and 30 mod 10 = 0. This matches the check digit, so the number is <strong>valid</strong>.</p>
+<p>(b) Different numbers can give the same check digit. For example, 2654: 2×4 + 6×3 + 5×2 + 4×1 = 40, and 40 mod 10 = 0. If 2604 is mistyped as 2654, the check digit is still 0 and the error cannot be detected.</p>
+</details>
+<details class="quiz">
+<summary>5. A clerk types a student's year of birth, 2008, as 2009. Which can detect this error: a range check (2000 to 2015) or entering the data twice? Why?</summary>
+<p><strong>Entering the data twice</strong> can detect it: the two entries differ, so the computer gives a warning. The range check cannot, because 2009 is still within the range. Validation only ensures that data is reasonable, not that it is correct.</p>
+</details>
+<details class="quiz">
+<summary>6. 1011 0010 0 is sent with even parity, and 1001 0110 0 is received. Can the receiver detect the error? Why?</summary>
+<p><strong>No.</strong> Two bits are wrong at the same time. The received 1001 0110 0 still has four 1s, which passes the even parity check. A parity check cannot detect an even number of bit errors.</p>
 </details></div><nav class="prevnext"><a class="pn pn-prev" href="../core-a/a.html"><span class="pn-dir"><span class="lang-zh">← 上一頁</span><span class="lang-en" lang="en">← Previous</span></span><span class="pn-title"><span class="lang-zh">單元 A 課題 a：資訊處理簡介</span><span class="lang-en" lang="en">Module A Topic a: Introduction to Information Processing</span></span></a><a class="pn pn-next" href="../core-a/c.html"><span class="pn-dir"><span class="lang-zh">下一頁 →</span><span class="lang-en" lang="en">Next →</span></span><span class="pn-title"><span class="lang-zh">單元 A 課題 c：數據表示</span><span class="lang-en" lang="en">Module A Topic c: Data Representation</span></span></a></nav>
     </article>
     <footer class="footer">
