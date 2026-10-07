@@ -499,7 +499,368 @@
 <details class="quiz">
 <summary>8. 為長者設計社區中心網站，寫出三項設計上的考慮。</summary>
 <p>較大的字體並提供調整字體大小的選項；文字與背景要有足夠對比；導覽簡單一致，選單位置固定；重要功能放在顯眼位置。（任何三項）</p>
-</details></div><div class="lang-en" lang="en"><div class="pending"><div class="pending-icon">English</div><div class="pending-title">English version in preparation</div><p>This page is currently available in Chinese only. Switch to 中文 in the top bar to read it.</p></div></div><nav class="prevnext"><a class="pn pn-prev" href="../core-c/b.html"><span class="pn-dir"><span class="lang-zh">← 上一頁</span><span class="lang-en" lang="en">← Previous</span></span><span class="pn-title"><span class="lang-zh">單元 C 課題 b：互聯網服務及應用</span><span class="lang-en" lang="en">Module C Topic b: Internet Services and Applications</span></span></a><a class="pn pn-next" href="../core-c/d.html"><span class="pn-dir"><span class="lang-zh">下一頁 →</span><span class="lang-en" lang="en">Next →</span></span><span class="pn-title"><span class="lang-zh">單元 C 課題 d：網上威脅及保安</span><span class="lang-en" lang="en">Module C Topic d: Threats and Security on the Internet</span></span></a></nav>
+</details></div><div class="lang-en prose" lang="en"><h2 id="en-31-curriculum-requirements"><span class="sec-num">3.1</span><span class="sec-title">Curriculum requirements</span></h2>
+<p>Recognise the basic constructs of Hypertext Markup Language (HTML), which is a means to address cross-platform issues; discuss the organisation of web pages for an intended audience and upload them onto the World Wide Web. The organisation of information in web pages includes ease of navigation, appropriate placement of links, tables, frames and multimedia elements, colour combinations, background design, and font size and style. Students are not required to memorise HTML codes, but they should be able to read common tags and analyse web page designs in context.</p>
+<h2 id="en-32-features-of-html"><span class="sec-num">3.2</span><span class="sec-title">Features of HTML</span></h2>
+<p><strong>HTML (Hypertext Markup Language)</strong> uses <strong>tags</strong> to describe the structure and content of a web page, such as where the headings, paragraphs, images and hyperlinks are. "Hypertext" means text that links to other documents.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Markup language</td>
+<td>HTML only describes the structure of content; it has no logic such as calculation, decision or repetition, so it is <strong>not a programming language</strong></td>
+</tr>
+<tr>
+<td>Plain text</td>
+<td>An HTML file consists of plain text and can be opened and edited with any text editor</td>
+</tr>
+<tr>
+<td>Cross-platform</td>
+<td>It uses standardised tags, so browsers on different operating systems and devices can interpret and display it</td>
+</tr>
+<tr>
+<td>Multimedia and formatting</td>
+<td>Images, audio, video, hyperlinks and tables can be added, and text can be formatted</td>
+</tr>
+</tbody>
+</table>
+</div><blockquote class="callout callout-warn">
+<p>⚠ <strong>[2025 P1A Q22] Which of the following statements about HTML are correct? (1) It is a programming language. (2) An HTML file consists of plain text. (3) It is cross-platform.</strong></p>
+<p>✔ <strong>(2) and (3)</strong>; only 38% of candidates answered correctly. HTML is a markup language, not a programming language.</p>
+</blockquote>
+<p>TXT files are also cross-platform, so when comparing HTML with TXT, the advantages of HTML to write are "supports multimedia and hyperlinks" and "allows text formatting", not "cross-platform".</p>
+<p>Three technologies for building web pages:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Technology</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HTML</td>
+<td>Content and structure of the web page</td>
+</tr>
+<tr>
+<td>CSS</td>
+<td>Appearance of the web page, such as colours, fonts and layout</td>
+</tr>
+<tr>
+<td>JavaScript</td>
+<td>Interactive functions, such as checking form input (covered in Elective B)</td>
+</tr>
+</tbody>
+</table>
+</div><h2 id="en-33-basic-structure-of-an-html-document"><span class="sec-num">3.3</span><span class="sec-title">Basic structure of an HTML document</span></h2>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;title&gt;Heung Shing College&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!-- Page content starts here --&gt;
+  &lt;h1&gt;Welcome&lt;/h1&gt;
+  &lt;p&gt;Our school was founded in &lt;b&gt;1975&lt;/b&gt;.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;!DOCTYPE html&gt;</code></td>
+<td>Tells the browser that this is an HTML5 document so that it displays the page correctly</td>
+</tr>
+<tr>
+<td><code>&lt;html lang="en"&gt;</code></td>
+<td>The root element of the document; the <code>lang</code> attribute states the language of the page, which helps screen readers and search engines</td>
+</tr>
+<tr>
+<td><code>&lt;head&gt;</code></td>
+<td>Holds information about the page that is not shown in the page content, such as <code>&lt;meta&gt;</code> (metadata such as the character set) and <code>&lt;title&gt;</code> (the title on the browser tab)</td>
+</tr>
+<tr>
+<td><code>&lt;body&gt;</code></td>
+<td>The content displayed on the page</td>
+</tr>
+<tr>
+<td><code>&lt;!-- --&gt;</code></td>
+<td>A comment, not displayed by the browser</td>
+</tr>
+</tbody>
+</table>
+</div><p><strong>Rules for tags and attributes</strong></p>
+<ul>
+<li>Most tags come in pairs, such as <code>&lt;p&gt;</code> and <code>&lt;/p&gt;</code>; a few have no end tag, such as <code>&lt;br&gt;</code>, <code>&lt;img&gt;</code> and <code>&lt;hr&gt;</code>.</li>
+<li><strong>Attributes</strong> are written in the start tag to give extra information, such as <code>&lt;img src="logo.png" width="200"&gt;</code>. A tag can have no attributes, and the order of attributes does not affect the display.</li>
+<li>Tag names are not case-sensitive: <code>&lt;P&gt;</code> and <code>&lt;p&gt;</code> have the same effect.</li>
+<li>Tags can be nested but must be closed in order: <code>&lt;b&gt;&lt;i&gt;text&lt;/i&gt;&lt;/b&gt;</code> and <code>&lt;i&gt;&lt;b&gt;text&lt;/b&gt;&lt;/i&gt;</code> display the same result.</li>
+</ul>
+<h2 id="en-34-common-tags"><span class="sec-num">3.4</span><span class="sec-title">Common tags</span></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Tag</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code></td>
+<td>Headings; <code>&lt;h1&gt;</code> is the largest</td>
+</tr>
+<tr>
+<td><code>&lt;p&gt;</code></td>
+<td>Paragraph</td>
+</tr>
+<tr>
+<td><code>&lt;br&gt;</code></td>
+<td>Line break</td>
+</tr>
+<tr>
+<td><code>&lt;b&gt;</code>, <code>&lt;i&gt;</code>, <code>&lt;u&gt;</code></td>
+<td>Bold, italic, underline</td>
+</tr>
+<tr>
+<td><code>&lt;strong&gt;</code>, <code>&lt;em&gt;</code></td>
+<td>Emphasis (usually shown as bold and italic)</td>
+</tr>
+<tr>
+<td><code>&lt;sup&gt;</code>, <code>&lt;sub&gt;</code>, <code>&lt;small&gt;</code></td>
+<td>Superscript, subscript, smaller text</td>
+</tr>
+<tr>
+<td><code>&lt;hr&gt;</code></td>
+<td>Horizontal line</td>
+</tr>
+<tr>
+<td><code>&lt;div&gt;</code></td>
+<td>Divides content into blocks for layout</td>
+</tr>
+<tr>
+<td><code>&lt;img&gt;</code></td>
+<td>Image</td>
+</tr>
+<tr>
+<td><code>&lt;a href="..."&gt;</code></td>
+<td>Hyperlink</td>
+</tr>
+<tr>
+<td><code>&lt;ul&gt;</code>, <code>&lt;ol&gt;</code>, <code>&lt;li&gt;</code></td>
+<td>Unordered list, ordered list, list item</td>
+</tr>
+<tr>
+<td><code>&lt;table&gt;</code>, <code>&lt;tr&gt;</code>, <code>&lt;th&gt;</code>, <code>&lt;td&gt;</code></td>
+<td>Table, row, header cell, data cell</td>
+</tr>
+<tr>
+<td><code>&lt;audio&gt;</code>, <code>&lt;video&gt;</code></td>
+<td>Audio and video (HTML5); the <code>controls</code> attribute shows playback controls</td>
+</tr>
+<tr>
+<td><code>&lt;iframe&gt;</code></td>
+<td>Embeds another web page or content in the page, such as a map or a video</td>
+</tr>
+</tbody>
+</table>
+</div><p>The old <code>&lt;frameset&gt;</code> frames are no longer used; layouts are now built with <code>&lt;div&gt;</code> and CSS, or with <code>&lt;iframe&gt;</code>.</p>
+<p><strong>Code-reading practice</strong></p>
+<pre><code class="language-html">&lt;table border=&quot;1&quot;&gt;
+  &lt;tr&gt;&lt;th&gt;Class&lt;/th&gt;&lt;th&gt;Students&lt;/th&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;5A&lt;/td&gt;&lt;td&gt;32&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;a href=&quot;notice.pdf&quot;&gt;Download notice&lt;/a&gt;
+&lt;img src=&quot;images/hall.jpg&quot; width=&quot;400&quot; height=&quot;300&quot; alt=&quot;School hall&quot;&gt;
+</code></pre>
+<p>This code displays a bordered table with two rows and two columns, the first row being the header; a hyperlink to <code>notice.pdf</code>; and <code>hall.jpg</code> from the <code>images</code> folder, displayed at 400 × 300 pixels, with the alternative text "School hall" shown if the image cannot be displayed.</p>
+<h2 id="en-35-images-on-web-pages"><span class="sec-num">3.5</span><span class="sec-title">Images on web pages</span></h2>
+<p>Common attributes of <code>&lt;img&gt;</code>:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>src</code></td>
+<td>Location of the image file (required)</td>
+</tr>
+<tr>
+<td><code>width</code>, <code>height</code></td>
+<td>Displayed width and height</td>
+</tr>
+<tr>
+<td><code>alt</code></td>
+<td>Alternative text</td>
+</tr>
+</tbody>
+</table>
+</div><p><strong>Display size and file size</strong></p>
+<p>Changing <code>width</code> and <code>height</code> in HTML changes only the <strong>display size</strong> of the image in the browser. The browser still downloads the original image file, so the file size and download time stay the same. To shorten the download time, use image editing software to reduce the resolution or raise the compression ratio, and save the image as a new file.</p>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2025 P1B 4(a)] Mary's company web site shows a photo with an original resolution of 800 × 600. She changes the HTML code to make the displayed size 400 × 200. (i) Will the download time of the photo be shorter? (ii) Will the photo displayed be distorted?</strong></p>
+<p>✔ (i) No, the same photo file will be downloaded.</p>
+<p>✔ (ii) Yes, because the aspect ratio has been changed from 4:3 to 2:1.</p>
+<p>✘ Performance was poor. The HKEAA found that candidates could not distinguish display size from file size, and only a few could describe the effect of changing the aspect ratio.</p>
+</blockquote>
+<p>To keep the aspect ratio, change one side and calculate the other in proportion. For example, if a 1024 × 768 image is to be displayed 500 pixels wide, its height should be 768 × 500 ÷ 1024 = <strong>375</strong> pixels.</p>
+<p><strong>Roles of alternative text (alt)</strong></p>
+<ul>
+<li>Shows text describing the image when the image cannot be displayed.</li>
+<li>Screen readers read it to visually impaired users, improving accessibility.</li>
+<li>Helps search engines understand the image, which benefits search ranking.</li>
+</ul>
+<p><strong>Reasons an image is not displayed</strong></p>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2025 P1A Q23] A web page cannot display an image in a browser. What is/are the possible reason(s) for this? (1) The resolution of the image is lower than that of the screen display. (2) The image file is stored in the wrong directory. (3) The operating system of the web server is different from that of the browser.</strong></p>
+<p>✔ <strong>(2) only</strong> (58% correct). Resolution does not affect whether the image can be shown; HTML is cross-platform, so different operating systems do not matter.</p>
+</blockquote>
+<p>Other reasons: the file name or path in <code>src</code> is misspelt; <code>src</code> points to a local path (such as <code>C:\photos\a.jpg</code>) that other computers cannot find after uploading; the image file was not uploaded or has been deleted; the server storing the image is down; the file format is not supported by the browser.</p>
+<h2 id="en-36-hyperlinks-and-paths"><span class="sec-num">3.6</span><span class="sec-title">Hyperlinks and paths</span></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Form</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Absolute URL</td>
+<td><code>&lt;a href="https://www.edb.gov.hk/"&gt;</code></td>
+<td>Links to a resource on another web site</td>
+</tr>
+<tr>
+<td>Relative path</td>
+<td><code>&lt;a href="info/notice.html"&gt;</code></td>
+<td>Links to a file on the same web site, starting from the folder of the current page</td>
+</tr>
+<tr>
+<td>Same-page location</td>
+<td><code>&lt;a href="#contact"&gt;</code></td>
+<td>Jumps to the element with <code>id="contact"</code> on the same page</td>
+</tr>
+<tr>
+<td>Email</td>
+<td><code>&lt;a href="mailto:info@abc.edu.hk"&gt;</code></td>
+<td>Opens the email program with the recipient filled in</td>
+</tr>
+</tbody>
+</table>
+</div><p>Use relative paths for files on the same web site: the addresses are shorter, and the links need no change if the site moves to another domain or server. Absolute URLs are needed only for resources of other organisations.</p>
+<p><strong>Files downloaded when a page is opened</strong></p>
+<p>When a page is opened, the browser downloads the HTML file and the images, audio and video displayed directly on the page; HTML only refers to the multimedia files and does not store them inside the HTML file. Files behind hyperlinks and <code>mailto</code> links are downloaded or opened only when the user clicks them. If the same image comes from two different URLs, the browser treats them as two files and downloads both.</p>
+<h2 id="en-37-organisation-of-web-pages"><span class="sec-num">3.7</span><span class="sec-title">Organisation of web pages</span></h2>
+<p>Web design starts with the <strong>intended audience</strong>: elderly users need larger fonts and simple navigation, while a children's site may use more pictures and bright colours.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Design points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Navigation</td>
+<td>A navigation menu in the same position on every page; hierarchical menus; a site map (showing the structure of the whole site); breadcrumb navigation (showing the current location and making it easy to go back up); a search function</td>
+</tr>
+<tr>
+<td>Links</td>
+<td>Placed in prominent and consistent positions, with link text that clearly describes the destination</td>
+</tr>
+<tr>
+<td>Layout</td>
+<td>Common frames are the header (logo, menu), navigation area, main content and footer (copyright, contact information, privacy policy); tables organise data</td>
+</tr>
+<tr>
+<td>Multimedia</td>
+<td>Keep file sizes small to avoid slow loading; avoid auto-playing sound; provide playback controls</td>
+</tr>
+<tr>
+<td>Colour and background</td>
+<td>Enough contrast between text and background; simple backgrounds that do not hinder reading; consistent colour scheme across the site</td>
+</tr>
+<tr>
+<td>Font</td>
+<td>Suitable size, legible style, consistent across the site</td>
+</tr>
+<tr>
+<td>Accessibility</td>
+<td>Alternative text for images; options to change font size and language</td>
+</tr>
+<tr>
+<td>Responsive design</td>
+<td>The layout adjusts automatically to the screen size so that the site is easy to use on phones, tablets and computers</td>
+</tr>
+</tbody>
+</table>
+</div><p>[2024 P1A Q26] When developing a web site for friends to browse, Greg should be concerned about the file sizes of multimedia elements and the user-friendliness of the web pages; the storage capacity of his friends' computers is irrelevant (76% correct).</p>
+<p><strong>Input interfaces</strong></p>
+<p>Using drop-down lists, radio buttons or check boxes instead of text boxes reduces input time and input errors and keeps the input format consistent. [adapted from 2025 Mock P1A Q25] Using check boxes for users to choose their hobbies reduces input time, reduces the chance of input errors and allows multiple choices.</p>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2024 P1B 3(d)(i)] Ada develops an online system for students to view examination papers in PDF format; students input a subject and a year to select a past paper. Redesign the layout of the web page to improve the user-friendliness of selecting a past paper, navigating PDF documents and viewing PDF documents. Annotate your design.</strong></p>
+<p>✔ Selecting: drop-down menus for subject and year. Navigating: page navigation, thumbnails or a search feature. Viewing: zoom in/out or a full-screen feature.</p>
+<p>✘ Keeping the original vertical navigation bar earned no mark. The HKEAA noted that some candidates mixed up "navigating" (moving between pages) and "viewing" (seeing the content clearly).</p>
+</blockquote>
+<h2 id="en-38-uploading-web-pages-to-the-world-wide-web"><span class="sec-num">3.8</span><span class="sec-title">Uploading web pages to the World Wide Web</span></h2>
+<ol>
+<li><strong>Create the web pages</strong>: complete the HTML files and the images and multimedia files needed; the home page is usually named <code>index.html</code>.</li>
+<li><strong>Choose a web hosting service</strong>: rent server space from a web hosting provider, or set up a web server.</li>
+<li><strong>Register a domain name</strong>: and create a DNS record pointing the domain name to the IP address of the web server.</li>
+<li><strong>Upload the files</strong>: with an FTP client (which needs the server address, user name and password; SFTP encrypts the transfer) or the hosting service's control panel.</li>
+<li><strong>Test</strong>: check for broken links and test with different browsers and devices.</li>
+</ol>
+<p>To use HTTPS, the site also needs a digital certificate from a certification authority; see section 4.12 of <a href="d.html">Topic d</a>.</p>
+<p>Entering <code>https://www.floraworld.com.hk/</code> and <code>https://www.floraworld.com.hk/index.html</code> shows the same page because the web server has set <code>index.html</code> as the default page of that folder.</p>
+<p>If hyperlinks work when tested locally but fail after uploading, possible reasons are: the links use absolute local paths; some files were not uploaded; the letter case of file names on the server differs from the links.</p>
+<h2 id="en-39-self-test"><span class="sec-num">3.9</span><span class="sec-title">Self-test</span></h2>
+<details class="quiz">
+<summary>1. Someone says, "HTML is a programming language, so it can only be used on Windows." Point out two mistakes.</summary>
+<p>HTML is a markup language, not a programming language; it has no logic such as calculation or decision. An HTML file is plain text with standardised tags, so it is cross-platform and can be displayed by browsers on different operating systems.</p>
+</details>
+<details class="quiz">
+<summary>2. Comparing HTML with TXT, give two reasons for using HTML to create web pages.</summary>
+<p>HTML supports multimedia elements such as images and audio, and hyperlinks; HTML allows text formatting and layout. Do not write "cross-platform", because TXT is also cross-platform.</p>
+</details>
+<details class="quiz">
+<summary>3. Name two common tags in the &lt;head&gt; section and state their roles.</summary>
+<p><code>&lt;title&gt;</code>: sets the title shown on the browser tab. <code>&lt;meta&gt;</code>: provides metadata about the page, such as the character set UTF-8.</p>
+</details>
+<details class="quiz">
+<summary>4. A 1200 × 900 photo on a web page is given width="300" height="225" in HTML. (a) Will the download time be shorter? (b) Will the photo be distorted?</summary>
+<p>(a) No. The browser still downloads the original 1200 × 900 file and only displays it smaller. (b) No. Both 1200 : 900 and 300 : 225 are 4 : 3, so the aspect ratio is unchanged.</p>
+</details>
+<details class="quiz">
+<summary>5. Give two roles of alternative text.</summary>
+<p>It describes the image in text when the image cannot be displayed; screen readers can read it aloud for visually impaired users; it helps search engines understand the image. (Any two)</p>
+</details>
+<details class="quiz">
+<summary>6. A web page shows a logo with &lt;img src="C:\photos\logo.png"&gt;. It works on the designer's computer, but others cannot see it after uploading. Why? How should it be fixed?</summary>
+<p><code>src</code> points to a local path on the designer's computer, and other computers do not have this file. Upload the image to the web server as well and use a relative path, such as <code>src="images/logo.png"</code>.</p>
+</details>
+<details class="quiz">
+<summary>7. A web page has two identical images from different URLs, a link that plays song.mp3 only when clicked, and a mailto link. At least how many files does the browser download when the page is opened?</summary>
+<p><strong>3</strong>: the HTML file and the two image files. song.mp3 is downloaded only when clicked; a mailto link involves no download.</p>
+</details>
+<details class="quiz">
+<summary>8. Give three design considerations for a community centre web site for elderly users.</summary>
+<p>Larger fonts with an option to change the font size; enough contrast between text and background; simple, consistent navigation with menus in a fixed position; important functions placed prominently. (Any three)</p>
+</details></div><nav class="prevnext"><a class="pn pn-prev" href="../core-c/b.html"><span class="pn-dir"><span class="lang-zh">← 上一頁</span><span class="lang-en" lang="en">← Previous</span></span><span class="pn-title"><span class="lang-zh">單元 C 課題 b：互聯網服務及應用</span><span class="lang-en" lang="en">Module C Topic b: Internet Services and Applications</span></span></a><a class="pn pn-next" href="../core-c/d.html"><span class="pn-dir"><span class="lang-zh">下一頁 →</span><span class="lang-en" lang="en">Next →</span></span><span class="pn-title"><span class="lang-zh">單元 C 課題 d：網上威脅及保安</span><span class="lang-en" lang="en">Module C Topic d: Threats and Security on the Internet</span></span></a></nav>
     </article>
     <footer class="footer">
       <p class="lang-zh">內容依據課程發展議會與考評局《資訊及通訊科技課程及評估指引》及考評局公開資料整理，僅供溫習參考。</p>
@@ -508,7 +869,7 @@
   </main>
 
   <aside class="toc-rail">
-<nav class="toc lang-zh" aria-label="本頁目錄"><div class="toc-title">本頁目錄</div><ol><li><a href="#31-課程要求">3.1 課程要求</a></li><li><a href="#32-html-的特點">3.2 HTML 的特點</a></li><li><a href="#33-html-文件的基本結構">3.3 HTML 文件的基本結構</a></li><li><a href="#34-常用標記">3.4 常用標記</a></li><li><a href="#35-網頁上的圖像">3.5 網頁上的圖像</a></li><li><a href="#36-超連結與路徑">3.6 超連結與路徑</a></li><li><a href="#37-網頁的組織">3.7 網頁的組織</a></li><li><a href="#38-把網頁上載至萬維網">3.8 把網頁上載至萬維網</a></li><li><a href="#39-自我檢測">3.9 自我檢測</a></li></ol></nav>
+<nav class="toc lang-zh" aria-label="本頁目錄"><div class="toc-title">本頁目錄</div><ol><li><a href="#31-課程要求">3.1 課程要求</a></li><li><a href="#32-html-的特點">3.2 HTML 的特點</a></li><li><a href="#33-html-文件的基本結構">3.3 HTML 文件的基本結構</a></li><li><a href="#34-常用標記">3.4 常用標記</a></li><li><a href="#35-網頁上的圖像">3.5 網頁上的圖像</a></li><li><a href="#36-超連結與路徑">3.6 超連結與路徑</a></li><li><a href="#37-網頁的組織">3.7 網頁的組織</a></li><li><a href="#38-把網頁上載至萬維網">3.8 把網頁上載至萬維網</a></li><li><a href="#39-自我檢測">3.9 自我檢測</a></li></ol></nav><nav class="toc lang-en" lang=en aria-label="On this page"><div class="toc-title">On this page</div><ol><li><a href="#en-31-curriculum-requirements">3.1 Curriculum requirements</a></li><li><a href="#en-32-features-of-html">3.2 Features of HTML</a></li><li><a href="#en-33-basic-structure-of-an-html-document">3.3 Basic structure of an HTML document</a></li><li><a href="#en-34-common-tags">3.4 Common tags</a></li><li><a href="#en-35-images-on-web-pages">3.5 Images on web pages</a></li><li><a href="#en-36-hyperlinks-and-paths">3.6 Hyperlinks and paths</a></li><li><a href="#en-37-organisation-of-web-pages">3.7 Organisation of web pages</a></li><li><a href="#en-38-uploading-web-pages-to-the-world-wide-web">3.8 Uploading web pages to the World Wide Web</a></li><li><a href="#en-39-self-test">3.9 Self-test</a></li></ol></nav>
   </aside>
 </div>
 

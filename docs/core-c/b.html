@@ -461,7 +461,330 @@
 <details class="quiz">
 <summary>10. 〔改編自 2025 卷一甲第 21 題〕把以下電子商貿步驟排序：(1) 送貨 (2) 提供交易編號 (3) 收集顧客的購物資料 (4) 收集並核實付款資料 (5) 把交易記錄存入數據庫</summary>
 <p>(3) → (4) → (5) → (2) → (1)。</p>
-</details></div><div class="lang-en" lang="en"><div class="pending"><div class="pending-icon">English</div><div class="pending-title">English version in preparation</div><p>This page is currently available in Chinese only. Switch to 中文 in the top bar to read it.</p></div></div><nav class="prevnext"><a class="pn pn-prev" href="../core-c/a.html"><span class="pn-dir"><span class="lang-zh">← 上一頁</span><span class="lang-en" lang="en">← Previous</span></span><span class="pn-title"><span class="lang-zh">單元 C 課題 a：建網及互聯網基本知識</span><span class="lang-en" lang="en">Module C Topic a: Networking and Internet Basics</span></span></a><a class="pn pn-next" href="../core-c/c.html"><span class="pn-dir"><span class="lang-zh">下一頁 →</span><span class="lang-en" lang="en">Next →</span></span><span class="pn-title"><span class="lang-zh">單元 C 課題 c：初級網頁創作</span><span class="lang-en" lang="en">Module C Topic c: Elementary Web Authoring</span></span></a></nav>
+</details></div><div class="lang-en prose" lang="en"><h2 id="en-21-curriculum-requirements"><span class="sec-num">2.1</span><span class="sec-title">Curriculum requirements</span></h2>
+<p>Formulate an effective strategy for searching for specific information on the Web by using search engines, and critically analyse the sources of information; identify various graphics, audio and video file formats suitable for web pages, and use plug-ins and players for the multimedia elements found on the Internet; apply various services on the Internet such as file transfer, remote logon, online chat, discussion forum and email; describe the concepts of streaming technology and its applications in voice mail, videoconferencing and webcasting (technical details are not required); value the significance of the development and expansion of the Internet for various activities in society, for instance achieving a smart city with the Internet of Things (IoT) and cloud services.</p>
+<h2 id="en-22-search-engines-and-search-strategies"><span class="sec-num">2.2</span><span class="sec-title">Search engines and search strategies</span></h2>
+<p>A <strong>search engine</strong> is an online service for finding information on the Internet, such as Google and Bing. ⚠ A search engine is not a browser: Chrome and Edge are browsers; Google is a search engine.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>General search engine</td>
+<td>Searches the whole Web</td>
+<td>Google, Bing, Baidu</td>
+</tr>
+<tr>
+<td>Specialised search engine</td>
+<td>Searches only one kind of information</td>
+<td>Google Scholar (academic articles), flight comparison sites</td>
+</tr>
+<tr>
+<td>Meta search engine</td>
+<td>Sends a query to several search engines at once and combines the results</td>
+<td>Dogpile</td>
+</tr>
+</tbody>
+</table>
+</div><p>A search engine uses a <strong>web crawler</strong> to visit web pages automatically and collect their content, which an indexer then organises into an index. When a user enters keywords, the search engine finds results in the index and ranks them by relevance, recency, authority of the site, user experience and other factors. Different search engines use different indexes and ranking methods, so the same query gives different results.</p>
+<p><strong>An effective search strategy</strong></p>
+<ol>
+<li>Define the information needed.</li>
+<li>Choose a suitable search engine.</li>
+<li>Use precise keywords, such as quotation marks for an exact phrase <code>"Hong Kong smart city"</code> and a minus sign to exclude a word <code>apple -phone</code>.</li>
+<li>Use advanced search to restrict the language, region, last update date, file type or domain (for example only <code>.gov.hk</code>).</li>
+<li>Evaluate the sources.</li>
+<li>Refine the keywords according to the results and search again.</li>
+</ol>
+<p><strong>Criteria for evaluating sources</strong>: qualifications of the author or organisation; type of domain (<code>.gov</code> and <code>.edu</code> are generally more reliable); date of publication or update; whether it can be confirmed by several independent sources; whether it is sponsored content or an advertisement.</p>
+<p>⚠ Suggestions to improve search results must be specific and fit the interface shown in the question, such as "click the 'Videos' tab", "add the word 'video' to the keywords" or "use quotation marks for an exact phrase". Features not offered by the interface, or just "use advanced search" or "type more words", earn no marks [adapted from 2019 P1B 2(b)(i)].</p>
+<h2 id="en-23-multimedia-file-formats-on-web-pages"><span class="sec-num">2.3</span><span class="sec-title">Multimedia file formats on web pages</span></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Format</th>
+<th>Suitable use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Image</td>
+<td>JPG</td>
+<td>Lossy compression, small files, suitable for photos; no transparency</td>
+</tr>
+<tr>
+<td></td>
+<td>PNG</td>
+<td>Lossless compression, supports transparency (including semi-transparency); suitable for icons and images needing a transparent background</td>
+</tr>
+<tr>
+<td></td>
+<td>GIF</td>
+<td>At most 256 colours; supports simple animation</td>
+</tr>
+<tr>
+<td></td>
+<td>WebP</td>
+<td>Lossy or lossless, supports transparency, smaller files than JPG and PNG</td>
+</tr>
+<tr>
+<td></td>
+<td>SVG</td>
+<td>Vector graphics that do not lose quality when enlarged; suitable for logos and icons</td>
+</tr>
+<tr>
+<td>Audio</td>
+<td>MP3, AAC</td>
+<td>Lossy compression, small files, widely supported</td>
+</tr>
+<tr>
+<td></td>
+<td>WAV</td>
+<td>Uncompressed, very large files, not suitable for web pages</td>
+</tr>
+<tr>
+<td></td>
+<td>FLAC</td>
+<td>Lossless compression</td>
+</tr>
+<tr>
+<td>Video</td>
+<td>MP4</td>
+<td>Widely supported, suitable for streaming, played directly by HTML5</td>
+</tr>
+<tr>
+<td></td>
+<td>WebM</td>
+<td>Designed for the web, efficient compression</td>
+</tr>
+</tbody>
+</table>
+</div><p>BMP is uncompressed and too large for web pages. If text is turned into an image on a web page, users cannot copy or search that text, and it becomes blurry when enlarged.</p>
+<p>For the compression methods and features of each format, see sections 3.10 to 3.12 of <a href="../core-a/c.html">Module A Topic c</a>.</p>
+<h2 id="en-24-plug-ins-media-players-and-codecs"><span class="sec-num">2.4</span><span class="sec-title">Plug-ins, media players and codecs</span></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Plug-in</td>
+<td>A small program that adds functions to a browser, such as displaying content in a certain format</td>
+</tr>
+<tr>
+<td>Media player</td>
+<td>Plays audio and video; can be built into the browser (HTML5 <code>&lt;audio&gt;</code> and <code>&lt;video&gt;</code>) or a standalone program such as VLC</td>
+</tr>
+<tr>
+<td>Codec (coder-decoder)</td>
+<td>Compresses and decompresses audio or video data; if a computer lacks the required codec, the player cannot play the file</td>
+</tr>
+</tbody>
+</table>
+</div><p>HTML5 supports multimedia natively, and plug-ins may bring security loopholes, so web pages now rely much less on plug-ins.</p>
+<p>Diagnosing problems: if an online video plays in the browser on Computer A but not on Computer B, Computer B's browser most likely lacks the required plug-in or does not support the format; if a downloaded video file plays on Computer B but not on Computer A, Computer A most likely lacks the required codec.</p>
+<h2 id="en-25-internet-services"><span class="sec-num">2.5</span><span class="sec-title">Internet services</span></h2>
+<p><strong>Email</strong></p>
+<p>An email address has the format <code>user name@domain name</code>, such as <code>admin@hkict.com</code>. The email header includes:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>To</td>
+<td>Main recipients</td>
+</tr>
+<tr>
+<td>Carbon copy (Cc)</td>
+<td>Other recipients; all recipients can see these addresses</td>
+</tr>
+<tr>
+<td>Blind carbon copy (Bcc)</td>
+<td>Other recipients cannot see these addresses; suitable for mass announcements or protecting recipients' privacy</td>
+</tr>
+</tbody>
+</table>
+</div><p>"Reply" replies only to the sender; "Reply all" replies to the sender and everyone in the To and Cc fields, but not the Bcc recipients. "Forward" sends the email to new recipients, and the original sender is not informed.</p>
+<p>To send the same email to 50 people without letting them know each other's identities, put all the addresses in the Bcc field.</p>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2025 P1B 3(b)(ii)] Give an advantage of using an attachment over a hyperlink to send the file.</strong></p>
+<p>✔ The attached file is not altered after the email has been sent; there is no risk of the link being leaked or of inadequate sharing settings; recipients can always download an attachment, while a hyperlink can become invalid if the owner changes the setting; after the email is downloaded, the attachment can be opened without an Internet connection.</p>
+<p>✘ Candidates were unclear about the operational differences between the two methods. Performance was only fair.</p>
+</blockquote>
+<p>Advantages of a hyperlink include: no attachment size limit; access permissions can be changed and the file updated after sending.</p>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2024 P1B 3(c)] Give two benefits of sending emails in HTML format instead of plain text format.</strong></p>
+<p>✔ Text can be formatted (fonts, tables, paragraphs); multimedia elements or hyperlinks can be included.</p>
+<p>✘ "Attachments can be added", "interactive" and "cross-platform" were not accepted. The two answers must belong to different categories.</p>
+</blockquote>
+<p><strong>Other Internet services</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>File transfer</td>
+<td>FTP (client-server model, needing an FTP server, user accounts and permissions; SFTP encrypts the transfer), cloud storage (easy sharing and collaboration), peer-to-peer sharing (such as BitTorrent, with no central server)</td>
+</tr>
+<tr>
+<td>Remote logon</td>
+<td>Logging on to and operating another computer from a distance, such as working from home or technical support</td>
+</tr>
+<tr>
+<td>Online chat</td>
+<td>Real-time exchange of text, images and voice, suitable for instant communication</td>
+</tr>
+<tr>
+<td>Discussion forum</td>
+<td>Organised by topic; users post and reply without being online at the same time; discussions are kept for later reference</td>
+</tr>
+<tr>
+<td>Social networking</td>
+<td>Sharing updates, photos and videos and building personal networks</td>
+</tr>
+<tr>
+<td>Video conferencing</td>
+<td>Needs a web cam, microphone and speakers; software provides screen sharing, text chat, meeting passwords and other features</td>
+</tr>
+</tbody>
+</table>
+</div><p>[2012 Practice Paper P1B 4(c)] Email access protocols: when the mailbox is very small, POP is preferable because emails are deleted from the server once downloaded to the computer; when students access their mailbox from different computers, IMAP is preferable because emails stay on the server and their status is synchronised across computers. These two protocols are extension material.</p>
+<h2 id="en-26-streaming-technology"><span class="sec-num">2.6</span><span class="sec-title">Streaming technology</span></h2>
+<p><strong>Streaming</strong> sends audio or video continuously in small parts, so the user plays the downloaded part while the rest is still downloading. The player first stores some content in a <strong>buffer</strong> to make playback smoother.</p>
+<p>⚠ Do not write "streaming needs no downloading"; streaming keeps downloading data. The correct idea is "playback can start without waiting for the whole file to be downloaded". [2012 Practice Paper P1A Q25] Streaming lets the video be watched before the file is completely downloaded, but it does not increase the data transfer rate or enhance the video quality.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Application</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Voice mail</td>
+<td>Recipients can listen to recorded messages at once</td>
+</tr>
+<tr>
+<td>Video conferencing</td>
+<td>Images and voices of both sides are transmitted in real time</td>
+</tr>
+<tr>
+<td>Webcasting</td>
+<td>Live broadcasting of talks, matches or events, such as online lessons</td>
+</tr>
+<tr>
+<td>Video and music streaming services</td>
+<td>Online video platforms, music streaming</td>
+</tr>
+</tbody>
+</table>
+</div><p>Factors affecting smooth streaming: bandwidth, media format, compression ratio, frame size (resolution), frame rate and the number of simultaneous viewers. The disk capacity of the server is not a major factor.</p>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2023 P1B 5(c)] A fitness centre provides livestreamed fitness lessons. (i) A member complains that the streaming of videos is sometimes not smooth, though the bandwidth of his broadband connection is sufficiently large. Why? (ii) The centre decides to record videos of the lessons for members to download. Other than solving the problem in (i), give a benefit of this decision.</strong></p>
+<p>✔ (i) There is interference from the environment; too many members view the lessons at the same time and network traffic becomes heavy.</p>
+<p>✔ (ii) The content can be edited before release; subtitles can be inserted; members can watch at any time or multiple times; videos can be watched offline.</p>
+<p>✘ "Members can choose the lessons they want" and "members can watch with friends later" were not accepted.</p>
+</blockquote>
+<h2 id="en-27-development-and-impact-of-the-internet"><span class="sec-num">2.7</span><span class="sec-title">Development and impact of the Internet</span></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Development</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Internet of Things (IoT)</td>
+<td>Everyday devices are fitted with sensors and network interfaces to collect and exchange data over the Internet, such as smart homes, wearable devices and smart agriculture. The devices need IP addresses</td>
+</tr>
+<tr>
+<td>Cloud services</td>
+<td>Computing resources provided over the Internet: Infrastructure as a Service (IaaS), Platform as a Service (PaaS), Software as a Service (SaaS, such as online office software). Advantages: access anytime and anywhere, easy to scale, no need to maintain hardware</td>
+</tr>
+<tr>
+<td>Smart city</td>
+<td>Combines IoT, cloud services and data to improve city life, such as traffic sensors, smart lampposts, "iAM Smart", the Faster Payment System and open data</td>
+</tr>
+<tr>
+<td>E-commerce</td>
+<td>Buying, selling and paying online</td>
+</tr>
+<tr>
+<td>Web 3.0</td>
+<td>Emphasises the semantic web, decentralisation and blockchain; extension material</td>
+</tr>
+</tbody>
+</table>
+</div><blockquote class="callout callout-warn">
+<p>⚠ <strong>[2025 P1A Q21] What is the correct order of the steps for a common e-commerce activity?</strong></p>
+<p>✔ Collect the customer's product choices → collect and validate the credit card information → record the transaction and payment details in a database → provide a transaction number to the customer → deliver the product (65% correct).</p>
+</blockquote>
+<!-- -->
+
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2023 P1B 4(b)] David considers changing the toy shop from a physical shop to an online shop. State a benefit and a drawback of this change and explain briefly.</strong></p>
+<p>✔ Benefit: access to worldwide markets, and customers can shop at any time. Drawback: no face-to-face interaction; additional cost of building a web server.</p>
+<p>✘ "No theft", "attracts more customers" (without a reason) and "security must be considered" (a physical shop also has security issues) were not accepted. The HKEAA reminded candidates to focus on the consequences of the change.</p>
+</blockquote>
+<h2 id="en-28-self-test"><span class="sec-num">2.8</span><span class="sec-title">Self-test</span></h2>
+<details class="quiz">
+<summary>1. Ming says, "I use the search engine Chrome to find information." Point out his mistake.</summary>
+<p>Chrome is a browser, not a search engine. Google and Bing are search engines.</p>
+</details>
+<details class="quiz">
+<summary>2. Suggest two advanced search features for finding "IoT developments in Singapore after 2020".</summary>
+<p>Restrict the region to Singapore; restrict the publication date to after 2020; use quotation marks for an exact phrase. (Any two)</p>
+</details>
+<details class="quiz">
+<summary>3. After collecting information, give two criteria for judging whether a source is credible.</summary>
+<p>Qualifications of the author or organisation; type of domain; date of publication or update; whether it can be confirmed by several sources. (Any two)</p>
+</details>
+<details class="quiz">
+<summary>4. A web site needs to show a school logo with a transparent background that stays sharp when enlarged. Which image format should be used? Why?</summary>
+<p>SVG. It is a vector graphic that does not lose quality when enlarged, and it supports a transparent background.</p>
+</details>
+<details class="quiz">
+<summary>5. A downloaded video file plays on Computer B but not on Computer A. What does Computer A most likely lack?</summary>
+<p>The codec needed to play the video.</p>
+</details>
+<details class="quiz">
+<summary>6. Mr Chan sends an email: To Ms Lee, Cc Mr Cheung, Bcc Ms Lam. Who knows that Ms Lam also received the email?</summary>
+<p>Only Mr Chan (the sender) and Ms Lam herself. Ms Lee and Mr Cheung cannot see the addresses in the Bcc field.</p>
+</details>
+<details class="quiz">
+<summary>7. Give two benefits of using a cloud storage sharing link instead of an email attachment.</summary>
+<p>No email attachment size limit; access permissions can be changed and the file updated after sending; recipients do not need to keep a large file in their mailbox. (Any two)</p>
+</details>
+<details class="quiz">
+<summary>8. "Streaming technology lets users watch videos without downloading." What is wrong with this statement? How should it be rewritten?</summary>
+<p>Streaming keeps downloading data. Rewrite it as: "Streaming lets users play the downloaded part while the rest is still downloading, without waiting for the whole file to be downloaded."</p>
+</details>
+<details class="quiz">
+<summary>9. Other than bandwidth, give two technical factors affecting smooth video streaming.</summary>
+<p>Media format; compression ratio; frame size (resolution); frame rate. (Any two)</p>
+</details>
+<details class="quiz">
+<summary>10. [adapted from 2025 P1A Q21] Put the following e-commerce steps in order: (1) deliver the product (2) provide a transaction number (3) collect the customer's purchase details (4) collect and validate the payment information (5) store the transaction record in a database</summary>
+<p>(3) → (4) → (5) → (2) → (1).</p>
+</details></div><nav class="prevnext"><a class="pn pn-prev" href="../core-c/a.html"><span class="pn-dir"><span class="lang-zh">← 上一頁</span><span class="lang-en" lang="en">← Previous</span></span><span class="pn-title"><span class="lang-zh">單元 C 課題 a：建網及互聯網基本知識</span><span class="lang-en" lang="en">Module C Topic a: Networking and Internet Basics</span></span></a><a class="pn pn-next" href="../core-c/c.html"><span class="pn-dir"><span class="lang-zh">下一頁 →</span><span class="lang-en" lang="en">Next →</span></span><span class="pn-title"><span class="lang-zh">單元 C 課題 c：初級網頁創作</span><span class="lang-en" lang="en">Module C Topic c: Elementary Web Authoring</span></span></a></nav>
     </article>
     <footer class="footer">
       <p class="lang-zh">內容依據課程發展議會與考評局《資訊及通訊科技課程及評估指引》及考評局公開資料整理，僅供溫習參考。</p>
@@ -470,7 +793,7 @@
   </main>
 
   <aside class="toc-rail">
-<nav class="toc lang-zh" aria-label="本頁目錄"><div class="toc-title">本頁目錄</div><ol><li><a href="#21-課程要求">2.1 課程要求</a></li><li><a href="#22-搜尋器與搜尋策略">2.2 搜尋器與搜尋策略</a></li><li><a href="#23-網頁上的多媒體檔案格式">2.3 網頁上的多媒體檔案格式</a></li><li><a href="#24-插件媒體播放器與編碼解碼器">2.4 插件、媒體播放器與編碼解碼器</a></li><li><a href="#25-互聯網服務">2.5 互聯網服務</a></li><li><a href="#26-串流技術">2.6 串流技術</a></li><li><a href="#27-互聯網的發展與影響">2.7 互聯網的發展與影響</a></li><li><a href="#28-自我檢測">2.8 自我檢測</a></li></ol></nav>
+<nav class="toc lang-zh" aria-label="本頁目錄"><div class="toc-title">本頁目錄</div><ol><li><a href="#21-課程要求">2.1 課程要求</a></li><li><a href="#22-搜尋器與搜尋策略">2.2 搜尋器與搜尋策略</a></li><li><a href="#23-網頁上的多媒體檔案格式">2.3 網頁上的多媒體檔案格式</a></li><li><a href="#24-插件媒體播放器與編碼解碼器">2.4 插件、媒體播放器與編碼解碼器</a></li><li><a href="#25-互聯網服務">2.5 互聯網服務</a></li><li><a href="#26-串流技術">2.6 串流技術</a></li><li><a href="#27-互聯網的發展與影響">2.7 互聯網的發展與影響</a></li><li><a href="#28-自我檢測">2.8 自我檢測</a></li></ol></nav><nav class="toc lang-en" lang=en aria-label="On this page"><div class="toc-title">On this page</div><ol><li><a href="#en-21-curriculum-requirements">2.1 Curriculum requirements</a></li><li><a href="#en-22-search-engines-and-search-strategies">2.2 Search engines and search strategies</a></li><li><a href="#en-23-multimedia-file-formats-on-web-pages">2.3 Multimedia file formats on web pages</a></li><li><a href="#en-24-plug-ins-media-players-and-codecs">2.4 Plug-ins, media players and codecs</a></li><li><a href="#en-25-internet-services">2.5 Internet services</a></li><li><a href="#en-26-streaming-technology">2.6 Streaming technology</a></li><li><a href="#en-27-development-and-impact-of-the-internet">2.7 Development and impact of the Internet</a></li><li><a href="#en-28-self-test">2.8 Self-test</a></li></ol></nav>
   </aside>
 </div>
 

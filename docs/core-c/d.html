@@ -821,7 +821,690 @@
 <details class="quiz">
 <summary>14. 網上書店使用 HTTPS。(a) 書店要先取得甚麼？(b) 寫出 SSL 在網上交易中的兩個作用。</summary>
 <p>(a) 由核證機關簽發的數碼證書。(b) 加密瀏覽器與伺服器之間傳送的數據，例如信用卡資料；確保數據在傳送途中沒有被竄改；讓用戶核實網站的身份。（任何兩項）</p>
-</details></div><div class="lang-en" lang="en"><div class="pending"><div class="pending-icon">English</div><div class="pending-title">English version in preparation</div><p>This page is currently available in Chinese only. Switch to 中文 in the top bar to read it.</p></div></div><nav class="prevnext"><a class="pn pn-prev" href="../core-c/c.html"><span class="pn-dir"><span class="lang-zh">← 上一頁</span><span class="lang-en" lang="en">← Previous</span></span><span class="pn-title"><span class="lang-zh">單元 C 課題 c：初級網頁創作</span><span class="lang-en" lang="en">Module C Topic c: Elementary Web Authoring</span></span></a><a class="pn pn-next" href="../core-d/index.html"><span class="pn-dir"><span class="lang-zh">下一頁 →</span><span class="lang-en" lang="en">Next →</span></span><span class="pn-title"><span class="lang-zh">單元 D：計算思維與程式編寫</span><span class="lang-en" lang="en">Module D: Computational Thinking and Programming</span></span></a></nav>
+</details></div><div class="lang-en prose" lang="en"><h2 id="en-41-curriculum-requirements"><span class="sec-num">4.1</span><span class="sec-title">Curriculum requirements</span></h2>
+<p>Describe the potential risks caused by common network security threats, including virus, worm and Trojan programs, spyware, ransomware, unauthorised access, interception, intrusion via dynamic web pages and Denial of Service (DoS) attacks; propose effective measures to improve network security, including browser settings, anti-virus software, authentication, access and user right control, firewalls, wireless security protocols such as WPA, and Virtual Private Networks (VPN); discuss possible privacy threats on the Internet, supported by crimes reported in the news, such as eavesdropping, hacking, phishing, spamming and junk mail, and suggest ways to maintain privacy, stressing anonymity and passwords, together with the legal consequences of unauthorised access to computers; be aware of information encryption technologies that prevent eavesdropping and interception, including the basic concepts of data encryption, public and private key encryption systems (e.g. the Hong Kong Public Key Infrastructure) and the relationship between key size and the degree of security; explain authentication and authorisation as a means to control access to information on the Internet, including authentication methods for individuals, types of tokens and the procedure of authenticating a digitally signed document by obtaining the digital certificate of the signed body; know about security in electronic transactions, including Secure Sockets Layer (SSL), smart cards, security tokens, digital certificates and mobile Short Message Service (SMS); be aware of the latest developments in security measures.</p>
+<h2 id="en-42-goals-of-network-security"><span class="sec-num">4.2</span><span class="sec-title">Goals of network security</span></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Goal</th>
+<th>Meaning</th>
+<th>Related measures</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Confidentiality</td>
+<td>Only authorised people can read the data</td>
+<td>Encryption, access control</td>
+</tr>
+<tr>
+<td>Integrity</td>
+<td>Data has not been altered in transmission or storage</td>
+<td>Digital signatures, SSL</td>
+</tr>
+<tr>
+<td>Authenticity</td>
+<td>A message or user really comes from the claimed party</td>
+<td>Authentication, digital signatures, digital certificates</td>
+</tr>
+<tr>
+<td>Non-repudiation</td>
+<td>The sender cannot deny having sent a message</td>
+<td>Digital signatures</td>
+</tr>
+</tbody>
+</table>
+</div><p>These four goals help in analysing the measures in this topic. The curriculum does not require memorising the names.</p>
+<h2 id="en-43-common-security-threats"><span class="sec-num">4.3</span><span class="sec-title">Common security threats</span></h2>
+<p><strong>Malware</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Threat</th>
+<th>Features</th>
+<th>Risks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Virus</td>
+<td>Attaches to files and activates and spreads only when the user runs an infected file</td>
+<td>Deletes or damages files; slows down the system</td>
+</tr>
+<tr>
+<td>Worm</td>
+<td>Does not need a host file; <strong>replicates and spreads by itself</strong> through networks and security loopholes</td>
+<td>Uses up bandwidth and slows down the network</td>
+</tr>
+<tr>
+<td>Trojan program</td>
+<td>Disguises itself as a useful program to trick users into installing it; <strong>does not replicate itself</strong></td>
+<td>Opens a backdoor for hackers to control the computer remotely; steals login details</td>
+</tr>
+<tr>
+<td>Spyware</td>
+<td>Collects information without the user's knowledge, such as key loggers</td>
+<td>Leaks passwords, credit card numbers and other personal data</td>
+</tr>
+<tr>
+<td>Adware</td>
+<td>Keeps displaying advertisements</td>
+<td>Disrupts use and slows down the system</td>
+</tr>
+<tr>
+<td>Ransomware</td>
+<td><strong>Encrypts</strong> the victim's files and demands a ransom for the decryption key; often spread by phishing emails or malicious downloads</td>
+<td>Data cannot be accessed, business stops, financial loss</td>
+</tr>
+</tbody>
+</table>
+</div><p>A worm is not a program bug or the security loophole itself; it is malware that spreads by exploiting loopholes.</p>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2024 P1A Q18] Amy finds that her computer is infected by ransomware. What should she do immediately?</strong></p>
+<p>✔ Disconnect the network connection and shut down the computer (53% correct), so that the ransomware cannot keep encrypting files or spread to other computers on the network.</p>
+<p>✘ 30% of candidates chose "execute an anti-virus program to scan for and clean viruses". The HKEAA noted that candidates did not fully understand how harmful ransomware is; it cannot be handled by an anti-virus program alone.</p>
+</blockquote>
+<p>[Sample Paper Section A Q21] Ways to minimise the impact of ransomware: create backups of files regularly; do not open anonymous or phishing emails; do not download pirated software through P2P software. Backups are best kept offline so that they are not encrypted as well.</p>
+<p><strong>Other threats</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Threat</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Unauthorised access (hacking)</td>
+<td>Entering a system without authorisation by exploiting software loopholes, stolen or guessed passwords, social engineering and so on</td>
+</tr>
+<tr>
+<td>Interception</td>
+<td>Capturing data in transit, such as using a packet sniffer to capture packets on unencrypted Wi-Fi, or posing as each party between two communicating parties (man-in-the-middle attack). The defence is to encrypt data</td>
+</tr>
+<tr>
+<td>Intrusion via dynamic web pages</td>
+<td>Entering malicious commands in web forms, such as SQL injection, to read or modify the web site's database. Web sites must validate user input</td>
+</tr>
+<tr>
+<td>Denial of Service (DoS) attack</td>
+<td>Overloads a server with a huge number of requests so that legitimate users cannot use the service</td>
+</tr>
+<tr>
+<td>Distributed Denial of Service (DDoS) attack</td>
+<td>Many infected computers (a botnet) launch a DoS attack at the same time; the many sources make it harder to identify and block</td>
+</tr>
+</tbody>
+</table>
+</div><h2 id="en-44-measures-to-improve-network-security"><span class="sec-num">4.4</span><span class="sec-title">Measures to improve network security</span></h2>
+<p><strong>Browser settings</strong>: block third-party cookies; disable unnecessary plug-ins; enable safe browsing to warn about dangerous sites; disable autofill and password saving; clear the browsing history regularly; enter sensitive data only on sites using HTTPS.</p>
+<p><strong>Anti-virus software</strong></p>
+<p>Anti-virus software consists of a scanning engine and <strong>virus definition files</strong>, and detects malware in two ways:</p>
+<ul>
+<li><strong>Signature-based detection</strong>: compares files with the signatures of known viruses in the virus definition files.</li>
+<li><strong>Heuristic detection</strong>: analyses the behaviour or code of programs for suspicious features, so it can find unknown new viruses.</li>
+</ul>
+<p>When malware is detected, the anti-virus software can repair, delete or quarantine the infected files.</p>
+<p>Anti-virus software must be updated regularly: updating the virus definition files lets it detect newly discovered viruses; updating the scanning engine fixes loopholes in the program itself and improves detection. ⚠ Answers such as "safer" or "to protect the computer" are too vague.</p>
+<p>[2012 Practice Paper P1B 2(d)] Computer viruses can spread through email attachments or web browsing. Even state-of-the-art anti-virus software may fail to remove some viruses because the virus is a new type that the existing technology cannot handle, or the virus definition file is outdated.</p>
+<p><strong>Firewalls</strong></p>
+<p>A firewall <strong>filters incoming and outgoing network traffic</strong> according to preset rules (such as source and destination IP addresses and ports) to block unauthorised access. A firewall can be a hardware device (usually placed between the router and the LAN, and built into many routers) or personal firewall software installed on a computer.</p>
+<p>A firewall does not scan files for viruses, cannot remove viruses that have already infected a computer, and cannot replace anti-virus software.</p>
+<ul>
+<li>[2024 P1A Q34] A firewall is used to filter incoming and outgoing network traffic (79% correct).</li>
+<li>[Sample Paper Section A Q23] A technician installs a firewall instead of anti-virus software in an office network mainly to protect the network from online security threats; a firewall cannot withstand virus attacks.</li>
+<li>[2023 P1A Q36] A firewall and an encryption program can enhance the security of using a computer; adware cannot (90% correct).</li>
+</ul>
+<p>[adapted from 2025 Mock P1B 7(b)] To make a server more secure, place a firewall in the network to block unauthorised system access, or a proxy server to filter malicious traffic.</p>
+<p><strong>Authentication and access rights</strong>: users must log in to use the system and are given only the rights needed for their duties; see section 4.8.</p>
+<p><strong>System updates</strong>: [2023 P1A Q40] Updating the operating system frequently fixes security loopholes and reduces virus attacks (79% correct).</p>
+<p><strong>Wireless network security</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Measure</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Use WPA2 or WPA3 encryption</td>
+<td>Encrypts data sent through the air. WEP is easily cracked and <strong>insecure</strong>, and should no longer be used</td>
+</tr>
+<tr>
+<td>Set a strong security key</td>
+<td>Stops others from guessing the key and joining the network</td>
+</tr>
+<tr>
+<td>Change the access point's default administrator password and update its firmware</td>
+<td>Stops others from changing the settings; fixes loopholes</td>
+</tr>
+<tr>
+<td>Hide the SSID</td>
+<td>The network does not appear in the lists of nearby devices</td>
+</tr>
+<tr>
+<td>MAC address filtering</td>
+<td>Only devices with specified MAC addresses can connect</td>
+</tr>
+</tbody>
+</table>
+</div><p>⚠ When explaining why to change to WPA, write "WEP is insecure and easily cracked"; "WEP is outdated" alone is not enough. A Wi-Fi network for customers should not hide its SSID or use MAC address filtering, because customers need to find the network easily, and the shop cannot register the MAC addresses of all customers' devices in advance.</p>
+<p><strong>Virtual Private Network (VPN)</strong></p>
+<p>A VPN creates an <strong>encrypted "tunnel"</strong> over the public Internet so that remote users or branch offices can connect securely to an organisation's internal network; intercepted data cannot be read. Compared with renting a leased line, a VPN costs less and is more flexible. A VPN also hides the user's real IP address.</p>
+<p>[adapted from 2025 Mock P1A Q17] A company that wants to secure data transmitted over the Internet should use a VPN. A VPN cannot replace anti-virus software. WPA3 protects only the link between the device and the access point, while a VPN protects the whole transmission across the Internet.</p>
+<h2 id="en-45-privacy-threats"><span class="sec-num">4.5</span><span class="sec-title">Privacy threats</span></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Threat</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Eavesdropping</td>
+<td>Unauthorised interception and monitoring of private communications, such as capturing user names and passwords with a packet sniffer on unsecured Wi-Fi</td>
+</tr>
+<tr>
+<td>Hacking</td>
+<td>Unauthorised access to a system, leading to data breaches or defacement of web sites</td>
+</tr>
+<tr>
+<td>Phishing</td>
+<td>Pretending to be a trusted organisation or person and using emails, SMS messages or fake web sites to trick users into giving sensitive data such as passwords and bank details</td>
+</tr>
+<tr>
+<td>Spamming</td>
+<td>Sending large numbers of unsolicited, irrelevant messages, sometimes collecting data through fake forms or links</td>
+</tr>
+<tr>
+<td>Junk mail</td>
+<td>Unwanted bulk emails, including promotional emails from legitimate organisations; receiving a lot of junk mail suggests that the email address may have been leaked</td>
+</tr>
+</tbody>
+</table>
+</div><p>Variants of phishing include vishing (by telephone) and smishing (by SMS).</p>
+<p><strong>Social engineering</strong>: exploiting people's fear, greed, curiosity or urgency to trick them into revealing information or taking certain actions, such as phishing, pretending to be technical support staff to ask for passwords, or leaving a malware-infected USB flash drive in a public place.</p>
+<p>[Sample Paper Section B 2(a)] Anti-virus software cannot effectively protect against social engineering attacks such as phishing, because it only prevents, detects and removes malware and cannot stop users from revealing sensitive information themselves.</p>
+<p><strong>Recognising phishing emails</strong></p>
+<ul>
+<li>The sender's domain does not match the claimed organisation, such as a claim to be from the government with a <code>.com</code> domain, or a look-alike domain such as <code>gmall.com</code>.</li>
+<li>An urgent or threatening tone demanding immediate action.</li>
+<li>Links asking for personal data, or suspicious attachments.</li>
+</ul>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2023 P1B 5(d)] John receives an email from survey@HKSAR.com.hk with the subject "From HKSAR Government", asking him to complete a survey through a link. Explain briefly why it is probably a scam email. Describe what harmful consequence might happen after clicking the link.</strong></p>
+<p>✔ The email comes from a <code>.com</code> domain, which is commercial, not from the government's <code>.gov</code> domain. Clicking the link may direct him to a phishing web site, or trigger the download of malware or ransomware, leading to the leakage of personal data.</p>
+</blockquote>
+<p>⚠ The reason must point out the problem with the domain specifically; "wrong domain name" alone is too general. "No recipient is shown" has nothing to do with the scam, because the recipient may be in the Bcc field [adapted from 2013 P1B 5(d)].</p>
+<p>[Sample Paper Section A Q25] Phishing emails typically use a fake web site to acquire personal information; they are not company advertisements and do not make computers unusable for days. [adapted from 2015 P1A Q38] Phishing emails often contain links to fake web sites, use an urgent tone, and may carry malware attachments.</p>
+<p>How to handle suspicious messages: do not click links or open attachments; verify through official channels; block the sender; report it as spam or phishing.</p>
+<h2 id="en-46-ways-to-maintain-privacy"><span class="sec-num">4.6</span><span class="sec-title">Ways to maintain privacy</span></h2>
+<p><strong>Staying anonymous</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Effect</th>
+<th>Limitations</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VPN</td>
+<td>Encrypts all Internet traffic and hides the user's real IP address, making tracking by web sites and hackers difficult</td>
+<td>The VPN provider must be trusted</td>
+</tr>
+<tr>
+<td>Proxy server (extension)</td>
+<td>Web sites see only the proxy server's IP address</td>
+<td>Does not encrypt data; the proxy administrator can still monitor users</td>
+</tr>
+</tbody>
+</table>
+</div><p><strong>Private browsing mode</strong> (incognito mode)</p>
+<p>After a private browsing window is closed, the browser does not keep the browsing history, cookies, form and search entries or temporary files. It is suitable for public computers.</p>
+<p>⚠ Private browsing <strong>does not make the user anonymous</strong>: it does not hide the IP address, and the ISP, the employer and the visited web sites can still track the user's activities. It only stops other users of the same computer from seeing the browsing history.</p>
+<p><strong>Cookies</strong></p>
+<p>A cookie is a small <strong>text file</strong> that a web site stores in the user's browser to record preferences such as login status, language and shopping cart, improving the browsing experience. Cookies are created by the web server but stored on the user's device; each browser keeps its own cookies.</p>
+<ul>
+<li>First-party cookies: set by the site being visited, used to keep users logged in and remember preferences.</li>
+<li>Third-party cookies: set by other domains (such as advertisers); they can track users across web sites for targeted advertising and pose privacy risks.</li>
+</ul>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2023 P1A Q21] Peter browses a new web site and sees the message "We use third-party cookies to personalize content and to analyse web traffic." What is/are the consequence(s) of clicking the "Accept" button?</strong></p>
+<p>✔ Personal information may be collected (61% correct). Accepting cookies does not decrease the network bandwidth or disclose the address book of his email account.</p>
+</blockquote>
+<p><strong>Adjusting privacy settings</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Target</th>
+<th>Settings</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Browser</td>
+<td>Block third-party cookies; disable autofill; regularly clear the history, cache and saved passwords</td>
+</tr>
+<tr>
+<td>Apps</td>
+<td>Restrict access to photos, location, camera, microphone, contacts and so on</td>
+</tr>
+<tr>
+<td>Messaging apps</td>
+<td>Limit who can see the profile picture, status and last-seen time; turn off read receipts; block users; use disappearing messages</td>
+</tr>
+<tr>
+<td>Social media</td>
+<td>Make the account private; control who can see posts and tag you; limit who can send friend requests</td>
+</tr>
+</tbody>
+</table>
+</div><p>[2023 P1A Q35] Proper measures when using social media: manage privacy settings to control who can see your posts; use a strong login password and change it regularly; be aware of what personal information you have provided (86% correct).</p>
+<p><strong>Encrypted communication</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Method</th>
+<th>What is encrypted</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HTTPS</td>
+<td>Only the data between the user and that web site; the ISP still knows which site is visited</td>
+</tr>
+<tr>
+<td>End-to-end encryption (such as instant messaging apps)</td>
+<td>Only the sender and recipient can read the message content</td>
+</tr>
+<tr>
+<td>VPN</td>
+<td>All traffic the device sends over the Internet, with the IP address hidden</td>
+</tr>
+</tbody>
+</table>
+</div><h2 id="en-47-passwords-and-authentication-methods"><span class="sec-num">4.7</span><span class="sec-title">Passwords and authentication methods</span></h2>
+<p><strong>Strong passwords</strong></p>
+<ul>
+<li>At least 8 characters, mixing uppercase letters, lowercase letters, digits and symbols.</li>
+<li>No easily guessed information such as the user name, birthday or common words.</li>
+<li>A different password for each account; change regularly; do not use default passwords.</li>
+<li>Do not share or write down passwords; a password manager can help.</li>
+</ul>
+<p>Attackers can crack passwords by <strong>brute-force attacks</strong> (trying every combination of characters) or <strong>dictionary attacks</strong> (guessing with lists of common words), so passwords must be long and complex and avoid dictionary words.</p>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2024 P1B 2(c)] When Tom tries to change his password in an online system, his new password "Tom1133" does not fulfil three password requirements. The first is "minimum of 10 characters". Fill in the remaining two requirements.</strong></p>
+<p>✔ A combination of uppercase letters, lowercase letters, numbers and symbols; the login name cannot be included in the password.</p>
+<p>✘ "Include a symbol" (incomplete), "no meaning" and "cannot repeat any password used in the past" (unrelated to the scenario) were not accepted. The HKEAA reminded candidates to relate answers to the "password requirements" in the question and express them completely.</p>
+</blockquote>
+<p>[Sample Paper Section A Q24] Good practice in online banking: create an uncommon login name; use a combination of letters and numbers for passwords and change them regularly. There is no reason to avoid a wired network just because a wireless network is available.</p>
+<p><strong>Three categories of authentication methods</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Something you know</td>
+<td>Password, personal identification number (PIN), security question</td>
+</tr>
+<tr>
+<td>Something you have</td>
+<td>Smart card, security token, mobile phone, digital certificate</td>
+</tr>
+<tr>
+<td>Something you are</td>
+<td>Biometrics: fingerprint, face, iris, retina, vein, voice</td>
+</tr>
+</tbody>
+</table>
+</div><p><strong>Biometric authentication</strong> uses features that are hard to copy, and users need not remember passwords; but leaked biometric data cannot be changed, which is a privacy risk. Face recognition and palm vein recognition need no contact with the device, which is more hygienic. ⚠ Voice recognition (identifying who is speaking) is biometric authentication; speech recognition (converting speech into text) is not authentication.</p>
+<p><strong>Tokens</strong></p>
+<p>A token is an object used to prove the user's identity:</p>
+<ul>
+<li>Hardware tokens: security devices that generate one-time passwords; smart cards and key fobs (using RFID or NFC) that store credentials; software dongles plugged into computers.</li>
+<li>Software tokens: verification codes generated by mobile phone apps.</li>
+</ul>
+<p>[2012 Practice Paper P1A Q39] With the disconnected security token used for online banking, the six-digit number changes regularly; the user still needs a user name and password.</p>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2023 P1B 5(a)] John considers three methods of identifying members of his fitness centre: (1) a smart card, (2) a plastic card with a printed QR code, (3) a mobile application. (i) Give an advantage of (1) over (2). (ii) Give an advantage of (2) over (1). (iii) Give an advantage of (3) over (1) and (2).</strong></p>
+<p>✔ (i) A smart card is harder to replicate, while a QR code can be replicated easily, so a smart card is more secure. (ii) A QR code card is cheaper and easier to produce. (iii) The app can provide more functions, such as checking membership and usage records; members need not carry a card.</p>
+</blockquote>
+<p><strong>One-time passwords and two-factor authentication</strong></p>
+<p>A <strong>one-time password (OTP)</strong> is generated by the system and is different for every login or transaction. <strong>Two-factor authentication (2FA)</strong> requires two different categories of proof of identity, such as a password plus an OTP sent by SMS, or a password plus a fingerprint. Even if the password is stolen, the account cannot be accessed without the second proof.</p>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2025 P1B 2(a)] When Eva logs on to a computer system, she will receive a one-time password for authentication. Give two characteristics of a one-time password.</strong></p>
+<p>✔ It has a time limit and is valid only for a short period; it cannot be reused; it is sent through another channel, such as SMS, email, a token or a mobile app.</p>
+<p>✘ Most candidates described what an OTP is, but only a few gave its key characteristics.</p>
+</blockquote>
+<p>An OTP is more secure than an ordinary password because even if it is intercepted, it expires quickly and cannot be used again.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Context</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[2024 P1A Q35] "Drag the slider to complete the puzzle" when logging in to an online store</td>
+<td>CAPTCHA: verifies that the login is done by a human, not an automated program (97% correct)</td>
+</tr>
+<tr>
+<td>[2024 P1A Q36] After account registration, the site emails a code for the user to input</td>
+<td>Verifies the user's identity, confirming that the user owns the email address (82% correct)</td>
+</tr>
+<tr>
+<td>Entering the old password when changing the password</td>
+<td>Verifies the user's identity and that the user has the right to change the account</td>
+</tr>
+<tr>
+<td>Entering the new password twice</td>
+<td>Verifies that the input is correct, avoiding typing mistakes</td>
+</tr>
+</tbody>
+</table>
+</div><h2 id="en-48-authentication-and-authorisation"><span class="sec-num">4.8</span><span class="sec-title">Authentication and authorisation</span></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Comparison</th>
+<th>Authentication</th>
+<th>Authorisation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Purpose</td>
+<td>Confirms the user's identity: "who you are"</td>
+<td>Decides which resources an authenticated user can access and which actions they can perform: "what you can do"</td>
+</tr>
+<tr>
+<td>Involves</td>
+<td>User name and password, tokens, biometrics</td>
+<td>Permissions and roles</td>
+</tr>
+<tr>
+<td>Example</td>
+<td>Logging in to the school intranet with a user name and password</td>
+<td>Students can view only their own results, cannot change them, and cannot view other students' results</td>
+</tr>
+</tbody>
+</table>
+</div><p>The system authenticates first and authorises afterwards. Common permissions include read, write (modify), execute, delete, create, list and share.</p>
+<p>Sharing settings of cloud documents are an example of authorisation: a "viewer" can only read; a "commenter" can read and add comments but cannot edit; an "editor" can read and edit. A teacher marking a student report should be a "commenter", who can give comments without changing the original. Setting an expiry date on sharing permissions removes access automatically after a project ends, reducing the risk of data leakage.</p>
+<p>Setting a file to read-only controls access rights; backing up files daily protects data from loss and is not access control.</p>
+<h2 id="en-49-legal-consequences-of-unauthorised-access"><span class="sec-num">4.9</span><span class="sec-title">Legal consequences of unauthorised access</span></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Legislation</th>
+<th>Offence</th>
+<th>Maximum penalty</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Crimes Ordinance, section 161</td>
+<td>Access to a computer with criminal or dishonest intent, such as intent to deceive, to gain dishonestly for oneself or another, or to cause loss to another</td>
+<td>Imprisonment for 5 years</td>
+</tr>
+<tr>
+<td>Telecommunications Ordinance, section 27A</td>
+<td>Knowingly causing a computer, by telecommunications, to obtain unauthorised access to any program or data held in a computer</td>
+<td>Fine of HK$25,000</td>
+</tr>
+</tbody>
+</table>
+</div><p>Even if an intruder steals or damages nothing, unauthorised access alone may already be an offence under section 27A of the Telecommunications Ordinance.</p>
+<p>Extension: the Personal Data (Privacy) Ordinance regulates the collection, use and security of personal data and is enforced by the Office of the Privacy Commissioner for Personal Data; the Unsolicited Electronic Messages Ordinance regulates commercial electronic messages to curb spamming.</p>
+<h2 id="en-410-data-encryption"><span class="sec-num">4.10</span><span class="sec-title">Data encryption</span></h2>
+<p><strong>Encryption</strong> converts readable <strong>plaintext</strong> into unreadable <strong>ciphertext</strong> using a key and an algorithm; <strong>decryption</strong> turns the ciphertext back into plaintext. Even if data is eavesdropped or intercepted in transit, it cannot be read without the correct key.</p>
+<p>A key is not a password: a key is a string of bits generated by the system for the encryption algorithm, which the user need not remember; a password is set by the user for authentication. Some systems generate a key from a password set by the user, but it is still the key that does the encryption.</p>
+<p><strong>Key size and degree of security</strong></p>
+<p>The longer the key, the more possible combinations, and the longer it takes to crack. A 128-bit key has 2¹²⁸ combinations and a 256-bit key has 2²⁵⁶, so cracking does not take just twice as long but 2¹²⁸ times as long.</p>
+<blockquote class="callout callout-tip">
+<p>✔ <strong>[2012 Practice Paper P1A Q34] A web site adopts an encryption key 2048 bits long instead of 1024 bits long. Why does this increase the security level?</strong></p>
+<p>Hackers take more time to crack the system. Key length does not affect data transmission time and has nothing to do with whether the key can be memorised. Encryption and decryption take slightly longer.</p>
+</blockquote>
+<p><strong>Symmetric and asymmetric encryption</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Comparison</th>
+<th>Symmetric encryption</th>
+<th>Asymmetric encryption (public and private key encryption)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Keys</td>
+<td><strong>The same key</strong> for encryption and decryption, kept secret by both sides</td>
+<td>Each person has a key pair: the <strong>public key</strong> is available to everyone; the <strong>private key</strong> is kept only by its owner</td>
+</tr>
+<tr>
+<td>Operation</td>
+<td>Encrypt with the key and decrypt with the same key</td>
+<td>Data encrypted with a public key can be decrypted only with the matching private key, and vice versa</td>
+</tr>
+<tr>
+<td>Advantages</td>
+<td>Faster encryption and decryption</td>
+<td>No secret key exchange beforehand; n people need only n key pairs, which is easier to manage; supports digital signatures for authenticity and non-repudiation</td>
+</tr>
+<tr>
+<td>Disadvantages</td>
+<td>The key must be exchanged securely before sending data; communicating with many people means managing many keys (n people communicating in pairs need n(n − 1) ÷ 2 keys)</td>
+<td>Slower encryption and decryption</td>
+</tr>
+</tbody>
+</table>
+</div><h2 id="en-411-public-key-infrastructure-pki"><span class="sec-num">4.11</span><span class="sec-title">Public Key Infrastructure (PKI)</span></h2>
+<p>The <strong>Hong Kong Public Key Infrastructure (Hong Kong PKI)</strong> is a framework for managing digital certificates and public key encryption, supporting secure electronic transactions, digital signatures and authentication.</p>
+<p><strong>Use 1: making sure only the recipient can read (confidentiality)</strong></p>
+<p>The sender encrypts with the <strong>recipient's public key</strong>, and the recipient decrypts with <strong>his/her own private key</strong>. Since only the recipient holds that private key, an interceptor cannot decrypt even with the ciphertext and the public key.</p>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2025 P1B 2(b)] Eva sends a document file to Paul. Describe how they use Public Key Infrastructure (PKI) to ensure that only Paul can open and read the file.</strong></p>
+<p>✔ Eva encrypts the file using <strong>Paul's public key</strong> (1 mark), and Paul decrypts the received file with <strong>his private key</strong> (1 mark).</p>
+<p>✘ The marking scheme notes that "Eva sends the file" does not mean "encrypt", and "Paul reads/opens" does not mean "decrypt". The HKEAA found that some candidates did not specify who encrypts or decrypts, or who owns the key.</p>
+</blockquote>
+<p><strong>Use 2: proving where a message comes from (authenticity, non-repudiation)</strong></p>
+<p>The sender signs (encrypts) with <strong>his/her own private key</strong>, and the recipient verifies (decrypts) with the <strong>sender's public key</strong>. Successful decryption proves that the message really came from the sender, who cannot deny sending it. This method is not confidential, because anyone can obtain the sender's public key.</p>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2024 P1B 3(b)] Ada plans to send an important message to Bob through the Internet, and PKI is used to guarantee that the message originated from Ada. Ada uses ___ to sign the message. Then, Bob uses ___ to verify the message.</strong></p>
+<p>✔ Ada uses <strong>Ada's private key</strong> to sign; Bob uses <strong>Ada's public key</strong> to verify.</p>
+<p>The HKEAA stressed that answers must state both whose key and which key, and that names are better than "his" or "her" to avoid ambiguity.</p>
+</blockquote>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Purpose</th>
+<th>Key used by the sender to encrypt or sign</th>
+<th>Key used by the recipient to decrypt or verify</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Only the recipient can read</td>
+<td>Recipient's public key</td>
+<td>Recipient's private key</td>
+</tr>
+<tr>
+<td>Prove the message came from the sender</td>
+<td>Sender's private key</td>
+<td>Sender's public key</td>
+</tr>
+<tr>
+<td>Both</td>
+<td>Sign with the sender's private key, then encrypt with the recipient's public key</td>
+<td>Decrypt with the recipient's private key, then verify with the sender's public key</td>
+</tr>
+</tbody>
+</table>
+</div><p><strong>Digital signatures</strong></p>
+<p>Encrypting a whole document with a private key is slow, so digital signatures are used in practice:</p>
+<ol>
+<li>The sender uses a hash function to compute a <strong>hash value</strong> of the document (the document's "fingerprint").</li>
+<li>The sender encrypts the hash value with <strong>his/her own private key</strong> to form the digital signature, which is attached to the document and sent with it.</li>
+<li>The recipient decrypts the digital signature with the <strong>sender's public key</strong> to obtain the original hash value.</li>
+<li>The recipient computes the hash value of the received document again and compares it with the one from step 3. If they match, the document came from the sender and was not altered in transit.</li>
+</ol>
+<p>A digital signature provides authenticity, integrity and non-repudiation, but the document itself is not encrypted, so there is no confidentiality. Under the Electronic Transactions Ordinance, a digital signature has the same legal status as a handwritten signature.</p>
+<p><strong>Digital certificates and certification authorities</strong></p>
+<p>If the "sender's public key" obtained by the recipient actually belongs to an impostor, verification goes wrong. A <strong>certification authority (CA)</strong> therefore uses a <strong>digital certificate</strong> to prove that a public key really belongs to a certain person or organisation.</p>
+<p>A digital certificate contains: the holder's details (such as the name); the holder's public key; the CA's digital signature; the validity period. A digital certificate <strong>does not contain</strong> anyone's private key.</p>
+<p>To verify a digital certificate, the CA's signature on the certificate is checked with the CA's public key; browsers and operating systems come with root certificates of trusted CAs pre-installed. A CA issues, verifies and manages digital certificates, but users generate their own key pairs and never give their private keys to the CA. Hongkong Post is one of the certification authorities in Hong Kong, and its e-Cert can be stored in the smart identity card.</p>
+<h2 id="en-412-security-of-electronic-transactions"><span class="sec-num">4.12</span><span class="sec-title">Security of electronic transactions</span></h2>
+<p><strong>Secure Sockets Layer (SSL)</strong> is a protocol that sets up an encrypted connection between a browser and a web server. HTTPS is HTTP protected by SSL or its successor, <strong>Transport Layer Security (TLS)</strong>. A padlock icon in the address bar shows that the connection is encrypted.</p>
+<p>A simplified outline of how SSL works:</p>
+<ol>
+<li>The browser requests an HTTPS connection to the web server.</li>
+<li>The web server sends its digital certificate, which contains the server's public key.</li>
+<li>The browser verifies the certificate with the CA's public key, confirming the identity of the web site.</li>
+<li>The browser generates a symmetric session key, encrypts it with the <strong>server's public key</strong> and sends it to the server; the server decrypts it with <strong>its own private key</strong> to obtain the session key.</li>
+<li>Both sides use the session key to encrypt and decrypt the data sent afterwards.</li>
+</ol>
+<p>SSL provides data encryption (confidentiality), protection against alteration in transit (integrity) and verification of the web site's identity. SSL is generally not used to verify the user's identity (web sites verify users with login names and passwords), does not provide non-repudiation, and does not protect communication between the user and the DNS server.</p>
+<ul>
+<li>[2023 P1A Q38] An advantage of using SSL on web sites is that the transferred data is encrypted (81% correct); SSL does not raise the data transfer rate or hide the IP addresses of web sites.</li>
+<li>[Sample Paper Section A Q20] SSL is needed on the Internet so that data can be safely transmitted.</li>
+<li>[Sample Paper Section B 7(b)] A supermarket web site uses a firewall to filter network traffic and block unauthorised access to the server, and SSL to encrypt the user name, password and credit card details sent between Mrs Wong and the site.</li>
+<li>[adapted from 2026 Mock P1A Q22] If a browser warns of an "untrusted connection" or "certificate error", the site's certificate may have expired or be invalid, or the browser cannot verify the site's identity.</li>
+</ul>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2023 P1B 4(c)] David has set up mytoyshop.com for customers to order toys and considers providing an HTTPS connection with the URL <code>https://mytoyshop.com</code>. (i) What should David apply for and obtain before he can implement an HTTPS connection? (ii) A public and private key encryption system is used in the web site. Who should use the public key and private key respectively?</strong></p>
+<p>✔ (i) A digital certificate (SSL certificate, TLS certificate or e-Cert accepted). ✘ "Domain name" was not accepted.</p>
+<p>✔ (ii) Public key: customers/users; private key: David/the web site.</p>
+<p>✘ Some candidates lost marks by answering in terms of sending emails. The HKEAA reminded candidates that PKI is not only related to email.</p>
+</blockquote>
+<p>[adapted from 2026 Mock P1B 4(b)] When a user logs in to a web site, the password is encrypted with the site's public key; only the site can decrypt it with its own private key, keeping the password confidential.</p>
+<p><strong>Other security measures in electronic transactions</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Measure</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Smart card</td>
+<td>The chip on the card stores credentials securely, and a PIN may be required for transactions; harder to copy than magnetic stripe cards and QR codes</td>
+</tr>
+<tr>
+<td>Security token</td>
+<td>Generates one-time passwords valid for a short time, forming two-factor authentication with a password</td>
+</tr>
+<tr>
+<td>Digital certificate</td>
+<td>Verifies the identity of the web site or the parties in a transaction, and is used to set up encrypted connections</td>
+</tr>
+<tr>
+<td>Mobile SMS</td>
+<td>Sends a one-time password to the user's registered phone during login or a transaction; the user must enter it to proceed</td>
+</tr>
+</tbody>
+</table>
+</div><h2 id="en-413-latest-developments-in-security-measures"><span class="sec-num">4.13</span><span class="sec-title">Latest developments in security measures</span></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Development</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AI-driven threat detection</td>
+<td>Analyses data patterns to spot unusual activity and phishing in real time and automatically isolates affected systems; adjusts authentication requirements according to user behaviour</td>
+</tr>
+<tr>
+<td>Zero trust architecture</td>
+<td>Assumes threats may come from inside or outside the network, strictly verifies every access and monitors continuously</td>
+</tr>
+<tr>
+<td>Passwordless authentication</td>
+<td>Replaces passwords with biometrics or hardware tokens (such as passkeys), reducing the risk of weak or stolen passwords</td>
+</tr>
+<tr>
+<td>Multi-factor authentication (MFA)</td>
+<td>Requires two or more authentication factors</td>
+</tr>
+<tr>
+<td>Blockchain security</td>
+<td>Verifies transactions by consensus mechanisms; records on the ledger cannot be altered; relies on cryptography to protect data</td>
+</tr>
+<tr>
+<td>IoT security</td>
+<td>Applies device security standards, changes default passwords and regularly updates firmware and security patches</td>
+</tr>
+</tbody>
+</table>
+</div><h2 id="en-414-self-test"><span class="sec-num">4.14</span><span class="sec-title">Self-test</span></h2>
+<details class="quiz">
+<summary>1. State the difference between a virus and a worm in how they spread.</summary>
+<p>A virus attaches to files and spreads only when the user runs an infected file; a worm needs no host file and replicates and spreads by itself through the network.</p>
+</details>
+<details class="quiz">
+<summary>2. Files on a company's file server are encrypted by ransomware. (a) State one consequence. (b) Give two measures to reduce the impact.</summary>
+<p>(a) Important files cannot be accessed until a ransom is paid, and business may stop. (b) Back up regularly and keep the backups offline; keep the anti-virus software and operating system up to date; train staff not to open attachments or links in suspicious emails. (Any two)</p>
+</details>
+<details class="quiz">
+<summary>3. Ting's computer has anti-virus software installed but is still infected by a virus. Give two possible reasons.</summary>
+<p>The virus definition file has not been updated; the virus is a new variant that the anti-virus software cannot detect.</p>
+</details>
+<details class="quiz">
+<summary>4. Someone says, "With a firewall installed, anti-virus software is unnecessary." Do you agree? Explain.</summary>
+<p>No. A firewall filters incoming and outgoing network traffic by rules to block unauthorised access, but it does not scan files for viruses or remove viruses that have already infected the computer, such as viruses brought in on a USB flash drive. Both should be used.</p>
+</details>
+<details class="quiz">
+<summary>5. A café changes the encryption of its staff Wi-Fi from WEP to WPA3. Explain how this improves security and suggest one more wireless security measure.</summary>
+<p>WEP is insecure and easily cracked; WPA3 provides stronger encryption, so intercepted data is hard to read. Other measures: use a strong security key; enable MAC address filtering; change the access point's default administrator password and update its firmware. (Any one)</p>
+</details>
+<details class="quiz">
+<summary>6. "If I use private browsing mode, my ISP will not know which web sites I have visited." Is this correct?</summary>
+<p>No. Private browsing only avoids saving history and cookies on the local computer; it does not hide the IP address, so the ISP and the visited sites can still track the user's activities. A VPN can be used to hide the IP address.</p>
+</details>
+<details class="quiz">
+<summary>7. Jenny receives an email from admin@gmall.com with the subject "Urgent: your account will be suspended if you do not verify" and a "Click here to verify" link. Give three features that make her suspect it is a phishing email.</summary>
+<p>The sender's domain gmall.com imitates gmail.com; the subject uses an urgent, threatening tone; the link asks her to verify the account without clearly stating its destination.</p>
+</details>
+<details class="quiz">
+<summary>8. A web site requires passwords to have "at least 8 characters". Suggest two other password requirements.</summary>
+<p>A mix of uppercase letters, lowercase letters, digits and symbols; must not contain the user name; must not be a common word. (Any two)</p>
+</details>
+<details class="quiz">
+<summary>9. [adapted from 2025 P1B 2(a)] Give two reasons why a one-time password is more secure than an ordinary password.</summary>
+<p>An OTP is valid only for a short time, so even if intercepted it soon expires; each OTP can be used only once, so an attacker cannot reuse it.</p>
+</details>
+<details class="quiz">
+<summary>10. Distinguish authentication from authorisation, with an example of each.</summary>
+<p>Authentication confirms the user's identity, such as logging in with a user name and password; authorisation decides which resources a logged-in user can access, such as students being able to view but not change their own results.</p>
+</details>
+<details class="quiz">
+<summary>11. Give two disadvantages of symmetric encryption.</summary>
+<p>The two sides must exchange the key securely before sending data; communicating with many people means managing many keys.</p>
+</details>
+<details class="quiz">
+<summary>12. Ming sends a file to Ting and uses PKI to ensure that (i) the file really came from Ming; (ii) only Ting can open the file. State the keys used in each case.</summary>
+<p>(i) Ming digitally signs the file with Ming's private key; Ting verifies it with Ming's public key. (ii) Ming encrypts the file with Ting's public key; Ting decrypts it with Ting's private key.</p>
+</details>
+<details class="quiz">
+<summary>13. Which of the following are contained in a digital certificate issued by a CA to Kin? (1) Kin's details (2) Kin's private key (3) Kin's public key (4) the CA's private key (5) the CA's digital signature</summary>
+<p><strong>(1), (3) and (5)</strong>. A digital certificate never contains any private key.</p>
+</details>
+<details class="quiz">
+<summary>14. An online bookshop uses HTTPS. (a) What must the bookshop obtain first? (b) Give two roles of SSL in online transactions.</summary>
+<p>(a) A digital certificate issued by a certification authority. (b) Encrypts data sent between the browser and the server, such as credit card details; ensures the data is not altered in transit; lets users verify the identity of the web site. (Any two)</p>
+</details></div><nav class="prevnext"><a class="pn pn-prev" href="../core-c/c.html"><span class="pn-dir"><span class="lang-zh">← 上一頁</span><span class="lang-en" lang="en">← Previous</span></span><span class="pn-title"><span class="lang-zh">單元 C 課題 c：初級網頁創作</span><span class="lang-en" lang="en">Module C Topic c: Elementary Web Authoring</span></span></a><a class="pn pn-next" href="../core-d/index.html"><span class="pn-dir"><span class="lang-zh">下一頁 →</span><span class="lang-en" lang="en">Next →</span></span><span class="pn-title"><span class="lang-zh">單元 D：計算思維與程式編寫</span><span class="lang-en" lang="en">Module D: Computational Thinking and Programming</span></span></a></nav>
     </article>
     <footer class="footer">
       <p class="lang-zh">內容依據課程發展議會與考評局《資訊及通訊科技課程及評估指引》及考評局公開資料整理，僅供溫習參考。</p>
@@ -830,7 +1513,7 @@
   </main>
 
   <aside class="toc-rail">
-<nav class="toc lang-zh" aria-label="本頁目錄"><div class="toc-title">本頁目錄</div><ol><li><a href="#41-課程要求">4.1 課程要求</a></li><li><a href="#42-網絡保安的目標">4.2 網絡保安的目標</a></li><li><a href="#43-常見的保安威脅">4.3 常見的保安威脅</a></li><li><a href="#44-改善網絡保安的措施">4.4 改善網絡保安的措施</a></li><li><a href="#45-私隱威脅">4.5 私隱威脅</a></li><li><a href="#46-保護私隱的方法">4.6 保護私隱的方法</a></li><li><a href="#47-密碼與身份鑑定方法">4.7 密碼與身份鑑定方法</a></li><li><a href="#48-身份鑑定與授權">4.8 身份鑑定與授權</a></li><li><a href="#49-未經授權存取的法律後果">4.9 未經授權存取的法律後果</a></li><li><a href="#410-數據加密">4.10 數據加密</a></li><li><a href="#411-公開密碼匙基礎建設pki">4.11 公開密碼匙基礎建設（PKI）</a></li><li><a href="#412-電子交易的保安">4.12 電子交易的保安</a></li><li><a href="#413-保安措施的最新發展">4.13 保安措施的最新發展</a></li><li><a href="#414-自我檢測">4.14 自我檢測</a></li></ol></nav>
+<nav class="toc lang-zh" aria-label="本頁目錄"><div class="toc-title">本頁目錄</div><ol><li><a href="#41-課程要求">4.1 課程要求</a></li><li><a href="#42-網絡保安的目標">4.2 網絡保安的目標</a></li><li><a href="#43-常見的保安威脅">4.3 常見的保安威脅</a></li><li><a href="#44-改善網絡保安的措施">4.4 改善網絡保安的措施</a></li><li><a href="#45-私隱威脅">4.5 私隱威脅</a></li><li><a href="#46-保護私隱的方法">4.6 保護私隱的方法</a></li><li><a href="#47-密碼與身份鑑定方法">4.7 密碼與身份鑑定方法</a></li><li><a href="#48-身份鑑定與授權">4.8 身份鑑定與授權</a></li><li><a href="#49-未經授權存取的法律後果">4.9 未經授權存取的法律後果</a></li><li><a href="#410-數據加密">4.10 數據加密</a></li><li><a href="#411-公開密碼匙基礎建設pki">4.11 公開密碼匙基礎建設（PKI）</a></li><li><a href="#412-電子交易的保安">4.12 電子交易的保安</a></li><li><a href="#413-保安措施的最新發展">4.13 保安措施的最新發展</a></li><li><a href="#414-自我檢測">4.14 自我檢測</a></li></ol></nav><nav class="toc lang-en" lang=en aria-label="On this page"><div class="toc-title">On this page</div><ol><li><a href="#en-41-curriculum-requirements">4.1 Curriculum requirements</a></li><li><a href="#en-42-goals-of-network-security">4.2 Goals of network security</a></li><li><a href="#en-43-common-security-threats">4.3 Common security threats</a></li><li><a href="#en-44-measures-to-improve-network-security">4.4 Measures to improve network security</a></li><li><a href="#en-45-privacy-threats">4.5 Privacy threats</a></li><li><a href="#en-46-ways-to-maintain-privacy">4.6 Ways to maintain privacy</a></li><li><a href="#en-47-passwords-and-authentication-methods">4.7 Passwords and authentication methods</a></li><li><a href="#en-48-authentication-and-authorisation">4.8 Authentication and authorisation</a></li><li><a href="#en-49-legal-consequences-of-unauthorised-access">4.9 Legal consequences of unauthorised access</a></li><li><a href="#en-410-data-encryption">4.10 Data encryption</a></li><li><a href="#en-411-public-key-infrastructure-pki">4.11 Public Key Infrastructure (PKI)</a></li><li><a href="#en-412-security-of-electronic-transactions">4.12 Security of electronic transactions</a></li><li><a href="#en-413-latest-developments-in-security-measures">4.13 Latest developments in security measures</a></li><li><a href="#en-414-self-test">4.14 Self-test</a></li></ol></nav>
   </aside>
 </div>
 
