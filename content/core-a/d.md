@@ -289,3 +289,29 @@ ORDER BY 排序欄位 [ASC | DESC]
 
 "1" 和 "0" 加了引號，是文字而不是數值，SUM 不會把文字相加。應寫 `=IF(A2>=50,1,0)`。
 </details>
+
+<details><summary>5. 等級表的分數下限在 J2:J6（0、40、55、70、85），對應等級在 K2:K6（F、D、C、B、A）。寫出在 G2 按 F2 的分數查等級的公式。F2 是 69 時結果是甚麼？</summary>
+
+`=XLOOKUP(F2,$J$2:$J$6,$K$2:$K$6,,-1)`。比對模式 −1 在找不到 69 時取較小的最接近值 55，所以結果是 **C**。查找範圍和傳回範圍要用絕對參照，方便複製到下方。
+</details>
+
+<details><summary>6. A2 儲存學生的班別及學號，格式為「4B-23」。寫出公式分別取出班別和學號。</summary>
+
+班別：`=LEFT(A2,2)`。學號：`=RIGHT(A2,2)` 或 `=MID(A2,4,2)`。若班別長度不一，可寫 `=MID(A2,FIND("-",A2)+1,2)`。
+</details>
+
+<details><summary>7. 根據 4.10 節的 LOAN 表，寫出以下 SQL 的輸出：`SELECT SID, SUM(DAYS) FROM LOAN WHERE CLASS = '4A' GROUP BY SID`</summary>
+
+先篩選 4A 班的三個記錄，再按 SID 分組：
+
+S01 10（7 + 3）
+
+S03 10
+</details>
+
+<details><summary>8. 根據 LOAN 表，寫出 SQL 列出被借出多於一次的書本編號。</summary>
+
+`SELECT BOOK FROM LOAN GROUP BY BOOK HAVING COUNT(*) > 1`
+
+輸出：B12。條件涉及分組後的數目，所以用 HAVING，不能用 WHERE。
+</details>

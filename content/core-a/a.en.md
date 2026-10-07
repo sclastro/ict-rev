@@ -75,3 +75,13 @@ Typing in the application data is **data storage**; printing the list is **data 
 
 Disagree. Information literacy means being able to identify the information needed, evaluate the reliability of sources and use information ethically; the time spent online does not show these abilities.
 </details>
+
+<details><summary>3. A weather station records the temperature every hour. Based on last week's records, the Observatory forecasts "a maximum temperature of 33 degrees tomorrow". Which part is data and which part is information?</summary>
+
+The hourly temperatures are **data**: raw facts that have not been processed. "A maximum temperature of 33 degrees tomorrow" is **information**: it is the result of analysis and helps people decide what to wear and what to do.
+</details>
+
+<details><summary>4. For an information system that sells concert tickets online, give an example of each of the five components of an information system.</summary>
+
+System function: lets the public choose seats and pay online. Data: customer names, seat numbers, payment details. Procedure: choose seats → confirm → pay → issue e-tickets. Technology: servers, database, network, customers' smartphones. Personnel: ticket buyers, system administrator, programmers.
+</details>
