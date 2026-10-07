@@ -543,7 +543,7 @@ B ← TEMP
 否則
     輸出 &quot;FAIL&quot;
 </code></pre>
-<p><strong>多向選擇</strong>有兩種寫法：</p>
+<p><strong>多向選擇</strong>可以寫成「否則 如果」的連串判斷，也可以用嵌套選擇（見下文）：</p>
 <pre><code class="language-text">如果 MARK &gt;= 80 則
     GRADE ← &quot;Distinction&quot;
 否則 如果 MARK &gt;= 40 則
@@ -883,7 +883,752 @@ BMI ← calc_bmi(WEIGHT, HEIGHT)
 <details class="quiz">
 <summary>12. 函數 Calc(A, B) 傳回 A * B。執行 Ans ← Calc(5, 4)；Ans ← Calc(Ans, 2)；輸出 Ans。輸出是甚麼？</summary>
 <p>Calc(5, 4) = 20；Calc(20, 2) = 40。輸出 <strong>40</strong>。</p>
-</details></div><div class="lang-en" lang="en"><div class="pending"><div class="pending-icon">English</div><div class="pending-title">English version in preparation</div><p>This page is currently available in Chinese only. Switch to 中文 in the top bar to read it.</p></div></div><nav class="prevnext"><a class="pn pn-prev" href="../core-d/a.html"><span class="pn-dir"><span class="lang-zh">← 上一頁</span><span class="lang-en" lang="en">← Previous</span></span><span class="pn-title"><span class="lang-zh">單元 D 課題 a：問題建構和分析</span><span class="lang-en" lang="en">Module D Topic a: Problem Formulation and Analysis</span></span></a><a class="pn pn-next" href="../core-d/c.html"><span class="pn-dir"><span class="lang-zh">下一頁 →</span><span class="lang-en" lang="en">Next →</span></span><span class="pn-title"><span class="lang-zh">單元 D 課題 c：程式開發</span><span class="lang-en" lang="en">Module D Topic c: Program Development</span></span></a></nav>
+</details></div><div class="lang-en prose" lang="en"><h2 id="en-21-curriculum-requirements"><span class="sec-num">2.1</span><span class="sec-title">Curriculum requirements</span></h2>
+<p>Perform a dry run of a set of steps to determine its purpose and/or output; define algorithm and use pseudocode and program flowcharts to represent algorithms; outline and discuss the input and output requirements of a problem and design an appropriate user interface; recognise the uses and nature of simple data types (restricted to integer, real, character and Boolean) and data structures (limited to string and one-dimensional array), including Boolean logic (AND, OR, NOT) and truth tables; select appropriate data types and discuss the merit of the chosen types; design and construct standard algorithms involving basic control structures (sequence, selection [binary and multi-way] and iteration); create and examine algorithms such as loading and printing an array, and adding or deleting an item in an array; produce trace tables; locate logic errors in an algorithm and correct them; modify an algorithm for changes in task specification; describe the advantages of modularity in designing computer solutions, and habitually use the modular approach to structure algorithms.</p>
+<h2 id="en-22-algorithms-pseudocode-and-program-flowcharts"><span class="sec-num">2.2</span><span class="sec-title">Algorithms, pseudocode and program flowcharts</span></h2>
+<p>An <strong>algorithm</strong> is a clear, finite and ordered series of steps for solving a problem. An algorithm can be represented by <strong>pseudocode</strong> or a <strong>program flowchart</strong>.</p>
+<p><strong>Program flowchart symbols</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Symbol</th>
+<th>Use</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Oval</td>
+<td>Start, end</td>
+<td>Start</td>
+</tr>
+<tr>
+<td>Parallelogram</td>
+<td>Input, output</td>
+<td>input N; output S</td>
+</tr>
+<tr>
+<td>Rectangle</td>
+<td>Process (assignment, calculation)</td>
+<td>S ← S + N</td>
+</tr>
+<tr>
+<td>Diamond</td>
+<td>Decision, with two exits "Yes" and "No"</td>
+<td>N &gt; 4?</td>
+</tr>
+<tr>
+<td>Arrow</td>
+<td>Direction of flow</td>
+<td></td>
+</tr>
+<tr>
+<td>Rectangle with double vertical sides</td>
+<td>Predefined process, i.e. calling a module or subprogram</td>
+<td>Calculate BMI</td>
+</tr>
+</tbody>
+</table>
+</div><p><strong>Pseudocode style in HKEAA papers</strong></p>
+<p>There is no single standard for pseudocode. The table shows the style commonly used in HKEAA English papers:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Use</th>
+<th>Pseudocode</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Assignment</td>
+<td><code>X ← X + 1</code></td>
+</tr>
+<tr>
+<td>Input, output</td>
+<td><code>input N</code>, <code>output S</code>, <code>output 'Not found'</code></td>
+</tr>
+<tr>
+<td>Binary selection</td>
+<td><code>if condition then</code> … <code>else</code> …</td>
+</tr>
+<tr>
+<td>Pre-test loop</td>
+<td><code>while condition do</code> …</td>
+</tr>
+<tr>
+<td>Counting loop</td>
+<td><code>for i from 1 to N</code> …</td>
+</tr>
+<tr>
+<td>Post-test loop</td>
+<td><code>repeat</code> … <code>until condition</code></td>
+</tr>
+<tr>
+<td>Remainder, quotient</td>
+<td><code>the remainder of (A / 2)</code>, <code>the quotient of (P / Q)</code></td>
+</tr>
+<tr>
+<td>Integral part</td>
+<td><code>the integral part of ((left + right) ÷ 2)</code></td>
+</tr>
+<tr>
+<td>Leaving a loop early</td>
+<td><code>exit the loop</code></td>
+</tr>
+<tr>
+<td>Array element</td>
+<td><code>A[i]</code>; the question states the index range, e.g. "A[1] to A[N]" or "indexes from 0 to N − 1"</td>
+</tr>
+</tbody>
+</table>
+</div><p>Pseudocode uses indentation to show which statements belong inside a selection or loop. Whether array indexes start from 1 or 0 differs from question to question, so read the question's description first.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Comparison</th>
+<th>Pseudocode</th>
+<th>Program flowchart</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Form</td>
+<td>Text</td>
+<td>Diagram</td>
+</tr>
+<tr>
+<td>Advantages</td>
+<td>Quicker to write and modify; easy to convert into program code</td>
+<td>Visual; the flow of execution is easy to see</td>
+</tr>
+<tr>
+<td>Disadvantages</td>
+<td>Less visual than a diagram</td>
+<td>Time-consuming to draw; flowcharts of complex algorithms become very large</td>
+</tr>
+</tbody>
+</table>
+</div><p><strong>HKEAA marking principles (pseudocode)</strong></p>
+<ul>
+<li>The focus is logical reasoning; minor syntax errors are accepted.</li>
+<li>Pseudocode may follow Python, C++ or Pascal style: assignment may be written <code>←</code>, <code>=</code> or <code>:=</code>; equality <code>=</code> or <code>==</code>; inequality <code>&lt;&gt;</code> or <code>!=</code>; <code>≥</code> or <code>&gt;=</code>; letter case and single or double quotes are not penalised.</li>
+<li>Errors that affect the logic or program flow are not accepted, e.g. missing brackets so that <code>(left + right) / 2</code> becomes <code>left + right / 2</code>.</li>
+<li>Pseudocode gets no marks when the question asks for answers in a programming language.</li>
+</ul>
+<h2 id="en-23-dry-runs-and-trace-tables"><span class="sec-num">2.3</span><span class="sec-title">Dry runs and trace tables</span></h2>
+<p>A <strong>dry run</strong> executes an algorithm by hand, line by line, without a computer, recording how the variable values change in order to find the output or purpose of the algorithm, or to find errors. A <strong>trace table</strong> lists the values of the variables after each step (or each iteration).</p>
+<p>How to dry run:</p>
+<ol>
+<li>List all the variables and write down their initial values;</li>
+<li>Execute line by line, updating the table at every assignment;</li>
+<li>At a selection or loop, work out whether the condition is true before deciding the next step;</li>
+<li>After the loop ends, write the output required by the question.</li>
+</ol>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2025 P1A Q38] What is the output of the following algorithm?</strong></p>
+<p>✔ S ← 0, A ← 3; while A &lt;= 9: S ← S + A; if (the remainder of (A / 2)) = 1 then A ← A + 1, else A ← 2 * A + 1; finally output S. Trace: A = 3 → S = 3, A is odd, A = 4; A = 4 → S = 7, A is even, A = 9; A = 9 → S = 16, A = 10, the loop stops. Output <strong>16</strong>.</p>
+<p>✘ Only 65% of candidates answered correctly. The HKEAA noted that the candidates who lost marks traced the odd and even branches wrongly.</p>
+</blockquote>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Iteration</th>
+<th>A (before)</th>
+<th>S</th>
+<th>A odd?</th>
+<th>A (after)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>3</td>
+<td>3</td>
+<td>Yes</td>
+<td>4</td>
+</tr>
+<tr>
+<td>2</td>
+<td>4</td>
+<td>7</td>
+<td>No</td>
+<td>9</td>
+</tr>
+<tr>
+<td>3</td>
+<td>9</td>
+<td>16</td>
+<td>Yes</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+</div><p>⚠ The control variable of a counting loop is reassigned. [2023 P1A Q30] After A ← 5, B ← 11, C ← 7, the loop "for C from 2 to 3: B ← A + B" runs only twice (C = 2, 3), B becomes 16 then 21, and the output A + B = <strong>26</strong>. Only 38% of candidates answered correctly. The original value 7 of C does not affect the number of iterations.</p>
+<h2 id="en-24-data-types-and-data-structures"><span class="sec-num">2.4</span><span class="sec-title">Data types and data structures</span></h2>
+<p><strong>Simple data types</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Data type</th>
+<th>Data stored</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Integer</td>
+<td>Numbers without a fractional part</td>
+<td>Number of people, steps, pages</td>
+</tr>
+<tr>
+<td>Real</td>
+<td>Numbers that may have a fractional part</td>
+<td>Average mark, amount of money, body temperature</td>
+</tr>
+<tr>
+<td>Character</td>
+<td>A single letter, digit or symbol</td>
+<td><code>'A'</code>, <code>'5'</code>, <code>'#'</code></td>
+</tr>
+<tr>
+<td>Boolean</td>
+<td>Only TRUE or FALSE</td>
+<td>Whether a member, whether found</td>
+</tr>
+</tbody>
+</table>
+</div><p><strong>Simple data structures</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Data structure</th>
+<th>Description</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>String</td>
+<td>A sequence of characters that can be accessed one by one</td>
+<td><code>"STEAM"</code>, phone number, student ID</td>
+</tr>
+<tr>
+<td>One-dimensional array</td>
+<td>A group of elements of the same data type, accessed by one name and an index</td>
+<td><code>JS[1]</code> to <code>JS[5]</code> store the scores of five judges</td>
+</tr>
+</tbody>
+</table>
+</div><p>Advantages of an array over many separate variables: all elements can be processed with a loop and an index, so the program is shorter; when the amount of data changes, only the array size and the loop range need changing.</p>
+<p><strong>Choosing a data type</strong> depends on the nature of the data (whether it is used in calculation, whether it has decimals, whether it has only two states), the precision needed and the memory required:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Data</th>
+<th>Suitable type</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Phone number, student ID, HKID number</td>
+<td>String</td>
+<td>Not used in calculation; may have leading zeros or letters</td>
+</tr>
+<tr>
+<td>Number of pages, quantity bought</td>
+<td>Integer</td>
+<td>Whole numbers only</td>
+</tr>
+<tr>
+<td>Price, average mark, body temperature</td>
+<td>Real</td>
+<td>May have decimals</td>
+</tr>
+<tr>
+<td>Has astigmatism, is a member</td>
+<td>Boolean</td>
+<td>Only two states, "yes" and "no"</td>
+</tr>
+<tr>
+<td>Class (e.g. 2A)</td>
+<td>String (or two characters)</td>
+<td>Contains a digit and a letter</td>
+</tr>
+</tbody>
+</table>
+</div><blockquote class="callout callout-warn">
+<p>⚠ <strong>[2025 P1B 8(a)(ii)] What data type should the final score FS be? Why?</strong></p>
+<p>✔ Real, because FS is the average of three scores and may have decimals.</p>
+<p>✘ Writing only "numeric" without an explanation, or giving no reason at all.</p>
+</blockquote>
+<p>[Sample Paper Section B 9(a)] Transaction amounts should not be stored as strings, because numbers in a string cannot be used directly in calculations; use real.</p>
+<h2 id="en-25-boolean-logic-and-truth-tables"><span class="sec-num">2.5</span><span class="sec-title">Boolean logic and truth tables</span></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>A AND B</th>
+<th>A OR B</th>
+<th>NOT A</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+</tr>
+<tr>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>TRUE</td>
+</tr>
+<tr>
+<td>TRUE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+</tr>
+<tr>
+<td>TRUE</td>
+<td>TRUE</td>
+<td>TRUE</td>
+<td>TRUE</td>
+<td>FALSE</td>
+</tr>
+</tbody>
+</table>
+</div><ul>
+<li>AND: true only if both are true; OR: true if either is true; NOT: swaps true and false.</li>
+<li>Without brackets, evaluate NOT first, then AND, then OR.</li>
+<li>Checking "between 18 and 60 inclusive" needs AND: <code>(A &gt;= 18) AND (A &lt;= 60)</code>; checking "outside the range" uses OR: <code>(A &lt; 18) OR (A &gt; 60)</code>.</li>
+</ul>
+<p><strong>De Morgan's laws</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Expression</th>
+<th>Equivalent to</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NOT (A OR B)</td>
+<td>(NOT A) AND (NOT B)</td>
+</tr>
+<tr>
+<td>NOT (A AND B)</td>
+<td>(NOT A) OR (NOT B)</td>
+</tr>
+<tr>
+<td>NOT (X &gt; 15)</td>
+<td>X &lt;= 15</td>
+</tr>
+<tr>
+<td>NOT (X = 6)</td>
+<td>X &lt;&gt; 6</td>
+</tr>
+</tbody>
+</table>
+</div><blockquote class="callout callout-warn">
+<p>⚠ <strong>[2012 Practice Paper P1A Q29] P and Q represent A ≥ 18 and A ≤ 60 respectively. For which of A = 0, 18, 30, 80 is NOT (P AND Q) true?</strong></p>
+<p>✔ NOT (P AND Q) means A is not within 18 to 60, so only <strong>0 and 80</strong>.</p>
+<p>✘ Including 18 by mistake: when A = 18, P and Q are both true, so NOT (P AND Q) is false.</p>
+</blockquote>
+<p>[Sample Paper Section A Q27] With X = 1, Y = 2 and Z = 3, <code>((X = 1) AND (Y &gt; -2)) OR (Z &gt; 3)</code> is true; the other three options all join <code>Z &gt; 3</code> (false) with AND, so they are false.</p>
+<h2 id="en-26-input-output-and-user-interface"><span class="sec-num">2.6</span><span class="sec-title">Input, output and user interface</span></h2>
+<p>When designing a solution, decide first: what data the user inputs, in what form, and how the input is checked; what the program outputs and how it is displayed.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Comparison</th>
+<th>Command Line Interface (CLI)</th>
+<th>Graphical User Interface (GUI)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Operation</td>
+<td>Type text commands</td>
+<td>Click icons, buttons and menus</td>
+</tr>
+<tr>
+<td>Advantages</td>
+<td>Easy to program; uses few resources</td>
+<td>Easy to use without memorising commands; menus can restrict input and reduce input errors</td>
+</tr>
+<tr>
+<td>Disadvantages</td>
+<td>Users must memorise commands and may mistype them</td>
+<td>More program code is needed</td>
+</tr>
+</tbody>
+</table>
+</div><p>[2025 P1B 7(a)(i)] For the "Class" field of an online form, a drop-down menu or radio buttons are better than a text box, because only valid classes are provided and users cannot enter a class that does not exist. The HKEAA pointed out that a drop-down menu ensures the input is <strong>reasonable</strong> (valid), not that it is <strong>correct</strong>: a student may still choose the wrong class.</p>
+<h2 id="en-27-control-structures-sequence"><span class="sec-num">2.7</span><span class="sec-title">Control structures: sequence</span></h2>
+<p>Any algorithm can be built from three basic control structures: <strong>sequence</strong>, <strong>selection</strong> and <strong>iteration</strong>. Sequence means executing statements one by one from top to bottom.</p>
+<p><strong>Swapping the values of two variables</strong> needs a temporary variable:</p>
+<pre><code class="language-text">TEMP ← A
+A ← B
+B ← TEMP
+</code></pre>
+<p>⚠ Writing only <code>A ← B</code>, <code>B ← A</code> is wrong: the first statement has already overwritten the original value of A, so both variables end up equal to B.</p>
+<p>[2023 P1B 3(a)(i)] Swapping <code>A[i]</code> and <code>A[i-1]</code>: <code>TEMP ← A[i]</code>, <code>A[i] ← A[i-1]</code>, <code>A[i-1] ← TEMP</code>.</p>
+<h2 id="en-28-control-structures-selection"><span class="sec-num">2.8</span><span class="sec-title">Control structures: selection</span></h2>
+<p><strong>Binary selection</strong>: do one thing if the condition is true, otherwise do another.</p>
+<pre><code class="language-text">if MARKS &gt;= 50 then
+    output 'PASS'
+else
+    output 'FAIL'
+</code></pre>
+<p><strong>Multi-way selection</strong> can be written as a chain of "else if" decisions, or with nested selection (see below):</p>
+<pre><code class="language-text">if MARK &gt;= 80 then
+    GRADE ← 'Distinction'
+else if MARK &gt;= 40 then
+    GRADE ← 'Attained'
+else
+    GRADE ← 'Unattained'
+</code></pre>
+<p>Above, the conditions are arranged from high to low; once one condition is true, the rest are not checked. If written as three separate "if" statements, every mark is checked three times, and if the order is wrong, later statements overwrite the earlier result.</p>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2012 Practice Paper P1B 3(c)] Ada decides the grade with three separate "if" statements (MARK &lt; 40, MARK &gt;= 40, MARK &gt;= 80); Ben draws a flowchart with nested decisions. Which algorithm is more efficient?</strong></p>
+<p>✔ The nested algorithm is more efficient because, in general, it executes fewer comparisons.</p>
+<p>✘ Answering only "faster" without stating that fewer comparisons are made.</p>
+</blockquote>
+<p><strong>Nested selection</strong>: a selection inside another selection. In a dry run, decide the outer condition first, then the inner one.</p>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2012 Practice Paper P1A Q32] A ← 5, B ← 10; if (2 × A) &gt; 8 then [if A &gt; (5 + B) then A ← B, else B ← A], else A ← A + 8. What is the final value of A?</strong></p>
+<p>✔ The outer condition 10 &gt; 8 is true; the inner condition 5 &gt; 15 is false, so B ← A is executed. A is unchanged at <strong>5</strong>.</p>
+</blockquote>
+<p>[2025 P1A Q32] Two algorithms have the same effect. Version 1: if P &gt; 20 then A ← P * 5, else A ← P * 2. Version 2: first A ← <strong>P * 2</strong>, then "if P &gt; 20 then A ← A + P * 3". When P &gt; 20, A = P * 2 + P * 3 = P * 5, the same as Version 1.</p>
+<p>[2025 P1A Q33] "if (K &lt; 9) or (K &gt; 22) then output K": of the options 9, 10, 22 and 23, only 23 is output. Neither 9 nor 22 satisfies the strict "less than" or "greater than".</p>
+<h2 id="en-29-control-structures-iteration"><span class="sec-num">2.9</span><span class="sec-title">Control structures: iteration</span></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Loop</th>
+<th>Pseudocode</th>
+<th>When the condition is checked</th>
+<th>Minimum executions</th>
+<th>Suitable for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Counting loop</td>
+<td>for i from 1 to N</td>
+<td>Before each iteration</td>
+<td>0 (when N &lt; 1)</td>
+<td>A known number of repetitions</td>
+</tr>
+<tr>
+<td>Pre-test loop</td>
+<td>while condition do</td>
+<td>Before each iteration; executes only while true</td>
+<td>0</td>
+<td>An unknown number of repetitions, possibly none</td>
+</tr>
+<tr>
+<td>Post-test loop</td>
+<td>repeat … until condition</td>
+<td>After each iteration; stops when true</td>
+<td>1</td>
+<td>An unknown number of repetitions, at least one</td>
+</tr>
+</tbody>
+</table>
+</div><p>In a flowchart, a decision box <strong>before</strong> the loop body indicates a pre-test loop; one <strong>after</strong> the loop body indicates a post-test loop.</p>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2025 P1A Q28, Q29] A vending machine outputs a can of soda for every 5 credits. M1 outputs a can and sets N ← N − 5, then checks N &gt; 4; M2 checks N &gt; 4 first and, if true, outputs a can and sets N ← N − 5. How many cans does each output when N = 10 and when N = 0?</strong></p>
+<p>✔ N = 10: both M1 and M2 output <strong>2</strong> cans. N = 0: <strong>only M1</strong> outputs a can, because a post-test loop runs at least once and outputs the soda before checking the credits.</p>
+<p>✘ Thinking that neither outputs anything when N = 0, overlooking that M1 is a post-test structure.</p>
+</blockquote>
+<p><strong>Converting between post-test and pre-test loops</strong>: "repeat … until condition" stops when the condition is true; when rewriting it as "while … do", negate the condition (and remember that a pre-test loop may not execute at all).</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Post-test loop</th>
+<th>Equivalent pre-test condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>until (A &gt; 15) OR (B &gt;= 12)</td>
+<td>while (A &lt;= 15) AND (B &lt; 12)</td>
+</tr>
+<tr>
+<td>until X &gt; 0</td>
+<td>while X &lt;= 0</td>
+</tr>
+</tbody>
+</table>
+</div><p><strong>Rewriting a counting loop as a pre-test loop</strong>: set the initial value of the control variable yourself and increment it inside the loop body.</p>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2023 P1A Q29] Algorithm 1 adds N[1] to N[5] with "for i from 1 to 5". To rewrite it as Algorithm 2 with "while (i &lt;= 5) do", which two statements must be added?</strong></p>
+<p>✔ Add <code>i ← 1</code> before the loop and <code>i ← i + 1</code> inside the loop.</p>
+<p>✘ Only 51% of candidates answered correctly. With <code>i ← 0</code> as the initial value, the algorithm would also add N[0], which is outside N[1] to N[5].</p>
+</blockquote>
+<p><strong>Infinite loop</strong>: the condition is always true, so the loop never stops.</p>
+<p>[2025 P1A Q27] i ← 10; while i &gt; 0, output '$'. The statement <code>i ← i - 1</code> must be inserted into the loop; otherwise i stays at 10 and the loop never ends.</p>
+<p>[2012 Practice Paper P1A Q33] S ← 1; input A; while S &lt; 10, S ← S + A. Only a <strong>positive</strong> input makes S reach 10 or above; zero or a negative number causes an infinite loop.</p>
+<p><strong>Counting iterations</strong>:</p>
+<pre><code class="language-text">N ← 2
+while N &lt; 8 do
+    output '*'
+    N ← N + 3
+</code></pre>
+<p>Output happens when N is 2 and 5; the loop stops at N = 8, so <strong>2</strong> "*" are output [2023 P1A Q27].</p>
+<p>[2024 P1A Q30] S ← 0, N ← 1; repeat S ← S + N, N ← N + 2 until N &gt; 6; S becomes 1, 4, 9, and the output is <strong>9</strong>.</p>
+<h2 id="en-210-standard-algorithms-on-arrays"><span class="sec-num">2.10</span><span class="sec-title">Standard algorithms on arrays</span></h2>
+<p>Below, array A has N elements with indexes 1 to N. If the question's indexes start from 0, change the range to 0 to N − 1.</p>
+<p><strong>Loading and printing an array</strong></p>
+<pre><code class="language-text">for i from 1 to N
+    input A[i]
+for i from 1 to N
+    output A[i]
+</code></pre>
+<p>[Sample Paper Section A Q29] cnt ← 1, ind ← 1; while cnt &lt; 100: cnt ← cnt + 2, AR[ind] ← cnt, ind ← ind + 1. AR[1] to AR[5] are 3, 5, 7, 9, 11, so AR[5] = <strong>11</strong>.</p>
+<p><strong>Sum, count, average</strong></p>
+<pre><code class="language-text">S ← 0
+C ← 0
+for i from 1 to N
+    S ← S + A[i]
+    if A[i] &gt;= 50 then
+        C ← C + 1
+AVG ← S / N
+</code></pre>
+<p><strong>Maximum and its position</strong></p>
+<pre><code class="language-text">MAX ← A[1]
+P ← 1
+for i from 2 to N
+    if A[i] &gt; MAX then
+        MAX ← A[i]
+        P ← i
+</code></pre>
+<ul>
+<li>Use the first element as the initial value and start the loop from the second element; for the minimum, change <code>&gt;</code> to <code>&lt;</code>.</li>
+<li>Do not use 0 as the initial value of the maximum: if all numbers are negative, the result would wrongly be 0.</li>
+<li>Recording only the position also works: <code>if A[i] &gt; A[P] then P ← i</code>.</li>
+</ul>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2025 P1B 8(a)(i), (b)] The scores of five judges are stored in JS[1] to JS[5]; JS[Smax] is the highest score and JS[Smin] the lowest. In the pseudocode "Smax ← 1; for i from 2 to N: if JS[i] &gt; JS[Smax] then Smax ← i", how many times is the comparison executed? What is the advantage of using the variable N instead of the constant 5?</strong></p>
+<p>✔ Skateboarder C's scores are 68, 84, 82, 80, 92, so Smax = 5, Smin = 1, FS = (84 + 82 + 80) ÷ 3 = 82.00. The comparison is executed <strong>4 times (N − 1)</strong>. With N instead of 5, only one place needs changing when the number of judges changes; programmers can update all statements involving N in a single step.</p>
+<p>✘ Confusing array indexes with contents, writing Smax as 92 and Smin as 68; answering only "easy to change" without elaboration.</p>
+</blockquote>
+<p><strong>Search controlled by a flag</strong></p>
+<pre><code class="language-text">i ← 1
+FOUND ← FALSE
+input X
+while (i &lt;= N) AND (NOT FOUND) do
+    if A[i] = X then
+        FOUND ← TRUE
+    else
+        i ← i + 1
+if FOUND then
+    output i
+else
+    output 'Not found'
+</code></pre>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2024 P1A Q31, Q32] In the search algorithm above, what should fill the blank in "while (i &lt;= 10) ___ FLAG do"? What is the purpose of the variable FLAG?</strong></p>
+<p>✔ Fill in <strong>AND NOT</strong>; FLAG is used <strong>to control the loop</strong>: once the value is found, FLAG becomes true and the loop stops.</p>
+<p>✘ Only 40% of candidates answered Q31 correctly. "OR" would keep the loop going after the value is found; "AND" makes the condition false from the start. FLAG does not store a location or a count.</p>
+</blockquote>
+<p><strong>Inserting an item</strong>: to insert X at position P, start from the last element and shift each element back one place; otherwise data not yet moved is overwritten.</p>
+<pre><code class="language-text">for i from N down to P
+    A[i + 1] ← A[i]
+A[P] ← X
+N ← N + 1
+</code></pre>
+<p><strong>Deleting an item</strong>: to delete the element at position P, starting from P, move each following element forward.</p>
+<pre><code class="language-text">for i from P to N - 1
+    A[i] ← A[i + 1]
+N ← N - 1
+</code></pre>
+<p>[Sample Paper Section A Q33] The purpose of "input P; K ← P; while K &lt;= N − 1 do: A[K] ← A[K + 1], K ← K + 1; N ← N − 1" is to <strong>remove the P-th value in A</strong>.</p>
+<p><strong>Reversing and shifting</strong></p>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2025 P1B 6] The character array s1[0] to s1[4] contains S, T, E, A, M. (a) Execute "for i from 0 to 4: s2[4 − i] ← s1[i]"; (b) execute "ch ← s1[0]; for i from 0 to 3: s2[i] ← s1[i + 1]; s2[4] ← ch". What are the contents of s2 in each case?</strong></p>
+<p>✔ (a) M, A, E, T, S (reversed); (b) T, E, A, M, S (shifted left by one place, with the first character moved to the end).</p>
+<p>✘ Treating (a) as a straight copy. s2[4 − i] means the first character of s1 goes into the last cell of s2.</p>
+</blockquote>
+<h2 id="en-211-locating-and-correcting-logic-errors-modifying-algorithms"><span class="sec-num">2.11</span><span class="sec-title">Locating and correcting logic errors, modifying algorithms</span></h2>
+<p><strong>Common logic errors</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Error</th>
+<th>Example</th>
+<th>Correction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Boundary error</td>
+<td>"Between 18 and 30 inclusive" written as <code>age &gt; 18</code></td>
+<td>Change to <code>age &gt;= 18</code></td>
+</tr>
+<tr>
+<td>Off-by-one loop</td>
+<td>To add 1 + 2 + … + 5, writing <code>while i &lt; 5</code></td>
+<td>Change to <code>while i &lt;= 5</code></td>
+</tr>
+<tr>
+<td>AND/OR misused</td>
+<td>Range check written as <code>(age &gt;= 18) OR (age &lt;= 30)</code>, true for any age</td>
+<td>Change to AND</td>
+</tr>
+<tr>
+<td>No initial value</td>
+<td>No <code>S ← 0</code> before accumulating</td>
+<td>Add the initial value before the loop</td>
+</tr>
+<tr>
+<td>Initial value in the wrong place</td>
+<td><code>S ← 0</code> placed inside the loop, resetting S every iteration</td>
+<td>Move it before the loop</td>
+</tr>
+<tr>
+<td>Flag overwritten</td>
+<td>A search with "else FOUND ← FALSE", so a later element resets it after a match</td>
+<td>Delete the "else" part</td>
+</tr>
+</tbody>
+</table>
+</div><blockquote class="callout callout-warn">
+<p>⚠ <strong>[2025 P1B 9(c)] A username consists of form F, class C, class number N and check digit D. After the flowchart was converted to pseudocode, there are four mistakes after Line 130 (Line 150 should be S ← F + N, which is given). Find the other three and correct them.</strong></p>
+<p>✔ Line 140 <code>if 1&lt;=F&lt;=6 or 1&lt;=N&lt;=40</code> should use <strong>and</strong> (both must hold); Line 160 should be <code>if C = "A" or C = "B"</code> (first confirm the class is valid); Line 220 <code>if not FLAG</code> should be <strong><code>if FLAG</code></strong>: FLAG still being true means the username failed the checks, so "Invalid username" is output.</p>
+<p>✘ About two thirds of candidates misunderstood the use of the flag here, and only one third found all the errors.</p>
+</blockquote>
+<p><strong>Modifying an algorithm for a new requirement</strong>: first find the part of the algorithm related to the requirement, and change only that part.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Requirement</th>
+<th>Modification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Maximum → minimum</td>
+<td>Change <code>A[i] &gt; MAX</code> to <code>A[i] &lt; MIN</code></td>
+</tr>
+<tr>
+<td>Ascending sort → descending sort</td>
+<td>Change the <code>&gt;</code> in the order comparison to <code>&lt;</code></td>
+</tr>
+<tr>
+<td>Check ascending → check descending</td>
+<td>Change <code>A[i] &gt; A[i + 1]</code> to <code>A[i] &lt; A[i + 1]</code></td>
+</tr>
+<tr>
+<td>Count passes → count fails</td>
+<td>Change <code>&gt;= 50</code> to <code>&lt; 50</code></td>
+</tr>
+</tbody>
+</table>
+</div><h2 id="en-212-the-modular-approach"><span class="sec-num">2.12</span><span class="sec-title">The modular approach</span></h2>
+<p>A <strong>module</strong> (subprogram) is a group of statements that performs a specific task. It has its own name, can take <strong>parameters</strong>, and can return a result. A module that returns a value is a <strong>function</strong>, e.g. <code>find_max(A, N)</code> returns the maximum; a module that only performs a task without returning a value is a <strong>procedure</strong>, e.g. <code>print_report(A, N)</code>.</p>
+<pre><code class="language-text">function calc_bmi(W, H)
+    return W / (H * H)
+
+input WEIGHT, HEIGHT
+BMI ← calc_bmi(WEIGHT, HEIGHT)
+output BMI
+</code></pre>
+<p><strong>Advantages of designing solutions with modules</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Advantage</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Reusability</td>
+<td>The same module can be reused in other parts of the program or in other projects, so the program is shorter</td>
+</tr>
+<tr>
+<td>Easier to design and test</td>
+<td>Each module is small and can be tested independently</td>
+</tr>
+<tr>
+<td>Easier debugging and maintenance</td>
+<td>Errors are confined to individual modules; changing one module does not affect other parts</td>
+</tr>
+<tr>
+<td>Teamwork</td>
+<td>Different programmers can write different modules at the same time</td>
+</tr>
+<tr>
+<td>Clear structure</td>
+<td>The main program only lists the steps calling each module, which is easy to understand</td>
+</tr>
+</tbody>
+</table>
+</div><blockquote class="callout callout-warn">
+<p>⚠ <strong>[2024 P1A Q33] Which of the following are advantages of using modularity in writing programs? (1) Some modules can be reused (2) It is easier to debug programs (3) It is faster to define a problem</strong></p>
+<p>✔ (1) and (2) only.</p>
+<p>✘ Only 42% of candidates answered correctly. Modularity is used <strong>after</strong> the problem is defined; it does not make defining the problem faster.</p>
+</blockquote>
+<p>[2023 P1A Q33] The advantages of a modular approach are that a module can be reused in other scenarios and that modules are easier to design and test; "the execution time of an algorithm is shorter" is not correct. Calling modules may in fact add a little execution time.</p>
+<h2 id="en-213-self-test"><span class="sec-num">2.13</span><span class="sec-title">Self-test</span></h2>
+<details class="quiz">
+<summary>1. Name the flowchart symbols for "decision" and for "input/output".</summary>
+<p>Decision: diamond. Input/output: parallelogram.</p>
+</details>
+<details class="quiz">
+<summary>2. [2025 P1A Q36] N ← 0; for i from 1 to 4: N ← N * i + 1; output N. What is the output?</summary>
+<p>i = 1: N = 0 × 1 + 1 = 1; i = 2: N = 3; i = 3: N = 10; i = 4: N = 41. Output <strong>41</strong>.</p>
+</details>
+<details class="quiz">
+<summary>3. [2025 P1A Q37] X ← 0, Y ← 1; for i from 1 to 5: TEMP ← X + Y, X ← Y, Y ← TEMP; output Y. What is the output?</summary>
+<p>(X, Y) becomes (1, 1), (1, 2), (2, 3), (3, 5), (5, 8). Output <strong>8</strong>.</p>
+</details>
+<details class="quiz">
+<summary>4. [2025 P1A Q34, Q35] i ← 1, A[1] ← 1, K ← 3; while i &lt; 5: i ← i + 1, A[i] ← A[i − 1] + K, K ← K + 2; output A[5]. What are the final value of K and the output?</summary>
+<p>A[2] = 4, A[3] = 9, A[4] = 16, A[5] = 25; K becomes 5, 7, 9, 11. The final value of K is <strong>11</strong> and the output is <strong>25</strong>.</p>
+</details>
+<details class="quiz">
+<summary>5. Choose the most suitable data type for: (a) customer name (b) age (c) whether the customer has astigmatism (d) price of glasses</summary>
+<p>(a) String; (b) integer; (c) Boolean; (d) real.</p>
+</details>
+<details class="quiz">
+<summary>6. Simplify NOT ((X &gt; 5) OR (Y &lt; 2)) using De Morgan's law.</summary>
+<p>(X &lt;= 5) AND (Y &gt;= 2).</p>
+</details>
+<details class="quiz">
+<summary>7. Rewrite "repeat … until (X &gt; 5) OR (Y &lt; 2)" as a pre-test loop. What should the condition be? How do the two differ?</summary>
+<p><code>while (X &lt;= 5) AND (Y &gt;= 2) do</code>. A post-test loop executes at least once; a pre-test loop does not execute at all if the condition is false at the start.</p>
+</details>
+<details class="quiz">
+<summary>8. The following algorithm should calculate 1 + 2 + 3 + 4 + 5 but outputs 10: Sum ← 0, i ← 1; while i &lt; 5 do: Sum ← Sum + i, i ← i + 1. Find the error and correct it.</summary>
+<p>The condition <code>i &lt; 5</code> excludes 5, so the loop runs one time too few. Change it to <code>while i &lt;= 5 do</code>.</p>
+</details>
+<details class="quiz">
+<summary>9. [adapted from 2025 Mock P1A Q37] Array s, indexed from 0, stores the scores of N candidates. After p is input, this algorithm deletes s[p]: for j from p to N − 2 do ___; s[N − 1] ← 0. What fills the blank?</summary>
+<p><code>s[j] ← s[j + 1]</code>, moving each following element forward one place.</p>
+</details>
+<details class="quiz">
+<summary>10. Array QUEUE has indexes 0 to 4 and contains "Alice", "Bob", "David", "Eva", "". To insert "Chris" at index 2, which item should be moved first? Why?</summary>
+<p>Move "Eva" from QUEUE[3] to QUEUE[4] first, then move "David". Moving from the last item avoids overwriting data not yet moved. After insertion: "Alice", "Bob", "Chris", "David", "Eva".</p>
+</details>
+<details class="quiz">
+<summary>11. What is the logic error in this search algorithm? FOUND ← FALSE; for i from 1 to N: if A[i] = X then FOUND ← TRUE, else FOUND ← FALSE.</summary>
+<p>"else FOUND ← FALSE" makes FOUND reflect only the comparison with the last element: even if X was found earlier, FOUND is reset to false unless the last element is X. Delete the "else" part.</p>
+</details>
+<details class="quiz">
+<summary>12. Function Calc(A, B) returns A * B. Execute Ans ← Calc(5, 4); Ans ← Calc(Ans, 2); output Ans. What is the output?</summary>
+<p>Calc(5, 4) = 20; Calc(20, 2) = 40. Output <strong>40</strong>.</p>
+</details></div><nav class="prevnext"><a class="pn pn-prev" href="../core-d/a.html"><span class="pn-dir"><span class="lang-zh">← 上一頁</span><span class="lang-en" lang="en">← Previous</span></span><span class="pn-title"><span class="lang-zh">單元 D 課題 a：問題建構和分析</span><span class="lang-en" lang="en">Module D Topic a: Problem Formulation and Analysis</span></span></a><a class="pn pn-next" href="../core-d/c.html"><span class="pn-dir"><span class="lang-zh">下一頁 →</span><span class="lang-en" lang="en">Next →</span></span><span class="pn-title"><span class="lang-zh">單元 D 課題 c：程式開發</span><span class="lang-en" lang="en">Module D Topic c: Program Development</span></span></a></nav>
     </article>
     <footer class="footer">
       <p class="lang-zh">內容依據課程發展議會與考評局《資訊及通訊科技課程及評估指引》及考評局公開資料整理，僅供溫習參考。</p>
@@ -892,7 +1637,7 @@ BMI ← calc_bmi(WEIGHT, HEIGHT)
   </main>
 
   <aside class="toc-rail">
-<nav class="toc lang-zh" aria-label="本頁目錄"><div class="toc-title">本頁目錄</div><ol><li><a href="#21-課程要求">2.1 課程要求</a></li><li><a href="#22-算法偽代碼與程式流程圖">2.2 算法、偽代碼與程式流程圖</a></li><li><a href="#23-空運行與追蹤表">2.3 空運行與追蹤表</a></li><li><a href="#24-數據類型與數據結構">2.4 數據類型與數據結構</a></li><li><a href="#25-布爾邏輯與真假值表">2.5 布爾邏輯與真假值表</a></li><li><a href="#26-輸入輸出與用戶界面">2.6 輸入、輸出與用戶界面</a></li><li><a href="#27-控制結構序列">2.7 控制結構：序列</a></li><li><a href="#28-控制結構選擇">2.8 控制結構：選擇</a></li><li><a href="#29-控制結構迭代">2.9 控制結構：迭代</a></li><li><a href="#210-陣列的標準算法">2.10 陣列的標準算法</a></li><li><a href="#211-找出並更正邏輯錯誤修改算法">2.11 找出並更正邏輯錯誤、修改算法</a></li><li><a href="#212-模組化方法">2.12 模組化方法</a></li><li><a href="#213-自我檢測">2.13 自我檢測</a></li></ol></nav>
+<nav class="toc lang-zh" aria-label="本頁目錄"><div class="toc-title">本頁目錄</div><ol><li><a href="#21-課程要求">2.1 課程要求</a></li><li><a href="#22-算法偽代碼與程式流程圖">2.2 算法、偽代碼與程式流程圖</a></li><li><a href="#23-空運行與追蹤表">2.3 空運行與追蹤表</a></li><li><a href="#24-數據類型與數據結構">2.4 數據類型與數據結構</a></li><li><a href="#25-布爾邏輯與真假值表">2.5 布爾邏輯與真假值表</a></li><li><a href="#26-輸入輸出與用戶界面">2.6 輸入、輸出與用戶界面</a></li><li><a href="#27-控制結構序列">2.7 控制結構：序列</a></li><li><a href="#28-控制結構選擇">2.8 控制結構：選擇</a></li><li><a href="#29-控制結構迭代">2.9 控制結構：迭代</a></li><li><a href="#210-陣列的標準算法">2.10 陣列的標準算法</a></li><li><a href="#211-找出並更正邏輯錯誤修改算法">2.11 找出並更正邏輯錯誤、修改算法</a></li><li><a href="#212-模組化方法">2.12 模組化方法</a></li><li><a href="#213-自我檢測">2.13 自我檢測</a></li></ol></nav><nav class="toc lang-en" lang=en aria-label="On this page"><div class="toc-title">On this page</div><ol><li><a href="#en-21-curriculum-requirements">2.1 Curriculum requirements</a></li><li><a href="#en-22-algorithms-pseudocode-and-program-flowcharts">2.2 Algorithms, pseudocode and program flowcharts</a></li><li><a href="#en-23-dry-runs-and-trace-tables">2.3 Dry runs and trace tables</a></li><li><a href="#en-24-data-types-and-data-structures">2.4 Data types and data structures</a></li><li><a href="#en-25-boolean-logic-and-truth-tables">2.5 Boolean logic and truth tables</a></li><li><a href="#en-26-input-output-and-user-interface">2.6 Input, output and user interface</a></li><li><a href="#en-27-control-structures-sequence">2.7 Control structures: sequence</a></li><li><a href="#en-28-control-structures-selection">2.8 Control structures: selection</a></li><li><a href="#en-29-control-structures-iteration">2.9 Control structures: iteration</a></li><li><a href="#en-210-standard-algorithms-on-arrays">2.10 Standard algorithms on arrays</a></li><li><a href="#en-211-locating-and-correcting-logic-errors-modifying-algorithms">2.11 Locating and correcting logic errors, modifying algorithms</a></li><li><a href="#en-212-the-modular-approach">2.12 The modular approach</a></li><li><a href="#en-213-self-test">2.13 Self-test</a></li></ol></nav>
   </aside>
 </div>
 

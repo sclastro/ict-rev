@@ -651,7 +651,520 @@ for i in range(4, 8):
     year = year + code[i]
 print(year)
 </code></pre>
-</details></div><div class="lang-en" lang="en"><div class="pending"><div class="pending-icon">English</div><div class="pending-title">English version in preparation</div><p>This page is currently available in Chinese only. Switch to 中文 in the top bar to read it.</p></div></div><nav class="prevnext"><a class="pn pn-prev" href="../core-d/b.html"><span class="pn-dir"><span class="lang-zh">← 上一頁</span><span class="lang-en" lang="en">← Previous</span></span><span class="pn-title"><span class="lang-zh">單元 D 課題 b：算法設計</span><span class="lang-en" lang="en">Module D Topic b: Algorithm Design</span></span></a><a class="pn pn-next" href="../core-d/d.html"><span class="pn-dir"><span class="lang-zh">下一頁 →</span><span class="lang-en" lang="en">Next →</span></span><span class="pn-title"><span class="lang-zh">單元 D 課題 d：程式測試和除錯</span><span class="lang-en" lang="en">Module D Topic d: Program Testing and Debugging</span></span></a></nav>
+</details></div><div class="lang-en prose" lang="en"><h2 id="en-31-curriculum-requirements"><span class="sec-num">3.1</span><span class="sec-title">Curriculum requirements</span></h2>
+<p>Understand and use variables, constants and simple lists (one-dimensional arrays) in different problem contexts; use operators (arithmetic operators include addition, subtraction, multiplication, division and modulus; relational operators include equal to, not equal to, greater than, greater than or equal to, less than, less than or equal to; Boolean operators include AND, OR and NOT), expressions, assignment statements, input and output statements; understand and use sequence, selection and iteration (nested loops are not required) constructs to create a program; produce programming solutions for given problems, e.g. finding the minimum, maximum and average values in a list, searching for an item in a list and reporting the result, finding the length of a string, extracting required characters from a string, counting the items in a list that meet specified criteria, checking whether the values in a list are in order, and using mathematical formulas.</p>
+<p>All program code on this page is in Python. Programming questions in Paper 1 Section B may be answered in Python or C++ (or Pascal up to 2027), and candidates must indicate the language used in the answer book.</p>
+<h2 id="en-32-basic-elements-of-a-python-program"><span class="sec-num">3.2</span><span class="sec-title">Basic elements of a Python program</span></h2>
+<pre><code class="language-python"># Calculate the area of a rectangle (text after # is a comment and is not executed)
+LENGTH = 12            # constant: by convention named in capitals, meaning the value should not change
+width = float(input(&quot;Enter the width: &quot;))
+area = LENGTH * width
+print(&quot;The area is&quot;, area)
+</code></pre>
+<p>A <strong>variable</strong> is a named storage location whose value can change; a <strong>constant</strong> should not change while the program runs. Python has no true constants; by convention they are named in capitals.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Naming rule</th>
+<th>Valid</th>
+<th>Invalid</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Starts with a letter or underscore</td>
+<td><code>total_score</code>, <code>_count</code></td>
+<td><code>1st_place</code></td>
+</tr>
+<tr>
+<td>Contains only letters, digits and underscores</td>
+<td><code>price2</code></td>
+<td><code>user-name</code>, <code>my score</code></td>
+</tr>
+<tr>
+<td>Must not be a reserved word</td>
+<td><code>for_count</code></td>
+<td><code>for</code>, <code>while</code>, <code>True</code></td>
+</tr>
+<tr>
+<td>Case-sensitive</td>
+<td><code>Score</code> and <code>score</code> are two different variables</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div><p>Good variable names are meaningful, e.g. <code>total_mark</code> rather than <code>t</code>.</p>
+<p><strong>Indentation</strong>: Python uses indentation to show which statements belong to an <code>if</code>, <code>for</code>, <code>while</code> or function. The HKEAA stated that incorrect indentation in Python is a major error that affects program flow and gets no marks; a missing colon at the end of <code>if</code> or <code>for</code> is a minor error.</p>
+<h2 id="en-33-data-types-and-type-conversion"><span class="sec-num">3.3</span><span class="sec-title">Data types and type conversion</span></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Curriculum data type</th>
+<th>Python</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Integer</td>
+<td><code>int</code></td>
+<td><code>25</code>, <code>-3</code></td>
+</tr>
+<tr>
+<td>Real</td>
+<td><code>float</code></td>
+<td><code>3.14</code>, <code>82.0</code></td>
+</tr>
+<tr>
+<td>Character, string</td>
+<td><code>str</code> (Python has no separate character type; a character is a string of length 1)</td>
+<td><code>'A'</code>, <code>"STEAM"</code></td>
+</tr>
+<tr>
+<td>Boolean</td>
+<td><code>bool</code></td>
+<td><code>True</code>, <code>False</code></td>
+</tr>
+<tr>
+<td>One-dimensional array</td>
+<td><code>list</code></td>
+<td><code>[68, 84, 82, 80, 92]</code></td>
+</tr>
+</tbody>
+</table>
+</div><p><code>input()</code> always returns a <strong>string</strong>, which must be converted before calculation:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Statement</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>int("25")</code></td>
+<td><code>25</code></td>
+</tr>
+<tr>
+<td><code>float("10.5")</code></td>
+<td><code>10.5</code></td>
+</tr>
+<tr>
+<td><code>int(3.9)</code></td>
+<td><code>3</code> (the fractional part is dropped, not rounded)</td>
+</tr>
+<tr>
+<td><code>str(25)</code></td>
+<td><code>"25"</code></td>
+</tr>
+<tr>
+<td><code>int("5.7")</code>, <code>int("abc")</code></td>
+<td>Run-time error (ValueError)</td>
+</tr>
+<tr>
+<td><code>"10" + "20"</code></td>
+<td><code>"1020"</code> (strings are joined, not added)</td>
+</tr>
+</tbody>
+</table>
+</div><h2 id="en-34-operators-and-expressions"><span class="sec-num">3.4</span><span class="sec-title">Operators and expressions</span></h2>
+<p><strong>Arithmetic operators</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Python</th>
+<th>Example</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Add, subtract, multiply</td>
+<td><code>+</code> <code>-</code> <code>*</code></td>
+<td><code>7 * 3</code></td>
+<td><code>21</code></td>
+</tr>
+<tr>
+<td>Divide</td>
+<td><code>/</code></td>
+<td><code>7 / 2</code></td>
+<td><code>3.5</code> (always real; <code>6 / 2</code> gives <code>3.0</code>)</td>
+</tr>
+<tr>
+<td>Quotient (integer division)</td>
+<td><code>//</code></td>
+<td><code>7 // 2</code></td>
+<td><code>3</code></td>
+</tr>
+<tr>
+<td>Remainder (modulus)</td>
+<td><code>%</code></td>
+<td><code>7 % 2</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td>Power</td>
+<td><code>**</code></td>
+<td><code>2 ** 3</code></td>
+<td><code>8</code></td>
+</tr>
+</tbody>
+</table>
+</div><p><strong>Relational operators</strong>: <code>==</code> (equal to), <code>!=</code> (not equal to), <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code>; the result is <code>True</code> or <code>False</code>.</p>
+<p><strong>Boolean operators</strong>: <code>and</code>, <code>or</code>, <code>not</code>.</p>
+<p><strong>Order of evaluation</strong>: brackets → <code>**</code> → <code>*</code> <code>/</code> <code>//</code> <code>%</code> → <code>+</code> <code>-</code> → relational operators → <code>not</code> → <code>and</code> → <code>or</code>. For example, <code>12 + 8 / 2 ** 2</code> first works out <code>2 ** 2 = 4</code>, then <code>8 / 4 = 2.0</code>, giving <code>14.0</code>.</p>
+<p><strong>From pseudocode to Python</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Pseudocode</th>
+<th>Python</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>X ← X + 1</code></td>
+<td><code>x = x + 1</code> or <code>x += 1</code></td>
+</tr>
+<tr>
+<td><code>if A = B</code></td>
+<td><code>if a == b:</code></td>
+</tr>
+<tr>
+<td><code>A &lt;&gt; B</code></td>
+<td><code>a != b</code></td>
+</tr>
+<tr>
+<td><code>the remainder of (A / 2)</code></td>
+<td><code>a % 2</code></td>
+</tr>
+<tr>
+<td><code>the quotient of (P / Q)</code></td>
+<td><code>p // q</code></td>
+</tr>
+<tr>
+<td><code>the integral part of ((L + R) ÷ 2)</code></td>
+<td><code>(l + r) // 2</code></td>
+</tr>
+<tr>
+<td><code>AND</code>, <code>OR</code>, <code>NOT</code></td>
+<td><code>and</code>, <code>or</code>, <code>not</code></td>
+</tr>
+<tr>
+<td><code>input N</code> (integer)</td>
+<td><code>n = int(input())</code></td>
+</tr>
+<tr>
+<td><code>output S</code></td>
+<td><code>print(s)</code></td>
+</tr>
+</tbody>
+</table>
+</div><p>⚠ Assignment uses one equals sign <code>=</code>; comparison uses two <code>==</code>. Writing <code>if a = b:</code> in an <code>if</code> condition is a syntax error.</p>
+<h2 id="en-35-input-and-output"><span class="sec-num">3.5</span><span class="sec-title">Input and output</span></h2>
+<pre><code class="language-python">name = input(&quot;Enter name: &quot;)
+price = float(input(&quot;Enter price: &quot;))
+qty = int(input(&quot;Enter quantity: &quot;))
+total = price * qty
+print(&quot;Customer:&quot;, name)
+print(f&quot;Total: ${total:.2f}&quot;)      # f-string; :.2f shows two decimal places
+print(round(total, 1))            # rounded to one decimal place
+</code></pre>
+<p><code>print()</code> can output several items separated by commas, with a space added automatically between items. An f-string embeds the values of variables inside <code>{}</code>.</p>
+<h2 id="en-36-lists-one-dimensional-arrays"><span class="sec-num">3.6</span><span class="sec-title">Lists (one-dimensional arrays)</span></h2>
+<p>Python implements one-dimensional arrays as <strong>lists</strong>.</p>
+<pre><code class="language-python">marks = [42, 78, 65, 91, 56]
+print(marks[0])          # first element: 42 (indexes start from 0)
+print(marks[4])          # last element: 56
+print(len(marks))        # number of elements: 5
+marks[2] = 70            # change the third element
+for i in range(0, len(marks)):
+    print(i, marks[i])
+</code></pre>
+<ul>
+<li>A list of length N has indexes 0 to N − 1; accessing <code>marks[5]</code> causes a run-time error (IndexError).</li>
+<li>A list must be created before elements are accessed by index, e.g. <code>scores = [0] * 10</code> creates ten 0s.</li>
+<li><code>marks[-1]</code> refers to the last element; this is Python-specific.</li>
+</ul>
+<p><strong>When the question's array indexes start from 1</strong>: the Python program should keep the question's indexes and leave <code>L[0]</code> unused. For example, if the scores are stored in <code>JS[1]</code> to <code>JS[5]</code>, write the loop as <code>for i in range(1, 6):</code>. The Python answer in the 2025 marking scheme does exactly this.</p>
+<h2 id="en-37-selection"><span class="sec-num">3.7</span><span class="sec-title">Selection</span></h2>
+<pre><code class="language-python">mark = int(input(&quot;Enter mark: &quot;))
+if mark &gt;= 80:
+    grade = &quot;Distinction&quot;
+elif mark &gt;= 40:
+    grade = &quot;Attained&quot;
+else:
+    grade = &quot;Unattained&quot;
+print(grade)
+</code></pre>
+<ul>
+<li><code>if</code>, <code>elif</code> and <code>else</code> end with a colon, and the next line is indented.</li>
+<li><code>elif</code> is checked only when all previous conditions are false, which suits multi-way selection.</li>
+<li>A range check can be written <code>if 18 &lt;= age &lt;= 60:</code> or <code>if age &gt;= 18 and age &lt;= 60:</code>.</li>
+</ul>
+<h2 id="en-38-iteration"><span class="sec-num">3.8</span><span class="sec-title">Iteration</span></h2>
+<p><strong>for loops and range()</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Numbers produced</th>
+<th>Equivalent pseudocode</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>range(5)</code></td>
+<td>0, 1, 2, 3, 4</td>
+<td>for i from 0 to 4</td>
+</tr>
+<tr>
+<td><code>range(1, 6)</code></td>
+<td>1, 2, 3, 4, 5</td>
+<td>for i from 1 to 5</td>
+</tr>
+<tr>
+<td><code>range(2, n + 1)</code></td>
+<td>2, 3, …, n</td>
+<td>for i from 2 to N</td>
+</tr>
+<tr>
+<td><code>range(0, 10, 2)</code></td>
+<td>0, 2, 4, 6, 8</td>
+<td></td>
+</tr>
+<tr>
+<td><code>range(5, 0, -1)</code></td>
+<td>5, 4, 3, 2, 1</td>
+<td>for i from 5 down to 1</td>
+</tr>
+</tbody>
+</table>
+</div><p>⚠ <code>range(a, b)</code> does <strong>not include</strong> b. The HKEAA noted that in 2025 many candidates wrote "for i from 2 to N" as <code>range(2, N)</code>, missing the last iteration.</p>
+<p><strong>while loops</strong> (pre-test loops)</p>
+<pre><code class="language-python">total = 0
+day = 1
+while day &lt;= 7:
+    steps = int(input())
+    total = total + steps
+    day = day + 1
+print(total)
+</code></pre>
+<p><strong>Validating input with a while loop</strong></p>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2025 P1B 8(c)(ii)] Complete the program segment to ensure that the scores (sc) entered by the judges are valid, i.e. 0 ≤ sc ≤ 100.</strong></p>
+<p>✔ <code>while sc &lt; 0 or sc &gt; 100:</code>, or <code>while not (sc &gt;= 0 and sc &lt;= 100):</code>.</p>
+<p>✘ Writing <code>while sc &lt; 0 and sc &gt; 100:</code>: no value can be both below 0 and above 100, so the loop never runs.</p>
+</blockquote>
+<pre><code class="language-python">sc = int(input())
+while sc &lt; 0 or sc &gt; 100:
+    print(&quot;Invalid input. Please input again.&quot;)
+    sc = int(input())
+</code></pre>
+<p>Python has no post-test loop. When something must run at least once, run it once and then repeat with <code>while</code> (as above), or use <code>while True:</code> with <code>break</code>. <code>break</code> and <code>continue</code> are extension content; controlling the loop with a flag works just as well. Nested loops are not required by the curriculum.</p>
+<h2 id="en-39-functions"><span class="sec-num">3.9</span><span class="sec-title">Functions</span></h2>
+<pre><code class="language-python">def calc_bmi(weight, height):      # weight and height are parameters
+    return weight / (height ** 2)
+
+bmi = calc_bmi(60, 1.65)           # 60 and 1.65 are the values passed in (arguments)
+print(round(bmi, 1))               # 22.0
+</code></pre>
+<ul>
+<li><code>def</code> defines a function; <code>return</code> sends back the result and ends the function.</li>
+<li>A function may have no <code>return</code> and just perform a task (equivalent to a procedure).</li>
+<li>When each task is written as a function, the main program only calls them in turn; the structure is clearer and the functions are easier to reuse and test.</li>
+</ul>
+<h2 id="en-310-programs-you-must-be-able-to-write"><span class="sec-num">3.10</span><span class="sec-title">Programs you must be able to write</span></h2>
+<h3 id="en-minimum-maximum-and-average-values">Minimum, maximum and average values</h3>
+<pre><code class="language-python">def find_max(L):
+    max_val = L[0]
+    for i in range(1, len(L)):
+        if L[i] &gt; max_val:
+            max_val = L[i]
+    return max_val
+
+def find_min(L):
+    min_val = L[0]
+    for i in range(1, len(L)):
+        if L[i] &lt; min_val:
+            min_val = L[i]
+    return min_val
+
+def find_mean(L):
+    total = 0
+    for i in range(0, len(L)):
+        total = total + L[i]
+    return total / len(L)
+
+temps = [28.5, 30.2, 31.0, 29.8, 33.5, 27.0, 30.5]
+print(find_max(temps), find_min(temps), find_mean(temps))
+</code></pre>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2025 P1B 8(c)(i)] The scores of five judges are stored in JS[1] to JS[5]. Write a Python program segment to compute Smax, Smin and FS (the average of the remaining three scores after dropping the highest and lowest).</strong></p>
+<p>✔ Marking points: finding the maximum (<code>Smax = 1</code> before the loop, <code>if JS[i] &gt; JS[Smax]: Smax = i</code> in the loop), finding the minimum, summing the scores (<code>FS = 0</code> before the loop, or starting from <code>JS[1]</code>), calculating <code>FS = (FS - JS[Smax] - JS[Smin]) / 3</code>, and overall correctness (correct loop ranges, all JS values retained, no extra statements that cause mistakes).</p>
+<p>✘ Writing the loop as <code>range(2, N)</code>; no initial values for Smax, Smin or FS; adding only JS[2] to JS[5]; using <code>or</code> instead of <code>and</code>; changing the contents of JS to find the extreme values.</p>
+</blockquote>
+<pre><code class="language-python">N = 5
+Smax = 1
+Smin = 1
+FS = JS[1]
+for i in range(2, N + 1):
+    FS = FS + JS[i]
+    if JS[i] &gt; JS[Smax]:
+        Smax = i
+    elif JS[i] &lt; JS[Smin]:
+        Smin = i
+FS = (FS - JS[Smax] - JS[Smin]) / 3
+</code></pre>
+<p>⚠ If the question's indexes start from 1, leave <code>JS[0]</code> unused, e.g. <code>JS = [0, 68, 84, 82, 80, 92]</code>.</p>
+<h3 id="en-searching-for-an-item-in-a-list-and-reporting-the-result">Searching for an item in a list and reporting the result</h3>
+<pre><code class="language-python">present = [2, 6, 9, 10, 12, 15, 18, 21]
+target = int(input(&quot;Enter class number: &quot;))
+found = False
+i = 0
+while i &lt; len(present) and not found:
+    if present[i] == target:
+        found = True
+    else:
+        i = i + 1
+if found:
+    print(&quot;Found at index&quot;, i)
+else:
+    print(&quot;Not found&quot;)
+</code></pre>
+<p>Once found, <code>found</code> becomes <code>True</code> and the loop stops, so the remaining elements need not be checked. Python's <code>in</code> operator (e.g. <code>target in present</code>) tells directly whether an item exists, but it is extension content; when a question asks for the search steps, do not just write <code>in</code>.</p>
+<h3 id="en-finding-the-length-of-a-string">Finding the length of a string</h3>
+<pre><code class="language-python">s = input(&quot;Enter a string: &quot;)
+print(len(s))            # built-in function
+
+count = 0                # without len(): count character by character
+for ch in s:
+    count = count + 1
+print(count)
+</code></pre>
+<h3 id="en-extracting-required-characters-from-a-string">Extracting required characters from a string</h3>
+<p>Like a list, a string can be accessed character by character by index.</p>
+<pre><code class="language-python">prod_id = &quot;2025-BEV-045&quot;
+year = &quot;&quot;
+for i in range(0, 4):            # indexes 0 to 3: the year
+    year = year + prod_id[i]
+category = prod_id[5] + prod_id[6] + prod_id[7]
+print(year, category)            # 2025 BEV
+</code></pre>
+<p>Python's slicing <code>prod_id[0:4]</code> and <code>prod_id[5:8]</code> gives the same results (the end index is excluded), but it is extension content.</p>
+<h3 id="en-counting-the-items-that-meet-specified-criteria">Counting the items that meet specified criteria</h3>
+<pre><code class="language-python">marks = [42, 78, 65, 91, 56, 73, 38, 69]
+count = 0
+for i in range(0, len(marks)):
+    if marks[i] &gt;= 50:
+        count = count + 1
+print(&quot;Number of passes:&quot;, count)
+</code></pre>
+<p>To count even numbers, change the condition to <code>marks[i] % 2 == 0</code>; to count how many times a character appears in a string, compare character by character instead.</p>
+<h3 id="en-checking-whether-the-values-in-a-list-are-in-order">Checking whether the values in a list are in order</h3>
+<pre><code class="language-python">def is_ascending(L):
+    for i in range(0, len(L) - 1):
+        if L[i] &gt; L[i + 1]:
+            return False
+    return True
+
+print(is_ascending([1, 3, 5, 5, 8]))    # True
+print(is_ascending([3, 5, 4, 8]))       # False
+</code></pre>
+<ul>
+<li>N elements need only N − 1 comparisons of adjacent pairs, so the loop stops at <code>len(L) - 1</code>; with <code>range(0, len(L))</code>, the last iteration accesses <code>L[len(L)]</code> and causes a run-time error.</li>
+<li>To check descending order, change the condition to <code>L[i] &lt; L[i + 1]</code>.</li>
+<li>[2024 P1B 4(c)] To check whether an array is in ascending order, the condition is <code>A[i] &gt; A[i+1]</code>, with indexes from 0 to 4 (six elements).</li>
+</ul>
+<h3 id="en-using-mathematical-formulas">Using mathematical formulas</h3>
+<pre><code class="language-python"># Monthly mortgage payment M = P × r × (1 + r)^n ÷ ((1 + r)^n − 1)
+P = float(input(&quot;Loan amount: &quot;))
+annual_rate = float(input(&quot;Annual interest rate (e.g. 0.04): &quot;))
+years = int(input(&quot;Loan term in years: &quot;))
+r = annual_rate / 12
+n = years * 12
+M = P * r * (1 + r) ** n / ((1 + r) ** n - 1)
+print(f&quot;Monthly payment: ${M:.2f}&quot;)
+</code></pre>
+<p>⚠ Put the denominator in brackets. The HKEAA stated that writing <code>(left + right) / 2</code> as <code>left + right / 2</code> is an error that affects the logic and gets no marks.</p>
+<h2 id="en-311-self-test"><span class="sec-num">3.11</span><span class="sec-title">Self-test</span></h2>
+<details class="quiz">
+<summary>1. Which of the following are valid Python variable names? total_score_1, 1st_result, user-name, while, _count</summary>
+<p><code>total_score_1</code> and <code>_count</code>. <code>1st_result</code> starts with a digit, <code>user-name</code> contains a hyphen, and <code>while</code> is a reserved word.</p>
+</details>
+<details class="quiz">
+<summary>2. Write down the results: (a) 22 // 5 (b) 22 % 5 (c) 22 / 5 (d) 2 ** 3 + 1</summary>
+<p>(a) <code>4</code>; (b) <code>2</code>; (c) <code>4.4</code>; (d) <code>9</code>.</p>
+</details>
+<details class="quiz">
+<summary>3. After counter = 5, the statement counter *= 2 + 1 is executed. What is the value of counter?</summary>
+<p><code>15</code>. A compound assignment first evaluates the right-hand side <code>2 + 1 = 3</code>, then calculates <code>5 * 3</code>.</p>
+</details>
+<details class="quiz">
+<summary>4. A programmer writes radius = input("Radius: ") and then calculates 3.14 * radius ** 2, which gives an error. Why? How should it be corrected?</summary>
+<p><code>input()</code> returns a string, which cannot be used in arithmetic. Write <code>radius = float(input("Radius: "))</code>.</p>
+</details>
+<details class="quiz">
+<summary>5. Write down the numbers produced by range(10, 2, -2).</summary>
+<p>10, 8, 6, 4 (2 is not included).</p>
+</details>
+<details class="quiz">
+<summary>6. Convert the pseudocode "if (the remainder of (N / 2)) = 0 then output 'Even' else output 'Odd'" into Python.</summary>
+<pre><code class="language-python">if n % 2 == 0:
+    print(&quot;Even&quot;)
+else:
+    print(&quot;Odd&quot;)
+</code></pre>
+</details>
+<details class="quiz">
+<summary>7. This program should find the fastest time. Why is the result wrong? fastest = 0; for t in times: if t &lt; fastest: fastest = t (times = [10.05, 9.98, 10.12])</summary>
+<p>The initial value 0 of <code>fastest</code> is smaller than every time, so the condition is never true and the result is wrongly 0. Use <code>fastest = times[0]</code> as the initial value.</p>
+</details>
+<details class="quiz">
+<summary>8. This program should check whether a list is in descending order but gives an error when run: for i in range(len(arr)): if arr[i] &lt; arr[i + 1]: return False. Find the error and correct it.</summary>
+<p>In the last iteration <code>i = len(arr) - 1</code>, so <code>arr[i + 1]</code> is out of range and causes a run-time error. Change it to <code>for i in range(len(arr) - 1):</code>.</p>
+</details>
+<details class="quiz">
+<summary>9. Write a Python program to find the sum of all odd numbers in the list numbers.</summary>
+<pre><code class="language-python">total_odd = 0
+for i in range(0, len(numbers)):
+    if numbers[i] % 2 != 0:
+        total_odd = total_odd + numbers[i]
+print(total_odd)
+</code></pre>
+</details>
+<details class="quiz">
+<summary>10. Write a function find_target(numbers, target) that returns the index of target if found, or −1 otherwise.</summary>
+<pre><code class="language-python">def find_target(numbers, target):
+    for i in range(len(numbers)):
+        if numbers[i] == target:
+            return i
+    return -1
+</code></pre>
+<p><code>return</code> sends back the index as soon as the target is found, ending the function.</p>
+</details>
+<details class="quiz">
+<summary>11. Cinema tickets: $50 for under 12, $40 for 65 or above, $80 for everyone else. Write the program with if, elif and else. Why does the second condition use elif rather than another if?</summary>
+<pre><code class="language-python">age = int(input())
+if age &lt; 12:
+    price = 50
+elif age &gt;= 65:
+    price = 40
+else:
+    price = 80
+print(price)
+</code></pre>
+<p><code>elif</code> makes the three cases mutually exclusive: the next condition is checked only when the previous ones are false, and <code>else</code> runs only when none is true. With a separate <code>if</code>, the <code>else</code> pairs only with the second <code>if</code>, so the price for under-12s would become 80.</p>
+</details>
+<details class="quiz">
+<summary>12. The string code = "INV-2024-HK". Without slicing, write a program to extract the year "2024".</summary>
+<pre><code class="language-python">year = &quot;&quot;
+for i in range(4, 8):
+    year = year + code[i]
+print(year)
+</code></pre>
+</details></div><nav class="prevnext"><a class="pn pn-prev" href="../core-d/b.html"><span class="pn-dir"><span class="lang-zh">← 上一頁</span><span class="lang-en" lang="en">← Previous</span></span><span class="pn-title"><span class="lang-zh">單元 D 課題 b：算法設計</span><span class="lang-en" lang="en">Module D Topic b: Algorithm Design</span></span></a><a class="pn pn-next" href="../core-d/d.html"><span class="pn-dir"><span class="lang-zh">下一頁 →</span><span class="lang-en" lang="en">Next →</span></span><span class="pn-title"><span class="lang-zh">單元 D 課題 d：程式測試和除錯</span><span class="lang-en" lang="en">Module D Topic d: Program Testing and Debugging</span></span></a></nav>
     </article>
     <footer class="footer">
       <p class="lang-zh">內容依據課程發展議會與考評局《資訊及通訊科技課程及評估指引》及考評局公開資料整理，僅供溫習參考。</p>
@@ -660,7 +1173,7 @@ print(year)
   </main>
 
   <aside class="toc-rail">
-<nav class="toc lang-zh" aria-label="本頁目錄"><div class="toc-title">本頁目錄</div><ol><li><a href="#31-課程要求">3.1 課程要求</a></li><li><a href="#32-python-程式的基本元素">3.2 Python 程式的基本元素</a></li><li><a href="#33-數據類型與類型轉換">3.3 數據類型與類型轉換</a></li><li><a href="#34-運算符與算式">3.4 運算符與算式</a></li><li><a href="#35-輸入與輸出">3.5 輸入與輸出</a></li><li><a href="#36-列表單陣列">3.6 列表（單陣列）</a></li><li><a href="#37-選擇結構">3.7 選擇結構</a></li><li><a href="#38-迭代結構">3.8 迭代結構</a></li><li><a href="#39-函數">3.9 函數</a></li><li><a href="#310-必須掌握的程式">3.10 必須掌握的程式</a></li><li><a href="#311-自我檢測">3.11 自我檢測</a></li></ol></nav>
+<nav class="toc lang-zh" aria-label="本頁目錄"><div class="toc-title">本頁目錄</div><ol><li><a href="#31-課程要求">3.1 課程要求</a></li><li><a href="#32-python-程式的基本元素">3.2 Python 程式的基本元素</a></li><li><a href="#33-數據類型與類型轉換">3.3 數據類型與類型轉換</a></li><li><a href="#34-運算符與算式">3.4 運算符與算式</a></li><li><a href="#35-輸入與輸出">3.5 輸入與輸出</a></li><li><a href="#36-列表單陣列">3.6 列表（單陣列）</a></li><li><a href="#37-選擇結構">3.7 選擇結構</a></li><li><a href="#38-迭代結構">3.8 迭代結構</a></li><li><a href="#39-函數">3.9 函數</a></li><li><a href="#310-必須掌握的程式">3.10 必須掌握的程式</a></li><li><a href="#311-自我檢測">3.11 自我檢測</a></li></ol></nav><nav class="toc lang-en" lang=en aria-label="On this page"><div class="toc-title">On this page</div><ol><li><a href="#en-31-curriculum-requirements">3.1 Curriculum requirements</a></li><li><a href="#en-32-basic-elements-of-a-python-program">3.2 Basic elements of a Python program</a></li><li><a href="#en-33-data-types-and-type-conversion">3.3 Data types and type conversion</a></li><li><a href="#en-34-operators-and-expressions">3.4 Operators and expressions</a></li><li><a href="#en-35-input-and-output">3.5 Input and output</a></li><li><a href="#en-36-lists-one-dimensional-arrays">3.6 Lists (one-dimensional arrays)</a></li><li><a href="#en-37-selection">3.7 Selection</a></li><li><a href="#en-38-iteration">3.8 Iteration</a></li><li><a href="#en-39-functions">3.9 Functions</a></li><li><a href="#en-310-programs-you-must-be-able-to-write">3.10 Programs you must be able to write</a></li><li><a href="#en-311-self-test">3.11 Self-test</a></li></ol></nav>
   </aside>
 </div>
 

@@ -283,7 +283,152 @@
 <li class="task"><input type="checkbox" class="task-box"> 有效性檢驗確保輸入合理；數據校驗確保輸入與來源相符</li>
 <li class="task"><input type="checkbox" class="task-box"> 比較算法看執行步數（比較次數）和資源運用（記憶體）；找到目標後提早停止可減少步數</li>
 <li class="task"><input type="checkbox" class="task-box"> 以變量 N 代替常數 5，日後改動數據數量時只須修改一處</li>
-</ul></div><div class="lang-en" lang="en"><div class="pending"><div class="pending-icon">English</div><div class="pending-title">English version in preparation</div><p>This page is currently available in Chinese only. Switch to 中文 in the top bar to read it.</p></div></div><nav class="prevnext"><a class="pn pn-prev" href="../core-c/d.html"><span class="pn-dir"><span class="lang-zh">← 上一頁</span><span class="lang-en" lang="en">← Previous</span></span><span class="pn-title"><span class="lang-zh">單元 C 課題 d：網上威脅及保安</span><span class="lang-en" lang="en">Module C Topic d: Threats and Security on the Internet</span></span></a><a class="pn pn-next" href="../core-d/a.html"><span class="pn-dir"><span class="lang-zh">下一頁 →</span><span class="lang-en" lang="en">Next →</span></span><span class="pn-title"><span class="lang-zh">單元 D 課題 a：問題建構和分析</span><span class="lang-en" lang="en">Module D Topic a: Problem Formulation and Analysis</span></span></a></nav>
+</ul></div><div class="lang-en prose" lang="en"><blockquote class="callout callout-note">
+<p>For: HKDSE Information and Communication Technology, new curriculum (examinations from 2025 onwards)</p>
+<p>Sources: CDC–HKEAA <em>ICT Curriculum and Assessment Guide</em>; HKEAA exam briefing materials 2023–2025; the 2025 Sample Paper; the 2012 Practice Paper; past papers and marking schemes; the HKACE 2025 and 2026 mock examinations</p>
+<p>Labels: [2025 P1A Q38] means 2025 HKDSE Paper 1A Question 38; [adapted from 2025 Mock P1A Q37] means a question adapted from the Hong Kong Association for Computer Education 2025 mock examination; "⚠" marks a common mistake reported by the HKEAA; "✔" marks a high-scoring answer</p>
+<p>The 2023 and 2024 questions, and earlier ones, come from the old-curriculum HKDSE. Module D is largely the same in the old and new curricula, so these questions are still useful</p>
+</blockquote>
+<p>For the paper structure and the HKEAA's answering principles, see <a href="../exam/structure.html">Exam Strategies: Paper Structure and Answering Principles</a>.</p>
+<h2 id="en-module-d-in-the-new-curriculum">Module D in the new curriculum</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Module / option</th>
+<th>Suggested hours</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Compulsory (144 hours)</td>
+<td>A Information Processing</td>
+<td>37</td>
+</tr>
+<tr>
+<td></td>
+<td>B Computer System Fundamentals</td>
+<td>20</td>
+</tr>
+<tr>
+<td></td>
+<td>C Internet and its Applications</td>
+<td>31</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>D Computational Thinking and Programming</strong></td>
+<td><strong>48</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>E Social Implications</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Elective (76 hours, choose two)</td>
+<td>A Databases, B Web Application Development, C Algorithm and Programming</td>
+<td>38 each</td>
+</tr>
+</tbody>
+</table>
+</div><p>Module D has the most teaching hours in the compulsory part. Students learn to analyse problems systematically, represent algorithms with pseudocode or program flowcharts, trace how variable values change in an algorithm, and write, test and improve simple programs. It has four topics:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Hours</th>
+<th>Textbook chapters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>a. Problem Formulation and Analysis</td>
+<td>5</td>
+<td>Ch. 1</td>
+</tr>
+<tr>
+<td>b. Algorithm Design</td>
+<td>12</td>
+<td>Ch. 2 (algorithms, dry runs, data types, Boolean logic), Ch. 3 (control structures, arrays, trace tables, modules)</td>
+</tr>
+<tr>
+<td>c. Program Development</td>
+<td><strong>20</strong></td>
+<td>Ch. 4 (variables, operators, input and output), Ch. 5 (sequence, selection, iteration, functions), Ch. 6 (common programs)</td>
+</tr>
+<tr>
+<td>d. Program Testing and Debugging</td>
+<td>11</td>
+<td>Ch. 7 (data validation, test data, error types), Ch. 8 (comparing algorithms)</td>
+</tr>
+</tbody>
+</table>
+</div><p>The HKEAA reported that in the 2025 Paper 1A candidates performed best in "Computational Thinking and Programming", but many still lost marks in the programming questions of Section B. Common causes were wrong loop ranges, variables without initial values, and confusing array indexes with array contents.</p>
+<p><strong>Programming language</strong>: Paper 1 Section B requires candidates to write programs in a specified language. The 2025–2027 HKDSE accepts Python, C++ or Pascal; from 2028 only Python and C++ are accepted. All program code on this site is in Python, and the pseudocode follows the style of HKEAA papers (see Section 2.2 of <a href="b.html">Topic b</a>).</p>
+<h2 id="en-recent-examination-focus">Recent examination focus</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Year</th>
+<th>Questions related to Module D</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sample Paper</td>
+<td>Section A Q26–36 (reasons for defining the scope of a problem, Boolean expressions, defining the scope of service first, dry run on an array, input causing a run-time error, shifting array elements, input–process–output, deleting the P-th value in an array, flowchart with an array, boundary cases); Section B Q3 (processing an array of binary digits with a loop), Q4 (searching for a string in an array, test values, efficiency of an algorithm), Q9 (data types, calculating a total, finding the position of the lowest amount, advantages of a modular approach)</td>
+</tr>
+<tr>
+<td>2025</td>
+<td>Section A Q27–38 (preventing an infinite loop, comparing two flowcharts, test data, validating input with a loop, equivalent algorithms, selection conditions, dry runs on arrays and loops, finding a remainder); Section B Q6 (reversing and shifting a character array), Q8 (scoring program: indexes of the highest and lowest scores, data type, number of comparisons, writing a program, validating scores), Q9 (check digit of a username, converting a flowchart to pseudocode and correcting errors)</td>
+</tr>
+<tr>
+<td>2024</td>
+<td>Section A Q27–33 (for loop, nested selection, repeat…until loop, controlling a search with a flag, advantages of modularity); Section B Q4 (purposes of invalid test data, algorithms validating positive values and ascending order, algorithm finding the most frequent value)</td>
+</tr>
+<tr>
+<td>2023</td>
+<td>Section A Q6 (test values), Q27–33 (while loop, summing an array, converting between for and while loops, for loop, counting by input, finding the maximum, advantages of a modular approach); Section B Q3 (sorting subprogram: swapping, tracing, number of swaps, choosing test data)</td>
+</tr>
+</tbody>
+</table>
+</div><h2 id="en-one-page-checklist-before-the-exam">One-page checklist before the exam</h2>
+<p><strong>Problem formulation and analysis</strong></p>
+<ul>
+<li class="task"><input type="checkbox" class="task-box"> Four elements of computational thinking: decomposition, pattern recognition, abstraction, algorithm design</li>
+<li class="task"><input type="checkbox" class="task-box"> Order of problem solving: define the problem and its scope → analyse inputs and outputs → design the algorithm → write the program → test and debug → document and evaluate</li>
+<li class="task"><input type="checkbox" class="task-box"> When defining the scope, state the people, place and time involved, so that the problem can be decomposed into sub-problems effectively</li>
+<li class="task"><input type="checkbox" class="task-box"> Analysing a problem: list the inputs, process and outputs; an input is data that must be obtained before the problem can be solved</li>
+<li class="task"><input type="checkbox" class="task-box"> Advantages of modularity: modules can be reused, are easier to design and test, make debugging easier, and allow parallel development; modularity does <strong>not</strong> make a program run faster</li>
+</ul>
+<p><strong>Algorithm design</strong></p>
+<ul>
+<li class="task"><input type="checkbox" class="task-box"> Flowchart: oval (start/end), parallelogram (input/output), rectangle (process), diamond (decision)</li>
+<li class="task"><input type="checkbox" class="task-box"> A pre-test loop (while) may not execute at all; a post-test loop (repeat…until) executes at least once</li>
+<li class="task"><input type="checkbox" class="task-box"> "repeat … until condition" stops when the condition is true; "while condition" continues while the condition is true</li>
+<li class="task"><input type="checkbox" class="task-box"> De Morgan's laws: NOT (A OR B) = NOT A AND NOT B; NOT (A AND B) = NOT A OR NOT B</li>
+<li class="task"><input type="checkbox" class="task-box"> Order of precedence: NOT → AND → OR</li>
+<li class="task"><input type="checkbox" class="task-box"> Phone numbers and student IDs use string; average marks and amounts of money use real; membership status uses Boolean</li>
+<li class="task"><input type="checkbox" class="task-box"> Inserting an item: shift from the last item backwards; deleting an item: move each following item forward, starting from the deleted position</li>
+<li class="task"><input type="checkbox" class="task-box"> When finding the maximum or minimum, use the first element as the initial value, not 0</li>
+</ul>
+<p><strong>Program development (Python)</strong></p>
+<ul>
+<li class="task"><input type="checkbox" class="task-box"> <code>input()</code> returns a string; convert it with <code>int()</code> or <code>float()</code> before calculation</li>
+<li class="task"><input type="checkbox" class="task-box"> <code>/</code> gives a real number; <code>//</code> gives the quotient; <code>%</code> gives the remainder; the pseudocode "the remainder of (A / 2)" is <code>A % 2</code></li>
+<li class="task"><input type="checkbox" class="task-box"> Only <code>range(1, N + 1)</code> includes N; <code>range(2, N)</code> does one iteration too few</li>
+<li class="task"><input type="checkbox" class="task-box"> When the array indexes in a question start from 1, the Python program uses the same indexes as the question and leaves <code>L[0]</code> unused</li>
+<li class="task"><input type="checkbox" class="task-box"> Set initial values before accumulating or counting; keep the original contents of the array when finding the index of the maximum</li>
+</ul>
+<p><strong>Program testing and debugging</strong></p>
+<ul>
+<li class="task"><input type="checkbox" class="task-box"> Test data should include normal data, boundary data and unreasonable data; for the range 0 to 100, try −1, 0, 50, 100, 101</li>
+<li class="task"><input type="checkbox" class="task-box"> Syntax error: breaks the rules of the language, so the program cannot run; logic error: the program runs but gives wrong results; run-time error: an error occurs during execution and the program stops, e.g. division by zero, index out of range</li>
+<li class="task"><input type="checkbox" class="task-box"> Validation makes sure the input is reasonable; verification makes sure the input matches the source</li>
+<li class="task"><input type="checkbox" class="task-box"> Compare algorithms by the number of steps (comparisons) and resource usage (memory); stopping once the target is found reduces the number of steps</li>
+<li class="task"><input type="checkbox" class="task-box"> Using a variable N instead of the constant 5 means only one place needs changing when the amount of data changes</li>
+</ul></div><nav class="prevnext"><a class="pn pn-prev" href="../core-c/d.html"><span class="pn-dir"><span class="lang-zh">← 上一頁</span><span class="lang-en" lang="en">← Previous</span></span><span class="pn-title"><span class="lang-zh">單元 C 課題 d：網上威脅及保安</span><span class="lang-en" lang="en">Module C Topic d: Threats and Security on the Internet</span></span></a><a class="pn pn-next" href="../core-d/a.html"><span class="pn-dir"><span class="lang-zh">下一頁 →</span><span class="lang-en" lang="en">Next →</span></span><span class="pn-title"><span class="lang-zh">單元 D 課題 a：問題建構和分析</span><span class="lang-en" lang="en">Module D Topic a: Problem Formulation and Analysis</span></span></a></nav>
     </article>
     <footer class="footer">
       <p class="lang-zh">內容依據課程發展議會與考評局《資訊及通訊科技課程及評估指引》及考評局公開資料整理，僅供溫習參考。</p>
@@ -292,7 +437,7 @@
   </main>
 
   <aside class="toc-rail">
-<nav class="toc lang-zh" aria-label="本頁目錄"><div class="toc-title">本頁目錄</div><ol><li><a href="#單元-d-在新課程中的位置">單元 D 在新課程中的位置</a></li><li><a href="#近年考核重點">近年考核重點</a></li><li><a href="#考前一頁清單">考前一頁清單</a></li></ol></nav>
+<nav class="toc lang-zh" aria-label="本頁目錄"><div class="toc-title">本頁目錄</div><ol><li><a href="#單元-d-在新課程中的位置">單元 D 在新課程中的位置</a></li><li><a href="#近年考核重點">近年考核重點</a></li><li><a href="#考前一頁清單">考前一頁清單</a></li></ol></nav><nav class="toc lang-en" lang=en aria-label="On this page"><div class="toc-title">On this page</div><ol><li><a href="#en-module-d-in-the-new-curriculum">Module D in the new curriculum</a></li><li><a href="#en-recent-examination-focus">Recent examination focus</a></li><li><a href="#en-one-page-checklist-before-the-exam">One-page checklist before the exam</a></li></ol></nav>
   </aside>
 </div>
 
