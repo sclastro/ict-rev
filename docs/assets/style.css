@@ -420,6 +420,7 @@ svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width:
 .prose details[open] > summary::after { content: "收起"; background: var(--accent); color: #fff; }
 :root[data-lang="en"] .prose details > summary::after { content: "Show answer"; }
 :root[data-lang="en"] .prose details[open] > summary::after { content: "Hide"; }
+:root[data-lang="en"] .prose details > summary { padding-right: 8.8rem; }
 .prose details > summary:hover { background: var(--paper-2); }
 .prose details[open] > summary { border-bottom: 1px dashed var(--rule); }
 .prose details > :not(summary) { margin: 0; padding: .8rem 1.2rem .2rem; font-size: .95rem; }
@@ -586,6 +587,7 @@ svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width:
   .pn-next { text-align: left; }
   .prose th { white-space: normal; }
   .prose details > summary { padding-right: 5rem; }
+  :root[data-lang="en"] .prose details > summary { padding-right: 7.6rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

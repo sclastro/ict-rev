@@ -914,7 +914,783 @@
 <p>(a) 激光打印機：打印速度快，每頁成本較低。</p>
 <p>(b) 感熱式打印機：體積小、毋須墨水，適合列印小張收據。</p>
 <p>(c) 繪圖儀：可列印大面積的列印本。</p>
-</details></div><div class="lang-en" lang="en"><div class="pending"><div class="pending-icon">English</div><div class="pending-title">English version in preparation</div><p>This page is currently available in Chinese only. Switch to 中文 in the top bar to read it.</p></div></div><nav class="prevnext"><a class="pn pn-prev" href="../core-b/index.html"><span class="pn-dir"><span class="lang-zh">← 上一頁</span><span class="lang-en" lang="en">← Previous</span></span><span class="pn-title"><span class="lang-zh">單元 B：電腦系統基礎</span><span class="lang-en" lang="en">Module B: Computer System Fundamentals</span></span></a><a class="pn pn-next" href="../core-b/b.html"><span class="pn-dir"><span class="lang-zh">下一頁 →</span><span class="lang-en" lang="en">Next →</span></span><span class="pn-title"><span class="lang-zh">單元 B 課題 b：系統軟件</span><span class="lang-en" lang="en">Module B Topic b: System Software</span></span></a></nav>
+</details></div><div class="lang-en prose" lang="en"><h2 id="en-11-curriculum-requirements"><span class="sec-num">1.1</span><span class="sec-title">Curriculum requirements</span></h2>
+<p>Explain the functions of hardware within a computer system, namely input and output devices, processing units (the central processing unit, CPU, and the graphics processing unit, GPU), the bus system and storage devices; explain the structure and functions of a CPU and its components, know that a CPU is measured in terms of frequency, and know units such as microsecond, nanosecond and picosecond; outline the steps in the fetch-decode-execute cycle using a single processor, and describe the roles of components, registers and buses in the cycle; describe the functions and characteristics of RAM, ROM and cache memory, and the relationship among memory size, memory address, word length and computer performance; distinguish the prefixes used in computers from SI notation (1 KB = 1024 bytes, not 1000 bytes); describe the features, advantages, disadvantages and applications of input and output devices, and select appropriate devices for a given context; describe storage devices in terms of random or sequential access, volatility, data transfer rate and storage capacity; outline the latest developments in computer systems (technical details are not required).</p>
+<h2 id="en-12-components-of-a-computer-system"><span class="sec-num">1.2</span><span class="sec-title">Components of a computer system</span></h2>
+<p>The <strong>system unit</strong> is the main body of a computer. It contains the motherboard, the CPU, main memory, expansion slots, the power supply and storage devices. Expansion slots are used to install extra circuit boards such as display cards.</p>
+<p>External devices connected to the system unit are called <strong>peripherals</strong>. They fall into four groups:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Group</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Input devices</td>
+<td>Keyboard, mouse, scanner, microphone, web cam</td>
+</tr>
+<tr>
+<td>Output devices</td>
+<td>Monitor, printer, speaker, projector</td>
+</tr>
+<tr>
+<td>Storage devices</td>
+<td>External hard disk, USB flash drive</td>
+</tr>
+<tr>
+<td>Communication devices</td>
+<td>Modem, router, Bluetooth adapter</td>
+</tr>
+</tbody>
+</table>
+</div><p>Some devices are both input and output devices, such as touch screens, multifunction printers and interactive flat panels.</p>
+<p>A computer processes data in the order <strong>input → process → output</strong>. The CPU processes data together with main memory, and results to be kept are written to storage devices.</p>
+<h2 id="en-13-central-processing-unit-cpu"><span class="sec-num">1.3</span><span class="sec-title">Central processing unit (CPU)</span></h2>
+<p>The CPU executes program instructions and processes data. Its processing power largely determines the overall performance of a computer. The CPU of a personal computer is also called a <strong>microprocessor</strong>: an integrated circuit made up of billions of transistors.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Arithmetic and logic unit (ALU)</td>
+<td>Performs arithmetic operations (+, −, ×, ÷) and logical operations (comparison, AND, OR, NOT)</td>
+</tr>
+<tr>
+<td>Control unit (CU)</td>
+<td>Reads instructions from main memory, decodes them, directs other components (including the ALU) to execute them, and coordinates input and output operations</td>
+</tr>
+<tr>
+<td>Register</td>
+<td>The fastest memory unit inside the CPU; temporarily holds the data, instructions or addresses being processed</td>
+</tr>
+</tbody>
+</table>
+</div><p>Common registers:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Register</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Program counter (PC)</td>
+<td>The memory address of the <strong>next</strong> instruction to be fetched</td>
+</tr>
+<tr>
+<td>Instruction register (IR)</td>
+<td>The instruction <strong>being executed</strong></td>
+</tr>
+<tr>
+<td>Memory address register (MAR)</td>
+<td>The memory <strong>address</strong> to be read from or written to</td>
+</tr>
+<tr>
+<td>Memory data register (MDR)</td>
+<td>The <strong>data or instruction</strong> read from or to be written to memory</td>
+</tr>
+<tr>
+<td>Accumulator (ACC)</td>
+<td>The results of arithmetic and logic operations; a general-purpose register</td>
+</tr>
+</tbody>
+</table>
+</div><blockquote class="callout callout-warn">
+<p>⚠ <strong>[2024 P1A Q22] Which of the following temporarily hold data or instructions? (1) Accumulator (2) Instruction register (3) Memory address register</strong></p>
+<p>✔ The answer is (1) and (2). Only 32% of candidates answered correctly. The MAR holds an <strong>address</strong>, not data or instructions.</p>
+</blockquote>
+<p>⚠ The program counter stores a memory <strong>address</strong>, not the instruction itself or the number of instructions [2012 Practice Paper P1A Q18]. Cache memory is not a register [2012 Practice Paper P1A Q20].</p>
+<h2 id="en-14-graphics-processing-unit-gpu"><span class="sec-num">1.4</span><span class="sec-title">Graphics processing unit (GPU)</span></h2>
+<p>A GPU is a processor designed for graphics and massive parallel computation. It takes heavy workloads off the CPU.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Comparison</th>
+<th>CPU</th>
+<th>GPU</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Number of cores</td>
+<td>Fewer (a few to dozens)</td>
+<td>Many (up to thousands)</td>
+</tr>
+<tr>
+<td>Design focus</td>
+<td>Handles all kinds of instructions; executes complex tasks in sequence</td>
+<td>Handles a large number of simple operations of the same type at the same time</td>
+</tr>
+<tr>
+<td>Suitable tasks</td>
+<td>General programs, operating systems, database queries</td>
+<td>3D animation, video rendering and encoding, image processing, training AI models</td>
+</tr>
+</tbody>
+</table>
+</div><p>GPUs come in two forms:</p>
+<ul>
+<li><strong>Dedicated GPU</strong>: on a display card, with its own dedicated memory; higher performance.</li>
+<li><strong>Integrated GPU (iGPU)</strong>: built into the CPU or motherboard and <strong>shares main memory</strong> with the CPU, which reduces the RAM available to the system, but uses less power and costs less.</li>
+</ul>
+<p>A computer can work without a dedicated GPU, but not without a CPU. A GPU only handles certain types of computation and cannot replace the CPU.</p>
+<p>✔ When an online AI service is used, the heavy computation is done by the remote server. Adding a GPU to the local computer does little to make the online service smoother.</p>
+<h2 id="en-15-bus-system"><span class="sec-num">1.5</span><span class="sec-title">Bus system</span></h2>
+<p>A bus is a set of physical lines connecting the components inside a computer. There are three types:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Bus</th>
+<th>What it carries</th>
+<th>Direction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data bus</td>
+<td>Data and instructions</td>
+<td>Two-way</td>
+</tr>
+<tr>
+<td>Address bus</td>
+<td>Addresses of memory locations or devices</td>
+<td>From the CPU</td>
+</tr>
+<tr>
+<td>Control bus</td>
+<td>Control signals such as "read", "write" and timing signals</td>
+<td>Two-way</td>
+</tr>
+</tbody>
+</table>
+</div><p><strong>Bus width</strong> is the number of bits a bus can carry at the same time. A 32-bit data bus can transfer 32 bits of data at a time [adapted from 2025 Mock P1A Q16]. An address bus with n lines can represent 2ⁿ different addresses.</p>
+<p>⚠ Control signals are carried by the control bus, not the data bus [Sample Paper Section A Q13].</p>
+<h2 id="en-16-fetch-decode-execute-cycle"><span class="sec-num">1.6</span><span class="sec-title">Fetch-decode-execute cycle</span></h2>
+<p>The CPU executes each instruction in a <strong>machine cycle</strong>, also called the fetch-decode-execute cycle:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Process</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fetch</td>
+<td>① The address in the PC is copied to the MAR and sent to main memory through the address bus; ② the CU sends a "read" signal through the control bus; ③ main memory sends the instruction at that address to the MDR through the data bus; ④ the instruction is copied from the MDR to the IR, and the PC points to the next instruction</td>
+</tr>
+<tr>
+<td>Decode</td>
+<td>The CU interprets the instruction in the IR to identify the operation (opcode) and the data to be used (operand)</td>
+</tr>
+<tr>
+<td>Execute</td>
+<td>The CU directs the relevant components to carry out the instruction, for example the ALU performs a calculation and the result is stored in the ACC</td>
+</tr>
+<tr>
+<td>Store</td>
+<td>The result is written back to a register or main memory; not every instruction needs this step</td>
+</tr>
+</tbody>
+</table>
+</div><p>✔ The CU is involved in every stage. The ALU only works in the execute stage of instructions that need a calculation.</p>
+<h2 id="en-17-cpu-performance"><span class="sec-num">1.7</span><span class="sec-title">CPU performance</span></h2>
+<p><strong>1. Clock rate</strong></p>
+<p>The clock rate is the number of clock cycles a CPU performs per second, measured in hertz (Hz). Today's CPUs have clock rates in the GHz range.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Frequency</th>
+<th>Time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 kHz = 10³ Hz</td>
+<td>1 ms (millisecond) = 10⁻³ s</td>
+</tr>
+<tr>
+<td>1 MHz = 10⁶ Hz</td>
+<td>1 μs (microsecond) = 10⁻⁶ s</td>
+</tr>
+<tr>
+<td>1 GHz = 10⁹ Hz</td>
+<td>1 ns (nanosecond) = 10⁻⁹ s</td>
+</tr>
+<tr>
+<td></td>
+<td>1 ps (picosecond) = 10⁻¹² s</td>
+</tr>
+</tbody>
+</table>
+</div><p>⚠ Frequency prefixes are decimal, unlike the 1024 used for KB and MB.</p>
+<p><strong>Time per instruction = clock cycles per instruction ÷ clock rate</strong></p>
+<p>Example: a single-core CPU has a clock rate of 3.2 GHz, and each instruction takes 4 clock cycles.</p>
+<p>Time per instruction = 4 ÷ (3.2 × 10⁹) = 1.25 × 10⁻⁹ s = <strong>1.25 ns</strong>.</p>
+<p>Lowering the clock rate reduces power consumption and heat [Sample Paper Section A Q12]. Overclocking increases speed but produces more heat and may shorten the life of the CPU.</p>
+<p><strong>2. Number of cores</strong></p>
+<p>Each core of a multi-core CPU can execute instructions independently, so the CPU can process more instructions at the same time. This suits tasks that can be split up, such as video editing, rendering and server work. However, a quad-core CPU is not four times as fast as a single-core CPU, because:</p>
+<ul>
+<li>some instructions must be executed in order and cannot be shared among cores;</li>
+<li>the cores compete for shared resources such as main memory, buses and cache memory.</li>
+</ul>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2023 P1A Q14] For a CPU with the specifications of 16 cores, 5 GHz and a 30 MB cache, which of the following are correct?</strong></p>
+<p>✔ The clock rate of the CPU is 5 GHz; the CPU accesses data in the cache memory faster than that in RAM.</p>
+<p>✘ About 45% of candidates wrongly thought that "the maximum number of programs that the CPU can handle at the same time is 16". A program often uses more than one core, and each core is not used by only one program.</p>
+</blockquote>
+<p>CPU specifications tell you the number of clock cycles per second and the number of cores, but not how fast a program will actually run, which also depends on memory, storage devices, the type of program and so on. Similarly, the configuration "i7 CPU, 16 GB RAM, 1 TB SSD, 802.11ac Wi-Fi" only tells you the maximum data transfer rate of the wireless network, not the screen size or the start-up time [Sample Paper Section A Q14].</p>
+<p><strong>3. Word length</strong></p>
+<p>Word length is the number of bits of data or instructions a CPU processes at a time. A longer word length means:</p>
+<ul>
+<li>more data can be processed at a time;</li>
+<li>the instruction set can hold more and more complex instructions;</li>
+<li>more bits are available for memory addresses, so a larger memory space can be addressed.</li>
+</ul>
+<p>⚠ A longer word length <strong>does not</strong> mean each instruction is executed faster.</p>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2025 P1A Q17] The sizes of memory addresses of Computers P and Q are 64-bit and 32-bit respectively. Which of the following is/are correct?</strong></p>
+<p>✔ P supports a larger accessible memory space than Q.</p>
+<p>✘ The address size determines neither the clock rate nor the data transfer speed.</p>
+</blockquote>
+<p><strong>4. Other factors</strong></p>
+<p>Cache size, bus architecture and GPU performance also affect the overall performance of a computer.</p>
+<blockquote class="callout callout-tip">
+<p>✔ <strong>[2025 P1B 5(a)] Complete the table with improvements in the hardware specifications of a desktop computer.</strong></p>
+<p>CPU: higher clock rate / larger cache size / more advanced bus architecture / larger word length.</p>
+<p>RAM: higher data transfer rate. Display unit: higher resolution / colour depth / refresh rate.</p>
+<p>1 mark each. The question asks for "improvements", so answers must be comparative ("higher"); stating only an attribute of the component loses the mark.</p>
+</blockquote>
+<h2 id="en-18-main-memory"><span class="sec-num">1.8</span><span class="sec-title">Main memory</span></h2>
+<p>Main memory is installed on the motherboard and stores the data and instructions the CPU is about to process. It is divided into RAM and ROM; the CPU also contains cache memory.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Comparison</th>
+<th>RAM</th>
+<th>ROM</th>
+<th>Cache memory</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Content</td>
+<td>The operating system, programs and data in use</td>
+<td>Bootstrap program, BIOS and other firmware</td>
+<td>Frequently used data and instructions</td>
+</tr>
+<tr>
+<td>Volatility</td>
+<td>Volatile (content lost when power is off)</td>
+<td>Non-volatile</td>
+<td>Volatile</td>
+</tr>
+<tr>
+<td>Can the content change?</td>
+<td>Changes constantly during operation</td>
+<td>Normally read-only; rewritten only when firmware is updated</td>
+<td>Changes constantly</td>
+</tr>
+<tr>
+<td>Capacity</td>
+<td>Large (GB)</td>
+<td>Small (MB)</td>
+<td>Smallest (KB to tens of MB)</td>
+</tr>
+<tr>
+<td>Speed</td>
+<td>Fast</td>
+<td>Slower than RAM</td>
+<td>Much faster than RAM</td>
+</tr>
+</tbody>
+</table>
+</div><p>From fastest to slowest: <strong>registers &gt; cache memory &gt; RAM &gt; secondary storage</strong>. Capacity is the other way round.</p>
+<p>There are two RAM technologies: dynamic RAM (DRAM) is cheaper and denser and is used as the main memory of computers; static RAM (SRAM) is faster but more expensive and is used as CPU cache memory.</p>
+<p><strong>1. RAM</strong></p>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2023 P1B 1(b)] What is the main function of RAM? How can increasing the size of RAM enhance the computational power of the computer?</strong></p>
+<p>✔ RAM <strong>temporarily</strong> stores the user programs and data in use; more RAM decreases the time needed to access secondary storage.</p>
+<p>✘ "Stores frequently used data" gets no mark: that is the function of cache memory. "More RAM, faster computation" alone also gets no mark; the answer must show that reading from and writing to RAM is faster than secondary storage.</p>
+</blockquote>
+<p>More RAM allows more programs to be opened at the same time. However, if the software cannot use the extra RAM, or the bottleneck is the CPU or GPU, more RAM will not improve performance [adapted from 2026 Mock P1A Q13].</p>
+<p><strong>2. Cache memory</strong></p>
+<p>When the CPU needs data, it first searches the cache memory (level 1 → level 2 → level 3). If the data is found, it is read directly; if not, it is fetched from RAM and a copy is stored in the cache for later use.</p>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2024 P1A Q20] Which of the following statements about cache memory is correct?</strong></p>
+<p>✔ It stores frequently-used data and instructions.</p>
+<p>✘ It is not a type of ROM; it is not found only in the CPU, as devices such as hard disks also have caches; its data access rate is higher than that of RAM, not lower.</p>
+</blockquote>
+<!-- -->
+
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2025 P1A Q16] When scanning a personal computer to detect computer viruses, which type(s) of memory will be used to store a virus checker and its data?</strong></p>
+<p>✔ Cache memory and RAM. Only 47% of candidates answered correctly. A running program is loaded into RAM, and its frequently used parts are copied into the cache; ROM is read-only and is not used to hold running programs.</p>
+</blockquote>
+<p><strong>3. ROM</strong></p>
+<p>ROM stores the <strong>bootstrap program</strong> and the <strong>Basic Input/Output System (BIOS)</strong>. At start-up, the bootstrap program tests the hardware and then loads the operating system into RAM [2024 P1A Q19: the bootstrap program is usually stored in ROM]. Today's ROM is mostly electrically rewritable flash memory, so firmware can be updated.</p>
+<p>✔ The bootstrap program cannot be stored in RAM, because RAM is volatile and loses its content when power is off. It is not stored on the hard disk either, because the operating system has not been loaded at start-up, so the CPU cannot yet access the hard disk; the content of a hard disk can also be changed.</p>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2024 P1A Q16] Eva experiences a power failure when working on word processing. Some of her working data can be restored. Why?</strong></p>
+<p>✔ Because that data had been saved on the hard disk (for example by auto-save). RAM is volatile and loses its content in a power failure; ROM is not used to store working data. Only 53% of candidates answered correctly.</p>
+</blockquote>
+<p><strong>4. Memory addresses and addressable space</strong></p>
+<p>Every memory location has a unique address. An address of n bits gives 2ⁿ addresses.</p>
+<p>Example: with 32-bit memory addresses and 1 byte per address, the maximum addressable memory = 2³² × 1 B = 4 GB. So a 32-bit computer can use at most about 4 GB of RAM, while a 64-bit computer can use far more.</p>
+<h2 id="en-19-data-units-and-calculations"><span class="sec-num">1.9</span><span class="sec-title">Data units and calculations</span></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Use</th>
+<th>Units</th>
+<th>Conversion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Storage capacity, file size</td>
+<td>KB, MB, GB, TB</td>
+<td>1 KB = 2¹⁰ B = 1024 B; each further step × 1024</td>
+</tr>
+<tr>
+<td>Clock rate</td>
+<td>kHz, MHz, GHz</td>
+<td>Each step × 1000</td>
+</tr>
+<tr>
+<td>Bandwidth, data transfer rate</td>
+<td>kbps, Mbps, Gbps; MBps</td>
+<td>Each step × 1000</td>
+</tr>
+</tbody>
+</table>
+</div><blockquote class="callout callout-warn">
+<p>⚠ <strong>[2025 P1B 3(a)] Each photo is 5 MB and the upload bandwidth is 100 Mbps. Estimate the shortest time required to upload 200 photos.</strong></p>
+<p>✔ (200 × 5 × 8) ÷ 100 = <strong>80 s</strong>.</p>
+<p>✔ Also accepted: (200 × 1024 × 1024 × 5 × 8) ÷ (100 × 1000 × 1000) ≈ 84 s; (200 × 1024 × 5 × 8) ÷ (100 × 1000) ≈ 82 s.</p>
+<p>✘ Using 1024 for bandwidth gets no mark; no unit gets no mark. The most common error is forgetting to convert bytes to bits (× 8), which even some Level 5 candidates did.</p>
+</blockquote>
+<p>[2023 P1B 5(b)(ii)] 200 files of 2 KB uploaded through a 10 Mbps network: 200 × 2 × 1024 × 8 ÷ (10 × 10⁶) ≈ <strong>0.33 s</strong>.</p>
+<p>[2024 P1B 2(b)(i)] Receiving a 5 GB video through a 1 Gbps network: 5 × 1024³ × 8 ÷ 10⁹ ≈ <strong>42.9 s</strong> (40 s using 1000, also accepted).</p>
+<p>⚠ Using 1000 for file size was accepted in 2024 and 2025, but the 2023 marking scheme only accepted answers using 1024 (0.33 s, 0.32768 s, 0.328 s). The safest approach: use 1024 for file size and 1000 for bandwidth.</p>
+<p><strong>Hard disk read time = access time + file size ÷ data transfer rate</strong></p>
+<p>Example: a hard disk has an access time of 12 ms and a data transfer rate of 50 MBps. To read a 20 MB file from adjacent sectors:</p>
+<p>12 ms + (20 × 1024 × 1024) ÷ (50 × 10⁶) s = 0.012 s + 0.419 s ≈ <strong>0.431 s</strong>.</p>
+<p>If the file is scattered over 10 non-adjacent locations, each location adds another access time, so the total time increases greatly.</p>
+<p>A <strong>cluster</strong> is the smallest unit of disk space allocated to a file, and one cluster can belong to only one file. Example: with 4 KB clusters, a 10 KB file uses 3 clusters (12 KB), wasting 2 KB; with 8 KB clusters, it uses 2 clusters (16 KB), wasting 6 KB.</p>
+<p>[Adapted from 2025 Mock P1A Q12] A dashcam uses a 512 GB memory card, and every 3 minutes of video takes 15 MB:</p>
+<p>512 × 1024 ÷ 15 × 3 = 104 857.6 minutes ≈ <strong>1748 hours</strong>.</p>
+<h2 id="en-110-secondary-storage-devices"><span class="sec-num">1.10</span><span class="sec-title">Secondary storage devices</span></h2>
+<p>Secondary storage devices are non-volatile and store the operating system, application software and data for the long term. The CPU cannot process data directly in secondary storage; the data must first be loaded into RAM.</p>
+<p><strong>1. Four aspects of a storage device</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Access mode</td>
+<td><strong>Random access</strong> (also called direct access): the required data can be reached directly; <strong>sequential access</strong>: the data before it must be passed in order</td>
+</tr>
+<tr>
+<td>Volatility</td>
+<td>All secondary storage devices are non-volatile</td>
+</tr>
+<tr>
+<td>Data transfer rate</td>
+<td>The amount of data transferred per second; another measure is <strong>access time</strong>, the average time to locate the required data</td>
+</tr>
+<tr>
+<td>Storage capacity</td>
+<td>The maximum amount of data that can be stored</td>
+</tr>
+</tbody>
+</table>
+</div><p>✔ Among common storage devices, only <strong>magnetic tape</strong> uses sequential access; hard disks, SSDs, optical discs and flash memory cards can all be accessed directly [2012 Practice Paper P1A Q14].</p>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2023 P1A Q1] Which of the following statements about direct access on a storage device are correct?</strong></p>
+<p>✔ In general, the seek time to search for a file is shorter than that of sequential access; direct access is more commonly used in hard disks than sequential access.</p>
+<p>✘ "Writing the data of a file starts from the beginning of the storage device" describes sequential access.</p>
+</blockquote>
+<p><strong>2. Common secondary storage devices</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Device</th>
+<th>How it works and features</th>
+<th>Common uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hard disk (HDD)</td>
+<td>Magnetic platters; the read/write head moves to the track and the platter spins to the sector; large capacity, low cost per GB; has moving parts and is sensitive to shock</td>
+<td>Large amounts of data, file servers</td>
+</tr>
+<tr>
+<td>Solid-state drive (SSD)</td>
+<td>Flash memory with no moving parts; short access time, high data transfer rate</td>
+<td>Operating systems, application software, notebook computers</td>
+</tr>
+<tr>
+<td>Magnetic tape</td>
+<td>Sequential access, slow; very low cost per GB; can be stored offline</td>
+<td>Long-term backup, off-site backup</td>
+</tr>
+<tr>
+<td>Optical disc (CD, DVD, Blu-ray)</td>
+<td>Read by laser; needs a disc drive; limited capacity (about 700 MB, 4.7 GB to 8.5 GB, 25 GB to 50 GB)</td>
+<td>Distributing software and films; R can be written once, RW can be rewritten</td>
+</tr>
+<tr>
+<td>USB flash drive, memory card</td>
+<td>Flash memory; small, durable, low power</td>
+<td>Carrying and exchanging files, cameras, mobile phones</td>
+</tr>
+<tr>
+<td>Network storage</td>
+<td>Accessed through a network, including file servers, network-attached storage (NAS) and cloud storage</td>
+<td>Sharing files, central backup</td>
+</tr>
+</tbody>
+</table>
+</div><p>Optical discs are becoming less common because they need a disc drive, transfer data slowly and have limited capacity. The trend in storage devices is <strong>larger capacity, higher speed and smaller size</strong>.</p>
+<p><strong>3. SSD and hard disk</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>Advantages of SSD</th>
+<th>Advantages of hard disk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Speed</td>
+<td>Short access time, high data transfer rate</td>
+<td></td>
+</tr>
+<tr>
+<td>Durability</td>
+<td>No moving parts, shock-resistant</td>
+<td>Less limited in write cycles; data is easier to recover after damage</td>
+</tr>
+<tr>
+<td>Others</td>
+<td>Lighter, smaller, less power, less heat, quieter</td>
+<td>Lower cost per GB; larger capacity for the same price</td>
+</tr>
+</tbody>
+</table>
+</div><blockquote class="callout callout-warn">
+<p>⚠ <strong>[2023 P1B 1(a)] Give two benefits of replacing the hard disk with an SSD as the secondary storage of a laptop computer.</strong></p>
+<p>✔ Faster seek time; shock resistance; lighter in weight; less heat produced during operation; less power consumption; smaller in size.</p>
+<p>✘ "More silent in operation" gets no mark because it is not related to the laptop scenario. "Faster computation" is also wrong: storage devices have nothing to do with computation.</p>
+</blockquote>
+<!-- -->
+
+<blockquote class="callout callout-tip">
+<p>✔ <strong>[2024 P1B 2(a)] Arrange SSD, HDD and RAM in descending order by their data transfer rates, and describe a functional difference between RAM and SSD.</strong></p>
+<p>RAM &gt; SSD &gt; HDD. RAM is volatile while SSD is non-volatile; or RAM is primary storage while SSD is secondary storage.</p>
+</blockquote>
+<p>When upgrading a SATA SSD to an M.2 NVMe SSD with a higher data transfer rate, check that the motherboard supports it [Sample Paper Section A Q11].</p>
+<p><strong>4. Network storage and cloud storage</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>Cloud storage</th>
+<th>Local storage (NAS, external hard disk)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Advantages</td>
+<td>Access anytime, anywhere through the Internet; capacity can be scaled up or down; easy sharing; the provider handles backup, and some keep older versions to recover from ransomware</td>
+<td>No Internet connection needed; faster transfer; data does not pass through a third party, so lower security risk; no ongoing subscription fee</td>
+</tr>
+<tr>
+<td>Disadvantages</td>
+<td>Needs an Internet connection; uploading large amounts of data takes time and mobile data; sensitive data is handed to a third party, with a risk of leakage; subscription fee</td>
+<td>Must be bought, maintained and backed up by the user; data may be lost if the device is lost or damaged</td>
+</tr>
+</tbody>
+</table>
+</div><h2 id="en-111-input-devices"><span class="sec-num">1.11</span><span class="sec-title">Input devices</span></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Group</th>
+<th>Devices</th>
+<th>Key points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Keyboard</td>
+<td>Wired, wireless (Bluetooth, radio frequency)</td>
+<td>Tablets usually connect to keyboards by Bluetooth</td>
+</tr>
+<tr>
+<td>Pointing devices</td>
+<td>Mouse, trackball, touchpad, track point, joystick, touch screen, digitizing tablet, stylus</td>
+<td>A trackball does not need to be moved and saves space; touch screens suit kiosks; digitizing tablets suit graphic design</td>
+</tr>
+<tr>
+<td>Scanner</td>
+<td>Flatbed scanner, handheld scanner</td>
+<td>Specifications: resolution (dpi), colour depth (bits); with optical character recognition (OCR) software, printed text can be converted into editable text</td>
+</tr>
+<tr>
+<td>Optical readers</td>
+<td>Bar code reader, QR code reader, optical mark reader (OMR)</td>
+<td>Bar codes improve input accuracy; OMR is used for multiple-choice answer sheets</td>
+</tr>
+<tr>
+<td>Card readers</td>
+<td>Magnetic stripe card readers, smart card (RFID, NFC, e.g. Octopus) readers</td>
+<td>Access control, electronic payment</td>
+</tr>
+<tr>
+<td>Biometric devices</td>
+<td>Fingerprint scanner, face recognition, voice recognition, iris scanner</td>
+<td>Convert body features into digital codes and compare them with stored records</td>
+</tr>
+<tr>
+<td>Sound and image</td>
+<td>Microphone, digital camera, web cam, digital video camera</td>
+<td>A microphone can work with speech recognition software; web cams are used for video conferencing</td>
+</tr>
+</tbody>
+</table>
+</div><p>Scanning with 24-bit colour instead of 8-bit colour captures more different colours and gives a larger file, but the resolution does not change [2012 Practice Paper P1A Q3]. A fingerprint scanner is not a pointing device.</p>
+<p>Disadvantages of voice recognition: lower accuracy in noisy places; the system may fail to recognise a user whose voice has changed (e.g. a sore throat); someone may use a pre-recorded voice to fool the system.</p>
+<h2 id="en-112-output-devices"><span class="sec-num">1.12</span><span class="sec-title">Output devices</span></h2>
+<p><strong>1. Monitors</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Specification</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Screen size</td>
+<td>Diagonal length, in inches</td>
+</tr>
+<tr>
+<td>Resolution</td>
+<td>Number of pixels displayed, e.g. 1920 × 1080 (FHD), 3840 × 2160 (4K)</td>
+</tr>
+<tr>
+<td>Pixel density</td>
+<td>Pixels per inch (ppi); higher means sharper</td>
+</tr>
+<tr>
+<td>Contrast ratio</td>
+<td>Ratio of the brightest white to the darkest black, e.g. 3000:1</td>
+</tr>
+<tr>
+<td>Refresh rate</td>
+<td>Number of times the screen is redrawn per second (Hz); higher means smoother motion, suited to games</td>
+</tr>
+<tr>
+<td>Brightness</td>
+<td>Measured in cd/m²</td>
+</tr>
+<tr>
+<td>Ports</td>
+<td>HDMI, DisplayPort, USB-C</td>
+</tr>
+</tbody>
+</table>
+</div><p>Monitors have developed from cathode ray tube (CRT) and liquid crystal display (LCD) to LED and OLED. OLED monitors have better colour accuracy, contrast and response time.</p>
+<p><strong>2. Printers</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Printer</th>
+<th>Features</th>
+<th>Suitable uses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Inkjet printer</td>
+<td>High colour quality; high cost per page; nozzles may clog if not used often</td>
+<td>Home use, photos</td>
+</tr>
+<tr>
+<td>Laser printer</td>
+<td>Fast, lower cost per page, high quality</td>
+<td>Large volumes of printing in offices</td>
+</tr>
+<tr>
+<td>Dot-matrix printer</td>
+<td>Pins strike an ink ribbon; slow and noisy, but can print on multi-part forms</td>
+<td>Multi-part forms</td>
+</tr>
+<tr>
+<td>Thermal printer</td>
+<td>Heats thermal paper; small and needs no ink; printouts fade</td>
+<td>Receipts, labels</td>
+</tr>
+<tr>
+<td>Plotter</td>
+<td>Prints large printouts</td>
+<td>Building plans, posters</td>
+</tr>
+</tbody>
+</table>
+</div><p>Printer specifications include print resolution (dpi), print speed (ppm, pages per minute) and connection methods (USB, Wi-Fi, Bluetooth, Ethernet). Fibre optics are not used to connect a home laser printer [2024 P1A Q15].</p>
+<p><strong>3. Projectors and interactive flat panels</strong></p>
+<p>Projector specifications include brightness (lumens, lm), resolution and wireless connection. Interactive flat panels have higher resolution, better contrast and a longer life than projectors, and users can write directly on the screen.</p>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2023 P1A Q17] Which of the following is not a specification of a projector?</strong></p>
+<p>✔ 5400 rpm (revolutions per minute), which is a hard disk specification. Only half of the candidates answered correctly. Wi-Fi 802.11ac, 3800 lumens and 4K UHD are all projector specifications.</p>
+</blockquote>
+<h2 id="en-113-choosing-devices-for-a-given-context"><span class="sec-num">1.13</span><span class="sec-title">Choosing devices for a given context</span></h2>
+<p>First identify what the context needs, such as mobility, cost, speed, durability or security. Then choose a device and explain which of its features meets that need.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Context</th>
+<th>Common devices</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Supermarket point of sale, self-checkout, fast-food self-ordering kiosk</td>
+<td>Bar code / QR code reader, touch screen, Octopus or credit card reader, thermal printer</td>
+</tr>
+<tr>
+<td>Library information kiosk</td>
+<td>Touch screen (no mouse needed, saves space, less likely to be stolen or damaged)</td>
+</tr>
+<tr>
+<td>Small office home office</td>
+<td>Multifunction printer (print, scan, copy, fax)</td>
+</tr>
+<tr>
+<td>Meeting room</td>
+<td>Interactive flat panel or projector, wireless presenter</td>
+</tr>
+<tr>
+<td>Video editing and rendering</td>
+<td>CPU with a high clock rate or many cores, dedicated GPU, large RAM, SSD</td>
+</tr>
+</tbody>
+</table>
+</div><blockquote class="callout callout-warn">
+<p>⚠ <strong>[2025 P1B 7(b)(i)] Mr Li decides to provide tablet computers instead of notebook computers for students to enter data. Give two reasons to support his decision.</strong></p>
+<p>✔ Lighter in weight / smaller in size for easy carrying; a user-friendly touch screen for easy input; a longer battery life.</p>
+<p>✘ Two answers in the same category (e.g. "lighter" and "smaller") get only 1 mark.</p>
+</blockquote>
+<!-- -->
+
+<blockquote class="callout callout-tip">
+<p>✔ <strong>[2024 P1B 2(a)(iii)] Give two reasons why Computer Q is better for 4K video rendering.</strong></p>
+<p>Q has a CPU with better processing power because of its higher clock rate; Q has a dedicated GPU with standalone memory for better graphics processing.</p>
+</blockquote>
+<p>[2023 P1A Q18] A computer's performance is "poor" for database queries, "smooth" for online meetings and "fair" for playing 4K videos on a hard disk. The display card and the CPU should be upgraded; online meetings are smooth, so the network interface card does not need upgrading.</p>
+<h2 id="en-114-latest-developments-in-computer-systems"><span class="sec-num">1.14</span><span class="sec-title">Latest developments in computer systems</span></h2>
+<p>The curriculum only requires an outline; technical details are not needed.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Developments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Processors</td>
+<td>More cores; GPUs built into CPUs; general-purpose GPUs used for AI; neural processing units (NPUs) designed for AI computation</td>
+</tr>
+<tr>
+<td>Main memory</td>
+<td>DDR5 with larger capacity and higher speed; LPDDR5X with better energy efficiency for mobile devices</td>
+</tr>
+<tr>
+<td>Secondary storage</td>
+<td>Faster NVMe SSDs; ever larger capacity; widespread cloud storage</td>
+</tr>
+<tr>
+<td>Data communication</td>
+<td>Wi-Fi 6/7, 5G mobile networks, USB 3.2 and USB4</td>
+</tr>
+<tr>
+<td>Input and output</td>
+<td>OLED monitors, interactive flat panels, smart glasses with augmented reality</td>
+</tr>
+</tbody>
+</table>
+</div><h2 id="en-115-self-test"><span class="sec-num">1.15</span><span class="sec-title">Self-test</span></h2>
+<details class="quiz">
+<summary>1. A dual-core CPU has a clock rate of 2.5 GHz, and each instruction takes 5 clock cycles. (a) How long does each instruction take? (b) In theory, at most how many instructions can be processed per second? (c) Why is the actual number usually smaller?</summary>
+<p>(a) 5 ÷ (2.5 × 10⁹) = 2 × 10⁻⁹ s = <strong>2 ns</strong>.</p>
+<p>(b) 2 × 2.5 × 10⁹ ÷ 5 = <strong>1 × 10⁹</strong> instructions.</p>
+<p>(c) Some instructions must be executed in order and cannot be handled by both cores at the same time; the two cores also compete for shared resources such as main memory and buses.</p>
+</details>
+<details class="quiz">
+<summary>2. In the fetch stage, what does each of the three buses carry?</summary>
+<p>The address bus carries the instruction address in the MAR to main memory; the control bus carries the "read" signal; the data bus carries the instruction from main memory back to the MDR.</p>
+</details>
+<details class="quiz">
+<summary>3. A hard disk has an access time of 10 ms and a data transfer rate of 100 MBps. How long does it take to read a 25 MB file from adjacent sectors?</summary>
+<p>10 ms + (25 × 1024 × 1024) ÷ (100 × 10⁶) s = 0.01 s + 0.262 s ≈ <strong>0.272 s</strong> (0.26 s if 1000 is used for the file size).</p>
+</details>
+<details class="quiz">
+<summary>4. [Adapted from 2025 Mock P1B 1(a)] When rendering a video, Chi-wai finds that RAM usage is not full, but rendering is slow. Suggest two hardware upgrades and explain.</summary>
+<p>CPU: a higher clock rate or more cores increases processing speed. GPU (display card): a GPU has many cores that process graphics data in parallel, shortening the rendering time.</p>
+<p>✘ "Increase the RAM capacity" is not accepted: RAM usage is not full, so RAM is not the bottleneck.</p>
+</details>
+<details class="quiz">
+<summary>5. [Adapted from 2026 Mock P1B 2(b)] A content creator is considering an external hard disk or an external SSD to store his artwork. Give one disadvantage of each.</summary>
+<p>Hard disk: sensitive to shock and easily damaged if dropped; lower data transfer rate; heavier, larger and uses more power.</p>
+<p>SSD: more expensive for the same capacity; limited number of write cycles; data is harder to recover after damage.</p>
+</details>
+<details class="quiz">
+<summary>6. Why is the bootstrap program stored in ROM rather than RAM?</summary>
+<p>ROM is non-volatile, so it keeps the bootstrap program when power is off and the CPU can read it at every start-up; RAM is volatile and loses its content when power is off.</p>
+</details>
+<details class="quiz">
+<summary>7. A computer's address bus has 20 lines, and each memory address stores 1 byte. What is the maximum addressable memory?</summary>
+<p>2²⁰ × 1 B = 1 048 576 B = <strong>1 MB</strong>.</p>
+</details>
+<details class="quiz">
+<summary>8. Arrange the following in order of data access speed, from fastest to slowest: RAM, hard disk, registers, SSD, cache memory.</summary>
+<p><strong>Registers &gt; cache memory &gt; RAM &gt; SSD &gt; hard disk</strong>. The faster the memory, the higher the cost per unit of capacity and usually the smaller the capacity [adapted from 2026 Mock P1A Q16].</p>
+</details>
+<details class="quiz">
+<summary>9. [Adapted from 2025 Mock P1A Q15] A computer has 16 GB of RAM, and its hard disk stores video files of 8 GB and 32 GB. Can the computer read the data in the 32 GB file?</summary>
+<p><strong>Yes</strong>, any data in either file can be read. A program does not need to load a whole file into RAM at once; it can read it in parts as needed, loading the next part after processing the current one.</p>
+</details>
+<details class="quiz">
+<summary>10. A hard disk has a cluster size of 4 KB. How much storage space is wasted when storing 1000 files of 9 KB each?</summary>
+<p>Each file uses 3 clusters (12 KB), wasting 3 KB. 1000 files waste 3000 KB ≈ <strong>2.93 MB</strong> in total.</p>
+</details>
+<details class="quiz">
+<summary>11. [Adapted from 2025 Mock P1A Q11] Which of the following are common specifications of a dashcam? (1) 802.11ac (2) Full HD (3) 7200 rpm</summary>
+<p><strong>(1) and (2)</strong>. A dashcam can send videos to a phone by Wi-Fi and records in Full HD. 7200 rpm is the rotational speed of a hard disk.</p>
+</details>
+<details class="quiz">
+<summary>12. Suggest a type of printer for each situation and give a reason: (a) the school office prints hundreds of notices every day; (b) the tuck shop prints receipts; (c) the Visual Arts Department prints A1 posters.</summary>
+<p>(a) Laser printer: fast printing and lower cost per page.</p>
+<p>(b) Thermal printer: small and needs no ink; suitable for small receipts.</p>
+<p>(c) Plotter: can produce large printouts.</p>
+</details></div><nav class="prevnext"><a class="pn pn-prev" href="../core-b/index.html"><span class="pn-dir"><span class="lang-zh">← 上一頁</span><span class="lang-en" lang="en">← Previous</span></span><span class="pn-title"><span class="lang-zh">單元 B：電腦系統基礎</span><span class="lang-en" lang="en">Module B: Computer System Fundamentals</span></span></a><a class="pn pn-next" href="../core-b/b.html"><span class="pn-dir"><span class="lang-zh">下一頁 →</span><span class="lang-en" lang="en">Next →</span></span><span class="pn-title"><span class="lang-zh">單元 B 課題 b：系統軟件</span><span class="lang-en" lang="en">Module B Topic b: System Software</span></span></a></nav>
     </article>
     <footer class="footer">
       <p class="lang-zh">內容依據課程發展議會與考評局《資訊及通訊科技課程及評估指引》及考評局公開資料整理，僅供溫習參考。</p>
@@ -923,7 +1699,7 @@
   </main>
 
   <aside class="toc-rail">
-<nav class="toc lang-zh" aria-label="本頁目錄"><div class="toc-title">本頁目錄</div><ol><li><a href="#11-課程要求">1.1 課程要求</a></li><li><a href="#12-電腦系統的組成">1.2 電腦系統的組成</a></li><li><a href="#13-中央處理器cpu">1.3 中央處理器（CPU）</a></li><li><a href="#14-圖形處理器gpu">1.4 圖形處理器（GPU）</a></li><li><a href="#15-匯流排系統">1.5 匯流排系統</a></li><li><a href="#16-提取譯碼執行周期">1.6 提取─譯碼─執行周期</a></li><li><a href="#17-cpu-的表現">1.7 CPU 的表現</a></li><li><a href="#18-主記憶體">1.8 主記憶體</a></li><li><a href="#19-數據單位與計算">1.9 數據單位與計算</a></li><li><a href="#110-輔助儲存設備">1.10 輔助儲存設備</a></li><li><a href="#111-輸入設備">1.11 輸入設備</a></li><li><a href="#112-輸出設備">1.12 輸出設備</a></li><li><a href="#113-按情境選用設備">1.13 按情境選用設備</a></li><li><a href="#114-電腦系統的最新發展">1.14 電腦系統的最新發展</a></li><li><a href="#115-自我檢測">1.15 自我檢測</a></li></ol></nav>
+<nav class="toc lang-zh" aria-label="本頁目錄"><div class="toc-title">本頁目錄</div><ol><li><a href="#11-課程要求">1.1 課程要求</a></li><li><a href="#12-電腦系統的組成">1.2 電腦系統的組成</a></li><li><a href="#13-中央處理器cpu">1.3 中央處理器（CPU）</a></li><li><a href="#14-圖形處理器gpu">1.4 圖形處理器（GPU）</a></li><li><a href="#15-匯流排系統">1.5 匯流排系統</a></li><li><a href="#16-提取譯碼執行周期">1.6 提取─譯碼─執行周期</a></li><li><a href="#17-cpu-的表現">1.7 CPU 的表現</a></li><li><a href="#18-主記憶體">1.8 主記憶體</a></li><li><a href="#19-數據單位與計算">1.9 數據單位與計算</a></li><li><a href="#110-輔助儲存設備">1.10 輔助儲存設備</a></li><li><a href="#111-輸入設備">1.11 輸入設備</a></li><li><a href="#112-輸出設備">1.12 輸出設備</a></li><li><a href="#113-按情境選用設備">1.13 按情境選用設備</a></li><li><a href="#114-電腦系統的最新發展">1.14 電腦系統的最新發展</a></li><li><a href="#115-自我檢測">1.15 自我檢測</a></li></ol></nav><nav class="toc lang-en" lang=en aria-label="On this page"><div class="toc-title">On this page</div><ol><li><a href="#en-11-curriculum-requirements">1.1 Curriculum requirements</a></li><li><a href="#en-12-components-of-a-computer-system">1.2 Components of a computer system</a></li><li><a href="#en-13-central-processing-unit-cpu">1.3 Central processing unit (CPU)</a></li><li><a href="#en-14-graphics-processing-unit-gpu">1.4 Graphics processing unit (GPU)</a></li><li><a href="#en-15-bus-system">1.5 Bus system</a></li><li><a href="#en-16-fetch-decode-execute-cycle">1.6 Fetch-decode-execute cycle</a></li><li><a href="#en-17-cpu-performance">1.7 CPU performance</a></li><li><a href="#en-18-main-memory">1.8 Main memory</a></li><li><a href="#en-19-data-units-and-calculations">1.9 Data units and calculations</a></li><li><a href="#en-110-secondary-storage-devices">1.10 Secondary storage devices</a></li><li><a href="#en-111-input-devices">1.11 Input devices</a></li><li><a href="#en-112-output-devices">1.12 Output devices</a></li><li><a href="#en-113-choosing-devices-for-a-given-context">1.13 Choosing devices for a given context</a></li><li><a href="#en-114-latest-developments-in-computer-systems">1.14 Latest developments in computer systems</a></li><li><a href="#en-115-self-test">1.15 Self-test</a></li></ol></nav>
   </aside>
 </div>
 

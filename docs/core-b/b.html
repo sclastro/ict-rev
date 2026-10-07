@@ -579,7 +579,448 @@
 <details class="quiz">
 <summary>12. 操作系統完成一次大型更新後，顯示卡不能正常運作，但硬件沒有損壞。寫出一個可能的原因及解決方法。</summary>
 <p>原因：原有的顯示卡驅動程式與更新後的操作系統不相容。解決方法：移除舊的驅動程式，下載並安裝製造商為該顯示卡及新版操作系統提供的最新驅動程式。</p>
-</details></div><div class="lang-en" lang="en"><div class="pending"><div class="pending-icon">English</div><div class="pending-title">English version in preparation</div><p>This page is currently available in Chinese only. Switch to 中文 in the top bar to read it.</p></div></div><nav class="prevnext"><a class="pn pn-prev" href="../core-b/a.html"><span class="pn-dir"><span class="lang-zh">← 上一頁</span><span class="lang-en" lang="en">← Previous</span></span><span class="pn-title"><span class="lang-zh">單元 B 課題 a：基本機器組織</span><span class="lang-en" lang="en">Module B Topic a: Basic Machine Organisation</span></span></a><a class="pn pn-next" href="../core-c/index.html"><span class="pn-dir"><span class="lang-zh">下一頁 →</span><span class="lang-en" lang="en">Next →</span></span><span class="pn-title"><span class="lang-zh">單元 C：互聯網及其應用</span><span class="lang-en" lang="en">Module C: Internet and its Applications</span></span></a></nav>
+</details></div><div class="lang-en prose" lang="en"><h2 id="en-21-curriculum-requirements"><span class="sec-num">2.1</span><span class="sec-title">Curriculum requirements</span></h2>
+<p>Know the functions of system software and application software, and the relationship between hardware, system software, application software and users; outline the basic functions of an operating system, describe some common operating systems, and explain their differences and applications; state the functions and uses of utility programs and driver programs (examples of utility programs include data compression, virus detection, file management, disk defragmentation and system monitoring software; technical details are not required); distinguish the characteristics and applications of different types of computer systems, including batch processing systems, online interactive systems, real-time systems, parallel processing systems, distributed processing systems and virtualisation.</p>
+<h2 id="en-22-system-software-and-application-software"><span class="sec-num">2.2</span><span class="sec-title">System software and application software</span></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Comparison</th>
+<th>System software</th>
+<th>Application software</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Role</td>
+<td>Manages and controls hardware resources; provides a platform for application software</td>
+<td>Runs on the platform provided by system software and performs specific tasks for users</td>
+</tr>
+<tr>
+<td>Components or types</td>
+<td>Operating system, utility programs, driver programs</td>
+<td>Productivity software (word processing, spreadsheets, presentations, databases), communication software (browsers, email), multimedia software, entertainment software, educational software</td>
+</tr>
+<tr>
+<td>Installation</td>
+<td>Usually pre-installed; a computer cannot work without an operating system</td>
+<td>Installed by users as needed</td>
+</tr>
+</tbody>
+</table>
+</div><p>The relationship between hardware, software and users:</p>
+<p><strong>User ↔ user interface ↔ application software ↔ system software (operating system) ↔ hardware</strong></p>
+<p>System software is the intermediary between application software and hardware. Application software cannot run without an operating system.</p>
+<blockquote class="callout callout-tip">
+<p>✔ <strong>[Sample Paper Section B 1(b)] We do not use system software to play a video. Why?</strong></p>
+<p>System software helps manage hardware resources. It includes the operating system, utility programs and driver programs, and provides an interface between the hardware and users. Playing a video is the job of application software, such as a media player.</p>
+</blockquote>
+<!-- -->
+
+<blockquote class="callout callout-tip">
+<p>✔ <strong>[2024 P1B 4(c)] Suggest a function of application software and system software respectively during the operation of a dot-matrix display board.</strong></p>
+<p>Application software: lets users manage, edit or choose the image patterns to be displayed.</p>
+<p>System software: the driver program allows the system to communicate with and control the display board.</p>
+</blockquote>
+<h2 id="en-23-user-interfaces"><span class="sec-num">2.3</span><span class="sec-title">User interfaces</span></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>Graphical user interface (GUI)</th>
+<th>Command line interface (CLI)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>How it is used</td>
+<td>Click icons and menus with a pointing device</td>
+<td>Type text commands with a keyboard</td>
+</tr>
+<tr>
+<td>Advantages</td>
+<td>Easy to learn; no need to remember commands; visually attractive</td>
+<td>Uses fewer computer resources; experienced users can carry out complex tasks quickly; suits batch processing of repetitive tasks</td>
+</tr>
+<tr>
+<td>Disadvantages</td>
+<td>Uses more memory and processing power</td>
+<td>Commands must be remembered; long learning time</td>
+</tr>
+<tr>
+<td>Main users</td>
+<td>General users</td>
+<td>System administrators, programmers</td>
+</tr>
+</tbody>
+</table>
+</div><p>Example: to create hundreds of user accounts on a server from the data in a text file, running commands in a CLI is more efficient than creating them one by one in a GUI.</p>
+<h2 id="en-24-functions-of-an-operating-system"><span class="sec-num">2.4</span><span class="sec-title">Functions of an operating system</span></h2>
+<p>The operating system (OS) is the essential part of system software. Its main functions are:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Managing input and output devices</td>
+<td>Controls peripheral devices and communicates with them through driver programs</td>
+</tr>
+<tr>
+<td>Managing memory</td>
+<td>Allocates RAM to different programs</td>
+</tr>
+<tr>
+<td>Managing files</td>
+<td>Organises folders, transfers files between main memory and secondary storage, allocates storage space, protects and recovers files</td>
+</tr>
+<tr>
+<td>Managing processors and jobs</td>
+<td>Allocates hardware resources and schedules jobs</td>
+</tr>
+<tr>
+<td>Managing network communication</td>
+<td>Sets up and coordinates network activities</td>
+</tr>
+<tr>
+<td>Managing system security</td>
+<td>User accounts, passwords, access rights</td>
+</tr>
+<tr>
+<td>Providing a user interface</td>
+<td>Lets users operate the computer and run application software</td>
+</tr>
+</tbody>
+</table>
+</div><blockquote class="callout callout-warn">
+<p>⚠ <strong>[2025 P1A Q12] Which of the following are the functions of an operating system? (1) Managing input and output devices (2) Managing system security (3) Managing computer's memory</strong></p>
+<p>✔ All three. Only 45% of candidates answered correctly; 36% left out "managing system security".</p>
+</blockquote>
+<p>⚠ The following are not functions of an operating system: storing user programs permanently [2023 P1A Q16]; playing video files [2024 P1A Q21]; editing text files.</p>
+<p>Updating an operating system frequently fixes security loopholes and reduces the chance of virus attacks [2023 P1A Q40].</p>
+<h2 id="en-25-common-operating-systems"><span class="sec-num">2.5</span><span class="sec-title">Common operating systems</span></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Examples</th>
+<th>Features</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Network operating systems</td>
+<td>Windows Server, Linux</td>
+<td>Used on servers; multi-user; provide central storage, shared peripherals and advanced security</td>
+</tr>
+<tr>
+<td>Desktop operating systems</td>
+<td>Microsoft Windows, macOS</td>
+<td>Used on desktop and notebook computers; high hardware expandability and software compatibility</td>
+</tr>
+<tr>
+<td>Mobile operating systems</td>
+<td>Android, iOS, iPadOS</td>
+<td>Used on smartphones, tablets, wearables and IoT devices; mainly touch-based GUIs</td>
+</tr>
+</tbody>
+</table>
+</div><p>Other comparisons:</p>
+<ul>
+<li><strong>Open source and proprietary</strong>: Linux and Android are open source; Windows, macOS and iOS are proprietary.</li>
+<li><strong>Hardware</strong>: Windows runs on hardware from different brands; macOS runs only on Apple computers.</li>
+<li><strong>Multitasking</strong>: today's operating systems can run several programs at the same time. The early Disk Operating System (DOS) was single-tasking and had only a command line interface.</li>
+</ul>
+<h2 id="en-26-compatibility-and-cross-platform-software"><span class="sec-num">2.6</span><span class="sec-title">Compatibility and cross-platform software</span></h2>
+<p>A program written for one operating system usually cannot be installed or run directly on another.</p>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2025 P1B 7(b)(ii)] Mr Li develops a program to run on a tablet computer, but the program cannot be installed on a notebook computer. Why?</strong></p>
+<p>✔ The two computers have different operating systems; or the program is not cross-platform.</p>
+<p>✘ Weaker candidates wrote "different systems", which is imprecise. Write "operating system".</p>
+</blockquote>
+<!-- -->
+
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2023 P1B 1(c)] Give a benefit of using a word processor that runs on a browser and of installing a word processor on a laptop. Why might the installation fail?</strong></p>
+<p>✔ Browser version: updated functions are provided; no installation is required; it can be used on other computers. Installed version: no Internet connection is required; more functions can be provided.</p>
+<p>✔ Installation failure: not compatible with the operating system; not enough storage space.</p>
+<p>✘ "Not compatible with the computer system" gets no mark: "operating system" cannot be replaced by "computer system", though "system software" is accepted. "Saves storage" alone also gets no mark; you must explain that nothing needs to be downloaded and installed.</p>
+</blockquote>
+<p><strong>Cross-platform</strong> software can run on several operating systems. For example, a Java program is compiled into bytecode, which can run on any operating system with a Java Virtual Machine (JVM). A web-based application only needs a browser, so it can also be used on different operating systems.</p>
+<p>✔ A JVM only runs Java programs. An old game not written in Java will not run on a new operating system just because a JVM is installed.</p>
+<h2 id="en-27-utility-programs"><span class="sec-num">2.7</span><span class="sec-title">Utility programs</span></h2>
+<p>Utility programs help the operating system protect data, optimise the system and manage resources.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Utility program</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>File manager</td>
+<td>Copies, deletes and renames files, and organises them in a directory structure</td>
+</tr>
+<tr>
+<td>File compression utility</td>
+<td>Compresses one or more files into a smaller file for easier sending and backup</td>
+</tr>
+<tr>
+<td>Antivirus software</td>
+<td>Uses virus definition files to find known viruses, and cleans, deletes or quarantines infected files; virus definitions must be updated regularly</td>
+</tr>
+<tr>
+<td>Software firewall</td>
+<td>Monitors and controls incoming and outgoing network traffic, blocking unauthorised access</td>
+</tr>
+<tr>
+<td>Backup utility</td>
+<td>Copies selected files or a whole disk; can run automatically on a schedule</td>
+</tr>
+<tr>
+<td>Data recovery utility</td>
+<td>Recovers damaged or accidentally deleted files</td>
+</tr>
+<tr>
+<td>Uninstaller</td>
+<td>Removes an application and its related files completely</td>
+</tr>
+<tr>
+<td>Disk scanner</td>
+<td>Detects and fixes logical errors on storage devices</td>
+</tr>
+<tr>
+<td>Disk defragmenter</td>
+<td>Rearranges scattered file fragments on a traditional hard disk into contiguous locations to speed up access</td>
+</tr>
+<tr>
+<td>Disk cleanup</td>
+<td>Deletes temporary and unneeded files to free up storage space</td>
+</tr>
+<tr>
+<td>System monitoring software</td>
+<td>Shows the running processes, CPU and memory usage, and network traffic</td>
+</tr>
+</tbody>
+</table>
+</div><p>✔ Defragmentation only applies to traditional hard disks. SSDs use random access, so fragmentation does not slow them down, and defragmenting causes unnecessary writes; SSDs use TRIM to manage unused blocks instead.</p>
+<p>System monitoring software provides information on current processes, memory usage and network traffic [Sample Paper Section A Q16]. When a server slows down at peak times, system monitoring software can help find the cause [adapted from 2026 Mock P1B 5(c)].</p>
+<p>⚠ When a computer is infected by ransomware, disconnect the network connection and shut down the computer immediately. Running an antivirus program alone is not enough [2024 P1A Q18; see Module C].</p>
+<h2 id="en-28-driver-programs"><span class="sec-num">2.8</span><span class="sec-title">Driver programs</span></h2>
+<p>A driver program lets the operating system communicate with a specific peripheral device. The HKEAA regards driver programs as essential components of operating systems.</p>
+<ul>
+<li>Operating systems already include driver programs for common devices (such as keyboards, mice and some printers), so these devices can be used as soon as they are connected [2023 P1A Q19].</li>
+<li>Driver programs for other devices are provided by the manufacturers. <strong>Different operating systems need different driver programs.</strong></li>
+<li>Software reasons why a new printer does not work: the driver has not been installed, or the driver is corrupted [2012 Practice Paper P1B 3(d)(iii)].</li>
+</ul>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2024 P1A Q17] Driver programs P and Q are used in video conferencing and printing respectively. Which of the following descriptions is reasonable?</strong></p>
+<p>✔ P allows the operating system and web cameras to interact with each other.</p>
+<p>✘ 22% of candidates chose "Q can be executed in different operating systems". Driver programs depend on the operating system and cannot be used across operating systems. They also do not control the number of concurrent users or the user rights for printing.</p>
+</blockquote>
+<!-- -->
+
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2025 P1B 5(b)] What is the major function of a printer's driver program? What is the benefit of using the latest version?</strong></p>
+<p>✔ Function: it facilitates communication between the printer and the operating system; it interprets print jobs for the printer to execute; it handles error messages from the printer.</p>
+<p>✔ Latest version: it ensures compatibility with the operating system; it provides up-to-date functions; it fixes bugs in previous versions.</p>
+<p>Only a small number of candidates identified the core function of the driver program.</p>
+</blockquote>
+<h2 id="en-29-modes-of-operation-of-computer-systems"><span class="sec-num">2.9</span><span class="sec-title">Modes of operation of computer systems</span></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>Features</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Batch processing</td>
+<td>Jobs are collected into a batch and processed together on a schedule, without user interaction</td>
+<td>Payroll, printing bank statements, school report cards, scheduled backups, scheduled virus scans</td>
+</tr>
+<tr>
+<td>Online interactive processing</td>
+<td>Receives requests through a network and responds within seconds to minutes</td>
+<td>Online shopping, online enquiries, search engines, web-based email</td>
+</tr>
+<tr>
+<td>Real-time processing</td>
+<td>Processes input data <strong>immediately</strong> and responds</td>
+<td>ATMs, booking systems, autonomous driving, security alarms, flight simulators</td>
+</tr>
+<tr>
+<td>Parallel processing</td>
+<td>Several processors or cores in <strong>one computer</strong> work on tasks at the same time</td>
+<td>Big data analysis, training AI models, scientific computing</td>
+</tr>
+<tr>
+<td>Distributed processing</td>
+<td>Several computers connected by a <strong>network</strong> share the same job</td>
+<td>Computer animation rendering, large online services</td>
+</tr>
+</tbody>
+</table>
+</div><p><strong>1. Batch processing</strong></p>
+<p>Batch processing makes good use of computer resources, schedules time-consuming jobs for off-peak hours and has relatively low operating costs; its drawback is that the results are not up to date.</p>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2023 P1B 5(b)(i)] A device continuously records a member's heartbeat rate, and the data file is uploaded to the server every 5 minutes. Is this a batch processing system or a real-time processing system?</strong></p>
+<p>✔ Batch processing, because data is collected over a period of time and then uploaded together; the system does not process the latest data immediately.</p>
+<p>✘ "It is scheduled to upload data every 5 minutes" alone gets no mark; you must explain that the data is accumulated before it is processed.</p>
+</blockquote>
+<!-- -->
+
+<blockquote class="callout callout-tip">
+<p>✔ <strong>[2024 P1B 2(b)(ii)] Antivirus software shows warnings on two occasions: A "The file cannot be executed because it contains a virus"; B "Viruses are detected in a scheduled scan". Which mode best describes each?</strong></p>
+<p>A is real-time processing: the file is scanned immediately when it is opened. B is batch processing: many files are scanned together at a scheduled time.</p>
+</blockquote>
+<p><strong>2. Real-time processing</strong></p>
+<p>A real-time system needs enough memory and processing power to respond in the shortest time. To reduce downtime, it usually has backup hardware and software, so it costs more to build and run.</p>
+<p>✔ A booking system with several booking counters in different locations in a city is best described as a <strong>real-time system</strong>, because each purchase must update the seats immediately to avoid selling the same seat twice. Counters in different places do not make it distributed processing [Sample Paper Section A Q15].</p>
+<p><strong>3. Parallel processing and distributed processing</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Comparison</th>
+<th>Parallel processing</th>
+<th>Distributed processing</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hardware</td>
+<td>Several processors in one computer</td>
+<td>Several computers connected by a network</td>
+</tr>
+<tr>
+<td>Network needed?</td>
+<td>No</td>
+<td><strong>Yes</strong></td>
+</tr>
+<tr>
+<td>Coordination</td>
+<td>Processors share memory</td>
+<td>Each computer has its own memory and exchanges information through the network; a load manager assigns jobs and combines results</td>
+</tr>
+</tbody>
+</table>
+</div><p>Advantages of distributed processing: lower initial cost; easy to scale up; one computer failing does not stop the whole system, so fault tolerance is higher; resources can be managed more efficiently. Disadvantage: overall performance drops when network traffic is heavy or bandwidth is insufficient.</p>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2023 P1A Q3] Mary only has a computer without any network connections. Which of the following systems can she carry out?</strong></p>
+<p>✔ A real-time system and a batch processing system. Only 37% of candidates answered correctly. Distributed processing needs a network.</p>
+</blockquote>
+<!-- -->
+
+<blockquote class="callout callout-tip">
+<p>✔ <strong>[2025 P1A Q14] Characteristics of a distributed processing system</strong></p>
+<p>Information is exchanged between processors; each processor has its own memory for processing. "A processor can execute a process only after another processor completes its process" is not a characteristic.</p>
+</blockquote>
+<h2 id="en-210-virtualisation"><span class="sec-num">2.10</span><span class="sec-title">Virtualisation</span></h2>
+<p>Virtualisation divides the hardware resources of one physical computer into several <strong>virtual machines (VMs)</strong>. Each virtual machine runs its own operating system and applications independently.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Application</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OS virtualisation</td>
+<td>Runs another operating system within the current one, e.g. Linux on a Windows computer, which helps software development and testing</td>
+</tr>
+<tr>
+<td>Server virtualisation</td>
+<td>A hypervisor partitions one physical server into several virtual servers; this is the foundation of cloud computing</td>
+</tr>
+</tbody>
+</table>
+</div><blockquote class="callout callout-warn">
+<p>⚠ <strong>[2025 P1A Q13] Which of the following are examples of applications of virtualisation?</strong></p>
+<p>✔ Creating a virtual environment using a different operating system within the current operating system; partitioning a physical server into several virtual servers for running multiple application programs.</p>
+<p>✘ "Combining several physical hard disks into a single virtual storage device" <strong>does not count</strong>. The HKEAA explained that this is storage aggregation, similar to RAID-like systems, not virtual machines. Only 52% of candidates answered correctly.</p>
+</blockquote>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Advantages</th>
+<th>Disadvantages</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>One server can provide different operating systems and software</td>
+<td>Virtual machines respond more slowly than physical computers, especially when the server is heavily loaded</td>
+</tr>
+<tr>
+<td>Software incompatible with the original computer can be run</td>
+<td>Heavier network load</td>
+</tr>
+<tr>
+<td>Better use of servers; lower hardware costs</td>
+<td>High implementation cost</td>
+</tr>
+<tr>
+<td>Lower maintenance and running costs</td>
+<td>Not all software works properly in a virtual environment; higher risk of security loopholes</td>
+</tr>
+</tbody>
+</table>
+</div><h2 id="en-211-self-test"><span class="sec-num">2.11</span><span class="sec-title">Self-test</span></h2>
+<details class="quiz">
+<summary>1. Every night a school automatically updates the database with the day's attendance records. Which mode of operation is this? Give one advantage.</summary>
+<p>Batch processing: the day's records are accumulated and processed together at night on a schedule. Advantage: the job is scheduled for off-peak hours, making good use of computer resources.</p>
+</details>
+<details class="quiz">
+<summary>2. [Adapted from 2026 Mock P1B 5(b)] A shopping mall car park offers online parking space reservations. Which type of processing system should be used? Explain briefly.</summary>
+<p>A real-time processing system. Each reservation must be confirmed and the space status updated immediately, so that the same space is not reserved twice.</p>
+</details>
+<details class="quiz">
+<summary>3. [Adapted from 2025 Mock P1B 1(b)] Chi-wai finds that loading files from his hard disk takes longer than half a year ago. Without upgrading any hardware, how can he improve this?</summary>
+<p>Use a disk defragmenter to rearrange the scattered file fragments into contiguous locations, so the read/write head moves less and access is faster. If the storage device is an SSD, use TRIM instead of defragmentation.</p>
+</details>
+<details class="quiz">
+<summary>4. A manufacturer releases two printer models, and its customers use three different operating systems. At least how many driver programs must it write? Why?</summary>
+<p>2 × 3 = <strong>6</strong>. Driver programs depend on both the device and the operating system, so each printer model needs its own driver for each operating system.</p>
+</details>
+<details class="quiz">
+<summary>5. A teacher has installed virtualisation software on a Windows computer to demonstrate Linux in class. What else must be installed? Give one advantage and one disadvantage of this approach.</summary>
+<p>Linux must be installed as the guest operating system. Advantage: no extra computer is needed. Disadvantage: the virtual machine responds more slowly than a physical computer.</p>
+</details>
+<details class="quiz">
+<summary>6. Compared with one powerful parallel processing server, give two advantages of a distributed processing system made up of 50 networked workstations.</summary>
+<p>Lower initial cost; easy to scale up; one workstation failing does not stop the whole system, so fault tolerance is higher. (Any two)</p>
+</details>
+<details class="quiz">
+<summary>7. [Adapted from 2024 P1A Q21] Which of the following are functions of an operating system? (1) Interacting with devices and facilitating input/output operations (2) Playing video files (3) Facilitating a computer to connect to a network</summary>
+<p><strong>(1) and (3)</strong>. Playing video files is the job of application software such as a media player.</p>
+</details>
+<details class="quiz">
+<summary>8. A technician needs to rename 500 files on a server according to a rule. Should a GUI or a CLI be used? Give one reason.</summary>
+<p><strong>A CLI</strong>. One command or a batch file can process all the files at once without clicking each one, which is more efficient.</p>
+</details>
+<details class="quiz">
+<summary>9. Suggest a utility program for each situation: (a) deleting temporary files to free up space; (b) finding out which program is using a lot of CPU; (c) combining 50 photos into one smaller file to send by email; (d) recovering an accidentally deleted file.</summary>
+<p>(a) Disk cleanup. (b) System monitoring software. (c) File compression utility. (d) Data recovery utility.</p>
+</details>
+<details class="quiz">
+<summary>10. [Adapted from 2025 Mock P1B 7(c)] Chris cannot download and install a mobile application on his smartphone. State two possible reasons.</summary>
+<p>The smartphone's operating system or its version does not support the application; not enough storage space; no Internet connection; the hardware does not meet the minimum requirements of the application. (Any two)</p>
+</details>
+<details class="quiz">
+<summary>11. State the mode of operation of each system: (a) a school prints report cards every month; (b) the autopilot of an aircraft; (c) a customer checks the stock of an online bookshop; (d) an animation company renders a film using 100 networked computers.</summary>
+<p>(a) Batch processing. (b) Real-time processing. (c) Online interactive processing. (d) Distributed processing.</p>
+</details>
+<details class="quiz">
+<summary>12. After a major operating system update, a display card stops working properly, although the hardware is not damaged. Give a possible reason and a solution.</summary>
+<p>Reason: the existing display card driver is not compatible with the updated operating system. Solution: remove the old driver, then download and install the latest driver provided by the manufacturer for that display card and the new operating system.</p>
+</details></div><nav class="prevnext"><a class="pn pn-prev" href="../core-b/a.html"><span class="pn-dir"><span class="lang-zh">← 上一頁</span><span class="lang-en" lang="en">← Previous</span></span><span class="pn-title"><span class="lang-zh">單元 B 課題 a：基本機器組織</span><span class="lang-en" lang="en">Module B Topic a: Basic Machine Organisation</span></span></a><a class="pn pn-next" href="../core-c/index.html"><span class="pn-dir"><span class="lang-zh">下一頁 →</span><span class="lang-en" lang="en">Next →</span></span><span class="pn-title"><span class="lang-zh">單元 C：互聯網及其應用</span><span class="lang-en" lang="en">Module C: Internet and its Applications</span></span></a></nav>
     </article>
     <footer class="footer">
       <p class="lang-zh">內容依據課程發展議會與考評局《資訊及通訊科技課程及評估指引》及考評局公開資料整理，僅供溫習參考。</p>
@@ -588,7 +1029,7 @@
   </main>
 
   <aside class="toc-rail">
-<nav class="toc lang-zh" aria-label="本頁目錄"><div class="toc-title">本頁目錄</div><ol><li><a href="#21-課程要求">2.1 課程要求</a></li><li><a href="#22-系統軟件與應用軟件">2.2 系統軟件與應用軟件</a></li><li><a href="#23-用戶界面">2.3 用戶界面</a></li><li><a href="#24-操作系統的功能">2.4 操作系統的功能</a></li><li><a href="#25-常見的操作系統">2.5 常見的操作系統</a></li><li><a href="#26-相容性與跨平台">2.6 相容性與跨平台</a></li><li><a href="#27-實用程式">2.7 實用程式</a></li><li><a href="#28-驅動程式">2.8 驅動程式</a></li><li><a href="#29-電腦系統的運作模式">2.9 電腦系統的運作模式</a></li><li><a href="#210-虛擬化">2.10 虛擬化</a></li><li><a href="#211-自我檢測">2.11 自我檢測</a></li></ol></nav>
+<nav class="toc lang-zh" aria-label="本頁目錄"><div class="toc-title">本頁目錄</div><ol><li><a href="#21-課程要求">2.1 課程要求</a></li><li><a href="#22-系統軟件與應用軟件">2.2 系統軟件與應用軟件</a></li><li><a href="#23-用戶界面">2.3 用戶界面</a></li><li><a href="#24-操作系統的功能">2.4 操作系統的功能</a></li><li><a href="#25-常見的操作系統">2.5 常見的操作系統</a></li><li><a href="#26-相容性與跨平台">2.6 相容性與跨平台</a></li><li><a href="#27-實用程式">2.7 實用程式</a></li><li><a href="#28-驅動程式">2.8 驅動程式</a></li><li><a href="#29-電腦系統的運作模式">2.9 電腦系統的運作模式</a></li><li><a href="#210-虛擬化">2.10 虛擬化</a></li><li><a href="#211-自我檢測">2.11 自我檢測</a></li></ol></nav><nav class="toc lang-en" lang=en aria-label="On this page"><div class="toc-title">On this page</div><ol><li><a href="#en-21-curriculum-requirements">2.1 Curriculum requirements</a></li><li><a href="#en-22-system-software-and-application-software">2.2 System software and application software</a></li><li><a href="#en-23-user-interfaces">2.3 User interfaces</a></li><li><a href="#en-24-functions-of-an-operating-system">2.4 Functions of an operating system</a></li><li><a href="#en-25-common-operating-systems">2.5 Common operating systems</a></li><li><a href="#en-26-compatibility-and-cross-platform-software">2.6 Compatibility and cross-platform software</a></li><li><a href="#en-27-utility-programs">2.7 Utility programs</a></li><li><a href="#en-28-driver-programs">2.8 Driver programs</a></li><li><a href="#en-29-modes-of-operation-of-computer-systems">2.9 Modes of operation of computer systems</a></li><li><a href="#en-210-virtualisation">2.10 Virtualisation</a></li><li><a href="#en-211-self-test">2.11 Self-test</a></li></ol></nav>
   </aside>
 </div>
 
