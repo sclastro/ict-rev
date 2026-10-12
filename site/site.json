@@ -192,22 +192,32 @@
               "id": "a",
               "title": "科技創新",
               "en": "Technological Innovations",
-              "hours": 3
+              "hours": 3,
+              "chapters": "課本第 1 章",
+              "chapters_en": "Textbook Ch. 1",
+              "md": "core-e/a.md"
             },
             {
               "id": "b",
               "title": "健康及道德議題",
               "en": "Health and Ethical Issues",
-              "hours": 3
+              "hours": 3,
+              "chapters": "課本第 2 章",
+              "chapters_en": "Textbook Ch. 2",
+              "md": "core-e/b.md"
             },
             {
               "id": "c",
               "title": "知識產權",
               "en": "Intellectual Property",
-              "hours": 2
+              "hours": 2,
+              "chapters": "課本第 3 章",
+              "chapters_en": "Textbook Ch. 3",
+              "md": "core-e/c.md"
             }
           ],
-          "code_en": "E"
+          "code_en": "E",
+          "overview": "core-e/index.md"
         }
       ],
       "en": "Compulsory Part"
