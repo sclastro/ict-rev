@@ -524,7 +524,393 @@
 <details class="quiz">
 <summary>12. 寫出使用生成式 AI 可能帶來的一個社會問題。</summary>
 <p>可以製造深度偽造的圖像和影片，散播假新聞，誤導公眾；或生成的內容可能侵犯他人的版權。</p>
-</details></div><div class="lang-en" lang="en"><div class="pending"><div class="pending-icon">English</div><div class="pending-title">English version in preparation</div><p>This page is currently available in Chinese only. Switch to 中文 in the top bar to read it.</p></div></div><nav class="prevnext"><a class="pn pn-prev" href="../core-e/index.html"><span class="pn-dir"><span class="lang-zh">← 上一頁</span><span class="lang-en" lang="en">← Previous</span></span><span class="pn-title"><span class="lang-zh">單元 E：資訊及通訊科技對社會的影響</span><span class="lang-en" lang="en">Module E: Social Implications</span></span></a><a class="pn pn-next" href="../core-e/b.html"><span class="pn-dir"><span class="lang-zh">下一頁 →</span><span class="lang-en" lang="en">Next →</span></span><span class="pn-title"><span class="lang-zh">單元 E 課題 b：健康及道德議題</span><span class="lang-en" lang="en">Module E Topic b: Health and Ethical Issues</span></span></a></nav>
+</details></div><div class="lang-en prose" lang="en"><h2 id="en-11-curriculum-requirements"><span class="sec-num">1.1</span><span class="sec-title">Curriculum requirements</span></h2>
+<p>Understand the basic concepts of technological innovations and their applications, with examples including pattern recognition through artificial intelligence (AI) and data science, 3D printing technologies, augmented reality (AR) and virtual reality (VR). Students should have practical experience with these technologies.</p>
+<h2 id="en-12-artificial-intelligence-and-pattern-recognition"><span class="sec-num">1.2</span><span class="sec-title">Artificial intelligence and pattern recognition</span></h2>
+<p><strong>Artificial intelligence (AI)</strong> is a field of computer science that studies how computers and machines can simulate human intelligence, such as learning, problem solving and decision making. AI has developed rapidly in recent years mainly because huge amounts of data have become available and processing power has increased greatly.</p>
+<p><strong>Pattern recognition</strong> is the most common use of AI: the system analyses raw input data, finds the patterns and regularities in it, and then classifies the patterns detected.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Input data</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Images</td>
+<td>Face unlock, licence plate recognition, handwriting recognition, finding lesions in medical images</td>
+</tr>
+<tr>
+<td>Sound</td>
+<td>Voice assistants understanding commands, speech-to-text</td>
+</tr>
+<tr>
+<td>Text</td>
+<td>Filtering spam emails, analysing whether customer reviews are positive or negative</td>
+</tr>
+</tbody>
+</table>
+</div><p>[adapted from 2025 Mock P1A Q40] A customer service system that replies automatically to customers' messages, and generating a new photo background from a text description, both involve AI; checking a bus's real-time location in an app only displays location data and does not involve AI.</p>
+<p>Other branches of AI include computer vision, natural language processing, robotics and expert systems. <strong>Natural language processing</strong> enables computers to understand and process human language, as used in translation, chatbots, text-to-speech and speech-to-text; an <strong>expert system</strong> reasons with the knowledge of experts in a field to support decisions, e.g. assisting medical diagnosis. These branches are extension content.</p>
+<h2 id="en-13-machine-learning"><span class="sec-num">1.3</span><span class="sec-title">Machine learning</span></h2>
+<p><strong>Machine learning</strong> is a branch of AI in which a computer learns from large amounts of data, finds patterns, and then makes predictions or classifications; in general, the more data, the more accurate the predictions.</p>
+<p>The process of building a machine learning model:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Work</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Collect data</td>
+<td>Collect a large amount of data relevant to the task, e.g. photos of different vegetables</td>
+</tr>
+<tr>
+<td>2. Clean and prepare data</td>
+<td>Remove duplicate or wrong data, fix inconsistencies, and add labels where needed</td>
+</tr>
+<tr>
+<td>3. Train the model</td>
+<td>Let the computer find features and patterns in the data</td>
+</tr>
+<tr>
+<td>4. Test the model</td>
+<td>Test the accuracy with data not used in training; if it is not good enough, collect more data and train again</td>
+</tr>
+</tbody>
+</table>
+</div><p><strong>Four ways of training a model</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Training data</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Supervised learning</td>
+<td>All data is labelled (with the correct answers)</td>
+<td>Training a system to tell fruits apart with photos labelled "apple" and "orange"</td>
+</tr>
+<tr>
+<td>Unsupervised learning</td>
+<td>Data is unlabelled; the computer groups it by similarity on its own</td>
+<td>Dividing customers into groups by shopping behaviour</td>
+</tr>
+<tr>
+<td>Semi-supervised learning</td>
+<td>A small amount of labelled data plus a large amount of unlabelled data</td>
+<td>Labelling only some photos and letting the system classify the rest</td>
+</tr>
+<tr>
+<td>Reinforcement learning</td>
+<td>No pre-labelled data; the system tries different actions and improves through feedback (rewards or penalties)</td>
+<td>Chess programs, robots learning to walk</td>
+</tr>
+</tbody>
+</table>
+</div><blockquote class="callout callout-warn">
+<p>⚠ <strong>[2025 P1B 4(b)] Mary installs an AI system with cameras in a country park to detect fires. She needs to choose photo samples to train the AI system. Give two considerations that Mary should take into account.</strong></p>
+<p>✔ A large number of photo samples; samples showing fire in different conditions (e.g. size, day and night, distance); samples including both photos with fire and photos without fire. (Any two)</p>
+<p>✘ The HKEAA reported poor performance. Many candidates wrote factors unrelated to training the model, such as copyright or privacy; the clarity, resolution and file format of the photos were not accepted either.</p>
+</blockquote>
+<p><strong>Deep learning</strong> is a branch of machine learning that learns from large amounts of data using neural networks with many layers (an input layer, several hidden layers and an output layer), and is used in image recognition, speech recognition and so on. The details of neural networks are extension content.</p>
+<p>Practical suggestion: use an online image classification training tool, take several dozen webcam photos of each of two objects, train a simple classification model, and compare the accuracy with different numbers of samples.</p>
+<h2 id="en-14-data-science-and-big-data"><span class="sec-num">1.4</span><span class="sec-title">Data science and big data</span></h2>
+<p><strong>Data science</strong> combines statistics, algorithms and machine learning to find hidden patterns and useful insights in large amounts of raw data, supporting decision making.</p>
+<p>The general process: collect digital data → remove noise and errors from the data → identify patterns → classify the elements → analyse the data and draw insights.</p>
+<p><strong>Big data</strong> refers to data sets so large that they are difficult to manage with traditional data processing tools; sources include online shopping records, social media, sensors and satellite images. Big data has five characteristics (the 5Vs):</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Characteristic</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Volume</td>
+<td>The amount of data is huge, coming from a vast number of sources</td>
+</tr>
+<tr>
+<td>Velocity</td>
+<td>Data is generated and needs processing very quickly</td>
+</tr>
+<tr>
+<td>Variety</td>
+<td>Data comes in many types, including structured (e.g. tables), semi-structured and unstructured (e.g. text, photos, videos) data</td>
+</tr>
+<tr>
+<td>Veracity</td>
+<td>The trustworthiness and accuracy of the data vary</td>
+</tr>
+<tr>
+<td>Value</td>
+<td>The commercial or social value obtained by analysing the data</td>
+</tr>
+</tbody>
+</table>
+</div><p>AI and data science are closely related: data science collects and analyses big data, and AI uses this data for reasoning and prediction. For example, a search engine analyses the keywords entered by large numbers of users to predict and display relevant results; an online shop recommends products based on customers' browsing and purchase records.</p>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[Sample Paper Section A Q38] Which of the following can support an artificial intelligence (AI) system? (1) Big data (2) Cloud computing (3) Machine learning</strong></p>
+<p>✔ <strong>(1), (2) and (3)</strong>. Big data provides training material, cloud computing provides storage and processing power, and machine learning lets the system learn from data.</p>
+<p>✘ Leaving out cloud computing: training AI models needs a lot of computing resources, often provided by cloud services.</p>
+</blockquote>
+<p>Practical suggestion: organise a month of class tuck shop sales records in a spreadsheet and make a chart to find the busiest times, experiencing how insights are drawn from raw data.</p>
+<h2 id="en-15-internet-of-things"><span class="sec-num">1.5</span><span class="sec-title">Internet of Things</span></h2>
+<p>The <strong>Internet of Things (IoT)</strong> is a network of physical objects connected to a network. These objects have built-in sensors that collect data and exchange it with other objects, systems and users, allowing users to monitor and control them remotely.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Application</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Smart homes</td>
+<td>Adjusting lighting automatically according to light levels; switching the air conditioner on or off remotely with a phone</td>
+</tr>
+<tr>
+<td>Healthcare</td>
+<td>Wearable devices monitoring heart rate and sending the data to healthcare workers</td>
+</tr>
+<tr>
+<td>Logistics and retail</td>
+<td>Tracking the location of goods; monitoring warehouse stock</td>
+</tr>
+<tr>
+<td>Industry</td>
+<td>Monitoring machine operation and predicting breakdowns</td>
+</tr>
+</tbody>
+</table>
+</div><p>IoT is also an important source of big data. Poorly secured IoT devices are easily hacked and the data they collect may leak, so default passwords should be changed and firmware updated regularly.</p>
+<p>Practical suggestion: connect a temperature sensor to a microcontroller board and send the readings to a mobile app for display.</p>
+<h2 id="en-16-3d-printing-technologies"><span class="sec-num">1.6</span><span class="sec-title">3D printing technologies</span></h2>
+<p><strong>3D printing</strong> first designs a three-dimensional model with software; the printer then adds material layer by layer to make the real object, so it is also called <strong>additive manufacturing</strong>. Materials include plastics, resins, metals and even food.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Comparison</th>
+<th>Fused Deposition Modelling (FDM)</th>
+<th>Stereolithography (SLA)</th>
+<th>Selective Laser Sintering (SLS)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Material</td>
+<td>Thermoplastic filament (e.g. PLA, ABS)</td>
+<td>Liquid photosensitive resin</td>
+<td>Powder (e.g. nylon)</td>
+</tr>
+<tr>
+<td>How it works</td>
+<td>Heats and melts the filament, extruding it layer by layer</td>
+<td>Exposes the resin to ultraviolet light layer by layer, curing it</td>
+<td>Sinters the powder layer by layer with a high-power laser</td>
+</tr>
+<tr>
+<td>Advantages</td>
+<td>Cheapest printers and materials; easy to use; no laser, so safer and suitable for homes and schools</td>
+<td>Smooth surfaces; can make fine details</td>
+<td>Strong products; can make complex shapes without support structures</td>
+</tr>
+<tr>
+<td>Disadvantages</td>
+<td>Lower accuracy; visible layer lines and rougher surfaces</td>
+<td>Higher cost; the resin is an irritant and must be handled carefully; products need washing and post-curing</td>
+<td>Expensive equipment and materials, mostly used in industry; fewer material choices</td>
+</tr>
+</tbody>
+</table>
+</div><p><strong>Benefits of 3D printing</strong>: small numbers of prototypes can be made quickly and cheaply, so designers can test and improve them before mass production; products can be customised to individual needs, e.g. prostheses, implants and furniture made to personal measurements.</p>
+<p>Practical suggestion: design a keyring with your initials using free online 3D design software, export an STL file, and print it with the school's FDM printer.</p>
+<h2 id="en-17-augmented-reality-virtual-reality-and-mixed-reality"><span class="sec-num">1.7</span><span class="sec-title">Augmented reality, virtual reality and mixed reality</span></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Comparison</th>
+<th>Augmented reality (AR)</th>
+<th>Virtual reality (VR)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Meaning</td>
+<td>Overlays digital information on the real environment on a screen</td>
+<td>Uses a computer simulation to create a completely virtual world in which users are immersed</td>
+</tr>
+<tr>
+<td>What users see</td>
+<td>The real environment plus virtual objects</td>
+<td>Only the virtual world</td>
+</tr>
+<tr>
+<td>Objects users interact with</td>
+<td>Real and virtual objects</td>
+<td>Only virtual objects</td>
+</tr>
+<tr>
+<td>Common devices</td>
+<td>Smartphones and tablets with cameras and screens, AR glasses</td>
+<td>VR headsets, with headphones and hand controllers</td>
+</tr>
+<tr>
+<td>Examples</td>
+<td>Pointing a phone camera at a relic to show an introductory animation on screen; previewing virtual furniture in your home</td>
+<td>Virtual museum tours; simulation training for pilots and surgeons; VR games</td>
+</tr>
+</tbody>
+</table>
+</div><blockquote class="callout callout-warn">
+<p>⚠ <strong>[Sample Paper Section A Q39] An animation appears on the screen of a smartphone when its camera is turned on to view a product in a supermarket. Which of the following is needed to produce the animation? (1) Data science (2) Augmented reality (AR) (3) 3D printing</strong></p>
+<p>✔ <strong>(2)</strong> only. The animation is overlaid on the real environment captured by the camera, which is augmented reality.</p>
+<p>✘ Choosing 3D printing: 3D printing makes physical objects and has nothing to do with an on-screen animation.</p>
+</blockquote>
+<p><strong>Mixed reality (MR)</strong> combines AR and VR so that real and virtual objects coexist and interact in real time, e.g. a flight simulator combining a real joystick with a virtual cockpit view. Mixed reality is introductory content.</p>
+<p>Wearing a VR headset for long periods may cause eye strain, dizziness and neck discomfort, so take regular breaks.</p>
+<p>Practical suggestion: use an AR app on a phone to place virtual furniture in the classroom and compare how it looks from different angles.</p>
+<h2 id="en-18-applications-of-technological-innovations"><span class="sec-num">1.8</span><span class="sec-title">Applications of technological innovations</span></h2>
+<p>One application often combines several technologies.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Application</th>
+<th>Technologies involved</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Business</td>
+<td>Chatbots on websites answering customer enquiries</td>
+<td>AI</td>
+</tr>
+<tr>
+<td></td>
+<td>Recommending products based on purchase records</td>
+<td>AI, data science</td>
+</tr>
+<tr>
+<td></td>
+<td>Previewing furniture at home with AR</td>
+<td>AR</td>
+</tr>
+<tr>
+<td>Industry</td>
+<td>Inspecting products for defects with AI vision systems</td>
+<td>AI, data science</td>
+</tr>
+<tr>
+<td></td>
+<td>Predicting machine breakdowns from sensor data</td>
+<td>AI, IoT</td>
+</tr>
+<tr>
+<td></td>
+<td>Making prototypes quickly</td>
+<td>3D printing</td>
+</tr>
+<tr>
+<td></td>
+<td>Safety training for dangerous work</td>
+<td>VR, AR</td>
+</tr>
+<tr>
+<td>Healthcare</td>
+<td>Analysing medical images to assist diagnosis</td>
+<td>AI, data science</td>
+</tr>
+<tr>
+<td></td>
+<td>Monitoring health with wearable devices</td>
+<td>IoT</td>
+</tr>
+<tr>
+<td></td>
+<td>Printing prostheses and implants</td>
+<td>3D printing</td>
+</tr>
+<tr>
+<td>Education</td>
+<td>Virtual field trips, surgery simulations</td>
+<td>VR</td>
+</tr>
+<tr>
+<td></td>
+<td>Online learning platforms recommending content based on student performance</td>
+<td>AI, data science</td>
+</tr>
+<tr>
+<td>Home</td>
+<td>Robot vacuum cleaners planning cleaning routes automatically</td>
+<td>AI</td>
+</tr>
+<tr>
+<td></td>
+<td>Controlling smart home devices remotely</td>
+<td>IoT</td>
+</tr>
+</tbody>
+</table>
+</div><p><strong>Risks brought by new technologies</strong>: generative AI can create realistic deepfake images and videos used to spread fake news, mislead the public and even affect social stability; when cultural relics are digitised with 3D modelling and VR, the digital models must also be protected from misappropriation and tampering.</p>
+<p>[adapted from 2026 Mock P1A Q40] David generates images with an AI platform and puts them in a game he makes and charges for. The main risk he faces is copyright: the generated images may contain copyrighted content, and he did not check.</p>
+<h2 id="en-19-self-test"><span class="sec-num">1.9</span><span class="sec-title">Self-test</span></h2>
+<details class="quiz">
+<summary>1. What is pattern recognition? Give an example that uses images as input.</summary>
+<p>Pattern recognition analyses raw input data, finds the patterns and regularities in it, and then classifies the patterns detected. Examples: face unlock, licence plate recognition, finding lesions in X-ray images.</p>
+</details>
+<details class="quiz">
+<summary>2. Man Kit trains a model with photos all labelled "tomato", "cucumber" or "carrot". Which training method is he using? Explain.</summary>
+<p>Supervised learning, because all the input data is labelled with the type of vegetable.</p>
+</details>
+<details class="quiz">
+<summary>3. A retail company has a large number of unlabelled transaction records and wants to group customers with similar shopping behaviour. Which machine learning method should it use?</summary>
+<p>Unsupervised learning. It finds groups automatically by similarity in unlabelled data.</p>
+</details>
+<details class="quiz">
+<summary>4. Man Kit's model is not accurate enough. Without changing the training method, suggest a way to improve it.</summary>
+<p>Collect more, and more varied, training data (e.g. photos from different angles and in different lighting), then retrain the model.</p>
+</details>
+<details class="quiz">
+<summary>5. Name any two of the 5Vs of big data and explain their meanings.</summary>
+<p>Volume: the amount of data is huge; velocity: data is generated and processed very quickly; variety: it includes structured, semi-structured and unstructured data; veracity: the trustworthiness of the data varies; value: the commercial value obtained from analysis. (Any two)</p>
+</details>
+<details class="quiz">
+<summary>6. Why is FDM the most common 3D printing method in homes and schools?</summary>
+<p>The printers and materials cost the least, it is easy to use, and it uses no laser, so it is safer.</p>
+</details>
+<details class="quiz">
+<summary>7. Give one advantage and one disadvantage of SLA compared with FDM.</summary>
+<p>Advantage: smoother surfaces and finer details. Disadvantage: higher cost; the resin is an irritant and must be handled carefully.</p>
+</details>
+<details class="quiz">
+<summary>8. Give one benefit of using 3D printing to make prototypes in manufacturing.</summary>
+<p>Small numbers of prototypes can be made quickly and cheaply, so the design can be tested and improved before mass production.</p>
+</details>
+<details class="quiz">
+<summary>9. A history museum launches a mobile app: when the camera is pointed at a relic, information and animations about it appear on screen at once. Which technology is used? Give one benefit to visitors.</summary>
+<p>Augmented reality (AR). Visitors can look at the real relic while getting more information, which is more interesting and easier to understand.</p>
+</details>
+<details class="quiz">
+<summary>10. Explain one difference between AR and VR.</summary>
+<p>AR overlays digital information on the real environment, so users see real and virtual objects together; VR immerses users completely in a computer-simulated virtual world, so they cannot see the real environment. (Or: AR commonly uses smartphones or tablets, while VR needs a headset)</p>
+</details>
+<details class="quiz">
+<summary>11. How can a smart home robot vacuum cleaner apply AI and IoT? Give one of each.</summary>
+<p>AI: plan cleaning routes automatically, avoid obstacles, and gradually learn the most effective way to clean. IoT: users switch the robot on or off remotely with a smartphone and receive notifications of cleaning progress and battery level.</p>
+</details>
+<details class="quiz">
+<summary>12. Give one social problem that the use of generative AI may cause.</summary>
+<p>It can create deepfake images and videos that spread fake news and mislead the public; or the generated content may infringe others' copyright.</p>
+</details></div><nav class="prevnext"><a class="pn pn-prev" href="../core-e/index.html"><span class="pn-dir"><span class="lang-zh">← 上一頁</span><span class="lang-en" lang="en">← Previous</span></span><span class="pn-title"><span class="lang-zh">單元 E：資訊及通訊科技對社會的影響</span><span class="lang-en" lang="en">Module E: Social Implications</span></span></a><a class="pn pn-next" href="../core-e/b.html"><span class="pn-dir"><span class="lang-zh">下一頁 →</span><span class="lang-en" lang="en">Next →</span></span><span class="pn-title"><span class="lang-zh">單元 E 課題 b：健康及道德議題</span><span class="lang-en" lang="en">Module E Topic b: Health and Ethical Issues</span></span></a></nav>
     </article>
     <footer class="footer">
       <p class="lang-zh">內容依據課程發展議會與考評局《資訊及通訊科技課程及評估指引》及考評局公開資料整理，僅供溫習參考。</p>
@@ -533,7 +919,7 @@
   </main>
 
   <aside class="toc-rail">
-<nav class="toc lang-zh" aria-label="本頁目錄"><div class="toc-title">本頁目錄</div><ol><li><a href="#11-課程要求">1.1 課程要求</a></li><li><a href="#12-人工智能與模式識別">1.2 人工智能與模式識別</a></li><li><a href="#13-機器學習">1.3 機器學習</a></li><li><a href="#14-數據科學與大數據">1.4 數據科學與大數據</a></li><li><a href="#15-物聯網">1.5 物聯網</a></li><li><a href="#16-三維打印技術">1.6 三維打印技術</a></li><li><a href="#17-擴增實境虛擬實境與混合實境">1.7 擴增實境、虛擬實境與混合實境</a></li><li><a href="#18-科技創新的應用">1.8 科技創新的應用</a></li><li><a href="#19-自我檢測">1.9 自我檢測</a></li></ol></nav>
+<nav class="toc lang-zh" aria-label="本頁目錄"><div class="toc-title">本頁目錄</div><ol><li><a href="#11-課程要求">1.1 課程要求</a></li><li><a href="#12-人工智能與模式識別">1.2 人工智能與模式識別</a></li><li><a href="#13-機器學習">1.3 機器學習</a></li><li><a href="#14-數據科學與大數據">1.4 數據科學與大數據</a></li><li><a href="#15-物聯網">1.5 物聯網</a></li><li><a href="#16-三維打印技術">1.6 三維打印技術</a></li><li><a href="#17-擴增實境虛擬實境與混合實境">1.7 擴增實境、虛擬實境與混合實境</a></li><li><a href="#18-科技創新的應用">1.8 科技創新的應用</a></li><li><a href="#19-自我檢測">1.9 自我檢測</a></li></ol></nav><nav class="toc lang-en" lang=en aria-label="On this page"><div class="toc-title">On this page</div><ol><li><a href="#en-11-curriculum-requirements">1.1 Curriculum requirements</a></li><li><a href="#en-12-artificial-intelligence-and-pattern-recognition">1.2 Artificial intelligence and pattern recognition</a></li><li><a href="#en-13-machine-learning">1.3 Machine learning</a></li><li><a href="#en-14-data-science-and-big-data">1.4 Data science and big data</a></li><li><a href="#en-15-internet-of-things">1.5 Internet of Things</a></li><li><a href="#en-16-3d-printing-technologies">1.6 3D printing technologies</a></li><li><a href="#en-17-augmented-reality-virtual-reality-and-mixed-reality">1.7 Augmented reality, virtual reality and mixed reality</a></li><li><a href="#en-18-applications-of-technological-innovations">1.8 Applications of technological innovations</a></li><li><a href="#en-19-self-test">1.9 Self-test</a></li></ol></nav>
   </aside>
 </div>
 
