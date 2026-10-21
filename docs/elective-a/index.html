@@ -281,7 +281,150 @@
 <li class="task"><input type="checkbox" class="task-box"> 非規範化：合併數據表、加入冗餘欄位或衍生屬性、使用檢視；好處是查詢較快，壞處是冗餘和不一致；「節省儲存空間」不是好處</li>
 <li class="task"><input type="checkbox" class="task-box"> 實體關係圖轉數據表：一對多把「1」方的主關鍵碼放入「M」方；多對多的關聯實體成為數據表</li>
 <li class="task"><input type="checkbox" class="task-box"> 存取權限按角色和層次（數據庫、數據表、記錄、欄位）設定；以檢視隱藏欄位和記錄；個人資料用於其他用途要先取得同意</li>
-</ul></div><div class="lang-en" lang="en"><div class="pending"><div class="pending-icon">English</div><div class="pending-title">English version in preparation</div><p>This page is currently available in Chinese only. Switch to 中文 in the top bar to read it.</p></div></div><nav class="prevnext"><a class="pn pn-prev" href="../core-e/c.html"><span class="pn-dir"><span class="lang-zh">← 上一頁</span><span class="lang-en" lang="en">← Previous</span></span><span class="pn-title"><span class="lang-zh">單元 E 課題 c：知識產權</span><span class="lang-en" lang="en">Module E Topic c: Intellectual Property</span></span></a><a class="pn pn-next" href="../elective-a/a.html"><span class="pn-dir"><span class="lang-zh">下一頁 →</span><span class="lang-en" lang="en">Next →</span></span><span class="pn-title"><span class="lang-zh">選修二甲 課題 a：關聯式數據庫概念</span><span class="lang-en" lang="en">Elective 2A Topic a: Relational Database Concepts</span></span></a></nav>
+</ul></div><div class="lang-en prose" lang="en"><blockquote class="callout callout-note">
+<p>For: HKDSE Information and Communication Technology, new curriculum (examinations from 2025 onwards), Elective Part</p>
+<p>Sources: CDC–HKEAA <em>ICT Curriculum and Assessment Guide</em>; HKEAA exam briefing materials and comments on candidates' performance 2023–2025; the 2025 Sample Paper; the 2012 Practice Paper; past papers and marking schemes; the HKACE 2025 and 2026 mock examinations</p>
+<p>Labels: [2025 P2A 5(b)(iii)] means 2025 HKDSE Paper 2 Section A Question 5(b)(iii); [Sample Paper P2 Section A 2(a)] means Sample Paper, Paper 2 Section A Question 2(a); "⚠" marks a common mistake reported by the HKEAA; "✔" marks a high-scoring answer</p>
+<p>The 2023 and 2024 Paper 2A questions come from the old-curriculum elective "Databases" (Paper 2A, answer three out of four questions). This site cites only the parts that match the new curriculum</p>
+</blockquote>
+<p>For the paper structure and the HKEAA's answering principles, see <a href="../exam/structure.html">Exam Strategies: Paper Structure and Answering Principles</a>.</p>
+<h2 id="en-elective-a-in-the-new-curriculum">Elective A in the new curriculum</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Module / option</th>
+<th>Suggested hours</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Compulsory (144 hours)</td>
+<td>A Information Processing</td>
+<td>37</td>
+</tr>
+<tr>
+<td></td>
+<td>B Computer System Fundamentals</td>
+<td>20</td>
+</tr>
+<tr>
+<td></td>
+<td>C Internet and its Applications</td>
+<td>31</td>
+</tr>
+<tr>
+<td></td>
+<td>D Computational Thinking and Programming</td>
+<td>48</td>
+</tr>
+<tr>
+<td></td>
+<td>E Social Implications</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Elective (76 hours, choose two)</td>
+<td><strong>A Databases</strong>, B Web Application Development, C Algorithm and Programming</td>
+<td>38 each</td>
+</tr>
+</tbody>
+</table>
+</div><p>Paper 2 has Section A (Databases), Section B (Web Application Development) and Section C (Algorithm and Programming); candidates answer all the questions in any two sections. In 2025 Section A had five questions, covering drawing ER diagrams, writing SQL, tracing the output of SQL, normalisation and conceptual questions.</p>
+<p>This option builds on "Data Organisation and Data Control" and "Data Manipulation and Analysis" in Module A: Module A requires queries on a single table only, while this option extends to at most three tables, modifying data and table structures, and database design. It has three topics:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Hours</th>
+<th>Textbook chapters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>a. Relational Database Concepts</td>
+<td>6</td>
+<td>Ch. 1</td>
+</tr>
+<tr>
+<td>b. Structured Query Language (SQL)</td>
+<td><strong>18</strong></td>
+<td>Ch. 2 &amp; 3</td>
+</tr>
+<tr>
+<td>c. Database Design Methodology</td>
+<td>14</td>
+<td>Ch. 4 &amp; 5</td>
+</tr>
+</tbody>
+</table>
+</div><p>SQL takes up nearly half the teaching hours of this option, and every year Section A has several parts that require writing SQL; ER diagrams and normalisation are examined almost every year too. The HKEAA comments repeatedly point to three weaknesses: sub-queries with GROUP BY / HAVING, the minimal cardinalities (participation constraints) in ER diagrams, and wrong primary and foreign keys in normalisation.</p>
+<h2 id="en-recent-examination-focus">Recent examination focus</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Year</th>
+<th>Paper 2 Section A questions related to this option</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sample Paper</td>
+<td>Q1 (ER diagram), Q2 (UNIQUE / PRIMARY KEY, INSERT, rollback), Q3 (derived attribute), Q4 (normalisation to Third Normal Form), Q5 (joins, outer join, GROUP BY, views, ALTER TABLE)</td>
+</tr>
+<tr>
+<td>2025</td>
+<td>Q1 (ER diagram, rollback), Q2 (UNION, UPDATE with EXISTS), Q3 (INSERT, join with SUM), Q4 (normalisation), Q5 (data type, LIKE, date conditions, sub-query with MAX, MINUS, integrity, denormalisation)</td>
+</tr>
+<tr>
+<td>2024</td>
+<td>Q1 (candidate key, joining three tables, LEFT JOIN, sub-query with HAVING, ALTER TABLE, EXISTS and MINUS), Q2(a)(b) (primary key, functional dependency, data redundancy, normalisation), Q3(a)(c)(d) (ER diagram, index, UPDATE, data privacy), Q4(a)–(c) (data type, UNION and UNION ALL, the three types of integrity)</td>
+</tr>
+<tr>
+<td>2023</td>
+<td>Q1 (filtering and sorting, date conditions, NOT IN, GROUP BY and HAVING, view with a self-join, UPDATE, MINUS), Q2(b)(d) (database constraints, access rights), Q3(a)(b)(d) (derived attribute, ER diagram, DELETE and DROP), Q4 (functional dependency, COUNT, index, normalisation, database security)</td>
+</tr>
+</tbody>
+</table>
+</div><h2 id="en-one-page-checklist-before-the-exam">One-page checklist before the exam</h2>
+<p><strong>Relational database concepts</strong></p>
+<ul>
+<li class="task"><input type="checkbox" class="task-box"> The meanings of entity, instance, attribute, relationship, domain and NULL, with examples from everyday applications</li>
+<li class="task"><input type="checkbox" class="task-box"> A table may have several candidate keys; the primary key is chosen from them and is unique and not null; a foreign key refers to the primary key of another table (or the same table)</li>
+<li class="task"><input type="checkbox" class="task-box"> Join the fields of a composite key with "+", e.g. <code>MID + BID + BDATE</code>; include enough fields but no unnecessary ones</li>
+<li class="task"><input type="checkbox" class="task-box"> Use the character type for codes with leading zeros or letters, and state the reason</li>
+<li class="task"><input type="checkbox" class="task-box"> An index speeds up searching but takes space and slows down insertions and updates; <code>CREATE INDEX name ON table (field1, field2)</code>, listing the WHERE field before the ORDER BY field</li>
+<li class="task"><input type="checkbox" class="task-box"> Entity integrity (repeated or null primary key), referential integrity (foreign key value does not exist), domain integrity (invalid or out-of-range value); state the type first, then the reason</li>
+<li class="task"><input type="checkbox" class="task-box"> Rollback undoes an uncommitted transaction and returns the database to its previous state; damaged committed data need a backup</li>
+</ul>
+<p><strong>Structured Query Language</strong></p>
+<ul>
+<li class="task"><input type="checkbox" class="task-box"> <code>ALTER TABLE … ADD</code>, <code>ALTER COLUMN</code>, <code>DROP COLUMN</code>; <code>DELETE FROM</code> deletes records, <code>DROP TABLE</code> removes the whole table</li>
+<li class="task"><input type="checkbox" class="task-box"> <code>INSERT INTO … VALUES (…)</code> follows the field order of the table; numbers without quotes, text and dates with quotes</li>
+<li class="task"><input type="checkbox" class="task-box"> <code>UPDATE … SET field = field + 10 WHERE …</code>; UPDATE and DELETE without WHERE affect all records</li>
+<li class="task"><input type="checkbox" class="task-box"> AND before OR, with brackets when unsure; BETWEEN is inclusive; <code>%</code> and <code>_</code> in LIKE; <code>IS NULL</code></li>
+<li class="task"><input type="checkbox" class="task-box"> The difference between <code>COUNT(*)</code> and <code>COUNT(field)</code>; <code>SUBSTRING(s, start, length)</code> counts from 1</li>
+<li class="task"><input type="checkbox" class="task-box"> WHERE filters records before grouping, HAVING filters groups after grouping; no aggregate functions in WHERE</li>
+<li class="task"><input type="checkbox" class="task-box"> Joining n tables needs n − 1 join conditions; write "table.field" for common field names; add DISTINCT when needed</li>
+<li class="task"><input type="checkbox" class="task-box"> Unmatched records: <code>LEFT JOIN … WHERE right_table.field IS NULL</code>, or <code>NOT IN (sub-query)</code></li>
+<li class="task"><input type="checkbox" class="task-box"> Comparing with the maximum or average needs a sub-query: <code>WHERE PRICE = (SELECT MAX(PRICE) FROM …)</code></li>
+<li class="task"><input type="checkbox" class="task-box"> <code>&gt; ANY</code> means greater than the minimum, <code>&gt; ALL</code> greater than the maximum; EXISTS checks whether a sub-query returns any record</li>
+<li class="task"><input type="checkbox" class="task-box"> UNION removes duplicate rows, UNION ALL keeps them; INTERSECT keeps rows in both; MINUS keeps rows in the first but not the second</li>
+<li class="task"><input type="checkbox" class="task-box"> A view is a virtual table: it simplifies queries, allows calculating before comparing, and hides sensitive data</li>
+</ul>
+<p><strong>Database design methodology</strong></p>
+<ul>
+<li class="task"><input type="checkbox" class="task-box"> The symbols beside an entity tell "how many of this entity for each instance of the other": 1 or M is the maximum, | or O the minimum</li>
+<li class="task"><input type="checkbox" class="task-box"> Both ends of every relationship need a cardinality and a participation constraint; do not miss any relationship in the description</li>
+<li class="task"><input type="checkbox" class="task-box"> Resolving many-to-many: add an associative entity and make both sides one-to-many; both original entities get 1 and |; swap the original participation constraints and place them beside the associative entity</li>
+<li class="task"><input type="checkbox" class="task-box"> Give an example of each of insertion, update and deletion anomalies; for data redundancy, state which field is repeated and in what situation</li>
+<li class="task"><input type="checkbox" class="task-box"> A derived attribute can be calculated from other attributes, such as age or the number of visits; HKID is not a derived attribute</li>
+<li class="task"><input type="checkbox" class="task-box"> 1NF: atomic values, no repeating groups; 2NF: no partial dependency; 3NF: no transitive dependency</li>
+<li class="task"><input type="checkbox" class="task-box"> In normalisation answers, give the fields, primary key and foreign keys of every table; use a composite key when the same code repeats in different groups</li>
+<li class="task"><input type="checkbox" class="task-box"> Denormalisation: merge tables, add redundant fields or derived attributes, use views; benefit: faster queries; drawbacks: redundancy and inconsistency; "less storage" is not a benefit</li>
+<li class="task"><input type="checkbox" class="task-box"> ER diagram to tables: for one-to-many, put the primary key of the "1" side into the "M" side; the associative entity of a many-to-many relationship becomes a table</li>
+<li class="task"><input type="checkbox" class="task-box"> Set access rights by role and by level (database, table, record, field); hide fields and records with views; obtain consent before using personal data for other purposes</li>
+</ul></div><nav class="prevnext"><a class="pn pn-prev" href="../core-e/c.html"><span class="pn-dir"><span class="lang-zh">← 上一頁</span><span class="lang-en" lang="en">← Previous</span></span><span class="pn-title"><span class="lang-zh">單元 E 課題 c：知識產權</span><span class="lang-en" lang="en">Module E Topic c: Intellectual Property</span></span></a><a class="pn pn-next" href="../elective-a/a.html"><span class="pn-dir"><span class="lang-zh">下一頁 →</span><span class="lang-en" lang="en">Next →</span></span><span class="pn-title"><span class="lang-zh">選修二甲 課題 a：關聯式數據庫概念</span><span class="lang-en" lang="en">Elective 2A Topic a: Relational Database Concepts</span></span></a></nav>
     </article>
     <footer class="footer">
       <p class="lang-zh">內容依據課程發展議會與考評局《資訊及通訊科技課程及評估指引》及考評局公開資料整理，僅供溫習參考。</p>
@@ -290,7 +433,7 @@
   </main>
 
   <aside class="toc-rail">
-<nav class="toc lang-zh" aria-label="本頁目錄"><div class="toc-title">本頁目錄</div><ol><li><a href="#選修單元甲在新課程中的位置">選修單元甲在新課程中的位置</a></li><li><a href="#近年考核重點">近年考核重點</a></li><li><a href="#考前一頁清單">考前一頁清單</a></li></ol></nav>
+<nav class="toc lang-zh" aria-label="本頁目錄"><div class="toc-title">本頁目錄</div><ol><li><a href="#選修單元甲在新課程中的位置">選修單元甲在新課程中的位置</a></li><li><a href="#近年考核重點">近年考核重點</a></li><li><a href="#考前一頁清單">考前一頁清單</a></li></ol></nav><nav class="toc lang-en" lang=en aria-label="On this page"><div class="toc-title">On this page</div><ol><li><a href="#en-elective-a-in-the-new-curriculum">Elective A in the new curriculum</a></li><li><a href="#en-recent-examination-focus">Recent examination focus</a></li><li><a href="#en-one-page-checklist-before-the-exam">One-page checklist before the exam</a></li></ol></nav>
   </aside>
 </div>
 

@@ -626,6 +626,7 @@ svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width:
 .erd text { stroke: none; fill: var(--text); font-family: var(--sans); font-size: 16px; text-anchor: middle; }
 .erd text.lab { text-anchor: start; font-size: 15px; }
 .erd text.card { font-size: 15px; font-weight: 600; }
+.erd text.small { font-size: 12.5px; }
 .prose figure.erd figcaption { font-family: var(--sans); font-size: .82rem; color: var(--muted); text-align: center; margin-top: .5rem; line-height: 1.6; }
 
 /* ------------------------------------------------------------ print */

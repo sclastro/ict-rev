@@ -1315,7 +1315,1184 @@ DROP VIEW SALES   -- 刪除檢視，原本數據表的數據不受影響
 <details class="quiz">
 <summary>12. 寫出使用檢視的兩個好處。</summary>
 <p>簡化複雜的查詢，毋須每次重寫連接和分組；可以先計算再比較（例如先求各組總數，再找最大值）；只讓用戶看到檢視中的欄位和記錄，保障數據私隱。（任何兩項）</p>
-</details></div><div class="lang-en" lang="en"><div class="pending"><div class="pending-icon">English</div><div class="pending-title">English version in preparation</div><p>This page is currently available in Chinese only. Switch to 中文 in the top bar to read it.</p></div></div><nav class="prevnext"><a class="pn pn-prev" href="../elective-a/a.html"><span class="pn-dir"><span class="lang-zh">← 上一頁</span><span class="lang-en" lang="en">← Previous</span></span><span class="pn-title"><span class="lang-zh">選修二甲 課題 a：關聯式數據庫概念</span><span class="lang-en" lang="en">Elective 2A Topic a: Relational Database Concepts</span></span></a><a class="pn pn-next" href="../elective-a/c.html"><span class="pn-dir"><span class="lang-zh">下一頁 →</span><span class="lang-en" lang="en">Next →</span></span><span class="pn-title"><span class="lang-zh">選修二甲 課題 c：數據庫設計方法</span><span class="lang-en" lang="en">Elective 2A Topic c: Database Design Methodology</span></span></a></nav>
+</details></div><div class="lang-en prose" lang="en"><h2 id="en-21-curriculum-requirements"><span class="sec-num">2.1</span><span class="sec-title">Curriculum requirements</span></h2>
+<p>Use SQL to maintain a simple relational database, and manipulate its data or retrieve the required information in at most three tables. The skills involved are: modify the structure of tables; add, delete and modify the data in tables; view, sort and select contents by filtering, and create views; use appropriate operators and expressions, such as arithmetic operators, comparison operators, logical operators and the IN, BETWEEN and LIKE operators; use simple built-in functions such as aggregate and string functions; query multiple tables using equi-join, natural join and outer join; perform sub-queries (one sub-level only).</p>
+<p>Module A has already covered SELECT, WHERE, GROUP BY, HAVING and ORDER BY on a single table; see section 4.10 of <a href="../core-a/d.html">Module A Topic d</a>. This topic extends that to modifying data, multiple tables, sub-queries, set operations and views.</p>
+<h2 id="en-22-writing-sql-and-the-hkeaa-command-list"><span class="sec-num">2.2</span><span class="sec-title">Writing SQL and the HKEAA command list</span></h2>
+<p>The last page of the Paper 2 question book contains the HKEAA SQL list (based on the SQL-92 standard). The table below groups its contents:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Contents of the list</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Constants</td>
+<td>TRUE, FALSE</td>
+</tr>
+<tr>
+<td>Operators</td>
+<td><code>+ - * / &gt; &lt; = &gt;= &lt;= &lt;&gt; % _ '</code>, AND, NOT, OR</td>
+</tr>
+<tr>
+<td>Aggregate functions</td>
+<td>AVG, COUNT, MAX, MIN, SUM</td>
+</tr>
+<tr>
+<td>Numeric and string functions</td>
+<td>ABSOLUTE (ABS), INT, ASC, AT, CHAR (CHR), CHAR_LENGTH (LEN), LOWER, TRIM, SPACE, SUBSTRING (SUBSTR / MID), UPPER, VALUE (VAL)</td>
+</tr>
+<tr>
+<td>Date functions</td>
+<td>DATE, DAY, MONTH, YEAR</td>
+</tr>
+<tr>
+<td>Other keywords</td>
+<td>ADD, ALL, ALTER, ANY, AS, ASC, BETWEEN, BY, CREATE, DELETE, DESC, DISTINCT, DROP, EXISTS, FROM, GROUP, HAVING, IN, INDEX, INNER JOIN, INSERT, INTEGER, INTERSECT, INTO, LEFT [OUTER] JOIN, LIKE, MINUS, NULL, RIGHT [OUTER] JOIN, FULL [OUTER] JOIN, ON, ORDER, SELECT, SET, TABLE, TO, UNION, UNIQUE, UPDATE, VALUES, VIEW, WHERE</td>
+</tr>
+</tbody>
+</table>
+</div><p><strong>Conventions</strong></p>
+<ul>
+<li>Keywords may be in upper or lower case; this site uses upper case for readability.</li>
+<li>Text and dates need quotes, for example <code>CLASS = '4A'</code>; <strong>numbers have no quotes</strong>, for example <code>JYEAR = 2012</code>.</li>
+<li>Dates in the papers are usually written as <code>'28/7/2023'</code> or <code>'26-3-2025'</code>; the marking schemes accept other date formats.</li>
+<li>Add brackets when you are unsure of the order of a compound condition.</li>
+<li>The semicolon at the end of a statement is optional.</li>
+</ul>
+<p><strong>HKEAA style and MySQL style</strong></p>
+<p>The examples on this site follow the HKEAA list and the marking schemes. The textbook and school computer rooms often use MySQL, which differs in places:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Purpose</th>
+<th>HKEAA list or marking scheme</th>
+<th>MySQL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Change the data type of a field</td>
+<td><code>ALTER TABLE CAND ALTER COLUMN CNUM CHAR(12)</code></td>
+<td><code>ALTER TABLE CAND MODIFY CNUM CHAR(12)</code></td>
+</tr>
+<tr>
+<td>Difference</td>
+<td><code>MINUS</code></td>
+<td><code>EXCEPT</code> (MySQL 8.0.31 or later)</td>
+</tr>
+<tr>
+<td>Full outer join</td>
+<td><code>FULL [OUTER] JOIN</code></td>
+<td>Not supported; take the UNION of a LEFT JOIN and a RIGHT JOIN</td>
+</tr>
+<tr>
+<td>Length of a string</td>
+<td><code>CHAR_LENGTH</code> (or <code>LEN</code>)</td>
+<td><code>CHAR_LENGTH</code> (<code>LENGTH</code> counts bytes)</td>
+</tr>
+<tr>
+<td>Dates</td>
+<td><code>'26-3-2025'</code> and other formats</td>
+<td>Must be written as <code>'2025-03-26'</code></td>
+</tr>
+</tbody>
+</table>
+</div><p>Natural join (NATURAL JOIN) is listed in the C&amp;A Guide but not in the HKEAA list; see section 2.9. For creating and dropping indexes, see section 1.6 of <a href="a.html">Topic a</a>.</p>
+<h2 id="en-23-modifying-the-structure-of-tables"><span class="sec-num">2.3</span><span class="sec-title">Modifying the structure of tables</span></h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>SQL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Add a field</td>
+<td><code>ALTER TABLE STAFF ADD EMAIL VARCHAR(40)</code></td>
+</tr>
+<tr>
+<td>Change the data type or length of a field</td>
+<td><code>ALTER TABLE STAFF ALTER COLUMN PHONE CHAR(12)</code></td>
+</tr>
+<tr>
+<td>Remove a field</td>
+<td><code>ALTER TABLE STAFF DROP COLUMN EMAIL</code></td>
+</tr>
+<tr>
+<td>Remove a whole table (structure and data)</td>
+<td><code>DROP TABLE STAFF</code></td>
+</tr>
+</tbody>
+</table>
+</div><p><strong>DELETE and DROP are different.</strong> <code>DELETE FROM STAFF</code> deletes all the records in the table, but the table structure remains and records can be inserted again; <code>DROP TABLE STAFF</code> removes the whole table together with its structure.</p>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2024 P2A 1(f)] Complete the SQL statement to add a field MOB (character, length 8) to STAFF to store mobile phone numbers: <code>____ STAFF ADD ____</code></strong></p>
+<p>✔ <code>ALTER TABLE STAFF ADD MOB CHAR(8)</code> (CHR, VARCHAR and CHARACTER are also accepted).</p>
+<p>✘ The HKEAA reported that weaker candidates were unable to provide the correct SQL keyword for adding a new column.</p>
+</blockquote>
+<p>[Sample Paper P2 Section A 5(e)] Add a field BUSID to DRIVER to store a licence plate number of at most 6 characters: <code>ALTER TABLE DRIVER ADD (BUSID VARCHAR(6))</code>. [2012 Practice Paper P2A 1(c)(i)] Increase the width of CNUM to 12 and make sure CNUM is never empty: <code>ALTER TABLE CAND ALTER COLUMN CNUM CHAR(12) NOT NULL</code>.</p>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2023 P2A 3(d)(iii)] To remove the table DOCTOR, two methods are suggested: <code>DELETE FROM DOCTOR</code> and <code>DROP TABLE DOCTOR</code>. What is the major difference between them?</strong></p>
+<p>✔ DELETE deletes the records inside the table; DROP removes the whole table. The HKEAA reported that the majority of candidates used the DROP command correctly.</p>
+</blockquote>
+<h2 id="en-24-adding-deleting-and-modifying-data"><span class="sec-num">2.4</span><span class="sec-title">Adding, deleting and modifying data</span></h2>
+<p><strong>Sample table PRODUCT</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>PID</th>
+<th>PNAME</th>
+<th>CATEGORY</th>
+<th>PRICE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P1</td>
+<td>Notebook</td>
+<td>Stationery</td>
+<td>25</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>Pen</td>
+<td>Stationery</td>
+<td>8</td>
+</tr>
+<tr>
+<td>P3</td>
+<td>Calculator</td>
+<td>Electronics</td>
+<td>160</td>
+</tr>
+<tr>
+<td>P4</td>
+<td>Earphones</td>
+<td>Electronics</td>
+<td>299</td>
+</tr>
+<tr>
+<td>P5</td>
+<td>Water bottle</td>
+<td>Living</td>
+<td>60</td>
+</tr>
+</tbody>
+</table>
+</div><pre><code class="language-sql">-- Insert a complete record: the values follow the order of the fields in the table
+INSERT INTO PRODUCT VALUES ('P6', 'Speaker', 'Electronics', 450)
+
+-- Insert some fields only: the other fields are NULL
+INSERT INTO PRODUCT (PID, PNAME) VALUES ('P7', 'Mouse pad')
+
+-- Modify records: 10% off all electronic products
+UPDATE PRODUCT SET PRICE = PRICE * 0.9 WHERE CATEGORY = 'Electronics'
+
+-- Delete records: delete products without a price
+DELETE FROM PRODUCT WHERE PRICE IS NULL
+</code></pre>
+<p>Afterwards the prices of the calculator, earphones and speaker are 144, 269.1 and 405, and the mouse pad record has been deleted.</p>
+<ul>
+<li>Without WHERE, <code>UPDATE</code> and <code>DELETE</code> change or delete <strong>all records</strong>.</li>
+<li>To change several fields, separate them with commas, for example <code>SET PRICE = 30, CATEGORY = 'Stationery'</code>.</li>
+<li>To add to a numeric field, write <code>SET POINT = POINT + 10</code>, not just <code>SET POINT + 10</code>.</li>
+</ul>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2025 P2A 3(a)] An input form inserts the customer "So Siu Ming", identity code "ABF218" and year of first use 2012 into the table CUS (field order: CCODE, CNAME, JYEAR). Write the missing part after <code>INSERT INTO CUS VALUES</code>.</strong></p>
+<p>✔ <code>("ABF218", "So Siu Ming", 2012)</code>: the values follow the order of the fields in the table, not the order on the form; JYEAR is an integer, so 2012 has no quotes.</p>
+<p>✘ The HKEAA reported that a high proportion of candidates incorrectly used the INSERT INTO command, often misapplying the quotation marks for data values; <code>'2012'</code> is not accepted.</p>
+</blockquote>
+<!-- -->
+
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2024 P2A 3(c)(ii)] SQL2 changes member 00083's name to Chan Tai Man with <code>DELETE FROM MEMBER WHERE MID = '00083'</code> followed by <code>INSERT INTO MEMBER VALUES (…)</code>. Complete SQL3, which does the same: <code>UPDATE ____ SET ____ WHERE MID = '00083'</code>.</strong></p>
+<p>✔ <code>UPDATE MEMBER SET MNAME = 'Chan Tai Man' WHERE MID = '00083'</code>. UPDATE changes only one field without re-entering the whole record; if other tables refer to the member through a foreign key, DELETE may also violate referential integrity.</p>
+</blockquote>
+<!-- -->
+
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2023 P2A 1(e)(ii)] Give 10 reward points to members who have referred more than 5 persons: <code>UPDATE ____ SET ____ = ____ WHERE MID IN (SELECT MID FROM V1 WHERE REFERRAL &gt; 5)</code>.</strong></p>
+<p>✔ <code>UPDATE MEMBER SET POINT = POINT + 10 WHERE MID IN (…)</code>.</p>
+<p>✘ The HKEAA reported that weaker candidates misused a "PLUS" operator.</p>
+</blockquote>
+<h2 id="en-25-selecting-filtering-and-sorting"><span class="sec-num">2.5</span><span class="sec-title">Selecting, filtering and sorting</span></h2>
+<p><strong>Sample table CAMP (summer camps)</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>CID</th>
+<th>CNAME</th>
+<th>DISTRICT</th>
+<th>DAYS</th>
+<th>FEE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C01</td>
+<td>Photography Camp</td>
+<td>Sha Tin</td>
+<td>3</td>
+<td>900</td>
+</tr>
+<tr>
+<td>C02</td>
+<td>Robotics Camp</td>
+<td>Kwun Tong</td>
+<td>5</td>
+<td>1500</td>
+</tr>
+<tr>
+<td>C03</td>
+<td>Climbing Camp</td>
+<td>Sha Tin</td>
+<td>2</td>
+<td>600</td>
+</tr>
+<tr>
+<td>C04</td>
+<td>Coding Camp</td>
+<td>Kwun Tong</td>
+<td>4</td>
+<td>1500</td>
+</tr>
+<tr>
+<td>C05</td>
+<td>Camping</td>
+<td>Sai Kung</td>
+<td>2</td>
+<td>450</td>
+</tr>
+</tbody>
+</table>
+</div><div class="table-wrap"><table>
+<thead>
+<tr>
+<th>SQL</th>
+<th>Result</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SELECT CNAME, FEE FROM CAMP WHERE DISTRICT = 'Sha Tin'</code></td>
+<td>Photography Camp 900<br>Climbing Camp 600</td>
+<td>WHERE filters records</td>
+</tr>
+<tr>
+<td><code>SELECT CNAME, FEE FROM CAMP ORDER BY FEE DESC, CNAME</code></td>
+<td>Coding Camp 1500<br>Robotics Camp 1500<br>Photography Camp 900<br>Climbing Camp 600<br>Camping 450</td>
+<td>First by FEE descending; equal fees by CNAME ascending (ASC is the default)</td>
+</tr>
+<tr>
+<td><code>SELECT DISTINCT DISTRICT FROM CAMP</code></td>
+<td>Sha Tin<br>Kwun Tong<br>Sai Kung</td>
+<td>DISTINCT removes duplicate rows</td>
+</tr>
+<tr>
+<td><code>SELECT CNAME, FEE / DAYS AS DAILY FROM CAMP WHERE DAYS &gt;= 4</code></td>
+<td>Robotics Camp 300<br>Coding Camp 375</td>
+<td>Outputs an expression, named with AS</td>
+</tr>
+</tbody>
+</table>
+</div><p>The clauses always appear in the order <code>SELECT … FROM … WHERE … GROUP BY … HAVING … ORDER BY …</code>.</p>
+<blockquote class="callout callout-tip">
+<p>✔ <strong>[2024 P2A 1(b)]</strong> List the identity codes of staff who have entered room L502 in ascending order of TDATE: <code>SELECT SID FROM TRAN WHERE RID = 'L502' ORDER BY TDATE</code>. The HKEAA rated this "Good".</p>
+</blockquote>
+<!-- -->
+
+<blockquote class="callout callout-tip">
+<p>✔ <strong>[2023 P2A 1(a)]</strong> List the identity codes of Silver members with more than 20 reward points in descending order of joining date: <code>SELECT MID FROM MEMBER WHERE MTYPE = 'S' AND POINT &gt; 20 ORDER BY JDATE DESC</code>. The HKEAA rated this "Good".</p>
+</blockquote>
+<!-- -->
+
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2025 P2A 5(b)(i)] List the booking records whose booking ID begins with B88, in descending order of the check-in date SD.</strong></p>
+<p>✔ <code>SELECT * FROM BK WHERE BID LIKE 'B88%' ORDER BY SD DESC</code> (<code>SUBSTRING(BID, 1, 3) = 'B88'</code> is also accepted).</p>
+<p>✘ The marking principles reject improper structure, such as <code>WHERE BID LIKE 'B88%' AND ORDER BY SD DESC</code>: ORDER BY is a separate clause and cannot follow AND.</p>
+</blockquote>
+<h2 id="en-26-operators-and-expressions"><span class="sec-num">2.6</span><span class="sec-title">Operators and expressions</span></h2>
+<p><strong>Sample table STAFF</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>SID</th>
+<th>SNAME</th>
+<th>DEPT</th>
+<th>SALARY</th>
+<th>PHONE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S01</td>
+<td>Chan Siu Ming</td>
+<td>IT</td>
+<td>29000</td>
+<td>91234567</td>
+</tr>
+<tr>
+<td>S02</td>
+<td>Lee Ka Yan</td>
+<td>HR</td>
+<td>28000</td>
+<td>(NULL)</td>
+</tr>
+<tr>
+<td>S03</td>
+<td>Wong Chi Hang</td>
+<td>IT</td>
+<td>45000</td>
+<td>62345678</td>
+</tr>
+<tr>
+<td>S04</td>
+<td>Ho Mei Lam</td>
+<td>Sales</td>
+<td>26000</td>
+<td>97778888</td>
+</tr>
+<tr>
+<td>S05</td>
+<td>Cheung Wai</td>
+<td>Sales</td>
+<td>38000</td>
+<td>(NULL)</td>
+</tr>
+</tbody>
+</table>
+</div><div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Operator</th>
+<th>Example</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Arithmetic</td>
+<td><code>+ - * /</code></td>
+<td><code>SELECT SNAME, SALARY * 12 AS ANNUAL FROM STAFF WHERE NOT DEPT = 'IT'</code></td>
+<td>Lee Ka Yan 336000 and two other rows</td>
+</tr>
+<tr>
+<td>Comparison</td>
+<td><code>= &lt;&gt; &gt; &lt; &gt;= &lt;=</code></td>
+<td><code>WHERE SALARY &gt;= 38000</code></td>
+<td>Wong Chi Hang, Cheung Wai</td>
+</tr>
+<tr>
+<td>Logical</td>
+<td>AND, OR, NOT</td>
+<td>See below</td>
+<td></td>
+</tr>
+<tr>
+<td>IN</td>
+<td>Equal to any value in the list</td>
+<td><code>WHERE DEPT IN ('HR', 'Sales')</code></td>
+<td>Lee Ka Yan, Ho Mei Lam, Cheung Wai</td>
+</tr>
+<tr>
+<td>BETWEEN</td>
+<td>Between two values, <strong>inclusive</strong></td>
+<td><code>WHERE SALARY BETWEEN 28000 AND 38000</code></td>
+<td>Chan Siu Ming, Lee Ka Yan, Cheung Wai</td>
+</tr>
+<tr>
+<td>LIKE</td>
+<td><code>%</code> stands for zero or more characters; <code>_</code> for exactly one</td>
+<td><code>WHERE SNAME LIKE '_o%'</code></td>
+<td>Wong Chi Hang, Ho Mei Lam</td>
+</tr>
+<tr>
+<td>IS NULL</td>
+<td>The field is NULL</td>
+<td><code>WHERE PHONE IS NULL</code></td>
+<td>Lee Ka Yan, Cheung Wai</td>
+</tr>
+</tbody>
+</table>
+</div><p><strong>AND is evaluated before OR</strong>:</p>
+<pre><code class="language-sql">SELECT SNAME FROM STAFF WHERE DEPT = 'IT' OR DEPT = 'Sales' AND SALARY &gt; 30000
+-- Same as DEPT = 'IT' OR (DEPT = 'Sales' AND SALARY &gt; 30000)
+-- Result: Chan Siu Ming, Wong Chi Hang, Cheung Wai
+
+SELECT SNAME FROM STAFF WHERE (DEPT = 'IT' OR DEPT = 'Sales') AND SALARY &gt; 30000
+-- Result: Wong Chi Hang, Cheung Wai
+</code></pre>
+<ul>
+<li>Test for NULL with <code>IS NULL</code> or <code>IS NOT NULL</code>, never <code>= NULL</code>.</li>
+<li>Write <code>&lt;=</code>, <code>&gt;=</code> and <code>&lt;&gt;</code>, not ≤, ≥ or ≠. The marking principles reject ≤ in place of <code>&lt;=</code>.</li>
+<li>When dates are compared, a later date is greater.</li>
+</ul>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2023 P2A 1(b)] List the identity codes of members, without duplication, who booked services in September 2022.</strong></p>
+<p>✔ <code>SELECT DISTINCT MID FROM BOOKING WHERE BDATE BETWEEN '01/09/2022' AND '30/09/2022'</code>, or <code>MONTH(BDATE) = 9 AND YEAR(BDATE) = 2022</code>.</p>
+<p>✘ The HKEAA reported that weaker candidates were not able to provide the correct expression of the "September 2022" condition.</p>
+</blockquote>
+<!-- -->
+
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2025 P2A 5(b)(ii)] List the room numbers of the rooms booked for 26-3-2025. BK records the check-in date SD and check-out date ED.</strong></p>
+<p>✔ <code>SELECT RN FROM BK WHERE SD &lt;= '26-3-2025' AND '26-3-2025' &lt;= ED</code>, or <code>WHERE '26-3-2025' BETWEEN SD AND ED</code>.</p>
+<p>✘ Only one of the two conditions scores one mark. The HKEAA briefing rated this part "Fair". Writing <code>SD = '26-3-2025'</code> misses rooms whose guests checked in earlier and have not yet checked out.</p>
+</blockquote>
+<h2 id="en-27-built-in-functions"><span class="sec-num">2.7</span><span class="sec-title">Built-in functions</span></h2>
+<p><strong>Aggregate functions</strong> calculate one value from a group of records:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Purpose</th>
+<th>With STAFF in section 2.6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>COUNT(*)</code></td>
+<td>Number of records</td>
+<td>5</td>
+</tr>
+<tr>
+<td><code>COUNT(field)</code></td>
+<td>Number of records where the field is <strong>not NULL</strong></td>
+<td><code>COUNT(PHONE)</code> = 3</td>
+</tr>
+<tr>
+<td><code>COUNT(DISTINCT field)</code></td>
+<td>Number of different values</td>
+<td><code>COUNT(DISTINCT DEPT)</code> = 3</td>
+</tr>
+<tr>
+<td><code>SUM</code>, <code>AVG</code></td>
+<td>Total, average</td>
+<td><code>SUM(SALARY)</code> = 166000; <code>AVG(SALARY)</code> = 33200</td>
+</tr>
+<tr>
+<td><code>MAX</code>, <code>MIN</code></td>
+<td>Largest, smallest; also work on text and dates</td>
+<td><code>MAX(SALARY)</code> = 45000</td>
+</tr>
+</tbody>
+</table>
+</div><p><strong>String functions</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Purpose</th>
+<th>Example</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CHAR_LENGTH(s)</code> (<code>LEN</code>)</td>
+<td>Number of characters</td>
+<td><code>CHAR_LENGTH('Chan Siu Ming')</code></td>
+<td>13</td>
+</tr>
+<tr>
+<td><code>SUBSTRING(s, start, length)</code> (<code>SUBSTR</code>, <code>MID</code>)</td>
+<td>Extracts part of a string; the first character is position 1</td>
+<td><code>SUBSTRING('ABF218', 1, 3)</code></td>
+<td><code>'ABF'</code></td>
+</tr>
+<tr>
+<td><code>UPPER(s)</code>, <code>LOWER(s)</code></td>
+<td>Convert to upper or lower case</td>
+<td><code>UPPER('Chan')</code></td>
+<td><code>'CHAN'</code></td>
+</tr>
+<tr>
+<td><code>TRIM(s)</code></td>
+<td>Removes leading and trailing spaces</td>
+<td><code>TRIM('  Lam ')</code></td>
+<td><code>'Lam'</code></td>
+</tr>
+<tr>
+<td><code>SPACE(n)</code></td>
+<td>Returns n spaces</td>
+<td><code>SPACE(3)</code></td>
+<td><code>'   '</code></td>
+</tr>
+</tbody>
+</table>
+</div><p>In the list, ASC returns the ASCII code of a character, CHAR (CHR) converts an ASCII code to a character, VALUE (VAL) converts a string of digits to a number, AT finds the position of a substring, INT takes the integer part and ABS the absolute value.</p>
+<p><strong>Date functions</strong>: <code>YEAR(d)</code>, <code>MONTH(d)</code> and <code>DAY(d)</code> return the year, month and day of a date, for example <code>WHERE YEAR(JDATE) &lt; 2019</code>; <code>DATE(…)</code> returns the date part of a date-time value.</p>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2012 Practice Paper P2A 1(c)(ii)] The first three characters of the candidate number CNUM are the school code. List all candidate names and their school codes.</strong></p>
+<p>✔ <code>SELECT CNAME, SUBSTR(CNUM, 1, 3) FROM CAND</code>; SUBSTRING, MID or LEFT is also accepted.</p>
+</blockquote>
+<h2 id="en-28-grouping-group-by-and-having"><span class="sec-num">2.8</span><span class="sec-title">Grouping: GROUP BY and HAVING</span></h2>
+<p><strong>Sample table DONATE (flag day records)</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>DID</th>
+<th>CLASS</th>
+<th>HOUSE</th>
+<th>AMT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>D1</td>
+<td>4A</td>
+<td>Red</td>
+<td>50</td>
+</tr>
+<tr>
+<td>D2</td>
+<td>4B</td>
+<td>Blue</td>
+<td>20</td>
+</tr>
+<tr>
+<td>D3</td>
+<td>4A</td>
+<td>Blue</td>
+<td>30</td>
+</tr>
+<tr>
+<td>D4</td>
+<td>4C</td>
+<td>Red</td>
+<td>100</td>
+</tr>
+<tr>
+<td>D5</td>
+<td>4B</td>
+<td>Blue</td>
+<td>40</td>
+</tr>
+<tr>
+<td>D6</td>
+<td>4A</td>
+<td>Red</td>
+<td>30</td>
+</tr>
+</tbody>
+</table>
+</div><div class="table-wrap"><table>
+<thead>
+<tr>
+<th>SQL</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SELECT CLASS, COUNT(*), SUM(AMT) FROM DONATE GROUP BY CLASS</code></td>
+<td>4A 3 110<br>4B 2 60<br>4C 1 100</td>
+</tr>
+<tr>
+<td><code>SELECT CLASS, SUM(AMT) FROM DONATE GROUP BY CLASS HAVING SUM(AMT) &gt;= 80</code></td>
+<td>4A 110<br>4C 100</td>
+</tr>
+<tr>
+<td><code>SELECT CLASS, SUM(AMT) FROM DONATE WHERE AMT &gt;= 30 GROUP BY CLASS</code></td>
+<td>4A 110<br>4B 40<br>4C 100</td>
+</tr>
+<tr>
+<td><code>SELECT CLASS, HOUSE, COUNT(*) FROM DONATE GROUP BY CLASS, HOUSE</code></td>
+<td>4A Red 2<br>4A Blue 1<br>4B Blue 2<br>4C Red 1</td>
+</tr>
+</tbody>
+</table>
+</div><p><strong>Order in which the database processes the clauses</strong>: FROM (get the tables) → WHERE (filter records) → GROUP BY (form groups) → HAVING (filter groups) → SELECT (output fields) → ORDER BY (sort).</p>
+<ul>
+<li><strong>WHERE</strong> filters individual records <strong>before</strong> grouping; <strong>HAVING</strong> filters groups <strong>after</strong> grouping.</li>
+<li>Aggregate functions cannot appear in WHERE, because grouping has not happened yet when WHERE is processed; <code>WHERE COUNT(*) &gt; 1</code> is wrong.</li>
+<li>With GROUP BY, every field in SELECT must either be in GROUP BY or be inside an aggregate function. <code>SELECT DID, CLASS, SUM(AMT) FROM DONATE GROUP BY CLASS</code> is wrong: each class has several DIDs, and the database cannot decide which one to output.</li>
+</ul>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2023 P2A 1(d)] List the identity codes of the fitness centres that have more than 500 booking records on 30/09/2022.</strong></p>
+<p>✔ <code>SELECT C.CID FROM BOOKING B, CENTRE C WHERE C.CID = B.CID AND BDATE = '30/09/2022' GROUP BY C.CID HAVING COUNT(B.BID) &gt; 500</code>. The date condition goes in WHERE (before grouping) and the count condition in HAVING (after grouping). Using BOOKING alone is also acceptable.</p>
+<p>✘ The HKEAA reported that candidates demonstrated weakness in using the aggregate functions GROUP BY and HAVING.</p>
+</blockquote>
+<p>[2023 P2A 4(b)(i)] List the number of VIP tickets sold for each show time: <code>SELECT CID, MTIME, COUNT(*) FROM TINFO WHERE SNO &lt;= 10 GROUP BY CID, MTIME</code>.</p>
+<h2 id="en-29-querying-multiple-tables"><span class="sec-num">2.9</span><span class="sec-title">Querying multiple tables</span></h2>
+<p><strong>Sample tables</strong></p>
+<p>STUDENT</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>SID</th>
+<th>SNAME</th>
+<th>CLASS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S1</td>
+<td>Chan Hiu Ming</td>
+<td>4A</td>
+</tr>
+<tr>
+<td>S2</td>
+<td>Li Ka Kei</td>
+<td>4B</td>
+</tr>
+<tr>
+<td>S3</td>
+<td>Wong Tsz Hin</td>
+<td>4A</td>
+</tr>
+<tr>
+<td>S4</td>
+<td>Ho Wing Sze</td>
+<td>5C</td>
+</tr>
+</tbody>
+</table>
+</div><p>JOINCLUB (students' club memberships)</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>SID</th>
+<th>CID</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S1</td>
+<td>C1</td>
+</tr>
+<tr>
+<td>S1</td>
+<td>C2</td>
+</tr>
+<tr>
+<td>S2</td>
+<td>C2</td>
+</tr>
+<tr>
+<td>S3</td>
+<td>C1</td>
+</tr>
+</tbody>
+</table>
+</div><p>CLUB</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>CID</th>
+<th>CNAME</th>
+<th>TID</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C1</td>
+<td>Astronomy Club</td>
+<td>T1</td>
+</tr>
+<tr>
+<td>C2</td>
+<td>Photography Club</td>
+<td>T2</td>
+</tr>
+<tr>
+<td>C3</td>
+<td>Debating Club</td>
+<td>T1</td>
+</tr>
+</tbody>
+</table>
+</div><p><strong>Equi-join</strong>: compare the keys of two tables with <code>=</code>, usually a foreign key with a primary key. There are two ways of writing it, with the same result:</p>
+<pre><code class="language-sql">-- Method 1: the join condition in WHERE
+SELECT SNAME, CID FROM STUDENT, JOINCLUB
+WHERE STUDENT.SID = JOINCLUB.SID
+
+-- Method 2: INNER JOIN … ON
+SELECT SNAME, CID FROM STUDENT INNER JOIN JOINCLUB
+ON STUDENT.SID = JOINCLUB.SID
+</code></pre>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>SNAME</th>
+<th>CID</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chan Hiu Ming</td>
+<td>C1</td>
+</tr>
+<tr>
+<td>Chan Hiu Ming</td>
+<td>C2</td>
+</tr>
+<tr>
+<td>Li Ka Kei</td>
+<td>C2</td>
+</tr>
+<tr>
+<td>Wong Tsz Hin</td>
+<td>C1</td>
+</tr>
+</tbody>
+</table>
+</div><p>An equi-join outputs only records that have a match on both sides: Ho Wing Sze has joined no club and does not appear.</p>
+<p><strong>Joining three tables</strong>: each additional table needs one more join condition.</p>
+<pre><code class="language-sql">SELECT S.SNAME, C.CNAME
+FROM STUDENT S, JOINCLUB J, CLUB C
+WHERE S.SID = J.SID AND J.CID = C.CID AND C.CNAME = 'Photography Club'
+-- Result: Chan Hiu Ming Photography Club; Li Ka Kei Photography Club
+</code></pre>
+<ul>
+<li>The S in <code>STUDENT S</code> is an <strong>alias</strong>; afterwards <code>S.SID</code> can be written instead of <code>STUDENT.SID</code>.</li>
+<li>When two tables have a field with the same name (such as SID), write "table.field"; otherwise the database cannot tell which one is meant.</li>
+<li><strong>If the join condition is left out</strong>, the database pairs every record of one table with every record of the other: <code>SELECT * FROM STUDENT, JOINCLUB</code> outputs 4 × 4 = 16 rows, most of them meaningless. This set of all possible combinations is the Cartesian product; SQL's CROSS JOIN produces it deliberately, which is extension content.</li>
+<li>When a student joins several clubs, the student's name appears several times in the join result. If only the names are needed, add DISTINCT: <code>SELECT DISTINCT SNAME FROM STUDENT S, JOINCLUB J WHERE S.SID = J.SID</code> outputs Chan Hiu Ming, Li Ka Kei and Wong Tsz Hin once each.</li>
+</ul>
+<p><strong>Natural join</strong> (NATURAL JOIN) performs an equi-join automatically on the fields with the same name in the two tables, and each common field appears only once in the result:</p>
+<pre><code class="language-sql">SELECT * FROM STUDENT NATURAL JOIN JOINCLUB
+-- Result fields: SID, SNAME, CLASS, CID
+</code></pre>
+<p>A natural join works only when the joining fields have the same name. If they have different names (for example CLUB.TID and TEACHER.TCODE), or the tables share other unrelated field names, use an equi-join. NATURAL JOIN is not in the HKEAA SQL list, and an equi-join is always acceptable in an answer.</p>
+<p><strong>Self-join</strong>: join a table to itself as if it were two tables, using different aliases. For example, in EMP (EID, ENAME, BOSS), BOSS is the staff ID of the employee's supervisor:</p>
+<pre><code class="language-sql">SELECT E.ENAME, B.ENAME AS BOSSNAME
+FROM EMP E, EMP B
+WHERE E.BOSS = B.EID
+</code></pre>
+<p>E stands for the employee and B for the supervisor; an employee without a supervisor (BOSS is NULL) does not appear in the result.</p>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2024 P2A 1(c)] STAFF, ROOM and TRAN store staff, rooms and entry records. List the names of staff members who have entered rooms with names containing "Lab".</strong></p>
+<p>✔ <code>SELECT DISTINCT SNAME FROM STAFF S, ROOM R, TRAN T WHERE S.SID = T.SID AND R.RID = T.RID AND R.RNAME LIKE '%Lab%'</code>; two levels of IN sub-queries are also accepted. Staff names and room names are not directly related, so the three tables must be joined through TRAN.</p>
+<p>✘ The HKEAA reported that weaker candidates were unable to provide the correct expression of the pattern matching condition.</p>
+</blockquote>
+<!-- -->
+
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2025 P2A 3(b)] CUS stores customers and ACC stores accounts (a customer may have several accounts). Write the SQL statement to find the total account balance of the customer "So Siu Ming".</strong></p>
+<p>✔ <code>SELECT SUM(BAL) FROM CUS, ACC WHERE CUS.CCODE = ACC.CCODE AND CUS.CNAME = 'So Siu Ming'</code>. One mark each for SUM, the join condition and the name condition.</p>
+<p>✘ The HKEAA reported that weaker candidates failed to apply the SUM function properly.</p>
+</blockquote>
+<p>[Sample Paper P2 Section A 5(a)] List the names and staff IDs of employees who can drive bus route 1A, in descending order of salary: <code>SELECT ENAME, EMPLOYEE.EID FROM EMPLOYEE, DRIVER WHERE EMPLOYEE.EID = DRIVER.EID AND BID = '1A' ORDER BY SALARY DESC</code>. Both tables have EID, so SELECT must say <code>EMPLOYEE.EID</code>.</p>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2023 P2A 1(e)(i)] REFER in MEMBER is the member ID of the referrer. What is the purpose of this statement? <code>CREATE VIEW V1 AS SELECT M1.MID, COUNT(M1.MID) AS REFERRAL FROM MEMBER M1, MEMBER M2 WHERE M1.MID = M2.REFER GROUP BY M1.MID</code></strong></p>
+<p>✔ To show the members who have referred others and the total number of members each has referred. The answer needs both points: "who" and "how many".</p>
+<p>✘ The HKEAA reported that candidates encountered difficulties in describing the purpose of the SQL statement.</p>
+</blockquote>
+<h2 id="en-210-outer-joins"><span class="sec-num">2.10</span><span class="sec-title">Outer joins</span></h2>
+<p>An equi-join keeps only records that match on both sides. An <strong>outer join</strong> also keeps the unmatched records, filling the missing side with NULL.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Join</th>
+<th>Keeps</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>LEFT [OUTER] JOIN</code></td>
+<td>All records of the left table</td>
+</tr>
+<tr>
+<td><code>RIGHT [OUTER] JOIN</code></td>
+<td>All records of the right table</td>
+</tr>
+<tr>
+<td><code>FULL [OUTER] JOIN</code></td>
+<td>All records of both tables</td>
+</tr>
+</tbody>
+</table>
+</div><p>Using the tables in section 2.9:</p>
+<pre><code class="language-sql">SELECT S.SNAME, J.CID
+FROM STUDENT S LEFT JOIN JOINCLUB J ON S.SID = J.SID
+</code></pre>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>SNAME</th>
+<th>CID</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chan Hiu Ming</td>
+<td>C1</td>
+</tr>
+<tr>
+<td>Chan Hiu Ming</td>
+<td>C2</td>
+</tr>
+<tr>
+<td>Li Ka Kei</td>
+<td>C2</td>
+</tr>
+<tr>
+<td>Wong Tsz Hin</td>
+<td>C1</td>
+</tr>
+<tr>
+<td>Ho Wing Sze</td>
+<td>(NULL)</td>
+</tr>
+</tbody>
+</table>
+</div><p><strong>Finding unmatched records</strong>: after an outer join, the fields from the other table are all NULL in an unmatched record.</p>
+<pre><code class="language-sql">-- Students who have joined no club: Ho Wing Sze
+SELECT S.SNAME FROM STUDENT S LEFT JOIN JOINCLUB J ON S.SID = J.SID
+WHERE J.SID IS NULL
+
+-- Clubs that no student has joined: Debating Club
+SELECT C.CNAME FROM JOINCLUB J RIGHT JOIN CLUB C ON J.CID = C.CID
+WHERE J.CID IS NULL
+</code></pre>
+<p>The same results can be obtained with the sub-queries <code>NOT IN</code> or <code>NOT EXISTS</code>; see section 2.11.</p>
+<p><strong>Full outer join</strong> example: TEACHER has Mr Lam (T1), Ms Cheung (T2) and Mr Chan (T3); in CLUB, the Chess Club has no teacher in charge (TID is NULL). <code>SELECT T.TNAME, C.CNAME FROM TEACHER T FULL JOIN CLUB C ON T.TID = C.TID</code> gives the three matched rows plus two more: "Mr Chan, NULL" and "NULL, Chess Club".</p>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2024 P2A 1(d)] List the names of staff members who have not entered any rooms: <code>SELECT SNAME FROM ____ LEFT JOIN ____ ON ____ WHERE ____</code></strong></p>
+<p>✔ <code>SELECT SNAME FROM STAFF S LEFT JOIN TRAN T ON S.SID = T.SID WHERE T.SID IS NULL</code>; the last condition may also use T.RID, T.TID or T.TDATE.</p>
+<p>✘ The HKEAA reported that candidates demonstrated weakness in understanding the outer join operation and the NULL condition.</p>
+</blockquote>
+<!-- -->
+
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2023 P2A 1(c)] List the identity codes and joining dates of members who have no booking records.</strong></p>
+<p>✔ <code>SELECT MID, JDATE FROM MEMBER WHERE MID NOT IN (SELECT MID FROM BOOKING)</code>, or an outer join.</p>
+<p>✘ The HKEAA reported that less than half of the candidates provided the condition for "no booking records" properly.</p>
+</blockquote>
+<p>[Sample Paper P2 Section A 5(b)] List the employees who cannot drive any bus route: <code>SELECT EMPLOYEE.EID, ENAME FROM EMPLOYEE LEFT OUTER JOIN DRIVER ON EMPLOYEE.EID = DRIVER.EID WHERE DRIVER.BID IS NULL</code>.</p>
+<h2 id="en-211-sub-queries"><span class="sec-num">2.11</span><span class="sec-title">Sub-queries</span></h2>
+<p>A <strong>sub-query</strong> is a SELECT statement placed inside another SQL statement and enclosed in brackets. The curriculum requires one sub-level only: a sub-query does not contain another sub-query.</p>
+<p><strong>Sample tables</strong></p>
+<p>PRODUCT</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>PID</th>
+<th>PNAME</th>
+<th>CATEGORY</th>
+<th>PRICE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P1</td>
+<td>Notebook</td>
+<td>Stationery</td>
+<td>25</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>Pen</td>
+<td>Stationery</td>
+<td>8</td>
+</tr>
+<tr>
+<td>P3</td>
+<td>Calculator</td>
+<td>Electronics</td>
+<td>160</td>
+</tr>
+<tr>
+<td>P4</td>
+<td>Earphones</td>
+<td>Electronics</td>
+<td>299</td>
+</tr>
+<tr>
+<td>P5</td>
+<td>Water bottle</td>
+<td>Living</td>
+<td>60</td>
+</tr>
+</tbody>
+</table>
+</div><p>ORDERS</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>OID</th>
+<th>PID</th>
+<th>QTY</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>O1</td>
+<td>P1</td>
+<td>10</td>
+</tr>
+<tr>
+<td>O2</td>
+<td>P3</td>
+<td>2</td>
+</tr>
+<tr>
+<td>O3</td>
+<td>P1</td>
+<td>5</td>
+</tr>
+<tr>
+<td>O4</td>
+<td>P4</td>
+<td>1</td>
+</tr>
+<tr>
+<td>O5</td>
+<td>P2</td>
+<td>30</td>
+</tr>
+<tr>
+<td>O6</td>
+<td>P3</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</div><div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Use</th>
+<th>SQL</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IN: in the sub-query result</td>
+<td><code>SELECT PNAME FROM PRODUCT WHERE PID IN (SELECT PID FROM ORDERS)</code></td>
+<td>Notebook, Pen, Calculator, Earphones</td>
+</tr>
+<tr>
+<td>NOT IN: not in the sub-query result</td>
+<td><code>SELECT PNAME FROM PRODUCT WHERE PID NOT IN (SELECT PID FROM ORDERS)</code></td>
+<td>Water bottle</td>
+</tr>
+<tr>
+<td>Comparison with an aggregate</td>
+<td><code>SELECT PNAME FROM PRODUCT WHERE PRICE = (SELECT MAX(PRICE) FROM PRODUCT)</code></td>
+<td>Earphones</td>
+</tr>
+<tr>
+<td>Above the average</td>
+<td><code>SELECT PNAME FROM PRODUCT WHERE PRICE &gt; (SELECT AVG(PRICE) FROM PRODUCT)</code></td>
+<td>Calculator, Earphones (average price 110.4)</td>
+</tr>
+<tr>
+<td>Grouping in the sub-query</td>
+<td><code>SELECT PNAME FROM PRODUCT WHERE PID IN (SELECT PID FROM ORDERS GROUP BY PID HAVING COUNT(*) &gt; 1)</code></td>
+<td>Notebook, Calculator</td>
+</tr>
+</tbody>
+</table>
+</div><ul>
+<li>A sub-query used with IN may return <strong>one field only</strong>.</li>
+<li>In a comparison with <code>=</code>, <code>&gt;</code> and so on, the sub-query must return <strong>one value only</strong>, usually the result of an aggregate function.</li>
+<li><code>WHERE PRICE = MAX(PRICE)</code> is <strong>wrong</strong>: an aggregate function cannot be placed directly in WHERE and must be written as a sub-query.</li>
+</ul>
+<p><strong>ANY and ALL</strong>: compare with a set of values returned by a sub-query.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Form</th>
+<th>Meaning</th>
+<th>Example (electronic products cost 160 and 299)</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&gt; ANY (…)</code></td>
+<td>Greater than <strong>at least one</strong> value, i.e. greater than the minimum</td>
+<td><code>PRICE &lt; ANY (SELECT PRICE FROM PRODUCT WHERE CATEGORY = 'Electronics')</code>, i.e. less than 299</td>
+<td>Notebook, Pen, Calculator, Water bottle</td>
+</tr>
+<tr>
+<td><code>&gt; ALL (…)</code></td>
+<td>Greater than <strong>every</strong> value, i.e. greater than the maximum</td>
+<td><code>PRICE &lt; ALL (SELECT PRICE FROM PRODUCT WHERE CATEGORY = 'Electronics')</code>, i.e. less than 160</td>
+<td>Notebook, Pen, Water bottle</td>
+</tr>
+</tbody>
+</table>
+</div><p><code>= ANY (…)</code> does the same as <code>IN (…)</code>.</p>
+<p><strong>EXISTS and NOT EXISTS</strong>: check whether a sub-query returns any record. The sub-query usually refers to a field of the outer query and runs once for each record the outer query processes.</p>
+<pre><code class="language-sql">-- Products with at least one order of 10 or more: Notebook, Pen
+SELECT PNAME FROM PRODUCT P
+WHERE EXISTS (SELECT * FROM ORDERS O WHERE O.PID = P.PID AND O.QTY &gt;= 10)
+
+-- Products that have never been ordered: Water bottle
+SELECT PNAME FROM PRODUCT P
+WHERE NOT EXISTS (SELECT * FROM ORDERS O WHERE O.PID = P.PID)
+</code></pre>
+<p><strong>Sub-queries and joins</strong>: many queries can be written either way, and functionally equivalent methods score the same marks. But to output fields from several tables you need a join, and to compare with an aggregate result (such as the highest price) you need a sub-query.</p>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2025 P2A 5(b)(iii)] List the identity codes of guests who have booked the hotel room with the highest room price. RM stores rooms and prices; BK stores bookings.</strong></p>
+<p>✔ <code>SELECT DISTINCT GID FROM RM A, BK WHERE A.RN = BK.RN AND A.PRICE IN (SELECT MAX(PRICE) FROM RM)</code> (<code>IN</code> may be written as <code>=</code>).</p>
+<p>✘ The HKEAA reported that more than half of the candidates encountered difficulties with sub-queries and the MAX aggregate function; the marking principles reject <code>WHERE PRICE = MAX(PRICE)</code>.</p>
+</blockquote>
+<!-- -->
+
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2024 P2A 1(e)] Some rooms have more than 100 entry records in TRAN. List the room types of these rooms.</strong></p>
+<p>✔ <code>SELECT DISTINCT RTYPE FROM ROOM WHERE RID IN (SELECT RID FROM TRAN GROUP BY RID HAVING COUNT(*) &gt; 100)</code>. The marking scheme gives one mark each for the join or sub-query, GROUP BY with HAVING, and overall correctness.</p>
+<p>✘ The HKEAA reported that candidates generally had difficulties in providing proper sub-queries and using GROUP BY and HAVING correctly.</p>
+</blockquote>
+<!-- -->
+
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2025 P2A 2(b)] T1 and T2 have the same structure (CID, AID, AMT). After <code>UPDATE T1 SET T1.AMT = 0 WHERE T1.AMT &gt; 0 AND (EXISTS (SELECT * FROM T2 WHERE T1.CID = T2.CID AND T2.AMT = 0))</code> is executed, list the updated record(s) in T1.</strong></p>
+<p>✔ Check each record of T1: AMT must be greater than 0, and T2 must have at least one record with the same CID and AMT 0. The answer must give the updated record and its new AMT (0). The HKEAA rated this "Good".</p>
+</blockquote>
+<h2 id="en-212-set-operations"><span class="sec-num">2.12</span><span class="sec-title">Set operations</span></h2>
+<p>Set operations combine the results of two SELECT statements. The two SELECT statements must return <strong>the same number of fields</strong>, and the corresponding fields must have compatible data types.</p>
+<p><strong>Sample tables</strong>: SWIM records the students in the swimming gala, S1, S2 and S3; RUN records those in the athletics meet, S2, S4, S3 and S5.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Meaning</th>
+<th>Result of <code>SELECT SID FROM SWIM … SELECT SID FROM RUN</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>UNION</code></td>
+<td>Union, <strong>removing duplicate</strong> rows</td>
+<td>S1, S2, S3, S4, S5 (5 rows)</td>
+</tr>
+<tr>
+<td><code>UNION ALL</code></td>
+<td>Union, keeping duplicate rows</td>
+<td>7 rows</td>
+</tr>
+<tr>
+<td><code>INTERSECT</code></td>
+<td>Intersection: rows in both results</td>
+<td>S2, S3</td>
+</tr>
+<tr>
+<td><code>MINUS</code></td>
+<td>Difference: rows in the first result but not in the second</td>
+<td>S1</td>
+</tr>
+</tbody>
+</table>
+</div><p>The order of the two statements in MINUS matters: <code>SELECT SID FROM RUN MINUS SELECT SID FROM SWIM</code> gives S4 and S5.</p>
+<p><strong>Duplicate rows means all fields are the same.</strong> When several fields are selected, UNION removes rows as duplicates, and INTERSECT keeps them, only if every field has the same value.</p>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2025 P2A 2(a)] T1 and T2 each have four records with the same structure; exactly one record is the same in both. How many records are listed after <code>SELECT * FROM T1 UNION SELECT CID, AID, AMT FROM T2</code>?</strong></p>
+<p>✔ 7. By default UNION keeps only distinct rows: 4 + 4 − 1 = 7.</p>
+<p>✘ The HKEAA rated this "Poor": nearly all candidates were unable to use the UNION command, and weaker candidates did not understand that UNION selects only distinct values by default.</p>
+</blockquote>
+<p>[2024 P2A 4(b)] The district tables D1 and D2 each have 5 records, and 3 student IDs appear in both. <code>SELECT SID FROM D1 UNION SELECT SID FROM D2</code> outputs 7 records; with UNION ALL it outputs 10.</p>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2025 P2A 5(c)] Briefly describe the use of <code>SELECT RN FROM RM MINUS SELECT RN FROM BK</code>.</strong></p>
+<p>✔ To find the hotel rooms that have no booking records.</p>
+<p>✘ The HKEAA reported that weaker candidates confused MINUS and MIN.</p>
+</blockquote>
+<!-- -->
+
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[2024 P2A 1(g)] What is the purpose of this statement? <code>SELECT SID FROM STAFF S WHERE DEPT = 'Physics' AND EXISTS (SELECT S.SID FROM TRAN T WHERE S.SID = T.SID) MINUS SELECT SID FROM TRAN WHERE TDATE = '28/7/2023'</code></strong></p>
+<p>✔ To list the staff of the Physics department who have entered rooms but did not enter any room on 28/7/2023. The answer must include both points: "Physics department" and "did not enter on that date". The HKEAA rated this "Good".</p>
+</blockquote>
+<p>[2023 P2A 1(e)(iii)] List the identity codes of members who have not referred anyone: <code>SELECT MID FROM MEMBER MINUS SELECT MID FROM V1</code> (V1 is the view in section 2.9, which contains only members who have referred others).</p>
+<h2 id="en-213-views"><span class="sec-num">2.13</span><span class="sec-title">Views</span></h2>
+<p>A <strong>view</strong> is a virtual table defined by a SELECT statement. A view stores no data itself; each time it is used, it takes the latest data from the underlying tables according to its definition.</p>
+<pre><code class="language-sql">CREATE VIEW SALES AS
+SELECT PID, SUM(QTY) AS TOTALQTY FROM ORDERS GROUP BY PID
+
+-- A view can be queried and joined like a table: find the best-selling product
+SELECT PNAME, TOTALQTY FROM PRODUCT, SALES
+WHERE PRODUCT.PID = SALES.PID
+AND TOTALQTY = (SELECT MAX(TOTALQTY) FROM SALES)
+-- Result: Pen 30
+
+DROP VIEW SALES   -- removes the view; the data in the tables are not affected
+</code></pre>
+<p>(The data come from ORDERS in section 2.11.)</p>
+<p><strong>Benefits of views</strong></p>
+<ul>
+<li>They simplify complex queries: joins and grouping are written once in the view and need not be repeated.</li>
+<li>They allow grouping first and comparing the results afterwards, such as finding each product's total sales and then the maximum in the example above.</li>
+<li>They protect data privacy: users access only the view, which hides sensitive fields or other users' records; see section 3.12 of <a href="c.html">Topic c</a>.</li>
+</ul>
+<p>Modifying data through a view has many restrictions, so views are generally treated as read-only.</p>
+<blockquote class="callout callout-warn">
+<p>⚠ <strong>[Sample Paper P2 Section A 5(d)] Views V1 and V2 calculate the average salaries (AVG1, AVG2) of drivers who started work before and on or after 1/1/2005. (i) What is the purpose of V1? (ii) Write an SQL statement to find AVG1 − AVG2.</strong></p>
+<p>✔ (i) To find the average salary of drivers who joined the company before 1/1/2005; (ii) <code>SELECT AVG1 - AVG2 FROM V1, V2</code>. Each view has only one row, so listing both in FROM lets the subtraction be done in one row.</p>
+</blockquote>
+<p>[2012 Practice Paper P2A 3(e)] List the name of the district with the most restaurants rated above 3: first create the view <code>CREATE VIEW DISTRICT_VIEW AS SELECT DISTRICT, COUNT(*) AS CNT FROM RES WHERE RATING &gt; 3 GROUP BY DISTRICT</code>, then <code>SELECT DISTNAME FROM DISTRICT_VIEW, DIST WHERE CNT = (SELECT MAX(CNT) FROM DISTRICT_VIEW) AND DIST.DISTRICT = DISTRICT_VIEW.DISTRICT</code>.</p>
+<h2 id="en-214-common-sql-mistakes"><span class="sec-num">2.14</span><span class="sec-title">Common SQL mistakes</span></h2>
+<p>Compiled from the 2025 Paper 2 Section A marking principles and the HKEAA comments on candidates' performance in 2023 to 2025:</p>
+<ul>
+<li>✘ Numbers in quotes, such as <code>JYEAR = '2012'</code>, while quotes are missing around text and dates.</li>
+<li>✘ ≤, ≥ or ≠ in place of <code>&lt;=</code>, <code>&gt;=</code> or <code>&lt;&gt;</code>.</li>
+<li>✘ Improper structure, such as <code>… LIKE 'B88%' AND ORDER BY SD DESC</code>.</li>
+<li>✘ Aggregate functions in WHERE, such as <code>WHERE PRICE = MAX(PRICE)</code> or <code>WHERE COUNT(*) &gt; 1</code>; use a sub-query or HAVING instead.</li>
+<li>✘ Testing for NULL with <code>= NULL</code> instead of <code>IS NULL</code>.</li>
+<li>✘ Not knowing that UNION removes duplicate rows; confusing MINUS with MIN.</li>
+<li>✘ Leaving out SUM when a total is needed, so that individual records are listed.</li>
+<li>✘ Vague descriptions of the purpose of an SQL statement: state every condition, such as "Physics department" and "did not enter on that date".</li>
+<li>✔ Functionally equivalent methods are accepted, such as a join instead of a sub-query, <code>LIKE 'B88*'</code> instead of <code>LIKE 'B88%'</code>, and redundant joins that do not change the result; very minor mistakes are also accepted.</li>
+</ul>
+<p><strong>Practical suggestion</strong>: in any SQL system (such as MySQL or SQLite), create the sample tables on this page, run each statement and compare the output with this page; then change the HKEAA style to that system's style (for example MINUS to EXCEPT, dates to <code>'2025-03-26'</code>) and note the differences.</p>
+<h2 id="en-215-self-test"><span class="sec-num">2.15</span><span class="sec-title">Self-test</span></h2>
+<details class="quiz">
+<summary>1. Write SQL to add a field EMAIL of at most 40 characters to the table CUST.</summary>
+<p><code>ALTER TABLE CUST ADD EMAIL VARCHAR(40)</code></p>
+</details>
+<details class="quiz">
+<summary>2. What is the difference between <code>DELETE FROM CUST</code> and <code>DROP TABLE CUST</code>?</summary>
+<p><code>DELETE FROM CUST</code> deletes all records in the table but the table structure remains; <code>DROP TABLE CUST</code> removes the whole table together with its structure.</p>
+</details>
+<details class="quiz">
+<summary>3. The table NURSE has NID, NAME and PT (pay point). Write SQL to increase by 1 the pay point of every nurse whose pay point is below 18.</summary>
+<p><code>UPDATE NURSE SET PT = PT + 1 WHERE PT &lt; 18</code></p>
+</details>
+<details class="quiz">
+<summary>4. Using CAMP in section 2.5, write SQL to list the names of camps whose fee is from 500 to 1000 inclusive, in descending order of days. Give the result.</summary>
+<p><code>SELECT CNAME FROM CAMP WHERE FEE BETWEEN 500 AND 1000 ORDER BY DAYS DESC</code>. Result: Photography Camp (3 days), Climbing Camp (2 days).</p>
+</details>
+<details class="quiz">
+<summary>5. Using STAFF in section 2.6, what is the result of <code>SELECT COUNT(*), COUNT(PHONE) FROM STAFF</code>? Why are the two numbers different?</summary>
+<p>5 and 3. <code>COUNT(*)</code> counts all records; <code>COUNT(PHONE)</code> counts only records whose PHONE is not NULL, and two staff members have a NULL PHONE.</p>
+</details>
+<details class="quiz">
+<summary>6. Find and correct the error: <code>SELECT CLASS, SUM(AMT) FROM DONATE WHERE SUM(AMT) &gt; 80 GROUP BY CLASS</code></summary>
+<p>An aggregate function cannot be placed in WHERE. Correct version: <code>SELECT CLASS, SUM(AMT) FROM DONATE GROUP BY CLASS HAVING SUM(AMT) &gt; 80</code>.</p>
+</details>
+<details class="quiz">
+<summary>7. Using the tables in section 2.9, write SQL to list the names and classes of students who have joined the Astronomy Club.</summary>
+<p><code>SELECT SNAME, CLASS FROM STUDENT S, JOINCLUB J, CLUB C WHERE S.SID = J.SID AND J.CID = C.CID AND C.CNAME = 'Astronomy Club'</code>. Result: Chan Hiu Ming 4A, Wong Tsz Hin 4A.</p>
+</details>
+<details class="quiz">
+<summary>8. How many rows does <code>SELECT * FROM STUDENT, JOINCLUB</code> output? Why?</summary>
+<p>16 rows. There is no join condition, so each of the 4 records of STUDENT is paired with each of the 4 records of JOINCLUB: 4 × 4 = 16.</p>
+</details>
+<details class="quiz">
+<summary>9. Write SQL in two ways to list the names of students who have joined no club.</summary>
+<p>Outer join: <code>SELECT SNAME FROM STUDENT S LEFT JOIN JOINCLUB J ON S.SID = J.SID WHERE J.SID IS NULL</code>. Sub-query: <code>SELECT SNAME FROM STUDENT WHERE SID NOT IN (SELECT SID FROM JOINCLUB)</code>.</p>
+</details>
+<details class="quiz">
+<summary>10. Using the tables in section 2.11, write SQL to list the name of the cheapest product. Why can it not be written as <code>WHERE PRICE = MIN(PRICE)</code>?</summary>
+<p><code>SELECT PNAME FROM PRODUCT WHERE PRICE = (SELECT MIN(PRICE) FROM PRODUCT)</code>; the result is Pen. An aggregate function cannot be placed directly in WHERE: MIN has not been calculated when WHERE is processed, so a sub-query must find the lowest price first.</p>
+</details>
+<details class="quiz">
+<summary>11. SWIM has 3 student IDs and RUN has 4, of which 2 are the same. How many rows do <code>UNION</code>, <code>UNION ALL</code> and <code>INTERSECT</code> each output?</summary>
+<p>UNION: 3 + 4 − 2 = 5 rows; UNION ALL: 7 rows; INTERSECT: 2 rows.</p>
+</details>
+<details class="quiz">
+<summary>12. State two benefits of using views.</summary>
+<p>They simplify complex queries, so joins and grouping need not be rewritten each time; they allow calculating first and comparing afterwards (such as finding each group's total and then the maximum); users see only the fields and records in the view, which protects data privacy. (Any two)</p>
+</details></div><nav class="prevnext"><a class="pn pn-prev" href="../elective-a/a.html"><span class="pn-dir"><span class="lang-zh">← 上一頁</span><span class="lang-en" lang="en">← Previous</span></span><span class="pn-title"><span class="lang-zh">選修二甲 課題 a：關聯式數據庫概念</span><span class="lang-en" lang="en">Elective 2A Topic a: Relational Database Concepts</span></span></a><a class="pn pn-next" href="../elective-a/c.html"><span class="pn-dir"><span class="lang-zh">下一頁 →</span><span class="lang-en" lang="en">Next →</span></span><span class="pn-title"><span class="lang-zh">選修二甲 課題 c：數據庫設計方法</span><span class="lang-en" lang="en">Elective 2A Topic c: Database Design Methodology</span></span></a></nav>
     </article>
     <footer class="footer">
       <p class="lang-zh">內容依據課程發展議會與考評局《資訊及通訊科技課程及評估指引》及考評局公開資料整理，僅供溫習參考。</p>
@@ -1324,7 +2501,7 @@ DROP VIEW SALES   -- 刪除檢視，原本數據表的數據不受影響
   </main>
 
   <aside class="toc-rail">
-<nav class="toc lang-zh" aria-label="本頁目錄"><div class="toc-title">本頁目錄</div><ol><li><a href="#21-課程要求">2.1 課程要求</a></li><li><a href="#22-sql-的寫法與考評局指令清單">2.2 SQL 的寫法與考評局指令清單</a></li><li><a href="#23-修改數據表結構">2.3 修改數據表結構</a></li><li><a href="#24-增加刪除及修改數據">2.4 增加、刪除及修改數據</a></li><li><a href="#25-選取篩選及排序">2.5 選取、篩選及排序</a></li><li><a href="#26-運算符及算式">2.6 運算符及算式</a></li><li><a href="#27-內置函數">2.7 內置函數</a></li><li><a href="#28-分組group-by-與-having">2.8 分組：GROUP BY 與 HAVING</a></li><li><a href="#29-查詢多個數據表">2.9 查詢多個數據表</a></li><li><a href="#210-外連接">2.10 外連接</a></li><li><a href="#211-子查詢">2.11 子查詢</a></li><li><a href="#212-集合運算">2.12 集合運算</a></li><li><a href="#213-檢視">2.13 檢視</a></li><li><a href="#214-sql-常見失分">2.14 SQL 常見失分</a></li><li><a href="#215-自我檢測">2.15 自我檢測</a></li></ol></nav>
+<nav class="toc lang-zh" aria-label="本頁目錄"><div class="toc-title">本頁目錄</div><ol><li><a href="#21-課程要求">2.1 課程要求</a></li><li><a href="#22-sql-的寫法與考評局指令清單">2.2 SQL 的寫法與考評局指令清單</a></li><li><a href="#23-修改數據表結構">2.3 修改數據表結構</a></li><li><a href="#24-增加刪除及修改數據">2.4 增加、刪除及修改數據</a></li><li><a href="#25-選取篩選及排序">2.5 選取、篩選及排序</a></li><li><a href="#26-運算符及算式">2.6 運算符及算式</a></li><li><a href="#27-內置函數">2.7 內置函數</a></li><li><a href="#28-分組group-by-與-having">2.8 分組：GROUP BY 與 HAVING</a></li><li><a href="#29-查詢多個數據表">2.9 查詢多個數據表</a></li><li><a href="#210-外連接">2.10 外連接</a></li><li><a href="#211-子查詢">2.11 子查詢</a></li><li><a href="#212-集合運算">2.12 集合運算</a></li><li><a href="#213-檢視">2.13 檢視</a></li><li><a href="#214-sql-常見失分">2.14 SQL 常見失分</a></li><li><a href="#215-自我檢測">2.15 自我檢測</a></li></ol></nav><nav class="toc lang-en" lang=en aria-label="On this page"><div class="toc-title">On this page</div><ol><li><a href="#en-21-curriculum-requirements">2.1 Curriculum requirements</a></li><li><a href="#en-22-writing-sql-and-the-hkeaa-command-list">2.2 Writing SQL and the HKEAA command list</a></li><li><a href="#en-23-modifying-the-structure-of-tables">2.3 Modifying the structure of tables</a></li><li><a href="#en-24-adding-deleting-and-modifying-data">2.4 Adding, deleting and modifying data</a></li><li><a href="#en-25-selecting-filtering-and-sorting">2.5 Selecting, filtering and sorting</a></li><li><a href="#en-26-operators-and-expressions">2.6 Operators and expressions</a></li><li><a href="#en-27-built-in-functions">2.7 Built-in functions</a></li><li><a href="#en-28-grouping-group-by-and-having">2.8 Grouping: GROUP BY and HAVING</a></li><li><a href="#en-29-querying-multiple-tables">2.9 Querying multiple tables</a></li><li><a href="#en-210-outer-joins">2.10 Outer joins</a></li><li><a href="#en-211-sub-queries">2.11 Sub-queries</a></li><li><a href="#en-212-set-operations">2.12 Set operations</a></li><li><a href="#en-213-views">2.13 Views</a></li><li><a href="#en-214-common-sql-mistakes">2.14 Common SQL mistakes</a></li><li><a href="#en-215-self-test">2.15 Self-test</a></li></ol></nav>
   </aside>
 </div>
 
