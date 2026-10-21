@@ -238,22 +238,32 @@
               "id": "a",
               "title": "關聯式數據庫概念",
               "en": "Relational Database Concepts",
-              "hours": 6
+              "hours": 6,
+              "chapters": "課本第 1 章",
+              "chapters_en": "Textbook Ch. 1",
+              "md": "elective-a/a.md"
             },
             {
               "id": "b",
               "title": "結構化查詢語言",
               "en": "Structured Query Language (SQL)",
-              "hours": 18
+              "hours": 18,
+              "chapters": "課本第 2、3 章",
+              "chapters_en": "Textbook Ch. 2 & 3",
+              "md": "elective-a/b.md"
             },
             {
               "id": "c",
               "title": "數據庫設計方法",
               "en": "Database Design Methodology",
-              "hours": 14
+              "hours": 14,
+              "chapters": "課本第 4、5 章",
+              "chapters_en": "Textbook Ch. 4 & 5",
+              "md": "elective-a/c.md"
             }
           ],
-          "code_en": "2A"
+          "code_en": "2A",
+          "overview": "elective-a/index.md"
         },
         {
           "id": "elective-b",
