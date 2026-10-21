@@ -617,6 +617,17 @@ svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width:
   .lang-switch button { padding: 0 .45rem; }
 }
 
+/* ------------------------------------------------------------ ER diagrams */
+.prose figure.erd { margin: 1.4rem 0; overflow-x: auto; }
+.prose figure.erd svg { display: block; width: 100%; max-width: 660px; height: auto; min-width: 480px; margin: 0 auto; stroke: none; fill: none; }
+.erd .shape { fill: var(--card); stroke: var(--text); stroke-width: 1.6; }
+.erd .link { stroke: var(--text); stroke-width: 1.6; fill: none; }
+.erd .mark { stroke: var(--text); stroke-width: 2.2; }
+.erd text { stroke: none; fill: var(--text); font-family: var(--sans); font-size: 16px; text-anchor: middle; }
+.erd text.lab { text-anchor: start; font-size: 15px; }
+.erd text.card { font-size: 15px; font-weight: 600; }
+.prose figure.erd figcaption { font-family: var(--sans); font-size: .82rem; color: var(--muted); text-align: center; margin-top: .5rem; line-height: 1.6; }
+
 /* ------------------------------------------------------------ print */
 @media print {
   :root { --paper: #fff; --paper-2: #fff; --card: #fff; }
