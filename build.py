@@ -2,7 +2,7 @@
 """Build the bilingual static revision site.
 
 Source:  site/site.json (structure), content/**/*.md (Chinese notes), content/**/*.en.md (English notes),
-         site/template.html, site/assets/*
+         site/template.html, site/assets/*, site/sim/* (interactive simulations, copied as is)
 Output:  docs/  (served by GitHub Pages: branch → /docs)
 
 Every page carries both languages; the 中文 / EN switch in the top bar toggles them without reloading.
@@ -483,6 +483,7 @@ def main():
         shutil.rmtree(OUT)
     OUT.mkdir()
     shutil.copytree(SITE / "assets", OUT / "assets")
+    shutil.copytree(SITE / "sim", OUT / "sim")
     (OUT / ".nojekyll").write_text("")
     index = []
     for page in pages:
