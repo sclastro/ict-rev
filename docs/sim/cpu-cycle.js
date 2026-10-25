@@ -583,7 +583,7 @@ const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matc
 
 // ---------------------------------------------------------------- 3D scene
 
-const BUS_COLOR = { addr: 0x4ea8ff, data: 0x3ddc84, ctrl: 0xff5c7a };
+const BUS_COLOR = { addr: 0x1f6fd1, data: 0x15925a, ctrl: 0xc8283f };
 const BOARD_Y = 0.1;
 const TRACE_Y = BOARD_Y + 0.015;
 
@@ -622,7 +622,7 @@ function createScene(container) {
   controls.minDistance = 3;
   controls.maxDistance = 40;
 
-  scene.add(new THREE.HemisphereLight(0xbfd4ff, 0x1a1030, 0.9));
+  scene.add(new THREE.HemisphereLight(0xfffaf0, 0x8a8070, 1.1));
   const key = new THREE.DirectionalLight(0xffffff, 1.6);
   key.position.set(6, 14, 8);
   scene.add(key);
@@ -659,11 +659,11 @@ function createScene(container) {
   const FONT = '"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif';
 
   // desk
-  const desk = new THREE.Mesh(new THREE.PlaneGeometry(80, 80), std(0x0c1222, { roughness: 0.95 }));
+  const desk = new THREE.Mesh(new THREE.PlaneGeometry(80, 80), std(0xe9e3d8, { roughness: 0.95 }));
   desk.rotation.x = -Math.PI / 2;
   desk.position.y = -0.12;
   scene.add(desk);
-  const grid = new THREE.GridHelper(60, 60, 0x1d2a4a, 0x141d36);
+  const grid = new THREE.GridHelper(60, 60, 0xd3ccc0, 0xddd7cc);
   grid.position.y = -0.11;
   scene.add(grid);
 
@@ -844,7 +844,7 @@ function createScene(container) {
     const buses = name === "ssd-ram" ? ["data"] : ["addr", "data", "ctrl"];
     buses.forEach((bus) => {
       const line = offsetLine(pts, OFF[bus]).map(([x, z]) => new THREE.Vector3(x, TRACE_Y, z));
-      const mat = new THREE.MeshStandardMaterial({ color: BUS_COLOR[bus], emissive: BUS_COLOR[bus], emissiveIntensity: 0.25, roughness: 0.4 });
+      const mat = new THREE.MeshStandardMaterial({ color: BUS_COLOR[bus], emissive: BUS_COLOR[bus], emissiveIntensity: 0.35, roughness: 0.4 });
       traceMats[bus].push({ mat, path: name });
       for (let k = 0; k < line.length - 1; k++) {
         const a = line[k], b = line[k + 1];
@@ -913,11 +913,11 @@ function createScene(container) {
   }
   function clearPulses() {
     pulses.splice(0).forEach(removePulse);
-    Object.keys(traceMats).forEach((bus) => traceMats[bus].forEach((t) => { t.mat.emissiveIntensity = 0.25; }));
+    Object.keys(traceMats).forEach((bus) => traceMats[bus].forEach((t) => { t.mat.emissiveIntensity = 0.35; }));
     cableMat.emissiveIntensity = 0;
   }
   function setActive(bus, path, on) {
-    traceMats[bus].forEach((t) => { if (t.path === path) t.mat.emissiveIntensity = on ? 1.6 : 0.25; });
+    traceMats[bus].forEach((t) => { if (t.path === path) t.mat.emissiveIntensity = on ? 1.4 : 0.35; });
     if (path === "cpu-kbd" || path === "cpu-mon") cableMat.emissiveIntensity = on ? 0.6 : 0;
   }
 
