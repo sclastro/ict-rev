@@ -5,6 +5,8 @@
 
 For the paper structure and the HKEAA's answering principles, see [Exam Strategies: Paper Structure and Answering Principles](../exam/structure.html).
 
+Interactive simulation: [How does a program run inside a computer?](../sim/cpu-cycle.html) shows the fetch-decode-execute cycle step by step on a 3D motherboard (Chinese interface for now). Use it with sections 1.5 and 1.6 of [Topic a](a.html).
+
 ## Module B in the new curriculum
 | Part | Module / option | Suggested hours |
 |---|---|---|
