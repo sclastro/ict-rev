@@ -142,7 +142,36 @@ function buildSteps(brief) {
   });
 
   steps.forEach((st, k) => { st.index = k; });
+  assignVoices(steps, brief);
   return steps;
+}
+
+// 每一步對應的旁白錄音編號（audio/<語言>/<編號>.mp3）；同一段錄音可用於多步
+const EXEC_VOICES = {
+  0: () => ["H1"],
+  1: () => ["L1", "L2", "L3"],
+  2: () => ["A1", "A2", "A3", "A4"],
+  3: () => ["S1", "S2", "S3"],
+  4: (i) => (i === 0 ? ["I1a", "I2", "I3", "I4a"] : ["I1b", "I2", "I3", "I4b"]),
+  5: () => ["O1", "O2", "O3"],
+};
+
+function assignVoices(steps, brief) {
+  const byGroup = new Map();
+  steps.forEach((st) => {
+    if (!byGroup.has(st.group)) byGroup.set(st.group, []);
+    byGroup.get(st.group).push(st);
+  });
+  byGroup.forEach((list, g) => {
+    if (g === "prep") { list.forEach((st, k) => { st.voice = "P" + (k + 1); }); return; }
+    if (g === "end") { list.forEach((st) => { st.voice = "Z1"; }); return; }
+    const fetch = list.filter((st) => st.phase === "fetch");
+    const exec = list.filter((st) => st.phase === "execute" || st.phase === "store");
+    fetch.forEach((st, k) => { st.voice = brief ? "FB" : `F${k + 1}${g === 0 ? "" : "s"}`; });
+    list.filter((st) => st.phase === "decode").forEach((st) => { st.voice = "D" + g; });
+    const ids = EXEC_VOICES[PROGRAM[g].op](g);
+    exec.forEach((st, k) => { st.voice = ids[k]; });
+  });
 }
 
 function fetchSteps(i, w, brief) {
@@ -408,7 +437,7 @@ const els = {
   inputBox: $("input-box"), inputNum: $("input-num"), inputLabel: $("input-label"), inputErr: $("input-err"),
   timeline: $("timeline"), progress: $("progress-bar"),
   play: $("btn-play"), prev: $("btn-prev"), next: $("btn-next"), reset: $("btn-reset"), view: $("btn-view"),
-  speed: $("opt-speed"), brief: $("opt-brief"), cam: $("opt-cam"), speak: $("opt-speak"),
+  speed: $("opt-speed"), brief: $("opt-brief"), cam: $("opt-cam"), voice: $("opt-voice"),
   src: $("src"), ram: $("ram").querySelector("tbody"), decoder: $("decoder"), aluOp: $("alu-op"),
 };
 
@@ -1052,7 +1081,7 @@ function cancelAll() {
   timers = [];
   clearFlyers();
   view.clearPulses();
-  if (window.speechSynthesis) window.speechSynthesis.cancel();
+  stopNarration();
 }
 
 const CPU_PARTS = ["PC", "IR", "MAR", "MDR", "ACC", "CU", "ALU", "decoder"];
@@ -1129,27 +1158,36 @@ function textOf(html) {
   return d.textContent.replace(/\s+/g, " ").trim();
 }
 
-let voice = null;
-function pickVoice() {
-  if (!window.speechSynthesis) return;
-  const vs = window.speechSynthesis.getVoices();
-  voice = vs.find((v) => /zh[-_]HK/i.test(v.lang)) || vs.find((v) => /yue/i.test(v.lang)) || vs.find((v) => /zh[-_]TW/i.test(v.lang)) || null;
-}
-if (window.speechSynthesis) {
-  pickVoice();
-  window.speechSynthesis.onvoiceschanged = pickVoice;
+// 旁白：播放預先錄製的 MP3；自動播放時等動畫和旁白都完成才進入下一步
+const narration = new Audio();
+narration.preload = "auto";
+let narrationDone = Promise.resolve(false);
+let audioUnlocked = false;   // 瀏覽器要求使用者先操作，才可以播放聲音
+
+function voiceLang() { return els.voice.value; }
+function voiceSrc(step) { return step && step.voice ? `audio/${voiceLang()}/${step.voice}.mp3` : null; }
+
+function stopNarration() {
+  narration.pause();
+  narration.onended = narration.onerror = null;
 }
 
-function speak(step, s, done) {
-  if (!els.speak.checked || !window.speechSynthesis) { done(false); return; }
-  const u = new SpeechSynthesisUtterance(step.title + "。" + textOf(step.body(s)));
-  u.lang = voice ? voice.lang : "zh-HK";
-  if (voice) u.voice = voice;
-  u.rate = 1.05 / Math.sqrt(speed());
+function startNarration(step) {
+  stopNarration();
+  const src = voiceSrc(step);
+  if (voiceLang() === "off" || !src || !audioUnlocked) { narrationDone = Promise.resolve(false); return; }
   const g = gen;
-  u.onend = () => { if (g === gen) done(true); };
-  u.onerror = () => { if (g === gen) done(false); };
-  window.speechSynthesis.speak(u);
+  narrationDone = new Promise((resolve) => {
+    narration.onended = () => resolve(g === gen);
+    narration.onerror = () => resolve(false);
+    narration.src = src;
+    narration.playbackRate = { "1.6": 0.9, "1": 1, "0.6": 1.15 }[els.speed.value] || 1;
+    const p = narration.play();
+    if (p) p.catch(() => resolve(false));
+  });
+  // 預先載入下一步的錄音
+  const next = voiceSrc(steps[step.index + 1]);
+  if (next && next !== src) { const pre = new Audio(); pre.preload = "auto"; pre.src = next; }
 }
 
 // 進入第 k 步；animate 為 true 時播放匯流排和寄存器的轉移動畫
@@ -1163,6 +1201,7 @@ function go(k, animate) {
   renderText(step, post);
   renderTimeline();
   scene3DHighlight(step, post);
+  startNarration(step);
   if (els.cam.checked) view.focus(step.focus, !animate);
 
   const groups = step.anims ? step.anims(post) : [];
@@ -1209,17 +1248,13 @@ function afterStep(step, s, animMs) {
     }
     if (matchMedia("(hover: none)").matches) els.inputBox.scrollIntoView({ block: "center", behavior: "smooth" });
     else els.inputNum.focus({ preventScroll: true });
-    speak(step, s, () => {});
     return;
   }
-  if (!playing) { speak(step, s, () => {}); return; }
+  if (!playing) return;
   const len = textOf(step.body(s)).length;
   const readMs = Math.max(3000, Math.min(9000, len * 70)) * speed();
-  if (els.speak.checked && window.speechSynthesis) {
-    speak(step, s, (ok) => later(advance, ok ? 700 : readMs));
-  } else {
-    later(advance, readMs);
-  }
+  const g = gen;
+  narrationDone.then((ok) => { if (g === gen) later(advance, ok ? 600 : readMs); });
 }
 
 function advance() {
@@ -1296,10 +1331,17 @@ els.brief.addEventListener("change", () => {
   setPlaying(false);
   go(Math.max(0, k), false);
 });
-els.speak.addEventListener("change", () => {
-  if (!els.speak.checked && window.speechSynthesis) window.speechSynthesis.cancel();
-  if (els.speak.checked && !window.speechSynthesis) { els.speak.checked = false; alert("這個瀏覽器不支援朗讀功能。"); }
+try {
+  const saved = localStorage.getItem("ictrev-sim-voice");
+  if (saved && [...els.voice.options].some((o) => o.value === saved)) els.voice.value = saved;
+} catch (e) {}
+els.voice.addEventListener("change", () => {
+  try { localStorage.setItem("ictrev-sim-voice", els.voice.value); } catch (e) {}
+  audioUnlocked = true;
+  startNarration(steps[cur]);
 });
+// 使用者第一次操作頁面後，才開始播放旁白
+["pointerdown", "keydown"].forEach((ev) => document.addEventListener(ev, () => { audioUnlocked = true; }, { capture: true }));
 document.addEventListener("keydown", (e) => {
   if (e.target.closest("input, select, textarea")) return;
   if (e.key === "ArrowRight") { e.preventDefault(); els.next.click(); }
