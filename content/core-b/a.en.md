@@ -90,6 +90,8 @@ The CPU executes each instruction in a **machine cycle**, also called the fetch-
 
 ✔ The CU is involved in every stage. The ALU only works in the execute stage of instructions that need a calculation.
 
+> **Interactive simulation: [How does a program run inside a computer?](../sim/cpu-cycle.html)** A 3D motherboard and a CPU diagram show, step by step, how a program that adds two numbers is loaded from secondary storage into main memory and then carried out through the fetch-decode-execute cycle. Students can watch how the PC, IR, MAR, MDR, ACC, ALU and the address, data and control buses change at every step, enter their own two numbers, and step through or play the whole run. (The simulation is in Chinese for now.)
+
 ## 1.7 CPU performance
 
 **1. Clock rate**
