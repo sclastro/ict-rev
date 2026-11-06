@@ -1460,6 +1460,12 @@ try {
   const saved = localStorage.getItem("ictrev-sim-voice");
   if (saved && [...els.voice.options].some((o) => o.value === saved)) els.voice.value = saved;
 } catch (e) {}
+// 未有選擇過時，旁白語言跟隨介面語言
+if (LANG === "en" && els.voice.value === "zh") {
+  let chosen = null;
+  try { chosen = localStorage.getItem("ictrev-sim-voice"); } catch (e) {}
+  if (!chosen) els.voice.value = "en";
+}
 els.voice.addEventListener("change", () => {
   try { localStorage.setItem("ictrev-sim-voice", els.voice.value); } catch (e) {}
   audioUnlocked = true;
