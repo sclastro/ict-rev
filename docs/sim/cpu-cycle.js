@@ -9,12 +9,12 @@ import { CSS2DRenderer, CSS2DObject } from "three/addons/CSS2DRenderer.js";
 // ---------------------------------------------------------------- program
 
 const OPS = {
-  0: { name: "HALT", zh: "停止" },
-  1: { name: "LOAD", zh: "載入" },
-  2: { name: "ADD", zh: "加" },
-  3: { name: "STORE", zh: "儲存" },
-  4: { name: "IN", zh: "輸入" },
-  5: { name: "OUT", zh: "輸出" },
+  0: { name: "HALT", zh: "停止", en: "halt" },
+  1: { name: "LOAD", zh: "載入", en: "load" },
+  2: { name: "ADD", zh: "加", en: "add" },
+  3: { name: "STORE", zh: "儲存", en: "store" },
+  4: { name: "IN", zh: "輸入", en: "input" },
+  5: { name: "OUT", zh: "輸出", en: "output" },
 };
 
 const PROGRAM = [
@@ -36,7 +36,7 @@ const SOURCE = [
 
 const VARS = { 10: "a", 11: "b", 12: "c" };
 const DEFAULT_INPUTS = [2, 3];
-const ORD = ["第一", "第二"];
+const ORD = () => T(["第一", "第二"], ["first", "second"]);
 
 const word = (ins) => (ins.op << 4) | ins.arg;
 const bin = (n, w) => (n >>> 0).toString(2).padStart(w, "0");
@@ -44,9 +44,10 @@ const b4 = (n) => bin(n, 4);
 const b8 = (n) => bin(n, 8);
 const mnem = (w) => {
   const op = w >> 4, arg = w & 15;
-  if (!OPS[op]) return "－";
+  if (!OPS[op]) return DASH();
   return op === 0 ? "HALT" : `${OPS[op].name} ${arg}`;
 };
+const DASH = () => T("－", "–");
 const c = (cls, t) => `<span class="${cls}">${t}</span>`;
 const A = (t) => c("k-addr", t);
 const D = (t) => c("k-data", t);
@@ -76,7 +77,17 @@ const inputOf = (k) => (inputs[k] ?? DEFAULT_INPUTS[k]);
 //         hl[], ram(s) -> {addr, kind}, focus, need }
 // anim item: { bus, path, dir, bits | sig, from2, to2 } 或 { xfer:[from,to,text,cls] }
 
-const PHASE_ZH = { prep: "準備", fetch: "提取", decode: "譯碼", execute: "執行", store: "儲存", end: "完成" };
+// 介面語言：zh（中文）或 en（英文）；與溫習站共用 localStorage 的 ictrev-lang
+let LANG = document.documentElement.dataset.lang === "en" ? "en" : "zh";
+const T = (zh, en) => (LANG === "en" ? en : zh);
+
+const PHASE_NAME = {
+  prep: ["準備", "Prepare"], fetch: ["提取", "Fetch"], decode: ["譯碼", "Decode"],
+  execute: ["執行", "Execute"], store: ["儲存", "Store"], end: ["完成", "Done"],
+};
+const phaseName = (p) => T(...PHASE_NAME[p]);
+const READ_SIG = () => T("讀取 READ", "READ");
+const WRITE_SIG = () => T("寫入 WRITE", "WRITE");
 
 function buildSteps(brief) {
   const steps = [];
@@ -85,17 +96,24 @@ function buildSteps(brief) {
   // -- 準備
   add({
     group: "prep", phase: "prep", focus: "ssd", hl: ["ssd"],
-    title: "準備：程式存放在輔助儲存設備",
+    title: T("準備：程式存放在輔助儲存設備", "Prepare: the program is stored in secondary storage"),
     run() {},
-    body: () => `<p>加法程式的機器碼一直存放在 SSD。SSD 屬<b>輔助儲存設備</b>：非易失性，關機後內容仍然保留，容量大，但存取速度遠比主記憶體慢。</p><p>CPU 不能直接從輔助儲存設備提取指令，因此程式必須先載入主記憶體。</p>`,
-    concept: () => `<table><tr><th></th><th>主記憶體（RAM）</th><th>輔助儲存設備（如 SSD）</th></tr>
+    body: () => T(
+      `<p>加法程式的機器碼一直存放在 SSD。SSD 屬<b>輔助儲存設備</b>：非易失性，關機後內容仍然保留，容量大，但存取速度遠比主記憶體慢。</p><p>CPU 不能直接從輔助儲存設備提取指令，因此程式必須先載入主記憶體。</p>`,
+      `<p>The machine code of the addition program is kept on the SSD. The SSD is a <b>secondary storage device</b>: it is non-volatile, so its contents are kept when the power is off, and it has a large capacity, but it is much slower than main memory.</p><p>The CPU cannot fetch instructions directly from secondary storage, so the program must first be loaded into main memory.</p>`),
+    concept: () => T(
+      `<table><tr><th></th><th>主記憶體（RAM）</th><th>輔助儲存設備（如 SSD）</th></tr>
       <tr><td>易失性</td><td>易失，關機後內容消失</td><td>非易失，關機後內容保留</td></tr>
       <tr><td>速度</td><td>快，CPU 可直接存取</td><td>較慢，CPU 不能直接存取</td></tr>
       <tr><td>容量</td><td>較小</td><td>較大</td></tr></table>`,
+      `<table><tr><th></th><th>Main memory (RAM)</th><th>Secondary storage (e.g. SSD)</th></tr>
+      <tr><td>Volatility</td><td>Volatile: contents are lost when the power is off</td><td>Non-volatile: contents are kept</td></tr>
+      <tr><td>Speed</td><td>Fast; the CPU accesses it directly</td><td>Slower; the CPU cannot access it directly</td></tr>
+      <tr><td>Capacity</td><td>Smaller</td><td>Larger</td></tr></table>`),
   });
   add({
     group: "prep", phase: "prep", focus: "ssdram", hl: ["ssd"],
-    title: "準備：開啟程式，程式載入主記憶體",
+    title: T("準備：開啟程式，程式載入主記憶體", "Prepare: the program is opened and loaded into main memory"),
     run(s) {
       PROGRAM.forEach((ins, i) => { s.ram[i] = word(ins); });
       s.loaded = true;
@@ -103,15 +121,23 @@ function buildSteps(brief) {
     },
     anims: () => [[{ bus: "data", path: "ssd-ram", dir: "out", bits: b8(word(PROGRAM[0])), from2: "dev-ssd", to2: "ram-r0" }]],
     ram: () => ({ addr: [0, 1, 2, 3, 4, 5, 6], kind: "write" }),
-    body: () => `<p>使用者開啟加法程式後，操作系統把程式的機器碼由 SSD 經匯流排系統複製到主記憶體位址 0 至 6，並預留位址 10、11、12 存放變數 a、b、c。</p><p>右方的 RAM 表顯示每個位址的內容：程式的<b>指令</b>和<b>數據</b>都以二進制存放在主記憶體。</p>`,
-    concept: () => `<p>每個記憶體位置都有獨一無二的<b>記憶體位址</b>。本模擬的位址匯流排有 4 條線，可表示 2⁴ = 16 個位址（0 至 15）；數據匯流排有 8 條線，每次傳送 8 位元。</p><p>每個指令由 4 位元操作碼和 4 位元操作數組成。這是教學用的簡化設計，真實 CPU 的指令格式複雜得多。</p>`,
+    body: () => T(
+      `<p>使用者開啟加法程式後，操作系統把程式的機器碼由 SSD 經匯流排系統複製到主記憶體位址 0 至 6，並預留位址 10、11、12 存放變數 a、b、c。</p><p>右方的 RAM 表顯示每個位址的內容：程式的<b>指令</b>和<b>數據</b>都以二進制存放在主記憶體。</p>`,
+      `<p>When the user opens the addition program, the operating system copies its machine code from the SSD to main memory addresses 0 to 6 through the bus system, and reserves addresses 10, 11 and 12 for the variables a, b and c.</p><p>The RAM table shows the contents of each address: both the <b>instructions</b> and the <b>data</b> of the program are stored in main memory in binary.</p>`),
+    concept: () => T(
+      `<p>每個記憶體位置都有獨一無二的<b>記憶體位址</b>。本模擬的位址匯流排有 4 條線，可表示 2⁴ = 16 個位址（0 至 15）；數據匯流排有 8 條線，每次傳送 8 位元。</p><p>每個指令由 4 位元操作碼和 4 位元操作數組成。這是教學用的簡化設計，真實 CPU 的指令格式複雜得多。</p>`,
+      `<p>Every memory location has a unique <b>memory address</b>. In this simulation the address bus has 4 lines, so it can represent 2⁴ = 16 addresses (0 to 15); the data bus has 8 lines and carries 8 bits at a time.</p><p>Each instruction consists of a 4-bit opcode and a 4-bit operand. This is a simplified design for teaching; real CPU instruction formats are far more complex.</p>`),
   });
   add({
     group: "prep", phase: "prep", focus: "cpu", hl: ["PC", "CU"],
-    title: "準備：PC 設為程式的起始位址",
+    title: T("準備：PC 設為程式的起始位址", "Prepare: the PC is set to the start address"),
     run(s) { s.pc = 0; },
-    body: () => `<p>操作系統把程式第一個指令的位址 <code>0</code> 放入<b>程式計數器（PC）</b>，CPU 由此開始第一個機器周期。</p>`,
-    concept: () => `<p class="warn">⚠ PC 存放的是<b>下一個</b>要提取的指令的記憶體<b>位址</b>，不是指令本身。</p>`,
+    body: () => T(
+      `<p>操作系統把程式第一個指令的位址 <code>0</code> 放入<b>程式計數器（PC）</b>，CPU 由此開始第一個機器周期。</p>`,
+      `<p>The operating system puts the address of the first instruction, <code>0</code>, into the <b>program counter (PC)</b>. The CPU starts its first machine cycle from here.</p>`),
+    concept: () => T(
+      `<p class="warn">⚠ PC 存放的是<b>下一個</b>要提取的指令的記憶體<b>位址</b>，不是指令本身。</p>`,
+      `<p class="warn">⚠ The PC holds the memory <b>address</b> of the <b>next</b> instruction to be fetched, not the instruction itself.</p>`),
   });
 
   // -- 每個指令：提取、譯碼、執行（及儲存）
@@ -127,9 +153,10 @@ function buildSteps(brief) {
   // -- 總結
   add({
     group: "end", phase: "end", focus: "full", hl: [],
-    title: "總結：程式執行完畢",
+    title: T("總結：程式執行完畢", "Summary: the program has finished"),
     run() {},
-    body: (s) => `<p>四行高階語言程式翻譯成 7 個機器碼指令，CPU 為每個指令各經歷一次機器周期，最後在顯示器輸出 <b>${s.acc}</b>。</p>
+    body: (s) => T(
+      `<p>四行高階語言程式翻譯成 7 個機器碼指令，CPU 為每個指令各經歷一次機器周期，最後在顯示器輸出 <b>${s.acc}</b>。</p>
       <table><tr><th>部件</th><th>在機器周期中的角色</th></tr>
       <tr><td>PC</td><td>存放下一個要提取的指令的位址；每次提取後加 1</td></tr>
       <tr><td>MAR</td><td>存放將要讀取或寫入的記憶體位址，經位址匯流排送出</td></tr>
@@ -138,7 +165,18 @@ function buildSteps(brief) {
       <tr><td>CU</td><td>參與每個階段：發出控制信號、譯碼、指示其他部件工作</td></tr>
       <tr><td>ALU 與 ACC</td><td>ALU 只在需要運算的指令（本例為 ADD）中工作，結果存入 ACC</td></tr>
       <tr><td>三種匯流排</td><td>位址匯流排傳送位址；數據匯流排傳送數據和指令；控制匯流排傳送「讀取」「寫入」等控制信號</td></tr></table>`,
-    concept: () => `<p>變數 a、b、c 現存放在主記憶體。RAM 屬易失性記憶體，關機後內容會消失；若要長期保留結果，必須另存到輔助儲存設備。</p>`,
+      `<p>Four lines of high-level code became 7 machine code instructions. The CPU went through one machine cycle for each instruction and finally output <b>${s.acc}</b> on the monitor.</p>
+      <table><tr><th>Component</th><th>Role in the machine cycle</th></tr>
+      <tr><td>PC</td><td>Holds the address of the next instruction to be fetched; increases by 1 after each fetch</td></tr>
+      <tr><td>MAR</td><td>Holds the memory address to be read from or written to, and sends it out on the address bus</td></tr>
+      <tr><td>MDR</td><td>Holds the data or instruction just read from memory, or about to be written to memory</td></tr>
+      <tr><td>IR</td><td>Holds the instruction being executed, for the CU to decode</td></tr>
+      <tr><td>CU</td><td>Takes part in every stage: sends control signals, decodes instructions and directs the other components</td></tr>
+      <tr><td>ALU and ACC</td><td>The ALU works only for instructions that need a calculation (ADD in this program); the result is stored in the ACC</td></tr>
+      <tr><td>The three buses</td><td>The address bus carries addresses; the data bus carries data and instructions; the control bus carries control signals such as READ and WRITE</td></tr></table>`),
+    concept: () => T(
+      `<p>變數 a、b、c 現存放在主記憶體。RAM 屬易失性記憶體，關機後內容會消失；若要長期保留結果，必須另存到輔助儲存設備。</p>`,
+      `<p>The variables a, b and c are now in main memory. RAM is volatile, so its contents are lost when the power is off; to keep the result, it must be saved to secondary storage.</p>`),
   });
 
   steps.forEach((st, k) => { st.index = k; });
@@ -177,13 +215,13 @@ function assignVoices(steps, brief) {
 function fetchSteps(i, w, brief) {
   const base = { group: i, phase: "fetch" };
   const addrBus = (s) => ({ bus: "addr", path: "cpu-ram", dir: "out", bits: b4(s.mar), from2: "reg-MAR", to2: "ram-r" + s.mar });
-  const readSig = { bus: "ctrl", path: "cpu-ram", dir: "out", sig: "讀取 READ" };
+  const readSig = { bus: "ctrl", path: "cpu-ram", dir: "out", sig: READ_SIG() };
   const dataIn = (s) => ({ bus: "data", path: "cpu-ram", dir: "in", bits: b8(s.ram[s.mar]), from2: "ram-r" + s.mar, to2: "reg-MDR" });
 
   if (brief) {
     return [{
       ...base, focus: "cpuram", hl: ["PC", "MAR", "MDR", "IR", "CU"],
-      title: `提取：由主記憶體取得指令 ${mnem(w)}`,
+      title: T(`提取：由主記憶體取得指令 ${mnem(w)}`, `Fetch: get the instruction ${mnem(w)} from main memory`),
       run(s) { s.mar = s.pc; s.mdr = s.ram[s.mar]; s.mdrKind = "instr"; s.ir = s.mdr; s.pc += 1; s.decoded = null; },
       anims: (s) => [
         [{ xfer: ["reg-PC", "reg-MAR", b4(s.mar), "addr"] }],
@@ -192,45 +230,65 @@ function fetchSteps(i, w, brief) {
         [{ xfer: ["reg-MDR", "reg-IR", b8(s.ir), ""] }],
       ],
       ram: (s) => ({ addr: [s.mar], kind: "read" }),
-      body: (s) => `<p>PC 的位址 <code>${b4(s.mar)}</code> 複製到 MAR，經${A("位址匯流排")}送往主記憶體；CU 經${C("控制匯流排")}發出「讀取」信號；主記憶體把指令 <code>${b8(s.ir)}</code> 經${D("數據匯流排")}送到 MDR，再複製到 IR。PC 增至 <code>${s.pc}</code>。</p>`,
-      concept: () => `<p>提取階段的路線：PC → MAR → 位址匯流排 → 主記憶體 → 數據匯流排 → MDR → IR。</p>`,
+      body: (s) => T(
+        `<p>PC 的位址 <code>${b4(s.mar)}</code> 複製到 MAR，經${A("位址匯流排")}送往主記憶體；CU 經${C("控制匯流排")}發出「讀取」信號；主記憶體把指令 <code>${b8(s.ir)}</code> 經${D("數據匯流排")}送到 MDR，再複製到 IR。PC 增至 <code>${s.pc}</code>。</p>`,
+        `<p>The address <code>${b4(s.mar)}</code> in the PC is copied to the MAR and sent to main memory on the ${A("address bus")}; the CU sends a READ signal on the ${C("control bus")}; main memory sends the instruction <code>${b8(s.ir)}</code> to the MDR on the ${D("data bus")}, and it is copied to the IR. The PC increases to <code>${s.pc}</code>.</p>`),
+      concept: () => T(
+        `<p>提取階段的路線：PC → MAR → 位址匯流排 → 主記憶體 → 數據匯流排 → MDR → IR。</p>`,
+        `<p>The route of the fetch stage: PC → MAR → address bus → main memory → data bus → MDR → IR.</p>`),
     }];
   }
 
   return [
     {
       ...base, focus: "cpu", hl: ["PC", "MAR", "CU"],
-      title: "提取①：PC 的位址複製到 MAR",
+      title: T("提取①：PC 的位址複製到 MAR", "Fetch ①: the address in the PC is copied to the MAR"),
       run(s) { s.mar = s.pc; s.decoded = null; },
       anims: (s) => [[{ xfer: ["reg-PC", "reg-MAR", b4(s.mar), "addr"] }]],
-      body: (s) => `<p>CU 把<b>程式計數器（PC）</b>的內容 <code>${b4(s.mar)}</code>（位址 ${s.mar}）複製到<b>記憶體位址寄存器（MAR）</b>。</p><p>MAR 存放將要讀取或寫入的記憶體位址，它是 CPU 通往位址匯流排的出口。</p>`,
-      concept: () => `<p class="warn">⚠ MAR 存放的是<b>位址</b>，不是數據或指令。</p>`,
+      body: (s) => T(
+        `<p>CU 把<b>程式計數器（PC）</b>的內容 <code>${b4(s.mar)}</code>（位址 ${s.mar}）複製到<b>記憶體位址寄存器（MAR）</b>。</p><p>MAR 存放將要讀取或寫入的記憶體位址，它是 CPU 通往位址匯流排的出口。</p>`,
+        `<p>The CU copies the contents of the <b>program counter (PC)</b>, <code>${b4(s.mar)}</code> (address ${s.mar}), to the <b>memory address register (MAR)</b>.</p><p>The MAR holds the memory address to be read from or written to. It is the CPU's link to the address bus.</p>`),
+      concept: () => T(
+        `<p class="warn">⚠ MAR 存放的是<b>位址</b>，不是數據或指令。</p>`,
+        `<p class="warn">⚠ The MAR holds an <b>address</b>, not data or an instruction.</p>`),
     },
     {
       ...base, focus: "cpuram", hl: ["MAR", "CU"],
-      title: "提取②：位址經位址匯流排送出，CU 發出「讀取」信號",
+      title: T("提取②：位址經位址匯流排送出，CU 發出「讀取」信號", "Fetch ②: the address goes out on the address bus, and the CU sends a READ signal"),
       run() {},
       anims: (s) => [[addrBus(s), readSig]],
       ram: (s) => ({ addr: [s.mar], kind: "read" }),
-      body: (s) => `<p>MAR 中的位址 <code>${b4(s.mar)}</code> 經${A("位址匯流排")}送往主記憶體；同時 CU 經${C("控制匯流排")}發出「讀取（READ）」信號。</p><p>主記憶體據此找出位址 ${s.mar} 的內容。</p>`,
-      concept: () => `<p>位址匯流排只由 CPU 送出位址（單向）。控制匯流排傳送控制信號，告訴主記憶體這次是「讀取」還是「寫入」。</p>`,
+      body: (s) => T(
+        `<p>MAR 中的位址 <code>${b4(s.mar)}</code> 經${A("位址匯流排")}送往主記憶體；同時 CU 經${C("控制匯流排")}發出「讀取（READ）」信號。</p><p>主記憶體據此找出位址 ${s.mar} 的內容。</p>`,
+        `<p>The address <code>${b4(s.mar)}</code> in the MAR is sent to main memory on the ${A("address bus")}. At the same time, the CU sends a READ signal on the ${C("control bus")}.</p><p>Main memory then locates the contents of address ${s.mar}.</p>`),
+      concept: () => T(
+        `<p>位址匯流排只由 CPU 送出位址（單向）。控制匯流排傳送控制信號，告訴主記憶體這次是「讀取」還是「寫入」。</p>`,
+        `<p>The address bus only carries addresses out from the CPU (one-way). The control bus carries control signals that tell main memory whether to READ or WRITE.</p>`),
     },
     {
       ...base, focus: "cpuram", hl: ["MDR"],
-      title: "提取③：指令經數據匯流排送到 MDR",
+      title: T("提取③：指令經數據匯流排送到 MDR", "Fetch ③: the instruction comes to the MDR on the data bus"),
       run(s) { s.mdr = s.ram[s.mar]; s.mdrKind = "instr"; },
       anims: (s) => [[dataIn(s)]],
       ram: (s) => ({ addr: [s.mar], kind: "read" }),
-      body: (s) => `<p>主記憶體把位址 ${s.mar} 的內容 <code>${b8(s.mdr)}</code>（即指令 <code>${mnem(s.mdr)}</code>）經${D("數據匯流排")}送回 CPU，存入<b>記憶體數據寄存器（MDR）</b>。</p>`,
-      concept: () => `<p>數據匯流排是雙向的，既可傳送<b>數據</b>，也可傳送<b>指令</b>。</p>`,
+      body: (s) => T(
+        `<p>主記憶體把位址 ${s.mar} 的內容 <code>${b8(s.mdr)}</code>（即指令 <code>${mnem(s.mdr)}</code>）經${D("數據匯流排")}送回 CPU，存入<b>記憶體數據寄存器（MDR）</b>。</p>`,
+        `<p>Main memory sends the contents of address ${s.mar}, <code>${b8(s.mdr)}</code> (the instruction <code>${mnem(s.mdr)}</code>), back to the CPU on the ${D("data bus")}. It is stored in the <b>memory data register (MDR)</b>.</p>`),
+      concept: () => T(
+        `<p>數據匯流排是雙向的，既可傳送<b>數據</b>，也可傳送<b>指令</b>。</p>`,
+        `<p>The data bus is two-way. It carries both <b>data</b> and <b>instructions</b>.</p>`),
     },
     {
       ...base, focus: "cpu", hl: ["MDR", "IR", "PC", "CU"],
-      title: "提取④：指令複製到 IR，PC 加 1",
+      title: T("提取④：指令複製到 IR，PC 加 1", "Fetch ④: the instruction is copied to the IR, and the PC increases by 1"),
       run(s) { s.ir = s.mdr; s.pc += 1; },
       anims: (s) => [[{ xfer: ["reg-MDR", "reg-IR", b8(s.ir), ""] }]],
-      body: (s) => `<p>指令由 MDR 複製到<b>指令寄存器（IR）</b>。同時 PC 由 ${s.pc - 1} 增至 <code>${s.pc}</code>，指向下一個指令。</p>`,
-      concept: () => `<p>IR 存放<b>正在執行</b>的指令；PC 存放<b>下一個</b>要提取的指令的位址。兩者都由 CU 使用。</p>`,
+      body: (s) => T(
+        `<p>指令由 MDR 複製到<b>指令寄存器（IR）</b>。同時 PC 由 ${s.pc - 1} 增至 <code>${s.pc}</code>，指向下一個指令。</p>`,
+        `<p>The instruction is copied from the MDR to the <b>instruction register (IR)</b>. At the same time, the PC increases from ${s.pc - 1} to <code>${s.pc}</code> and points to the next instruction.</p>`),
+      concept: () => T(
+        `<p>IR 存放<b>正在執行</b>的指令；PC 存放<b>下一個</b>要提取的指令的位址。兩者都由 CU 使用。</p>`,
+        `<p>The IR holds the instruction <b>being executed</b>; the PC holds the address of the <b>next</b> instruction to be fetched. Both are used by the CU.</p>`),
     },
   ];
 }
@@ -239,25 +297,29 @@ function decodeStep(i, ins, w) {
   const op = OPS[ins.op];
   return {
     group: i, phase: "decode", focus: "cpu", hl: ["IR", "CU", "decoder"],
-    title: `譯碼：CU 解讀 IR 中的指令 ${mnem(w)}`,
+    title: T(`譯碼：CU 解讀 IR 中的指令 ${mnem(w)}`, `Decode: the CU interprets the instruction ${mnem(w)} in the IR`),
     run(s) { s.decoded = { op: ins.op, arg: ins.arg }; },
     body: () => {
       if (ins.op === 0) {
-        return `<p>CU 把 IR 中的指令 <code>${b8(w)}</code> 分為兩部分：前 4 位元 <code>0000</code> 是<b>操作碼</b>，代表「停止（HALT）」；這個指令不需要操作數。</p>`;
+        return T(
+          `<p>CU 把 IR 中的指令 <code>${b8(w)}</code> 分為兩部分：前 4 位元 <code>0000</code> 是<b>操作碼</b>，代表「停止（HALT）」；這個指令不需要操作數。</p>`,
+          `<p>The CU splits the instruction <code>${b8(w)}</code> in the IR into two parts: the first 4 bits, <code>0000</code>, are the <b>opcode</b>, which means "halt" (HALT). This instruction needs no operand.</p>`);
       }
-      return `<p>CU 把 IR 中的指令 <code>${b8(w)}</code> 分為兩部分：前 4 位元 <code>${b4(ins.op)}</code> 是<b>操作碼</b>，代表「${op.zh}（${op.name}）」；後 4 位元 <code>${b4(ins.arg)}</code> 是<b>操作數</b>，代表位址 ${ins.arg}（變數 ${VARS[ins.arg]}）。</p><p>CU 由此決定執行階段要發出哪些控制信號。</p>`;
+      return T(
+        `<p>CU 把 IR 中的指令 <code>${b8(w)}</code> 分為兩部分：前 4 位元 <code>${b4(ins.op)}</code> 是<b>操作碼</b>，代表「${op.zh}（${op.name}）」；後 4 位元 <code>${b4(ins.arg)}</code> 是<b>操作數</b>，代表位址 ${ins.arg}（變數 ${VARS[ins.arg]}）。</p><p>CU 由此決定執行階段要發出哪些控制信號。</p>`,
+        `<p>The CU splits the instruction <code>${b8(w)}</code> in the IR into two parts: the first 4 bits, <code>${b4(ins.op)}</code>, are the <b>opcode</b>, which means "${op.en}" (${op.name}); the last 4 bits, <code>${b4(ins.arg)}</code>, are the <b>operand</b>, which means address ${ins.arg} (variable ${VARS[ins.arg]}).</p><p>From this, the CU decides which control signals to send in the execute stage.</p>`);
     },
-    concept: () => `<p><code>${mnem(w)}</code>：${MEANING[ins.op](ins.arg)}</p>`,
+    concept: () => `<p><code>${mnem(w)}</code>${T("：", ": ")}${MEANING[ins.op](ins.arg)}</p>`,
   };
 }
 
 const MEANING = {
-  0: () => "停止執行程式。",
-  1: (a) => `把位址 ${a} 的數值載入累加器（ACC）。`,
-  2: (a) => `把位址 ${a} 的數值與 ACC 的數值相加，結果存入 ACC。`,
-  3: (a) => `把 ACC 的數值儲存到位址 ${a}。`,
-  4: (a) => `從輸入設備讀入一個數值，存入位址 ${a}。`,
-  5: (a) => `把位址 ${a} 的數值送往輸出設備。`,
+  0: () => T("停止執行程式。", "Stop running the program."),
+  1: (a) => T(`把位址 ${a} 的數值載入累加器（ACC）。`, `Load the value at address ${a} into the accumulator (ACC).`),
+  2: (a) => T(`把位址 ${a} 的數值與 ACC 的數值相加，結果存入 ACC。`, `Add the value at address ${a} to the value in the ACC, and store the result in the ACC.`),
+  3: (a) => T(`把 ACC 的數值儲存到位址 ${a}。`, `Store the value in the ACC at address ${a}.`),
+  4: (a) => T(`從輸入設備讀入一個數值，存入位址 ${a}。`, `Read a value from the input device and store it at address ${a}.`),
+  5: (a) => T(`把位址 ${a} 的數值送往輸出設備。`, `Send the value at address ${a} to the output device.`),
 };
 
 function executeSteps(i, ins) {
@@ -272,20 +334,26 @@ function executeSteps(i, ins) {
   const readVar = (phase) => [
     {
       group: g, phase, focus: "cpuram", hl: ["IR", "MAR", "CU"],
-      title: `執行：讀取變數 ${v}，位址經位址匯流排送出`,
+      title: T(`執行：讀取變數 ${v}，位址經位址匯流排送出`, `Execute: read variable ${v}; the address goes out on the address bus`),
       run(s) { s.mar = a; },
-      anims: () => [[marSet], addrOut("讀取 READ")],
+      anims: () => [[marSet], addrOut(READ_SIG())],
       ram: () => ({ addr: [a], kind: "read" }),
-      body: () => `<p>CU 把操作數 <code>${b4(a)}</code>（位址 ${a}）放入 MAR，經${A("位址匯流排")}送往主記憶體，並經${C("控制匯流排")}發出「讀取」信號。</p>`,
-      concept: () => `<p>執行階段同樣要用匯流排存取主記憶體，這次讀取的是<b>數據</b>（變數 ${v}），不是指令。</p>`,
+      body: () => T(
+        `<p>CU 把操作數 <code>${b4(a)}</code>（位址 ${a}）放入 MAR，經${A("位址匯流排")}送往主記憶體，並經${C("控制匯流排")}發出「讀取」信號。</p>`,
+        `<p>The CU puts the operand <code>${b4(a)}</code> (address ${a}) into the MAR, sends it to main memory on the ${A("address bus")}, and sends a READ signal on the ${C("control bus")}.</p>`),
+      concept: () => T(
+        `<p>執行階段同樣要用匯流排存取主記憶體，這次讀取的是<b>數據</b>（變數 ${v}），不是指令。</p>`,
+        `<p>The execute stage also uses the buses to access main memory. This time it reads <b>data</b> (variable ${v}), not an instruction.</p>`),
     },
     {
       group: g, phase, focus: "cpuram", hl: ["MDR"],
-      title: `執行：變數 ${v} 的值經數據匯流排送到 MDR`,
+      title: T(`執行：變數 ${v} 的值經數據匯流排送到 MDR`, `Execute: the value of variable ${v} comes to the MDR on the data bus`),
       run(s) { s.mdr = s.ram[a]; s.mdrKind = "num"; },
       anims: (s) => [[{ bus: "data", path: "cpu-ram", dir: "in", bits: b8(s.ram[a]), from2: "ram-r" + a, to2: "reg-MDR" }]],
       ram: () => ({ addr: [a], kind: "read" }),
-      body: (s) => `<p>主記憶體把位址 ${a} 的數值 <code>${b8(s.mdr)}</code>（十進制 ${s.mdr}）經${D("數據匯流排")}送到 MDR。</p>`,
+      body: (s) => T(
+        `<p>主記憶體把位址 ${a} 的數值 <code>${b8(s.mdr)}</code>（十進制 ${s.mdr}）經${D("數據匯流排")}送到 MDR。</p>`,
+        `<p>Main memory sends the value at address ${a}, <code>${b8(s.mdr)}</code> (${s.mdr} in denary), to the MDR on the ${D("data bus")}.</p>`),
       concept: () => "",
     },
   ];
@@ -295,41 +363,57 @@ function executeSteps(i, ins) {
     return [
       {
         group: g, phase: "execute", focus: "cpukbd", hl: ["CU", "kbd"], need: k,
-        title: `執行：CU 要求鍵盤輸入${ORD[k]}個數`,
+        title: T(`執行：CU 要求鍵盤輸入${ORD()[k]}個數`, `Execute: the CU asks the keyboard for the ${ORD()[k]} number`),
         run(s) { s.screen.lines.push({ t: "> ", wait: true }); },
-        anims: () => [[{ bus: "ctrl", path: "cpu-kbd", dir: "out", sig: "讀取 READ" }]],
-        body: () => `<p>CU 經${C("控制匯流排")}向鍵盤的輸入輸出控制器發出「讀取」信號，然後等待使用者輸入。</p><p>請在下方輸入${ORD[k]}個數（0 至 127），然後按「確定」。</p>`,
-        concept: () => `<p>這是 Python 程式 <code>${SOURCE[ins.src].code}</code> 中 <code>input()</code> 的部分。</p>`,
+        anims: () => [[{ bus: "ctrl", path: "cpu-kbd", dir: "out", sig: READ_SIG() }]],
+        body: () => T(
+          `<p>CU 經${C("控制匯流排")}向鍵盤的輸入輸出控制器發出「讀取」信號，然後等待使用者輸入。</p><p>請在下方輸入${ORD()[k]}個數（0 至 127），然後按「確定」。</p>`,
+          `<p>The CU sends a READ signal to the keyboard's I/O controller on the ${C("control bus")}, then waits for the user.</p><p>Enter the ${ORD()[k]} number (0 to 127) below, then press "OK".</p>`),
+        concept: () => T(
+          `<p>這是 Python 程式 <code>${SOURCE[ins.src].code}</code> 中 <code>input()</code> 的部分。</p>`,
+          `<p>This is the <code>input()</code> part of the Python statement <code>${SOURCE[ins.src].code}</code>.</p>`),
       },
       {
         group: g, phase: "execute", focus: "cpukbd", hl: ["MDR", "kbd"],
-        title: "執行：輸入的數值經數據匯流排送入 MDR",
+        title: T("執行：輸入的數值經數據匯流排送入 MDR", "Execute: the input value goes to the MDR on the data bus"),
         run(s) {
           const n = inputOf(k);
           s.kbd = n; s.mdr = n; s.mdrKind = "num";
           s.screen.lines[s.screen.lines.length - 1] = { t: "> " + n };
         },
         anims: (s) => [[{ bus: "data", path: "cpu-kbd", dir: "in", bits: b8(s.kbd), from2: "dev-kbd", to2: "reg-MDR" }]],
-        body: (s) => `<p>鍵盤把按鍵轉換為二進制數 <code>${b8(s.kbd)}</code>（十進制 ${s.kbd}），經${D("數據匯流排")}送入 CPU 的 MDR。</p>`,
-        concept: () => `<p>輸入設備把使用者的動作轉換為 0 和 1 的電子信號；電腦內所有數據都以二進制表示。</p>`,
+        body: (s) => T(
+          `<p>鍵盤把按鍵轉換為二進制數 <code>${b8(s.kbd)}</code>（十進制 ${s.kbd}），經${D("數據匯流排")}送入 CPU 的 MDR。</p>`,
+          `<p>The keyboard turns the key presses into the binary number <code>${b8(s.kbd)}</code> (${s.kbd} in denary) and sends it to the MDR in the CPU on the ${D("data bus")}.</p>`),
+        concept: () => T(
+          `<p>輸入設備把使用者的動作轉換為 0 和 1 的電子信號；電腦內所有數據都以二進制表示。</p>`,
+          `<p>Input devices turn the user's actions into electronic signals of 0s and 1s; all data inside a computer is represented in binary.</p>`),
       },
       {
         group: g, phase: "store", focus: "cpuram", hl: ["IR", "MAR", "CU"],
-        title: `儲存：位址經位址匯流排送出，CU 發出「寫入」信號`,
+        title: T(`儲存：位址經位址匯流排送出，CU 發出「寫入」信號`, `Store: the address goes out on the address bus, and the CU sends a WRITE signal`),
         run(s) { s.mar = a; },
-        anims: () => [[marSet], addrOut("寫入 WRITE")],
+        anims: () => [[marSet], addrOut(WRITE_SIG())],
         ram: () => ({ addr: [a], kind: "write" }),
-        body: () => `<p>CU 把操作數 <code>${b4(a)}</code>（位址 ${a}）放入 MAR，經${A("位址匯流排")}送往主記憶體；同時經${C("控制匯流排")}發出「寫入（WRITE）」信號。</p>`,
-        concept: () => `<p>同一條位址匯流排，讀取和寫入都會用到；分辨兩者的是控制匯流排上的信號。</p>`,
+        body: () => T(
+          `<p>CU 把操作數 <code>${b4(a)}</code>（位址 ${a}）放入 MAR，經${A("位址匯流排")}送往主記憶體；同時經${C("控制匯流排")}發出「寫入（WRITE）」信號。</p>`,
+          `<p>The CU puts the operand <code>${b4(a)}</code> (address ${a}) into the MAR and sends it to main memory on the ${A("address bus")}. At the same time, it sends a WRITE signal on the ${C("control bus")}.</p>`),
+        concept: () => T(
+          `<p>同一條位址匯流排，讀取和寫入都會用到；分辨兩者的是控制匯流排上的信號。</p>`,
+          `<p>The same address bus is used for both reading and writing; the signal on the control bus tells them apart.</p>`),
       },
       {
         group: g, phase: "store", focus: "cpuram", hl: ["MDR"],
-        title: `儲存：數值經數據匯流排寫入主記憶體（變數 ${v}）`,
+        title: T(`儲存：數值經數據匯流排寫入主記憶體（變數 ${v}）`, `Store: the value is written to main memory on the data bus (variable ${v})`),
         run(s) { s.ram[a] = s.mdr; },
         anims: (s) => [[{ bus: "data", path: "cpu-ram", dir: "out", bits: b8(s.mdr), from2: "reg-MDR", to2: "ram-r" + a }]],
         ram: () => ({ addr: [a], kind: "write" }),
-        body: (s) => `<p>MDR 中的 <code>${b8(s.mdr)}</code> 經${D("數據匯流排")}寫入主記憶體位址 ${a}，成為變數 <b>${v}</b> 的值（${s.mdr}）。</p>`,
-        concept: () => `<p>寫入主記憶體時：位址經位址匯流排、數據經數據匯流排、「寫入」信號經控制匯流排，三種匯流排同時配合。</p>`,
+        body: (s) => T(
+          `<p>MDR 中的 <code>${b8(s.mdr)}</code> 經${D("數據匯流排")}寫入主記憶體位址 ${a}，成為變數 <b>${v}</b> 的值（${s.mdr}）。</p>`,
+          `<p>The value <code>${b8(s.mdr)}</code> in the MDR is written to main memory address ${a} on the ${D("data bus")}. It becomes the value of variable <b>${v}</b> (${s.mdr}).</p>`),
+        concept: () => T(
+          `<p>寫入主記憶體時：位址經位址匯流排、數據經數據匯流排、「寫入」信號經控制匯流排，三種匯流排同時配合。</p>`,
+          `<p>When writing to main memory, the address goes on the address bus, the data on the data bus and the WRITE signal on the control bus: all three buses work together.</p>`),
       },
     ];
   }
@@ -339,11 +423,15 @@ function executeSteps(i, ins) {
       ...readVar("execute"),
       {
         group: g, phase: "execute", focus: "cpu", hl: ["MDR", "ACC"],
-        title: "執行：數值由 MDR 複製到累加器（ACC）",
+        title: T("執行：數值由 MDR 複製到累加器（ACC）", "Execute: the value is copied from the MDR to the accumulator (ACC)"),
         run(s) { s.acc = s.mdr; },
         anims: (s) => [[{ xfer: ["reg-MDR", "reg-ACC", b8(s.acc), "data"] }]],
-        body: (s) => `<p>數值 ${s.acc} 由 MDR 複製到<b>累加器（ACC）</b>。ACC 是通用寄存器，暫存運算所用的數據和運算結果。</p>`,
-        concept: () => `<p>LOAD 指令不需要 ALU 運算。ALU 只在需要運算的指令中工作。</p>`,
+        body: (s) => T(
+          `<p>數值 ${s.acc} 由 MDR 複製到<b>累加器（ACC）</b>。ACC 是通用寄存器，暫存運算所用的數據和運算結果。</p>`,
+          `<p>The value ${s.acc} is copied from the MDR to the <b>accumulator (ACC)</b>. The ACC is a general-purpose register that temporarily holds data for calculations and their results.</p>`),
+        concept: () => T(
+          `<p>LOAD 指令不需要 ALU 運算。ALU 只在需要運算的指令中工作。</p>`,
+          `<p>The LOAD instruction does not need the ALU. The ALU works only for instructions that need a calculation.</p>`),
       },
     ];
   }
@@ -353,19 +441,27 @@ function executeSteps(i, ins) {
       ...readVar("execute"),
       {
         group: g, phase: "execute", focus: "cpu", hl: ["CU", "ALU", "ACC", "MDR"],
-        title: "執行：CU 指示 ALU 執行加法",
+        title: T("執行：CU 指示 ALU 執行加法", "Execute: the CU tells the ALU to add"),
         run(s) { s.alu = `${s.acc} + ${s.mdr}`; },
         anims: (s) => [[{ xfer: ["reg-ACC", "alu", b8(s.acc), "alu"] }, { xfer: ["reg-MDR", "alu", b8(s.mdr), "alu"] }]],
-        body: (s) => `<p>CU 發出控制信號，指示<b>算術及邏輯運算部件（ALU）</b>執行加法。ACC 的數值和 MDR 的數值送入 ALU：</p><p><code>${b8(s.acc)}</code>（${s.acc}）＋ <code>${b8(s.mdr)}</code>（${s.mdr}）</p>`,
-        concept: () => `<p>ALU 負責算術運算（＋、－、×、÷）及邏輯運算（比較、AND、OR、NOT）。</p>`,
+        body: (s) => T(
+          `<p>CU 發出控制信號，指示<b>算術及邏輯運算部件（ALU）</b>執行加法。ACC 的數值和 MDR 的數值送入 ALU：</p><p><code>${b8(s.acc)}</code>（${s.acc}）＋ <code>${b8(s.mdr)}</code>（${s.mdr}）</p>`,
+          `<p>The CU sends a control signal telling the <b>arithmetic and logic unit (ALU)</b> to add. The values in the ACC and the MDR are sent to the ALU:</p><p><code>${b8(s.acc)}</code> (${s.acc}) + <code>${b8(s.mdr)}</code> (${s.mdr})</p>`),
+        concept: () => T(
+          `<p>ALU 負責算術運算（＋、－、×、÷）及邏輯運算（比較、AND、OR、NOT）。</p>`,
+          `<p>The ALU performs arithmetic operations (+, −, ×, ÷) and logical operations (comparisons, AND, OR, NOT).</p>`),
       },
       {
         group: g, phase: "store", focus: "cpu", hl: ["ALU", "ACC"],
-        title: "儲存：運算結果存入 ACC",
+        title: T("儲存：運算結果存入 ACC", "Store: the result is stored in the ACC"),
         run(s) { const r = s.acc + s.mdr; s.alu = `${s.acc} + ${s.mdr} = ${r}`; s.acc = r; },
         anims: (s) => [[{ xfer: ["alu", "reg-ACC", b8(s.acc), "alu"] }]],
-        body: (s) => `<p>ALU 算出 ${s.alu}（二進制 <code>${b8(s.acc)}</code>），結果存入 ACC，取代原來的數值。</p>`,
-        concept: () => `<p>ALU 的運算結果通常存放在<b>累加器（ACC）</b>。這一步把結果寫回寄存器，屬機器周期的儲存階段。</p>`,
+        body: (s) => T(
+          `<p>ALU 算出 ${s.alu}（二進制 <code>${b8(s.acc)}</code>），結果存入 ACC，取代原來的數值。</p>`,
+          `<p>The ALU works out ${s.alu} (<code>${b8(s.acc)}</code> in binary). The result is stored in the ACC, replacing the old value.</p>`),
+        concept: () => T(
+          `<p>ALU 的運算結果通常存放在<b>累加器（ACC）</b>。這一步把結果寫回寄存器，屬機器周期的儲存階段。</p>`,
+          `<p>The result of an ALU operation is usually kept in the <b>accumulator (ACC)</b>. Writing the result back to a register is the store stage of the machine cycle.</p>`),
       },
     ];
   }
@@ -374,29 +470,39 @@ function executeSteps(i, ins) {
     return [
       {
         group: g, phase: "execute", focus: "cpu", hl: ["IR", "MAR", "ACC", "MDR", "CU"],
-        title: "執行：位址放入 MAR，ACC 的數值放入 MDR",
+        title: T("執行：位址放入 MAR，ACC 的數值放入 MDR", "Execute: the address goes into the MAR, and the value in the ACC goes into the MDR"),
         run(s) { s.mar = a; s.mdr = s.acc; s.mdrKind = "num"; },
         anims: (s) => [[marSet, { xfer: ["reg-ACC", "reg-MDR", b8(s.acc), "data"] }]],
-        body: (s) => `<p>CU 把操作數 <code>${b4(a)}</code>（位址 ${a}）放入 MAR，並把 ACC 的數值 ${s.acc} 複製到 MDR，準備寫入主記憶體。</p>`,
-        concept: () => `<p>CPU 與主記憶體之間的數據，必定經 MDR 進出；位址則必定經 MAR 送出。</p>`,
+        body: (s) => T(
+          `<p>CU 把操作數 <code>${b4(a)}</code>（位址 ${a}）放入 MAR，並把 ACC 的數值 ${s.acc} 複製到 MDR，準備寫入主記憶體。</p>`,
+          `<p>The CU puts the operand <code>${b4(a)}</code> (address ${a}) into the MAR, and copies the value ${s.acc} in the ACC to the MDR, ready to be written to main memory.</p>`),
+        concept: () => T(
+          `<p>CPU 與主記憶體之間的數據，必定經 MDR 進出；位址則必定經 MAR 送出。</p>`,
+          `<p>Data always passes between the CPU and main memory through the MDR; addresses are always sent out through the MAR.</p>`),
       },
       {
         group: g, phase: "execute", focus: "cpuram", hl: ["MAR", "CU"],
-        title: "執行：位址經位址匯流排送出，CU 發出「寫入」信號",
+        title: T("執行：位址經位址匯流排送出，CU 發出「寫入」信號", "Execute: the address goes out on the address bus, and the CU sends a WRITE signal"),
         run() {},
-        anims: () => [addrOut("寫入 WRITE")],
+        anims: () => [addrOut(WRITE_SIG())],
         ram: () => ({ addr: [a], kind: "write" }),
-        body: () => `<p>位址 <code>${b4(a)}</code> 經${A("位址匯流排")}送往主記憶體；CU 經${C("控制匯流排")}發出「寫入（WRITE）」信號。</p>`,
+        body: () => T(
+          `<p>位址 <code>${b4(a)}</code> 經${A("位址匯流排")}送往主記憶體；CU 經${C("控制匯流排")}發出「寫入（WRITE）」信號。</p>`,
+          `<p>The address <code>${b4(a)}</code> is sent to main memory on the ${A("address bus")}; the CU sends a WRITE signal on the ${C("control bus")}.</p>`),
         concept: () => "",
       },
       {
         group: g, phase: "execute", focus: "cpuram", hl: ["MDR"],
-        title: `執行：結果經數據匯流排寫入主記憶體（變數 ${v}）`,
+        title: T(`執行：結果經數據匯流排寫入主記憶體（變數 ${v}）`, `Execute: the result is written to main memory on the data bus (variable ${v})`),
         run(s) { s.ram[a] = s.mdr; },
         anims: (s) => [[{ bus: "data", path: "cpu-ram", dir: "out", bits: b8(s.mdr), from2: "reg-MDR", to2: "ram-r" + a }]],
         ram: () => ({ addr: [a], kind: "write" }),
-        body: (s) => `<p>MDR 中的 <code>${b8(s.mdr)}</code> 經${D("數據匯流排")}寫入位址 ${a}，變數 <b>${v}</b> 的值為 ${s.mdr}。至此完成 Python 程式 <code>c = a + b</code> 這一行。</p>`,
-        concept: () => `<p>一行高階語言程式可能對應多個機器碼指令：<code>c = a + b</code> 需要 LOAD、ADD、STORE 三個指令。</p>`,
+        body: (s) => T(
+          `<p>MDR 中的 <code>${b8(s.mdr)}</code> 經${D("數據匯流排")}寫入位址 ${a}，變數 <b>${v}</b> 的值為 ${s.mdr}。至此完成 Python 程式 <code>c = a + b</code> 這一行。</p>`,
+          `<p>The value <code>${b8(s.mdr)}</code> in the MDR is written to address ${a} on the ${D("data bus")}. Variable <b>${v}</b> is now ${s.mdr}. This completes the Python statement <code>c = a + b</code>.</p>`),
+        concept: () => T(
+          `<p>一行高階語言程式可能對應多個機器碼指令：<code>c = a + b</code> 需要 LOAD、ADD、STORE 三個指令。</p>`,
+          `<p>One line of high-level code may become several machine code instructions: <code>c = a + b</code> needs three, LOAD, ADD and STORE.</p>`),
       },
     ];
   }
@@ -406,14 +512,18 @@ function executeSteps(i, ins) {
       ...readVar("execute"),
       {
         group: g, phase: "execute", focus: "cpumon", hl: ["MDR", "CU", "mon"],
-        title: "執行：結果經數據匯流排送往顯示器",
+        title: T("執行：結果經數據匯流排送往顯示器", "Execute: the result goes to the monitor on the data bus"),
         run(s) { s.screen.lines.push({ t: String(s.mdr), out: true }); },
         anims: (s) => [
-          [{ bus: "ctrl", path: "cpu-mon", dir: "out", sig: "寫入 WRITE" }],
+          [{ bus: "ctrl", path: "cpu-mon", dir: "out", sig: WRITE_SIG() }],
           [{ bus: "data", path: "cpu-mon", dir: "out", bits: b8(s.mdr), from2: "reg-MDR", to2: "dev-mon" }],
         ],
-        body: (s) => `<p>CU 經${C("控制匯流排")}向顯示器的輸入輸出控制器發出「寫入」信號，MDR 的 <code>${b8(s.mdr)}</code> 經${D("數據匯流排")}送出，顯示器顯示「${s.mdr}」。</p>`,
-        concept: () => `<p>這是 Python 程式 <code>print(c)</code> 的部分。輸出設備把電腦內的二進制數據轉換為人看得懂的形式。</p>`,
+        body: (s) => T(
+          `<p>CU 經${C("控制匯流排")}向顯示器的輸入輸出控制器發出「寫入」信號，MDR 的 <code>${b8(s.mdr)}</code> 經${D("數據匯流排")}送出，顯示器顯示「${s.mdr}」。</p>`,
+          `<p>The CU sends a WRITE signal to the monitor's I/O controller on the ${C("control bus")}. The value <code>${b8(s.mdr)}</code> in the MDR is sent out on the ${D("data bus")}, and the monitor shows "${s.mdr}".</p>`),
+        concept: () => T(
+          `<p>這是 Python 程式 <code>print(c)</code> 的部分。輸出設備把電腦內的二進制數據轉換為人看得懂的形式。</p>`,
+          `<p>This is the Python statement <code>print(c)</code>. Output devices turn the binary data inside the computer into a form people can understand.</p>`),
       },
     ];
   }
@@ -421,10 +531,14 @@ function executeSteps(i, ins) {
   // HALT
   return [{
     group: g, phase: "execute", focus: "full", hl: ["CU"],
-    title: "執行：程式結束",
+    title: T("執行：程式結束", "Execute: the program ends"),
     run(s) { s.halted = true; s.screen.mode = "end"; },
-    body: () => `<p>CU 執行停止指令，不再提取下一個指令，控制權交回操作系統。</p>`,
-    concept: () => `<p>雖然 PC 已指向位址 7，但程式已經停止，CPU 不會再提取該位址的內容。</p>`,
+    body: () => T(
+      `<p>CU 執行停止指令，不再提取下一個指令，控制權交回操作系統。</p>`,
+      `<p>The CU carries out the halt instruction. It stops fetching instructions, and control returns to the operating system.</p>`),
+    concept: () => T(
+      `<p>雖然 PC 已指向位址 7，但程式已經停止，CPU 不會再提取該位址的內容。</p>`,
+      `<p>Although the PC now points to address 7, the program has stopped, so the CPU does not fetch the contents of that address.</p>`),
   }];
 }
 
@@ -473,20 +587,20 @@ const REGS = ["PC", "IR", "MAR", "MDR", "ACC"];
 
 function regDisplay(name, s) {
   const v = s[name.toLowerCase()];
-  if (v === null || v === undefined) return { bin: "－", dec: "" };
+  if (v === null || v === undefined) return { bin: DASH(), dec: "" };
   switch (name) {
-    case "PC": return { bin: b4(v), dec: `位址 ${v}` };
-    case "MAR": return { bin: b4(v), dec: `位址 ${v}` };
+    case "PC": return { bin: b4(v), dec: T(`位址 ${v}`, `address ${v}`) };
+    case "MAR": return { bin: b4(v), dec: T(`位址 ${v}`, `address ${v}`) };
     case "IR": return { bin: `<span class="op">${b4(v >> 4)}</span> <span class="arg">${b4(v & 15)}</span>`, dec: mnem(v) };
-    case "MDR": return { bin: b8(v), dec: s.mdrKind === "instr" ? `指令 ${mnem(v)}` : `數值 ${v}` };
-    default: return { bin: b8(v), dec: `數值 ${v}` };
+    case "MDR": return { bin: b8(v), dec: s.mdrKind === "instr" ? T(`指令 ${mnem(v)}`, `instruction ${mnem(v)}`) : T(`數值 ${v}`, `value ${v}`) };
+    default: return { bin: b8(v), dec: T(`數值 ${v}`, `value ${v}`) };
   }
 }
 
 function ramMeaning(r, s) {
   if (!s.loaded) return "";
-  if (r < PROGRAM.length) return `指令 <code>${mnem(word(PROGRAM[r]))}</code>`;
-  if (VARS[r]) return s.ram[r] === null ? `預留給變數 ${VARS[r]}` : `變數 ${VARS[r]} = <b>${s.ram[r]}</b>`;
+  if (r < PROGRAM.length) return `${T("指令", "instruction")} <code>${mnem(word(PROGRAM[r]))}</code>`;
+  if (VARS[r]) return s.ram[r] === null ? T(`預留給變數 ${VARS[r]}`, `reserved for ${VARS[r]}`) : `${T("變數", "variable")} ${VARS[r]} = <b>${s.ram[r]}</b>`;
   return "";
 }
 
@@ -507,15 +621,16 @@ function render2D(s, step, prev, opts = {}) {
   $("u-cu").classList.toggle("on", hl.has("CU"));
   $("u-alu").classList.toggle("on", hl.has("ALU"));
   $("alu").classList.toggle("on", hl.has("ALU"));
-  els.aluOp.textContent = s.alu ?? "－";
+  els.aluOp.textContent = s.alu ?? DASH();
 
   if (s.decoded) {
     const { op, arg } = s.decoded;
     els.decoder.innerHTML = op === 0
-      ? `譯碼器：操作碼 <b>0000</b> → HALT`
-      : `譯碼器：操作碼 <b>${b4(op)}</b> → ${OPS[op].name}；操作數 <b>${b4(arg)}</b> → 位址 ${arg}`;
+      ? T(`譯碼器：操作碼 <b>0000</b> → HALT`, `Decoder: opcode <b>0000</b> → HALT`)
+      : T(`譯碼器：操作碼 <b>${b4(op)}</b> → ${OPS[op].name}；操作數 <b>${b4(arg)}</b> → 位址 ${arg}`,
+          `Decoder: opcode <b>${b4(op)}</b> → ${OPS[op].name}; operand <b>${b4(arg)}</b> → address ${arg}`);
   } else {
-    els.decoder.textContent = "譯碼器：－";
+    els.decoder.textContent = T("譯碼器：－", "Decoder: –");
   }
   els.decoder.classList.toggle("on", hl.has("decoder"));
 
@@ -524,7 +639,7 @@ function render2D(s, step, prev, opts = {}) {
   for (let r = 0; r < 16; r++) {
     const tr = $("ram-r" + r);
     const v = s.ram[r];
-    tr.querySelector(".v").textContent = v === null ? "－－－－－－－－" : b8(v);
+    tr.querySelector(".v").textContent = v === null ? DASH().repeat(8) : b8(v);
     tr.querySelector(".m").innerHTML = ramMeaning(r, s);
     tr.classList.toggle("empty", v === null);
     tr.classList.toggle("pc", s.loaded && !s.halted && s.pc === r);
@@ -538,9 +653,9 @@ function render2D(s, step, prev, opts = {}) {
   SOURCE.forEach((_, k) => $("src-" + k).classList.toggle("on", step.src === k));
 
   // devices
-  $("dev-kbd").querySelector(".dev-val").textContent = s.kbd ?? "－";
+  $("dev-kbd").querySelector(".dev-val").textContent = s.kbd ?? DASH();
   const outs = s.screen.lines.filter((l) => l.out);
-  $("dev-mon").querySelector(".dev-val").textContent = outs.length ? outs[outs.length - 1].t : "－";
+  $("dev-mon").querySelector(".dev-val").textContent = outs.length ? outs[outs.length - 1].t : DASH();
   $("dev-kbd").classList.toggle("on", hl.has("kbd"));
   $("dev-mon").classList.toggle("on", hl.has("mon"));
   $("dev-ssd").classList.toggle("on", hl.has("ssd"));
@@ -548,11 +663,11 @@ function render2D(s, step, prev, opts = {}) {
   renderBuses(step, s);
 }
 
-const DIR_ZH = {
-  "cpu-ram": { out: "CPU → 主記憶體", in: "主記憶體 → CPU" },
-  "cpu-kbd": { out: "CPU → 鍵盤", in: "鍵盤 → CPU" },
-  "cpu-mon": { out: "CPU → 顯示器", in: "顯示器 → CPU" },
-  "ssd-ram": { out: "SSD → 主記憶體", in: "主記憶體 → SSD" },
+const DIR_NAME = {
+  "cpu-ram": { out: ["CPU → 主記憶體", "CPU → main memory"], in: ["主記憶體 → CPU", "main memory → CPU"] },
+  "cpu-kbd": { out: ["CPU → 鍵盤", "CPU → keyboard"], in: ["鍵盤 → CPU", "keyboard → CPU"] },
+  "cpu-mon": { out: ["CPU → 顯示器", "CPU → monitor"], in: ["顯示器 → CPU", "monitor → CPU"] },
+  "ssd-ram": { out: ["SSD → 主記憶體", "SSD → main memory"], in: ["主記憶體 → SSD", "main memory → SSD"] },
 };
 
 function busItems(step, s) {
@@ -566,9 +681,9 @@ function renderBuses(step, s) {
     const box = $("bus-" + bus);
     const it = items.filter((x) => x.bus === bus).pop();
     box.classList.toggle("on", !!it);
-    box.querySelector(".bus-dir").textContent = it ? DIR_ZH[it.path][it.dir] : "";
+    box.querySelector(".bus-dir").textContent = it ? T(...DIR_NAME[it.path][it.dir]) : "";
     if (bus === "ctrl") {
-      box.querySelector(".signal").textContent = it ? it.sig : "－";
+      box.querySelector(".signal").textContent = it ? it.sig : DASH();
     } else {
       const wires = box.querySelectorAll(".wire");
       wires.forEach((wEl, k) => {
@@ -666,10 +781,14 @@ function createScene(container) {
     scene.add(m);
     return m;
   };
+  const allLabels = [];
   const label = (text, x, y, z) => {
     const div = document.createElement("div");
     div.className = "lbl";
-    div.textContent = text;
+    div.dataset.zh = text[0];
+    div.dataset.en = text[1];
+    div.textContent = T(...text);
+    allLabels.push(div);
     const o = new CSS2DObject(div);
     o.position.set(x, y, z);
     scene.add(o);
@@ -748,7 +867,7 @@ function createScene(container) {
   };
   drawChip(new Set());
   box(2.15, 0.16, 2.15, [std(0x22252e), std(0x22252e), new THREE.MeshStandardMaterial({ map: chip.tex, roughness: 0.5, emissive: 0xffffff, emissiveMap: chip.tex, emissiveIntensity: 0.35 }), std(0x22252e), std(0x22252e), std(0x22252e)], -1, BOARD_Y + 0.2, -0.5);
-  const lblCPU = label("中央處理器（CPU）", -1, 1.0, -0.5);
+  const lblCPU = label(["中央處理器（CPU）", "Central processing unit (CPU)"], -1, 1.0, -0.5);
 
   // RAM
   const ramMats = [];
@@ -763,7 +882,7 @@ function createScene(container) {
     }
     box(0.1, 0.06, 6, std(0xc9a646, { metalness: 0.8, roughness: 0.3 }), x, BOARD_Y + 0.25, -0.5);
   });
-  const lblRAM = label("主記憶體（RAM）", 3.75, 1.8, -0.5);
+  const lblRAM = label(["主記憶體（RAM）", "Main memory (RAM)"], 3.75, 1.8, -0.5);
 
   // SSD (M.2)
   const ssdMat = std(0x1b2b4a, { emissive: 0x4ea8ff, emissiveIntensity: 0 });
@@ -778,7 +897,7 @@ function createScene(container) {
   sticker.position.set(-0.9, BOARD_Y + 0.135, 3.4);
   scene.add(sticker);
   box(0.8, 0.1, 0.7, std(0x111318), 1.0, BOARD_Y + 0.17, 3.4);
-  const lblSSD = label("輔助儲存設備（SSD）", -0.5, 0.9, 3.4);
+  const lblSSD = label(["輔助儲存設備（SSD）", "Secondary storage (SSD)"], -0.5, 0.9, 3.4);
 
   // ports
   box(0.7, 0.7, 1.2, std(0x8d939c, { metalness: 0.7, roughness: 0.35 }), -6.55, BOARD_Y + 0.35, 2.2);
@@ -801,7 +920,7 @@ function createScene(container) {
       keys.push(m);
     }
   }
-  const lblKBD = label("鍵盤（輸入設備）", -8.6, 1.1, 6.2);
+  const lblKBD = label(["鍵盤（輸入設備）", "Keyboard (input device)"], -8.6, 1.1, 6.2);
 
   // monitor
   box(2.4, 0.1, 1.3, std(0x3a3f4d, { metalness: 0.5 }), -1.5, -0.06, -8.3);
@@ -811,7 +930,7 @@ function createScene(container) {
   const scr = new THREE.Mesh(new THREE.PlaneGeometry(6.2, 3.6), new THREE.MeshBasicMaterial({ map: screen.tex }));
   scr.position.set(-1.5, 4.1, -8.31);
   scene.add(scr);
-  const lblMON = label("顯示器（輸出設備）", -1.5, 6.5, -8.4);
+  const lblMON = label(["顯示器（輸出設備）", "Monitor (output device)"], -1.5, 6.5, -8.4);
 
   const drawScreen = (st) => {
     const ctx = screen.ctx, w = 768, h = 448;
@@ -822,19 +941,19 @@ function createScene(container) {
     if (st.screen.mode === "desktop") {
       ctx.fillStyle = "#1e3a6b"; ctx.fillRect(56, 60, 120, 120);
       ctx.fillStyle = "#fff"; ctx.font = `bold 64px ${FONT}`; ctx.textAlign = "center"; ctx.fillText("+", 116, 82);
-      ctx.font = `30px ${FONT}`; ctx.fillText("加法程式", 116, 196);
+      ctx.font = `30px ${FONT}`; ctx.fillText(T("加法程式", "Addition"), 116, 196);
       ctx.textAlign = "left"; ctx.fillStyle = "rgba(255,255,255,.6)"; ctx.font = `26px ${FONT}`;
-      ctx.fillText("程式仍存放在 SSD", 56, 380);
+      ctx.fillText(T("程式仍存放在 SSD", "The program is still on the SSD"), 56, 380);
     } else {
       ctx.fillStyle = "#13294d"; ctx.fillRect(0, 0, w, 56);
-      ctx.fillStyle = "#cfe3ff"; ctx.font = `bold 30px ${FONT}`; ctx.fillText("加法程式", 24, 12);
+      ctx.fillStyle = "#cfe3ff"; ctx.font = `bold 30px ${FONT}`; ctx.fillText(T("加法程式", "Addition program"), 24, 12);
       ctx.font = `bold 58px ui-monospace, Consolas, monospace`;
       st.screen.lines.slice(-4).forEach((l, k) => {
         ctx.fillStyle = l.out ? "#3ddc84" : "#e7ecf8";
         ctx.fillText(l.t + (l.wait ? "▌" : ""), 36, 84 + k * 80);
       });
       if (st.screen.mode === "end") {
-        ctx.fillStyle = "rgba(255,255,255,.6)"; ctx.font = `26px ${FONT}`; ctx.fillText("程式已結束", 24, 400);
+        ctx.fillStyle = "rgba(255,255,255,.6)"; ctx.font = `26px ${FONT}`; ctx.fillText(T("程式已結束", "Program finished"), 24, 400);
       }
     }
     screen.tex.needsUpdate = true;
@@ -1034,11 +1153,12 @@ function createScene(container) {
   }
   requestAnimationFrame(loop);
 
-  return { pulse, clearPulses, highlight, focus, drawScreen, pressKeys, get userMoving() { return userMoving; } };
+  const relabel = () => allLabels.forEach((el) => { el.textContent = LANG === "en" ? el.dataset.en : el.dataset.zh; });
+  return { pulse, clearPulses, highlight, focus, drawScreen, pressKeys, relabel, get userMoving() { return userMoving; } };
 }
 
 function stubScene() {
-  return { pulse() {}, clearPulses() {}, highlight() {}, focus() {}, drawScreen() {}, pressKeys() {}, userMoving: false };
+  return { pulse() {}, clearPulses() {}, highlight() {}, focus() {}, drawScreen() {}, pressKeys() {}, relabel() {}, userMoving: false };
 }
 
 let view;
@@ -1100,18 +1220,19 @@ function scene3DHighlight(step, s) {
 }
 
 function groupLabel(g) {
-  if (g === "prep") return "準備";
-  if (g === "end") return "總結";
-  return `指令 ${g}：${mnem(word(PROGRAM[g]))}`;
+  if (g === "prep") return T("準備", "Prepare");
+  if (g === "end") return T("總結", "Summary");
+  return T(`指令 ${g}：${mnem(word(PROGRAM[g]))}`, `Instruction ${g}: ${mnem(word(PROGRAM[g]))}`);
 }
 
 function renderText(step, s) {
-  const ph = PHASE_ZH[step.phase];
+  const ph = phaseName(step.phase);
   els.badge.textContent = ph;
   els.badge.className = "phase-badge ph-" + step.phase;
-  els.scenePhase.textContent = `${groupLabel(step.group)}｜${ph}`;
+  const gl = groupLabel(step.group);
+  els.scenePhase.textContent = step.group === "prep" || step.group === "end" ? gl : `${gl}${T("｜", " | ")}${ph}`;
   els.scenePhase.className = "scene-phase ph-" + step.phase;
-  els.count.textContent = `第 ${step.index + 1}／${steps.length} 步`;
+  els.count.textContent = T(`第 ${step.index + 1}／${steps.length} 步`, `Step ${step.index + 1} / ${steps.length}`);
   els.title.textContent = step.title;
   els.body.innerHTML = step.body(s);
   els.concept.innerHTML = step.concept ? step.concept(s) : "";
@@ -1119,7 +1240,7 @@ function renderText(step, s) {
   const need = step.need;
   if (need !== undefined) {
     els.inputBox.hidden = false;
-    els.inputLabel.textContent = `輸入${ORD[need]}個數（0 至 127，即變數 ${need === 0 ? "a" : "b"}）`;
+    els.inputLabel.textContent = T(`輸入${ORD()[need]}個數（0 至 127，即變數 ${need === 0 ? "a" : "b"}）`, `Enter the ${ORD()[need]} number (0 to 127, variable ${need === 0 ? "a" : "b"})`);
     els.inputNum.value = inputOf(need);
     els.inputErr.hidden = true;
   } else {
@@ -1136,8 +1257,8 @@ function renderTimeline() {
     const b = document.createElement("button");
     b.type = "button";
     b.className = "tl" + (g === curGroup ? " on" : k < order ? " done" : "");
-    if (g === "prep") b.innerHTML = `<span class="n">✦</span>準備`;
-    else if (g === "end") b.innerHTML = `<span class="n">✓</span>總結`;
+    if (g === "prep") b.innerHTML = `<span class="n">✦</span>${T("準備", "Prepare")}`;
+    else if (g === "end") b.innerHTML = `<span class="n">✓</span>${T("總結", "Summary")}`;
     else b.innerHTML = `<span class="n">${g}</span><code>${mnem(word(PROGRAM[g]))}</code>`;
     b.addEventListener("click", () => {
       pause();
@@ -1268,7 +1389,7 @@ let resumeAfterInput = false;
 function setPlaying(on, waitingInput = false) {
   playing = on;
   resumeAfterInput = waitingInput;
-  els.play.textContent = on ? "❚❚ 暫停" : "▶ 播放";
+  els.play.textContent = on ? T("❚❚ 暫停", "❚❚ Pause") : T("▶ 播放", "▶ Play");
 }
 
 function play() {
@@ -1318,13 +1439,13 @@ els.inputBox.addEventListener("submit", (e) => { e.preventDefault(); submitInput
 els.view.addEventListener("click", () => {
   const full = els.view.dataset.full !== "1";
   els.view.dataset.full = full ? "1" : "";
-  els.view.textContent = full ? "特寫" : "全景";
+  els.view.innerHTML = full ? bil("特寫", "Close-up") : bil("全景", "Full view");
   els.cam.checked = !full;
   view.focus(full ? "full" : steps[cur].focus, false);
 });
 els.cam.addEventListener("change", () => {
   els.view.dataset.full = els.cam.checked ? "" : "1";
-  els.view.textContent = els.cam.checked ? "全景" : "特寫";
+  els.view.innerHTML = els.cam.checked ? bil("全景", "Full view") : bil("特寫", "Close-up");
   if (els.cam.checked) view.focus(steps[cur].focus, false);
 });
 els.brief.addEventListener("change", () => {
@@ -1339,6 +1460,12 @@ try {
   const saved = localStorage.getItem("ictrev-sim-voice");
   if (saved && [...els.voice.options].some((o) => o.value === saved)) els.voice.value = saved;
 } catch (e) {}
+// 未有選擇過時，旁白語言跟隨介面語言
+if (LANG === "en" && els.voice.value === "zh") {
+  let chosen = null;
+  try { chosen = localStorage.getItem("ictrev-sim-voice"); } catch (e) {}
+  if (!chosen) els.voice.value = "en";
+}
 els.voice.addEventListener("change", () => {
   try { localStorage.setItem("ictrev-sim-voice", els.voice.value); } catch (e) {}
   audioUnlocked = true;
@@ -1353,4 +1480,46 @@ document.addEventListener("keydown", (e) => {
   else if (e.key === " " && !e.target.closest("button")) { e.preventDefault(); els.play.click(); }
 });
 
+// ---------------------------------------------------------------- language
+
+function bil(zh, en) { return `<span class="lz">${zh}</span><span class="le">${en}</span>`; }
+
+const TITLES = {
+  zh: "程式執行模擬｜提取─譯碼─執行周期",
+  en: "Program Execution Simulation | Fetch-Decode-Execute Cycle",
+};
+
+function applyStaticLang() {
+  const d = document.documentElement;
+  d.dataset.lang = LANG;
+  d.lang = LANG === "en" ? "en" : "zh-Hant-HK";
+  document.title = TITLES[LANG];
+  document.querySelectorAll("[data-zh-aria]").forEach((el) => {
+    const t = el.dataset[LANG === "en" ? "enAria" : "zhAria"];
+    el.setAttribute("aria-label", t);
+    if (el.hasAttribute("title")) el.title = t;
+  });
+  document.querySelectorAll("option[data-zh]").forEach((o) => { o.textContent = o.dataset[LANG]; });
+  setPlaying(playing, resumeAfterInput);
+  view.relabel();
+}
+
+function setLang(l) {
+  if (l === LANG) return;
+  LANG = l;
+  try { localStorage.setItem("ictrev-lang", l); } catch (e) {}
+  // 旁白語言跟隨介面語言（如有該語言的錄音）；選了「關閉」則不變
+  if (els.voice.value !== "off" && [...els.voice.options].some((o) => o.value === l)) els.voice.value = l;
+  applyStaticLang();
+  const old = steps[cur];
+  steps = buildSteps(els.brief.checked);
+  setPlaying(false);
+  go(old.index, false);
+}
+
+document.querySelectorAll("[data-set-lang]").forEach((b) => {
+  b.addEventListener("click", () => { audioUnlocked = true; setLang(b.dataset.setLang); });
+});
+
+applyStaticLang();
 go(0, false);

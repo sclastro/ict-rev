@@ -611,3 +611,25 @@ button:focus-visible, select:focus-visible, input:focus-visible, a:focus-visible
   .fly { transition: none; }
   .reg.changed .reg-val .bin, .ram tr.loaded td.v { animation: none; }
 }
+
+/* ------------------------------------------------------------ language */
+html[data-lang="zh"] .le, html[data-lang="en"] .lz { display: none; }
+
+.langs { display: flex; gap: 4px; flex: none; }
+.langs button {
+  padding: 3px 10px;
+  border-radius: 4px;
+  border: 1px solid var(--bar-line);
+  background: transparent;
+  color: var(--bar-muted);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.langs button:hover { color: #fff; }
+html[data-lang="zh"] .langs [data-set-lang="zh"],
+html[data-lang="en"] .langs [data-set-lang="en"] { background: var(--crimson); border-color: var(--crimson); color: #fff; }
+
+@media (max-width: 700px) {
+  .langs { margin-left: auto; }
+}
