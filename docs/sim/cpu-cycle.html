@@ -1,15 +1,23 @@
 <!doctype html>
-<html lang="zh-Hant-HK">
+<html lang="zh-Hant-HK" data-lang="zh">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>程式執行模擬｜提取─譯碼─執行周期</title>
-<meta name="description" content="互動模擬：程式由輔助儲存設備載入主記憶體後，CPU 如何以提取─譯碼─執行周期逐一執行指令；展示 PC、IR、MAR、MDR、ACC、ALU 及三種匯流排的角色。">
+<meta name="description" content="互動模擬：程式由輔助儲存設備載入主記憶體後，CPU 如何以提取─譯碼─執行周期逐一執行指令；展示 PC、IR、MAR、MDR、ACC、ALU 及三種匯流排的角色。 · Interactive simulation of the fetch-decode-execute cycle: how the CPU runs a program step by step, showing the PC, IR, MAR, MDR, ACC, ALU and the three buses.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231a1a1a'/%3E%3Ctext x='32' y='42' font-size='26' font-family='Georgia' font-weight='700' fill='%23b5222e' text-anchor='middle'%3EICT%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap">
 <link rel="stylesheet" href="cpu-cycle.css">
+<script>
+  // 與溫習站共用語言設定；網址加 ?lang=en 或 ?lang=zh 可指定
+  (function () {
+    var d = document.documentElement, l = null;
+    try { l = new URLSearchParams(location.search).get("lang") || localStorage.getItem("ictrev-lang"); } catch (e) {}
+    if (l === "en") { d.setAttribute("data-lang", "en"); d.setAttribute("lang", "en"); }
+  })();
+</script>
 <script type="importmap">
 { "imports": { "three": "./vendor/three.module.min.js", "three/addons/": "./vendor/" } }
 </script>
@@ -17,43 +25,47 @@
 <body>
 
 <header class="top">
-  <a class="back" href="../core-b/a.html#16-提取譯碼執行周期">← 單元 B 課題 a</a>
+  <a class="back" href="../core-b/a.html#16-提取譯碼執行周期"><span class="lz">← 單元 B 課題 a</span><span class="le">← Module B Topic a</span></a>
   <div class="title">
-    <h1>程式在電腦內怎樣執行？</h1>
-    <p>提取─譯碼─執行周期互動模擬</p>
+    <h1><span class="lz">程式在電腦內怎樣執行？</span><span class="le">How does a program run inside a computer?</span></h1>
+    <p><span class="lz">提取─譯碼─執行周期互動模擬</span><span class="le">An interactive simulation of the fetch-decode-execute cycle</span></p>
   </div>
-  <ul class="legend" aria-label="匯流排圖例">
-    <li><i class="sw addr"></i>位址匯流排</li>
-    <li><i class="sw data"></i>數據匯流排</li>
-    <li><i class="sw ctrl"></i>控制匯流排</li>
+  <ul class="legend" data-zh-aria="匯流排圖例" data-en-aria="Bus legend" aria-label="匯流排圖例">
+    <li><i class="sw addr"></i><span class="lz">位址匯流排</span><span class="le">Address bus</span></li>
+    <li><i class="sw data"></i><span class="lz">數據匯流排</span><span class="le">Data bus</span></li>
+    <li><i class="sw ctrl"></i><span class="lz">控制匯流排</span><span class="le">Control bus</span></li>
   </ul>
+  <div class="langs" role="group" aria-label="語言 Language">
+    <button type="button" data-set-lang="zh">中文</button>
+    <button type="button" data-set-lang="en">EN</button>
+  </div>
 </header>
 
 <main class="layout">
   <section class="stage">
     <div class="scene" id="scene" aria-hidden="true">
-      <div class="scene-phase" id="scene-phase">準備</div>
+      <div class="scene-phase" id="scene-phase"></div>
       <div class="scene-tools">
-        <button type="button" id="btn-view" class="chip-btn">全景</button>
+        <button type="button" id="btn-view" class="chip-btn"><span class="lz">全景</span><span class="le">Full view</span></button>
       </div>
-      <p class="scene-hint">拖曳可旋轉，雙指或滾輪可縮放</p>
-      <p class="scene-fallback" id="scene-fallback" hidden>這部電腦的瀏覽器未能顯示 3D 畫面，請參考右方的 CPU 示意圖和下方的說明。</p>
+      <p class="scene-hint"><span class="lz">拖曳可旋轉，雙指或滾輪可縮放</span><span class="le">Drag to rotate; pinch or scroll to zoom</span></p>
+      <p class="scene-fallback" id="scene-fallback" hidden><span class="lz">這部電腦的瀏覽器未能顯示 3D 畫面，請參考右方的 CPU 示意圖和下方的說明。</span><span class="le">This browser cannot show the 3D view. Please follow the CPU diagram and the explanation instead.</span></p>
     </div>
 
     <article class="narr" id="narr" aria-live="polite">
       <div class="narr-head">
-        <span class="phase-badge" id="phase-badge">準備</span>
+        <span class="phase-badge" id="phase-badge"></span>
         <span class="step-count" id="step-count"></span>
       </div>
       <h2 id="step-title"></h2>
       <div class="step-body" id="step-body"></div>
       <form class="input-box" id="input-box" hidden>
-        <label for="input-num" id="input-label">輸入一個整數（0 至 127）</label>
+        <label for="input-num" id="input-label"></label>
         <div class="input-row">
           <input id="input-num" type="number" inputmode="numeric" min="0" max="127" step="1" required>
-          <button type="submit" class="btn primary">確定</button>
+          <button type="submit" class="btn primary"><span class="lz">確定</span><span class="le">OK</span></button>
         </div>
-        <p class="input-err" id="input-err" hidden>請輸入 0 至 127 之間的整數。</p>
+        <p class="input-err" id="input-err" hidden><span class="lz">請輸入 0 至 127 之間的整數。</span><span class="le">Please enter a whole number from 0 to 127.</span></p>
       </form>
       <div class="concept" id="step-concept"></div>
     </article>
@@ -62,42 +74,42 @@
   <aside class="side">
    <div class="col col-b">
     <section class="card code-card">
-      <h3>程式（高階語言）<span class="sub">對應的機器碼指令</span></h3>
+      <h3><span class="lz">程式（高階語言）</span><span class="le">Program (high-level language)</span><span class="sub"><span class="lz">對應的機器碼指令</span><span class="le">Machine code instructions</span></span></h3>
       <ol class="src" id="src"></ol>
     </section>
    </div>
    <div class="col col-a">
 
     <section class="card cpu-card">
-      <h3>中央處理器（CPU）內部</h3>
+      <h3><span class="lz">中央處理器（CPU）內部</span><span class="le">Inside the central processing unit (CPU)</span></h3>
       <div class="cpu" id="cpu">
         <div class="unit cu" id="u-cu">
-          <div class="unit-name">控制器（CU）</div>
+          <div class="unit-name"><span class="lz">控制器（CU）</span><span class="le">Control unit (CU)</span></div>
           <div class="reg" id="reg-PC">
-            <span class="reg-name">PC<small>程式計數器</small></span>
+            <span class="reg-name">PC<small><span class="lz">程式計數器</span><span class="le">Program counter</span></small></span>
             <span class="reg-val"><b class="bin"></b><em class="dec"></em></span>
           </div>
           <div class="reg" id="reg-IR">
-            <span class="reg-name">IR<small>指令寄存器</small></span>
+            <span class="reg-name">IR<small><span class="lz">指令寄存器</span><span class="le">Instruction register</span></small></span>
             <span class="reg-val"><b class="bin"></b><em class="dec"></em></span>
           </div>
-          <div class="decoder" id="decoder">譯碼器：－</div>
+          <div class="decoder" id="decoder"></div>
         </div>
         <div class="unit alu-unit" id="u-alu">
-          <div class="unit-name">算術及邏輯運算部件（ALU）</div>
+          <div class="unit-name"><span class="lz">算術及邏輯運算部件（ALU）</span><span class="le">Arithmetic and logic unit (ALU)</span></div>
           <div class="alu" id="alu"><span class="alu-shape"></span><span class="alu-op" id="alu-op">－</span></div>
           <div class="reg" id="reg-ACC">
-            <span class="reg-name">ACC<small>累加器</small></span>
+            <span class="reg-name">ACC<small><span class="lz">累加器</span><span class="le">Accumulator</span></small></span>
             <span class="reg-val"><b class="bin"></b><em class="dec"></em></span>
           </div>
         </div>
         <div class="mem-if">
           <div class="reg" id="reg-MAR">
-            <span class="reg-name">MAR<small>記憶體位址寄存器</small></span>
+            <span class="reg-name">MAR<small><span class="lz">記憶體位址寄存器</span><span class="le">Memory address register</span></small></span>
             <span class="reg-val"><b class="bin"></b><em class="dec"></em></span>
           </div>
           <div class="reg" id="reg-MDR">
-            <span class="reg-name">MDR<small>記憶體數據寄存器</small></span>
+            <span class="reg-name">MDR<small><span class="lz">記憶體數據寄存器</span><span class="le">Memory data register</span></small></span>
             <span class="reg-val"><b class="bin"></b><em class="dec"></em></span>
           </div>
         </div>
@@ -105,35 +117,35 @@
     </section>
 
     <section class="card bus-card">
-      <h3>匯流排系統</h3>
+      <h3><span class="lz">匯流排系統</span><span class="le">Bus system</span></h3>
       <div class="bus" id="bus-addr" data-bus="addr">
-        <div class="bus-name"><i class="sw addr"></i>位址匯流排<small>4 條線・只由 CPU 送出</small></div>
+        <div class="bus-name"><i class="sw addr"></i><span class="lz">位址匯流排</span><span class="le">Address bus</span><small><span class="lz">4 條線・只由 CPU 送出</span><span class="le">4 lines · out from the CPU only</span></small></div>
         <div class="bus-line"><span class="wires"></span><span class="bus-dir"></span></div>
       </div>
       <div class="bus" id="bus-data" data-bus="data">
-        <div class="bus-name"><i class="sw data"></i>數據匯流排<small>8 條線・雙向</small></div>
+        <div class="bus-name"><i class="sw data"></i><span class="lz">數據匯流排</span><span class="le">Data bus</span><small><span class="lz">8 條線・雙向</span><span class="le">8 lines · two-way</span></small></div>
         <div class="bus-line"><span class="wires"></span><span class="bus-dir"></span></div>
       </div>
       <div class="bus" id="bus-ctrl" data-bus="ctrl">
-        <div class="bus-name"><i class="sw ctrl"></i>控制匯流排<small>控制信號・雙向</small></div>
+        <div class="bus-name"><i class="sw ctrl"></i><span class="lz">控制匯流排</span><span class="le">Control bus</span><small><span class="lz">控制信號・雙向</span><span class="le">Control signals · two-way</span></small></div>
         <div class="bus-line"><span class="signal"></span><span class="bus-dir"></span></div>
       </div>
     </section>
 
     <section class="card dev-card">
-      <h3>周邊設備</h3>
+      <h3><span class="lz">周邊設備</span><span class="le">Peripherals</span></h3>
       <div class="devs">
-        <div class="dev" id="dev-kbd"><span>鍵盤</span><small>輸入設備</small><b class="dev-val">－</b></div>
-        <div class="dev" id="dev-mon"><span>顯示器</span><small>輸出設備</small><b class="dev-val">－</b></div>
-        <div class="dev" id="dev-ssd"><span>SSD</span><small>輔助儲存設備</small><b class="dev-val">加法程式</b></div>
+        <div class="dev" id="dev-kbd"><span><span class="lz">鍵盤</span><span class="le">Keyboard</span></span><small><span class="lz">輸入設備</span><span class="le">Input device</span></small><b class="dev-val">－</b></div>
+        <div class="dev" id="dev-mon"><span><span class="lz">顯示器</span><span class="le">Monitor</span></span><small><span class="lz">輸出設備</span><span class="le">Output device</span></small><b class="dev-val">－</b></div>
+        <div class="dev" id="dev-ssd"><span>SSD</span><small><span class="lz">輔助儲存設備</span><span class="le">Secondary storage</span></small><b class="dev-val"><span class="lz">加法程式</span><span class="le">Addition program</span></b></div>
       </div>
     </section>
    </div>
    <div class="col col-c">
     <section class="card ram-card">
-      <h3>主記憶體（RAM）<span class="sub">16 個位址 × 8 位元</span></h3>
+      <h3><span class="lz">主記憶體（RAM）</span><span class="le">Main memory (RAM)</span><span class="sub"><span class="lz">16 個位址 × 8 位元</span><span class="le">16 addresses × 8 bits</span></span></h3>
       <table class="ram" id="ram">
-        <thead><tr><th>位址</th><th>內容</th><th>意思</th></tr></thead>
+        <thead><tr><th><span class="lz">位址</span><span class="le">Address</span></th><th><span class="lz">內容</span><span class="le">Contents</span></th><th><span class="lz">意思</span><span class="le">Meaning</span></th></tr></thead>
         <tbody></tbody>
       </table>
     </section>
@@ -143,29 +155,29 @@
 </main>
 
 <footer class="controls">
-  <nav class="timeline" id="timeline" aria-label="指令進度"></nav>
+  <nav class="timeline" id="timeline" data-zh-aria="指令進度" data-en-aria="Instruction progress" aria-label="指令進度"></nav>
   <div class="progress"><span id="progress-bar"></span></div>
   <div class="ctrl-row">
     <div class="btns">
-      <button type="button" class="btn icon" id="btn-reset" title="重新開始" aria-label="重新開始">⟲</button>
-      <button type="button" class="btn icon" id="btn-prev" title="上一步" aria-label="上一步">◀</button>
-      <button type="button" class="btn primary play" id="btn-play">▶ 播放</button>
-      <button type="button" class="btn icon" id="btn-next" title="下一步" aria-label="下一步">▶</button>
+      <button type="button" class="btn icon" id="btn-reset" data-zh-aria="重新開始" data-en-aria="Restart" title="重新開始" aria-label="重新開始">⟲</button>
+      <button type="button" class="btn icon" id="btn-prev" data-zh-aria="上一步" data-en-aria="Previous step" title="上一步" aria-label="上一步">◀</button>
+      <button type="button" class="btn primary play" id="btn-play"></button>
+      <button type="button" class="btn icon" id="btn-next" data-zh-aria="下一步" data-en-aria="Next step" title="下一步" aria-label="下一步">▶</button>
     </div>
     <div class="opts">
-      <label>速度
+      <label><span class="lz">速度</span><span class="le">Speed</span>
         <select id="opt-speed">
-          <option value="1.6">慢</option>
-          <option value="1" selected>正常</option>
-          <option value="0.6">快</option>
+          <option value="1.6" data-zh="慢" data-en="Slow">慢</option>
+          <option value="1" data-zh="正常" data-en="Normal" selected>正常</option>
+          <option value="0.6" data-zh="快" data-en="Fast">快</option>
         </select>
       </label>
-      <label class="tog"><input type="checkbox" id="opt-brief"> 精簡提取階段</label>
-      <label class="tog"><input type="checkbox" id="opt-cam" checked> 鏡頭跟隨</label>
-      <label>旁白
+      <label class="tog"><input type="checkbox" id="opt-brief"> <span class="lz">精簡提取階段</span><span class="le">Short fetch stage</span></label>
+      <label class="tog"><input type="checkbox" id="opt-cam" checked> <span class="lz">鏡頭跟隨</span><span class="le">Follow camera</span></label>
+      <label><span class="lz">旁白</span><span class="le">Narration</span>
         <select id="opt-voice">
-          <option value="zh" selected>粵語</option>
-          <option value="off">關閉</option>
+          <option value="zh" data-zh="粵語" data-en="Cantonese" selected>粵語</option>
+          <option value="off" data-zh="關閉" data-en="Off">關閉</option>
         </select>
       </label>
     </div>
