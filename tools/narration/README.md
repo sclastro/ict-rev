@@ -1,15 +1,15 @@
 # 模擬頁旁白：交接說明
 
-給下一個 session：用戶要為 `site/sim/cpu-cycle.html` 加入旁白（粵語及英文），在模擬頁加「旁白：粵語／English／關閉」切換，自動播放時每步等錄音播完才前進。
+模擬頁 `site/sim/cpu-cycle.html` 的旁白（粵語及英文）製作紀錄。
 
-## 已決定
+## 現況
 
-- 粵語旁白用書面語，以粵語讀出；下面 40 段為定稿（用戶已批准）。英文旁白稍後照樣起草，交用戶過目。
-- 曾試聲音複製（CosyVoice、GPT-SoVITS），聲調不夠準，用戶決定改用 Microsoft Azure 語音服務的香港粵語聲線（zh-HK：HiuMaanNeural、HiuGaaiNeural、WanLungNeural），不模仿用戶聲音。先讓用戶試聽幾種聲線再選。
-- 金鑰由用戶存於環境設定：`AZURE_SPEECH_KEY`、`AZURE_SPEECH_REGION`（例如 `eastasia`）。端點：`https://<region>.tts.speech.microsoft.com/cognitiveservices/v1`（SSML，`X-Microsoft-OutputFormat` 用 MP3）。不要把金鑰寫入 repo。
-- 錄音預先生成，放 `site/sim/audio/zh/<編號>.mp3`（建站時隨 `site/sim` 複製到 `docs/sim`）。學生輸入的數字每次不同，旁白不讀出這些數值。
-- 字母詞（PC、IR、MAR、MDR、ACC、CU、ALU、SSD、CPU）逐個字母讀；RAM 可讀作單字。
-- 需留意的正讀：位址、位元的「位」wai6；代表的「表」biu2；這個的「這」ze2；鍵盤的「盤」pun4；部件的「件」gin6；轉換為、成為的「為」wai4。Azure 若讀錯，可用 SSML 調整或換同音字。
+- 粵語旁白已完成：40 段錄音在 `site/sim/audio/zh/<編號>.mp3`，旁白用書面語、以粵語讀出（定稿見下）。
+- 錄音以開源模型 CosyVoice 3（Fun-CosyVoice3-0.5B，instruct 模式「请用粤语说这句话」）模仿用戶聲線生成；字母詞在送入模型前拆成逐個字母（如「M A R」），每段生成四個版本，以 Whisper 粵語辨識的字錯率挑選。曾試 GPT-SoVITS 及 Azure，最後沒有採用。
+- 用戶的參考錄音不放入 repo。
+- 英文旁白：定稿見 `/home/user/旁白初稿（英文）.md`（同一套編號），待用戶提供英文參考錄音後以同一方法生成，放在 `site/sim/audio/en/`。
+- 模擬頁的「旁白」選單讀 `audio/<語言>/<編號>.mp3`；自動播放時每步等動畫和旁白都完成才前進；學生輸入的數字每次不同，旁白不讀出這些數值。
+- 已知未完全解決的讀音：「譯碼」的「譯」、「位元」的「位」、「匯流排」的「匯」，用戶同意暫時沿用。
 
 ## 編號與步驟的對應
 
