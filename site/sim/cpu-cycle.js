@@ -1163,6 +1163,7 @@ const narration = new Audio();
 narration.preload = "auto";
 let narrationDone = Promise.resolve(false);
 let audioUnlocked = false;   // 瀏覽器要求使用者先操作，才可以播放聲音
+let narratedStep = -1;       // 已播放旁白的步驟
 
 function voiceLang() { return els.voice.value; }
 function voiceSrc(step) { return step && step.voice ? `audio/${voiceLang()}/${step.voice}.mp3` : null; }
@@ -1176,6 +1177,7 @@ function startNarration(step) {
   stopNarration();
   const src = voiceSrc(step);
   if (voiceLang() === "off" || !src || !audioUnlocked) { narrationDone = Promise.resolve(false); return; }
+  narratedStep = step.index;
   const g = gen;
   narrationDone = new Promise((resolve) => {
     narration.onended = () => resolve(g === gen);
@@ -1273,6 +1275,8 @@ function play() {
   if (cur >= steps.length - 1) { setPlaying(true); go(0, true); return; }
   setPlaying(true);
   if (steps[cur].need !== undefined) { submitInput(); return; }
+  // 這一步的旁白未播過（例如剛打開頁面），先播完再前進
+  if (voiceLang() !== "off" && narratedStep !== cur) { go(cur, false); return; }
   advance();
 }
 function pause() {
